@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER">
+		<attributes>
+			<attribute name="module" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="C:/Users/Luca/Desktop/Luca/UNIBG/V/Linguaggi formali e compilatori/Progetto_Github/progetto_LFC/libraries/antlr-3.4-complete.jar"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>
