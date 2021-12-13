@@ -24,13 +24,7 @@ hs_err_pid*
 ##############################
 ## Eclipse
 ##############################
-.settings/
 bin/
 tmp/
 .metadata
 .classpath
-*.tmp
-*.bak
-*.swp
-*~.nib
-local.properties
