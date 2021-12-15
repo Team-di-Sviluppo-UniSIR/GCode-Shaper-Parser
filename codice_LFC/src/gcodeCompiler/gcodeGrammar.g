@@ -5,7 +5,7 @@ options {
 }
 
 @lexer::header {
-package javaCompiler;
+package gcodeCompiler;
 }
 
 @lexer::members {
@@ -58,6 +58,38 @@ FREE_MOVE_SPEED
 
 JOB_MOVE_SPEED
 	:	'S' ('1' .. '9')('0' .. '9')*
+	;
+	
+TOOL_CHANGE
+	:	'T0' ('1' .. '9') '0' ('1' .. '9')	
+	;
+	
+ROT_TOOL_CW
+	: 'M03'	
+	;
+	
+ROT_TOOL_ACW
+	: 'M04'	
+	;
+	
+STOP_TOOL
+	: 'M05'	
+	;
+	
+CHANGE_TOOL
+	: 'M06'	
+	;
+	
+LUBE_ON
+	: 'M08'	
+	;
+	
+LUBE_OFF
+	: 'M09'	
+	;
+	
+END_PROG
+	: 'M30'	
 	;
 	
 COMMENT
