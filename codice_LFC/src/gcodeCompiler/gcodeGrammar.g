@@ -12,8 +12,40 @@ package gcodeCompiler;
 
 }
 
+fragment DIGIT
+	:	'0'..'9'
+	;
+	
+fragment CORD_DIGIT
+	:	('-')?(DIGIT)+
+	;
+	
+X_CORD
+	: 'X'CORD_DIGIT	
+	;
+	
+Y_CORD
+	: 'Y'CORD_DIGIT	
+	;
+	
+Z_CORD
+	: 'Z'CORD_DIGIT	
+	;
+	
+I_CORD
+	: 'I'CORD_DIGIT	
+	;
+	
+J_CORD
+	: 'J'CORD_DIGIT	
+	;
+	
+K_CORD
+	: 'K'CORD_DIGIT	
+	;
+
 N_BLOCK	
-	:	'N' ('1' .. '9')('0' .. '9')*
+	:	'N' ('1' .. '9')(DIGIT)*
 	;
 	
 COORD_ABS
@@ -53,11 +85,11 @@ COMP_R
 	;
 
 FREE_MOVE_SPEED
-	:	'F' ('1' .. '9')('0' .. '9')*
+	:	'F' ('1' .. '9')(DIGIT)*
 	;
 
 JOB_MOVE_SPEED
-	:	'S' ('1' .. '9')('0' .. '9')*
+	:	'S' ('1' .. '9')(DIGIT)*
 	;
 	
 TOOL_CHANGE
