@@ -1,16 +1,88 @@
-lexer grammar gcodeGrammar;
+grammar gcodeGrammar;
 
 options {
 	language = Java;
+	k=1;
 }
 
 @lexer::header {
 package gcodeCompiler;
 }
 
-@lexer::members {
-
+@header {
+package gcodeCompiler;
 }
+
+//specifica gcode
+gcode 
+	:
+	block+
+	;
+	
+//singolo blocco
+//max 3 info_tecnologiche_M
+//ordine necessariamente [info_geometriche] [info_tecnologiche] [info_3M]
+block
+	:
+		N_BLOCK (
+							(info_geometriche)+ (
+		 																	| (info_tecnologiche)+ (info_3M)?
+		 															)
+		 																	
+							|	(info_tecnologiche)+ (info_3M)?
+							| info_3M 
+						)
+	;
+	
+info_3M
+	:
+		info_tecnologiche_M (info_tecnologiche_M)? (info_tecnologiche_M)?
+	;
+
+info_geometriche
+	:	
+		COORD_ABS
+	|	COORD_REL
+	| FREE_MOVE coordinate_XYZ
+	| JOB_MOVE	coordinate_XYZ
+	| CIRCLE_CW coordinate_XYZ coordinate_IJK
+	| CIRCLE_ACW coordinate_XYZ coordinate_IJK
+	| COMP_DIS
+	| COMP_L
+	| COMP_R
+	;
+	
+coordinate_XYZ
+	:
+		X_CORD (Y_CORD)? (Z_CORD)?
+	| Y_CORD (Z_CORD)?
+	| Z_CORD
+	;
+	
+coordinate_IJK
+	:	
+		I_CORD (J_CORD)? (K_CORD)?
+	| J_CORD (K_CORD)?
+	| K_CORD
+	;
+
+info_tecnologiche
+	:	
+		FREE_MOVE_SPEED
+	|	JOB_MOVE_SPEED
+	| TOOL_CHANGE
+	;
+	
+info_tecnologiche_M
+	:
+		ROT_TOOL_CW
+	|	ROT_TOOL_ACW
+	| STOP_TOOL
+	| CHANGE_TOOL
+	| LUBE_ON
+	| LUBE_OFF
+	| END_PROG
+	;
 
 fragment DIGIT
 	:	'0'..'9'
