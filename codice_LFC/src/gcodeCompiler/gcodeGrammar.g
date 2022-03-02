@@ -17,8 +17,6 @@ package gcodeCompiler;
 specifica gcode
 insieme di blocchi aventi tutti la medesima struttura, 
 riportata di seguito
-l'ultimo blocco è quello terminatore, che deve contenere le 
-istruzioni di terminazione
 */ 
 gcode 
 	:
@@ -113,6 +111,8 @@ info_tecnologiche_M
 	| LUBE_OFF
 	| END_PROG
 	;
+	
+	
 
 // intero da 0 a 9
 fragment DIGIT
