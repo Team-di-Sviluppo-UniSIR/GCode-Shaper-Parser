@@ -22,7 +22,7 @@ import java.io.IOException;
 @members {
 gcodeGrammarHandler h;
 
- public gcodeGrammarParser(String fileIn)throws FileNotFoundException, IOException {		
+public gcodeGrammarParser(String fileIn)throws FileNotFoundException, IOException {		
 	this(new CommonTokenStream(
 		new gcodeGrammarLexer(
 			new ANTLRReaderStream(
@@ -52,14 +52,15 @@ l'ordine deve essere necessariamente [info_geometriche] [info_tecnologiche] [inf
 */
 block
 	:
-		N_BLOCK (
-							(info_geometriche)+ (
+		n=N_BLOCK (
+							(info_geometriche)+ (		
+																				(info_3M)?
 		 																	| (info_tecnologiche)+ (info_3M)?
 		 															)
 		 																	
 							|	(info_tecnologiche)+ (info_3M)?
 							| info_3M 
-						)
+						){h.createNewBlock($n);}
 	;
 	
 /*
