@@ -2,7 +2,7 @@ package gcodeMain;
 
 import java.io.FileReader;
 
-import gcodeCompiler.gcodeGrammar;
+import gcodeCompiler.gcodeGrammarLexer;
 
 import org.antlr.runtime.ANTLRReaderStream;
 import org.antlr.runtime.Token;
@@ -18,16 +18,16 @@ public class ScannerTester {
 		try {
 			System.out.println("Test ANTLR lexer");
 			// istanzio lo scanner passandogli un stream di ingresso
-			gcodeGrammar lexer = new gcodeGrammar(new ANTLRReaderStream(new FileReader(fileIn)));
+			gcodeGrammarLexer lexer = new gcodeGrammarLexer(new ANTLRReaderStream(new FileReader(fileIn)));
 
 			i = 1;
 			// attivo un ciclo che scandisce lo stream dall'inizio alla fine
 			// richiedendo ogni volta allo scanner di fornire il token successivo (metodo
 			// nextToken)
 			// fino ad incontrare l' End Of File EOF
-			while ((tk = lexer.nextToken()).getType() != gcodeGrammar.EOF) {
+			while ((tk = lexer.nextToken()).getType() != gcodeGrammarLexer.EOF) {
 				// stampo a video le informazioni relative ai token rilevati
-				if (tk.getChannel() != gcodeGrammar.HIDDEN)
+				if (tk.getChannel() != gcodeGrammarLexer.HIDDEN)
 					System.out.println("Token " + i++ + ": (" + tk.getLine() + "," + (tk.getCharPositionInLine() + 1)
 							+ ")\t" + "TokenType:" + tk.getType() + ":\t" + tk.getText());
 			}

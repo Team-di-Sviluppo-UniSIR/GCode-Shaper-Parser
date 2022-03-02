@@ -11,6 +11,27 @@ package gcodeCompiler;
 
 @header {
 package gcodeCompiler;
+
+import gcodeCompiler.gcodeGrammarHandler;
+import gcodeCompiler.util.*;
+import java.io.FileReader;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+}
+
+@members {
+gcodeGrammarHandler h;
+
+ public gcodeGrammarParser(String fileIn)throws FileNotFoundException, IOException {		
+	this(new CommonTokenStream(
+		new gcodeGrammarLexer(
+			new ANTLRReaderStream(
+				new FileReader(fileIn)))));
+}
+
+void setup () {
+	h = new gcodeGrammarHandler();
+}
 }
 
 /*
@@ -19,6 +40,7 @@ insieme di blocchi aventi tutti la medesima struttura,
 riportata di seguito
 */ 
 gcode 
+	@init { setup(); }
 	:
 	block+
 	;
