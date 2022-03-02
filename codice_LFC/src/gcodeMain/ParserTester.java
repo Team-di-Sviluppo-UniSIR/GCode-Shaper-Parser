@@ -20,6 +20,7 @@ public class ParserTester {
 			gcodeGrammarLexer lexer = new gcodeGrammarLexer(new ANTLRReaderStream(new FileReader(fileIn)));
 			tokens = new CommonTokenStream(lexer);
 			parse(tokens, fileOut1, fileErr1);
+			
 		} catch (Exception e) {
 			System.out.println("Parsing con ANTLR abortito\n\n");
 			e.printStackTrace();
@@ -31,5 +32,6 @@ public class ParserTester {
 		FileWriter fOut;
 		parser = new gcodeGrammarParser(tokens);
 		parser.gcode();
+		System.out.println("\nParsing con ANTLR abortito");
 	}
 }
