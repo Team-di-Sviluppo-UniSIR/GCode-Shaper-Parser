@@ -17,15 +17,16 @@ public class ParserLauncher {
 	public static void main(String[] args) throws FileNotFoundException, IOException, RecognitionException {
 		String fileIn = ".\\resources\\input.file";
 
-		System.out.println("Parsing con ANTLR");
+		System.out.println("Parsing con ANTLR\n");
 
 		gcodeGrammarParser parser = new gcodeGrammarParser(fileIn);
 		parser.gcode();
-		
+
 		if (parser.getErrorList().size() == 0) {
 			System.out.println("Parsing completato con successo");
-		
+
 			parser.getHandler().printBlocks();
+			
 		} else {
 			int i = 0;
 			System.out.println("Errori rilevati");
@@ -33,8 +34,6 @@ public class ParserLauncher {
 				System.out.println(++i + " - " + msg);
 		}
 
-		
-
-		System.out.println("Parsing Completato");
+		System.out.println("\nParsing Completato");
 	}
 }

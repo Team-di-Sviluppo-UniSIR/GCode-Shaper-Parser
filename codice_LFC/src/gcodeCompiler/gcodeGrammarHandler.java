@@ -11,15 +11,15 @@ import gcodeCompiler.util.*;
 import gcodeCompiler.*;
 
 public class gcodeGrammarHandler {
-	
+
 	// codici degli errori
 	public static final int UNDEFINED = -1;
 	public static final int TOKEN_ERROR = 0;
 	public static final int ERR_ON_SYNTAX = 1;
 	public static final int LAST_SYNTAX_ERROR = 10;
-	public static final int DECLARED_METHOD = 20;
 
 	public SortedMap<String, blockDescriptor> blocks;
+
 	List<String> errorList; // gestione errori
 	TokenStream lexerStream;
 
@@ -27,19 +27,24 @@ public class gcodeGrammarHandler {
 		blocks = new TreeMap<String, blockDescriptor>();
 		errorList = new ArrayList<String>(); // lista degli errori è una lista di stringhe
 		lexerStream = ls;
-		
+
 	}
 
+	// TODO
+	// configurare costruzione blocco con variabili dalla grammatica
 	public void createNewBlock(Token n) {
-		blocks.put(n.getText(), new blockDescriptor(n.getText()));
+		// blocks.put(n.getText(), new blockDescriptor(n.getText()));
 	}
 
+	// TODO
+	// stampa del blocco (serve???)
 	public void printBlocks() {
 		for (Entry<String, blockDescriptor> entry : blocks.entrySet()) {
-			System.out.println("Key: " + entry.getKey() + ", Value: " + entry.getValue().getBlockContent());
+			// System.out.println("Key: " + entry.getKey() + ", Value: " +
+			// entry.getValue().getBlockContent());
 		}
 	}
-	
+
 	// metodo che mi fornisce lista degli errori
 	public List<String> getErrorList() {
 		return errorList;
@@ -87,8 +92,6 @@ public class gcodeGrammarHandler {
 
 		if (code == TOKEN_ERROR)
 			st += "Unrecognized token '" + tk.getText() + "'";
-		if (code == DECLARED_METHOD)
-			st += "Method " + tk.getText() + " has been already declared.";
 
 		// errori vanno ordinati
 		errorList.add(st);
