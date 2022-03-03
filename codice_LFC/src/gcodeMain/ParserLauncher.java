@@ -14,19 +14,16 @@ import gcodeCompiler.gcodeGrammarParser;
 import gcodeCompiler.gcodeGrammarHandler;
 
 public class ParserLauncher {
-	public static void main (String[] args) throws FileNotFoundException, IOException, RecognitionException {		
-	  	String fileIn = ".\\resources\\input.file";
+	public static void main(String[] args) throws FileNotFoundException, IOException, RecognitionException {
+		String fileIn = ".\\resources\\input.file";
 
-		System.out.println ("Parsing con ANTLR");
+		System.out.println("Parsing con ANTLR");
 
 		gcodeGrammarParser parser = new gcodeGrammarParser(fileIn);
 		parser.gcode();
-		
+
 		parser.getH().printBlocks();
 
-		System.out.println ("Parsing Completato");
-		
-
-		
+		System.out.println("Parsing Completato");
 	}
 }

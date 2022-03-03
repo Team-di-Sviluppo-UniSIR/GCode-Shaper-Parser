@@ -20,7 +20,7 @@ import java.io.IOException;
 }
 
 @members {
-gcodeGrammarHandler h;
+private gcodeGrammarHandler h;
 
 public gcodeGrammarParser(String fileIn)throws FileNotFoundException, IOException {		
 	this(new CommonTokenStream(
@@ -31,6 +31,14 @@ public gcodeGrammarParser(String fileIn)throws FileNotFoundException, IOExceptio
 
 void setup () {
 	h = new gcodeGrammarHandler();
+}
+
+public gcodeGrammarHandler getH() {
+	return h;
+}
+
+public void setH(gcodeGrammarHandler h) {
+	this.h = h;
 }
 }
 

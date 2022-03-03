@@ -1,4 +1,4 @@
-// $ANTLR 3.5.1 C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\src\\gcodeCompiler\\gcodeGrammar.g 2022-03-02 21:35:14
+// $ANTLR 3.5.1 C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\src\\gcodeCompiler\\gcodeGrammar.g 2022-03-03 17:21:20
 
 package gcodeCompiler;
 
@@ -75,7 +75,15 @@ public class gcodeGrammarParser extends Parser {
 	@Override public String getGrammarFileName() { return "C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\src\\gcodeCompiler\\gcodeGrammar.g"; }
 
 
-	private gcodeGrammarHandler h;
+	gcodeGrammarHandler h;
+
+	public gcodeGrammarHandler getH() {
+		return h;
+	}
+
+	public void setH(gcodeGrammarHandler h) {
+		this.h = h;
+	}
 
 	public gcodeGrammarParser(String fileIn)throws FileNotFoundException, IOException {		
 		this(new CommonTokenStream(
@@ -85,7 +93,7 @@ public class gcodeGrammarParser extends Parser {
 	}
 
 	void setup () {
-		setH(new gcodeGrammarHandler());
+		h = new gcodeGrammarHandler();
 	}
 
 
@@ -388,7 +396,7 @@ public class gcodeGrammarParser extends Parser {
 
 			}
 
-			getH().createNewBlock(n);
+			h.createNewBlock(n);
 			}
 
 		}
@@ -897,15 +905,6 @@ public class gcodeGrammarParser extends Parser {
 
 	// Delegated rules
 
-
-
-	public gcodeGrammarHandler getH() {
-		return h;
-	}
-
-	public void setH(gcodeGrammarHandler h) {
-		this.h = h;
-	}
 
 
 	public static final BitSet FOLLOW_block_in_gcode62 = new BitSet(new long[]{0x0000000002000002L});
