@@ -1,6 +1,7 @@
 package gcodeCompiler;
 
 import java.util.Map.Entry;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.SortedMap;
 import java.util.TreeMap;
@@ -10,13 +11,23 @@ import gcodeCompiler.util.*;
 import gcodeCompiler.*;
 
 public class gcodeGrammarHandler {
+	
+	// codici degli errori
+	public static final int UNDEFINED = -1;
+	public static final int TOKEN_ERROR = 0;
+	public static final int ERR_ON_SYNTAX = 1;
+	public static final int LAST_SYNTAX_ERROR = 10;
+	public static final int DECLARED_METHOD = 20;
 
 	public SortedMap<String, blockDescriptor> blocks;
-	List<String> errorList;
+	List<String> errorList; // gestione errori
 	TokenStream lexerStream;
 
-	public gcodeGrammarHandler() {
+	public gcodeGrammarHandler(TokenStream ls) {
 		blocks = new TreeMap<String, blockDescriptor>();
+		errorList = new ArrayList<String>(); // lista degli errori è una lista di stringhe
+		lexerStream = ls;
+		
 	}
 
 	public void createNewBlock(Token n) {

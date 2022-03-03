@@ -17,12 +17,15 @@ import gcodeCompiler.util.*;
 import java.io.FileReader;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.IOException;
+import java.io.StringReader;
+
 }
 
 @members {
 private gcodeGrammarHandler h;
 
-public gcodeGrammarParser(String fileIn)throws FileNotFoundException, IOException {		
+public gcodeGrammarParser(String fileIn) throws IOException {		
 	this(new CommonTokenStream(
 		new gcodeGrammarLexer(
 			new ANTLRReaderStream(
@@ -30,16 +33,25 @@ public gcodeGrammarParser(String fileIn)throws FileNotFoundException, IOExceptio
 }
 
 void setup () {
-	h = new gcodeGrammarHandler();
+	h = new gcodeGrammarHandler(input);
 }
 
-public gcodeGrammarHandler getH() {
+public gcodeGrammarHandler getHandler() {
 	return h;
 }
 
-public void setH(gcodeGrammarHandler h) {
-	this.h = h;
+public List<String> getErrorList () {
+  return h.getErrorList();
 }
+
+public void displayRecognitionError(String[] tokenNames, RecognitionException e) {
+	String hdr = " * " + getErrorHeader(e);
+	String msg = " - " + getErrorMessage(e, tokenNames);
+	
+	// gestione degli errori sintattici
+	h.handleError(tokenNames, e, hdr, msg);
+}
+
 }
 
 /*
@@ -300,3 +312,5 @@ WS  :   ( ' '
         | '\n'
         ) {$channel=HIDDEN;}
     ;
+    
+SCAN_ERROR	: . ;

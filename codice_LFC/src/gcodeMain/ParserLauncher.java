@@ -21,8 +21,19 @@ public class ParserLauncher {
 
 		gcodeGrammarParser parser = new gcodeGrammarParser(fileIn);
 		parser.gcode();
+		
+		if (parser.getErrorList().size() == 0) {
+			System.out.println("Parsing completato con successo");
+		
+			parser.getHandler().printBlocks();
+		} else {
+			int i = 0;
+			System.out.println("Errori rilevati");
+			for (String msg : parser.getErrorList())
+				System.out.println(++i + " - " + msg);
+		}
 
-		parser.getH().printBlocks();
+		
 
 		System.out.println("Parsing Completato");
 	}
