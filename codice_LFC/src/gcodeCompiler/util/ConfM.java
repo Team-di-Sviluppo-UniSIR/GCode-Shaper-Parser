@@ -44,9 +44,4 @@ public class ConfM {
 	public void setEndProgram(String endProgram) {
 		this.endProgram = endProgram;
 	}
-
-	public String ConfMtoString() {
-		return this.toolRotation + " " + this.lube + " " + this.changeTool + " " + this.endProgram;
-	}
-
 }

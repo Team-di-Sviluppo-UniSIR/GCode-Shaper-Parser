@@ -30,16 +30,22 @@ public class gcodeGrammarHandler {
 
 	}
 
-	// TODO
-	// configurare costruzione blocco con variabili dalla grammatica
-	public void createNewBlock(Token n) {
-		// blocks.put(n.getText(), new blockDescriptor(n.getText()));
+	public void addCoordLineari(List<String> coord_lineari, Token x, Token y, Token z) {
+		if (x != null)
+			coord_lineari.add(x.getText());
+
+		if (y != null)
+			coord_lineari.add(y.getText());
+
+		if (z != null)
+			coord_lineari.add(z.getText());
 	}
 
-	public void printBlocks() {
-		for (Entry<String, blockDescriptor> entry : blocks.entrySet()) {
-			System.out.println(entry.getKey() + "\t" + entry.getValue().getBlockInfos());
-		}
+	// TODO
+	// configurare costruzione blocco con variabili dalla grammatica
+	public void createNewBlock(Token n, InfoGeometriche info_g) {
+		blocks.put(n.getText(), new blockDescriptor(n.getText(), info_g.getCoord_abs_rel(), info_g.getCompensation(),
+				info_g.getLm(), info_g.getCm(), null, null, null, null));
 	}
 
 	// metodo che mi fornisce lista degli errori

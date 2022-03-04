@@ -12,7 +12,7 @@ package gcodeCompiler;
 @header {
 package gcodeCompiler;
 
-import gcodeCompiler.gcodeGrammarHandler;
+import gcodeCompiler.*;
 import gcodeCompiler.util.*;
 import java.io.FileReader;
 import java.io.FileNotFoundException;
@@ -72,15 +72,15 @@ l'ordine deve essere necessariamente [info_geometriche] [info_tecnologiche] [inf
 */
 block
 	:
-		n=N_BLOCK (
-							(info_geometriche)+ (		
+		n = N_BLOCK (
+							(info_g = info_geometriche)+ (		
 																				(info_3M)?
 		 																	| (info_tecnologiche)+ (info_3M)?
 		 															)
 		 																	
 							|	(info_tecnologiche)+ (info_3M)?
 							| info_3M 
-						){h.createNewBlock($n);}
+						){h.createNewBlock($n, info_g);}
 	;
 	
 /*
@@ -96,38 +96,40 @@ info_3M
 informazioni geometriche legate allo spostamento del mandrino 
 della macchina utensile
 */
-info_geometriche
+info_geometriche returns [InfoGeometriche info_g]
 	:	
-		COORD_ABS
-	|	COORD_REL
-	| FREE_MOVE coordinate_XYZ
-	| JOB_MOVE	coordinate_XYZ
-	| CIRCLE_CW coordinate_XYZ coordinate_IJK
-	| CIRCLE_ACW coordinate_XYZ coordinate_IJK
-	| COMP_DIS
-	| COMP_L
-	| COMP_R
+		x = COORD_ABS { info_g = new InfoGeometriche($x, 'x'); }
+	|	x = COORD_REL { info_g = new InfoGeometriche($x, 'x'); }
+	| l = FREE_MOVE c_xyz = coordinate_XYZ { info_g = new InfoGeometriche(new LinearMove($l, c_xyz)); }
+	| l = JOB_MOVE c_xyz = coordinate_XYZ { info_g = new InfoGeometriche(new LinearMove($l, c_xyz)); } 
+	| c = CIRCLE_CW c_xyz = coordinate_XYZ c_ijk = coordinate_IJK { info_g = new InfoGeometriche(new CircularMove(c, c_xyz, c_ijk)); }
+	| c = CIRCLE_ACW c_xyz = coordinate_XYZ c_ijk = coordinate_IJK { info_g = new InfoGeometriche(new CircularMove(c, c_xyz, c_ijk)); }
+	| d = COMP_DIS { info_g = new InfoGeometriche($d, 'd'); }
+	| d = COMP_L { info_g = new InfoGeometriche($d, 'd'); }
+	| d = COMP_R { info_g = new InfoGeometriche($d, 'd'); }
 	;
 	
 /*
 definizione coordinate spaziali (X,Y,Z)
 */
-coordinate_XYZ
-	:
-		X_CORD (Y_CORD)? (Z_CORD)?
-	| Y_CORD (Z_CORD)?
-	| Z_CORD
+coordinate_XYZ returns [Coordinate c_xyz]
+	: 
+	(	x = X_CORD (y = Y_CORD)? (z = Z_CORD)? 
+	| y = Y_CORD (z = Z_CORD)?
+	| z = Z_CORD )
+	{ c_xyz = new Coordinate($x, $y, $z); }
 	;
 	
 /*
 coordinate (I,J,K) definizione centro circonferenza
 per interpolazione circolare oraria e antioraria
 */
-coordinate_IJK
+coordinate_IJK returns [Coordinate c_ijk]
 	:	
-		I_CORD (J_CORD)? (K_CORD)?
-	| J_CORD (K_CORD)?
-	| K_CORD
+	(	i = I_CORD (j = J_CORD)? (k = K_CORD)?
+	| j = J_CORD (k = K_CORD)?
+	| k = K_CORD )
+	{ c_ijk = new Coordinate($i, $j, $k); }
 	;
 
 /*

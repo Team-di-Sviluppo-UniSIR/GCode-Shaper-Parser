@@ -1,61 +1,31 @@
 package gcodeCompiler.util;
 
+import org.antlr.runtime.Token;
+
 public class LinearMove {
 
 	private String moveType; // G00, G01
+	private Coordinate c_xyz;
 
-	private String coordX;
-	private String coordY;
-	private String coordZ;
-
-	public LinearMove(String move_type) {
-		this.moveType = move_type;
-		this.coordX = null;
-		this.coordY = null;
-		this.coordZ = null;
-	}
-
-	public void setX(String coord_x) {
-		this.coordX = coord_x;
-	}
-
-	public void setY(String coord_y) {
-		this.coordY = coord_y;
-	}
-
-	public void setZ(String coord_z) {
-		this.coordZ = coord_z;
+	public LinearMove(Token move_type, Coordinate c_xyz) {
+		this.moveType = move_type.getText();
+		this.c_xyz = c_xyz;
 	}
 
 	public String getMoveType() {
-		return this.moveType;
+		return moveType;
 	}
 
-	public int getX() {
-		return Integer.parseInt(coordX.substring(1));
+	public void setMoveType(String moveType) {
+		this.moveType = moveType;
 	}
 
-	public int getY() {
-		return Integer.parseInt(coordY.substring(1));
+	public Coordinate getC_xyz() {
+		return c_xyz;
 	}
 
-	public int getZ() {
-		return Integer.parseInt(coordZ.substring(1));
-	}
-
-	public String linearMoveToString() {
-		String content = this.getMoveType();
-
-		if (this.coordX != null)
-			content.concat(" " + this.coordX);
-
-		if (this.coordY != null)
-			content.concat(" " + this.coordY);
-
-		if (this.coordY != null)
-			content.concat(" " + this.coordZ);
-
-		return content;
+	public void setC_xyz(Coordinate c_xyz) {
+		this.c_xyz = c_xyz;
 	}
 
 }

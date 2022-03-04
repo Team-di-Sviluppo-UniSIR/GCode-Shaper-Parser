@@ -60,14 +60,4 @@ public class blockDescriptor {
 		return moveSpeed;
 	}
 
-	public String getBlockInfos() {
-		String content;
-
-		content = this.getCoord_abs_rel() + " " + this.getCompensation() + "\n\t" + this.getlMove().linearMoveToString()
-				+ " " + this.getcMove().circularMoveToString() + "\n\t" + this.getChangeTool().toolToString() + " "
-				+ this.getAuxConf().ConfMtoString() + "\n\t" + this.getWorkSpeed() + " " + this.getMoveSpeed();
-
-		return content;
-	}
-
 }

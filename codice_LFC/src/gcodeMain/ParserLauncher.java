@@ -25,8 +25,6 @@ public class ParserLauncher {
 		if (parser.getErrorList().size() == 0) {
 			System.out.println("Parsing completato con successo");
 
-			parser.getHandler().printBlocks();
-			
 		} else {
 			int i = 0;
 			System.out.println("Errori rilevati");
