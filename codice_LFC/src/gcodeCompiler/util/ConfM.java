@@ -1,5 +1,6 @@
 package gcodeCompiler.util;
 
+// classe che descrive le info tecnologiche di tipo M
 public class ConfM {
 	private String toolRotation;
 	private String lube;

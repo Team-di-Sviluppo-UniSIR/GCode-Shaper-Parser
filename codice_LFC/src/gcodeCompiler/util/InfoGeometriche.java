@@ -9,6 +9,12 @@ public class InfoGeometriche {
 	private LinearMove lm;
 	private CircularMove cm;
 
+	/*
+	 * Il costruttore con un solo comando è usato sia per G90, G91 che per G40, G41,
+	 * G42. Per poter discriminare se sto valorizzando il campo coord_abs_rel o
+	 * compensation, faccio il controllo sulla lettera (immagino esistano metodi
+	 * anche più belli, li valuteremo)
+	 */
 	public InfoGeometriche(Token commmand, char type) {
 		if (type == 'x') {
 			this.coord_abs_rel = commmand.getText();

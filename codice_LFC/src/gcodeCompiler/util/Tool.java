@@ -1,8 +1,12 @@
 package gcodeCompiler.util;
 
+/*
+ *  classe per la descrizione della tipologia di tool e della sua configurazione 
+ *  nella forma T[selezione][configurazione]
+ */
 public class Tool {
-	private String toolSelection;
-	private String toolConfiguration;
+	private String toolSelection; // selezione del tool
+	private String toolConfiguration; // configurazione del tool
 
 	public Tool(String toolSelection, String toolConfiguration) {
 		this.toolSelection = toolSelection;

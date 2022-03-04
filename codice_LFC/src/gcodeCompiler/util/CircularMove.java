@@ -2,11 +2,11 @@ package gcodeCompiler.util;
 
 import org.antlr.runtime.Token;
 
+// classe che descrive la struttura del movimento circolare
 public class CircularMove {
-
 	private String moveType; // G00, G01
-	private Coordinate c_xyz;
-	private Coordinate c_ijk;
+	private Coordinate c_xyz; // coordinate punto finale
+	private Coordinate c_ijk; // coordinate centro
 
 	public CircularMove(Token move_type, Coordinate c_xyz, Coordinate c_ijk) {
 		this.moveType = move_type.getText();

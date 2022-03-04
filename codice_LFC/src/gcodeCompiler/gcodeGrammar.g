@@ -73,7 +73,7 @@ l'ordine deve essere necessariamente [info_geometriche] [info_tecnologiche] [inf
 block
 	:
 		n = N_BLOCK (
-							(info_g = info_geometriche)+ (		
+							(info_g = info_geometriche)+ (		// per ora passiamo solo le info geometriche
 																				(info_3M)?
 		 																	| (info_tecnologiche)+ (info_3M)?
 		 															)
@@ -89,6 +89,12 @@ al massimo 3 istruzioni di tipo M nello stesso blocco
 */
 info_3M
 	:
+		/*
+		 IMPORTANTISSIMO! 
+		 se ci sono i ()+ o ()* bisogna lavorare con la variabile sul blocco interno (vedi sopra)
+		 e antlr è intelligente da lavorare come se ()+ o ()* non ci fossero, dato che ne legge
+		 uno alla volta (ignorarli durante la scrittura della specifica)
+		*/
 		info_tecnologiche_M (info_tecnologiche_M)? (info_tecnologiche_M)?
 	;
 
@@ -96,7 +102,7 @@ info_3M
 informazioni geometriche legate allo spostamento del mandrino 
 della macchina utensile
 */
-info_geometriche returns [InfoGeometriche info_g]
+info_geometriche returns [InfoGeometriche info_g] // restituisco oggetto info_g intercettato sul block
 	:	
 		x = COORD_ABS { info_g = new InfoGeometriche($x, 'x'); }
 	|	x = COORD_REL { info_g = new InfoGeometriche($x, 'x'); }
@@ -112,7 +118,7 @@ info_geometriche returns [InfoGeometriche info_g]
 /*
 definizione coordinate spaziali (X,Y,Z)
 */
-coordinate_XYZ returns [Coordinate c_xyz]
+coordinate_XYZ returns [Coordinate c_xyz] // restituisco oggetto di tipo Coordinate
 	: 
 	(	x = X_CORD (y = Y_CORD)? (z = Z_CORD)? 
 	| y = Y_CORD (z = Z_CORD)?
@@ -124,7 +130,7 @@ coordinate_XYZ returns [Coordinate c_xyz]
 coordinate (I,J,K) definizione centro circonferenza
 per interpolazione circolare oraria e antioraria
 */
-coordinate_IJK returns [Coordinate c_ijk]
+coordinate_IJK returns [Coordinate c_ijk] // restituisco oggetto di tipo Coordinate
 	:	
 	(	i = I_CORD (j = J_CORD)? (k = K_CORD)?
 	| j = J_CORD (k = K_CORD)?
@@ -138,7 +144,7 @@ di spostamento, lavorazione e cambio utensile
 */
 info_tecnologiche
 	:	
-		FREE_MOVE_SPEED
+		FREE_MOVE_SPEED // TODO lavorare su queste (sono dei semplici token)
 	|	JOB_MOVE_SPEED
 	| TOOL_CHANGE
 	;
@@ -148,7 +154,7 @@ comandi costituenti il blocco info_3M
 */
 info_tecnologiche_M
 	:
-		ROT_TOOL_CW
+		ROT_TOOL_CW // TODO lavorare su queste (sono dei semplici token)
 	|	ROT_TOOL_ACW
 	| STOP_TOOL
 	| CHANGE_TOOL
@@ -157,7 +163,7 @@ info_tecnologiche_M
 	| END_PROG
 	;
 	
-	
+// FINISH con l'analizzato semantico. Dobbiamo gestire gli errori semantici.
 
 // intero da 0 a 9
 fragment DIGIT

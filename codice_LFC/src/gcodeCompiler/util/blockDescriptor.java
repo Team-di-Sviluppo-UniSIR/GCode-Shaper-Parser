@@ -1,5 +1,6 @@
 package gcodeCompiler.util;
 
+// classe che descrive la struttura interna di un blocco
 public class blockDescriptor {
 	private String num_block; // N[]
 	private String coord_abs_rel; // G90, G91

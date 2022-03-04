@@ -2,11 +2,15 @@ package gcodeCompiler.util;
 
 import org.antlr.runtime.Token;
 
+// classe che descrive il movimento lineare (veloce o lento)
 public class LinearMove {
-
 	private String moveType; // G00, G01
 	private Coordinate c_xyz;
 
+	/*
+	 * per costruire un'istanza, passo il tipo di movimento e l'oggetto di tipo
+	 * Coordinate
+	 */
 	public LinearMove(Token move_type, Coordinate c_xyz) {
 		this.moveType = move_type.getText();
 		this.c_xyz = c_xyz;

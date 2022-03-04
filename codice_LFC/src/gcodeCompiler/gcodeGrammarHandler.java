@@ -1,14 +1,11 @@
 package gcodeCompiler;
 
-import java.util.Map.Entry;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.SortedMap;
 import java.util.TreeMap;
-
 import org.antlr.runtime.*;
 import gcodeCompiler.util.*;
-import gcodeCompiler.*;
 
 public class gcodeGrammarHandler {
 
@@ -18,34 +15,26 @@ public class gcodeGrammarHandler {
 	public static final int ERR_ON_SYNTAX = 1;
 	public static final int LAST_SYNTAX_ERROR = 10;
 
+	// struttura dati contenente i blocchi gcode
 	public SortedMap<String, blockDescriptor> blocks;
 
 	List<String> errorList; // gestione errori
-	TokenStream lexerStream;
+	TokenStream lexerStream; // stream token lexer
 
+	// classe base per la gestione di parser e lexer
 	public gcodeGrammarHandler(TokenStream ls) {
-		blocks = new TreeMap<String, blockDescriptor>();
+		blocks = new TreeMap<String, blockDescriptor>(); // istanzio struttura dati per blocchi
 		errorList = new ArrayList<String>(); // lista degli errori è una lista di stringhe
-		lexerStream = ls;
+		lexerStream = ls; // istanzio stream token lexer
 
-	}
-
-	public void addCoordLineari(List<String> coord_lineari, Token x, Token y, Token z) {
-		if (x != null)
-			coord_lineari.add(x.getText());
-
-		if (y != null)
-			coord_lineari.add(y.getText());
-
-		if (z != null)
-			coord_lineari.add(z.getText());
 	}
 
 	// TODO
-	// configurare costruzione blocco con variabili dalla grammatica
+	// da modificare con le info tecnologiche e di tipo M (dove è null)
+	// creazione del blocco
 	public void createNewBlock(Token n, InfoGeometriche info_g) {
 		blocks.put(n.getText(), new blockDescriptor(n.getText(), info_g.getCoord_abs_rel(), info_g.getCompensation(),
-				info_g.getLm(), info_g.getCm(), null, null, null, null));
+				info_g.getLm(), info_g.getCm(), null, null, null, null)); // da valorizzare i null
 	}
 
 	// metodo che mi fornisce lista degli errori
