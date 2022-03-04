@@ -2,15 +2,15 @@ package gcodeCompiler.util;
 
 public class CircularMove {
 
-	String moveType; // G00, G01
+	private String moveType; // G00, G01
 
-	String coordX;
-	String coordY;
-	String coordZ;
+	private String coordX;
+	private String coordY;
+	private String coordZ;
 
-	String coordI;
-	String coordJ;
-	String coordK;
+	private String coordI;
+	private String coordJ;
+	private String coordK;
 
 	public CircularMove(String move_type) {
 		this.moveType = move_type;
@@ -72,5 +72,29 @@ public class CircularMove {
 
 	public int getK() {
 		return Integer.parseInt(coordK.substring(1));
+	}
+
+	public String circularMoveToString() {
+		String content = this.getMoveType();
+
+		if (this.coordX != null)
+			content.concat(" " + this.coordX);
+
+		if (this.coordY != null)
+			content.concat(" " + this.coordY);
+
+		if (this.coordY != null)
+			content.concat(" " + this.coordZ);
+
+		if (this.coordI != null)
+			content.concat(" " + this.coordI);
+
+		if (this.coordJ != null)
+			content.concat(" " + this.coordJ);
+
+		if (this.coordK != null)
+			content.concat(" " + this.coordK);
+
+		return content;
 	}
 }

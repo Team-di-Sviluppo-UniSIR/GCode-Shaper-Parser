@@ -1,10 +1,10 @@
 package gcodeCompiler.util;
 
 public class ConfM {
-	String toolRotation;
-	String lube;
-	String changeTool;
-	String endProgram;
+	private String toolRotation;
+	private String lube;
+	private String changeTool;
+	private String endProgram;
 
 	public ConfM(String toolRotation, String lube, String changeTool, String endProgram) {
 		this.toolRotation = toolRotation;
@@ -43,6 +43,10 @@ public class ConfM {
 
 	public void setEndProgram(String endProgram) {
 		this.endProgram = endProgram;
+	}
+
+	public String ConfMtoString() {
+		return this.toolRotation + " " + this.lube + " " + this.changeTool + " " + this.endProgram;
 	}
 
 }

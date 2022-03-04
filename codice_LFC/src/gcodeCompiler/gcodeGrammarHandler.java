@@ -36,12 +36,9 @@ public class gcodeGrammarHandler {
 		// blocks.put(n.getText(), new blockDescriptor(n.getText()));
 	}
 
-	// TODO
-	// stampa del blocco (serve???)
 	public void printBlocks() {
 		for (Entry<String, blockDescriptor> entry : blocks.entrySet()) {
-			// System.out.println("Key: " + entry.getKey() + ", Value: " +
-			// entry.getValue().getBlockContent());
+			System.out.println(entry.getKey() + "\t" + entry.getValue().getBlockInfos());
 		}
 	}
 

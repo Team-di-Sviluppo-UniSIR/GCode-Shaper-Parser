@@ -2,11 +2,11 @@ package gcodeCompiler.util;
 
 public class LinearMove {
 
-	String moveType; // G00, G01
-	
-	String coordX;
-	String coordY;
-	String coordZ;
+	private String moveType; // G00, G01
+
+	private String coordX;
+	private String coordY;
+	private String coordZ;
 
 	public LinearMove(String move_type) {
 		this.moveType = move_type;
@@ -41,6 +41,21 @@ public class LinearMove {
 
 	public int getZ() {
 		return Integer.parseInt(coordZ.substring(1));
+	}
+
+	public String linearMoveToString() {
+		String content = this.getMoveType();
+
+		if (this.coordX != null)
+			content.concat(" " + this.coordX);
+
+		if (this.coordY != null)
+			content.concat(" " + this.coordY);
+
+		if (this.coordY != null)
+			content.concat(" " + this.coordZ);
+
+		return content;
 	}
 
 }

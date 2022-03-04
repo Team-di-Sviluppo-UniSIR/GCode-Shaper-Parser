@@ -1,8 +1,8 @@
 package gcodeCompiler.util;
 
 public class Tool {
-	String toolSelection;
-	String toolConfiguration;
+	private String toolSelection;
+	private String toolConfiguration;
 
 	public Tool(String toolSelection, String toolConfiguration) {
 		this.toolSelection = toolSelection;
@@ -23,6 +23,10 @@ public class Tool {
 
 	public void setToolConfiguration(String toolConfiguration) {
 		this.toolConfiguration = toolConfiguration;
+	}
+
+	public String toolToString() {
+		return "T" + this.toolSelection + this.toolConfiguration;
 	}
 
 }
