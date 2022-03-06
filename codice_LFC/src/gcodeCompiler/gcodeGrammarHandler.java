@@ -89,6 +89,8 @@ public class gcodeGrammarHandler {
 			if (k.getStop_tool() != null)
 				auxConf.setStop_tool(k.getStop_tool());
 		}
+		
+		bd.setAuxConf(auxConf);
 
 		return bd;
 	}

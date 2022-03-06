@@ -79,12 +79,12 @@ block
 	:
 		n = N_BLOCK (
 								( info_g = info_geometriche { info_g_list.add(info_g); } )+ (		
-																				( info_t_M = info_3M { info_t_M_list.add(info_t_M); } )?
-		 																	| ( info_t = info_tecnologiche { info_t_list.add(info_t); } )+ ( info_t_M = info_3M { info_t_M_list.add(info_t_M); } )?
+																				( info_t_M_list = info_3M )?
+		 																	| ( info_t = info_tecnologiche { info_t_list.add(info_t); } )+ ( info_t_M_list = info_3M )?
 		 															)
 		 																	
-							|	( info_t = info_tecnologiche { info_t_list.add(info_t); } )+ ( info_t_M = info_3M { info_t_M_list.add(info_t_M); } )?
-							| info_t_M = info_3M { info_t_M_list.add(info_t_M); }
+							|	( info_t = info_tecnologiche { info_t_list.add(info_t); } )+ ( info_t_M_list = info_3M  )?
+							| info_t_M_list = info_3M
 						){ h.createNewBlock($n, info_g_list, info_t_list, info_t_M_list); }
 	;
 	
@@ -92,7 +92,7 @@ block
 informazioni tecnologiche di tipo M per impostazione macchina utensile
 al massimo 3 istruzioni di tipo M nello stesso blocco
 */
-info_3M
+info_3M returns [List<InfoTecnologicheM> info_t_M_list1]
 	:
 		/*
 		 IMPORTANTISSIMO! 
@@ -100,7 +100,7 @@ info_3M
 		 e antlr è intelligente da lavorare come se ()+ o ()* non ci fossero, dato che ne legge
 		 uno alla volta (ignorarli durante la scrittura della specifica)
 		*/
-		info_tecnologiche_M (info_tecnologiche_M)? (info_tecnologiche_M)?
+		info_t_M1 = info_tecnologiche_M { info_t_M_list1.add(info_t_M1); } ( info_t_M1 = info_tecnologiche_M { info_t_M_list1.add(info_t_M1); })? (info_t_M1 = info_tecnologiche_M { info_t_M_list1.add(info_t_M1); })?
 	;
 
 /*
@@ -157,14 +157,14 @@ info_tecnologiche returns [InfoTecnologiche info_t]
 /*
 comandi costituenti il blocco info_3M
 */	
-info_tecnologiche_M returns [InfoTecnologicheM info_t_M]
+info_tecnologiche_M returns [info_t_M]
 :
 	x = ROT_TOOL_CW { info_t_M = new InfoTecnologicheM($x, 'x'); }
 | x = ROT_TOOL_ACW { info_t_M = new InfoTecnologicheM($x, 'x'); }
-| s = STOP_TOOL { info_t_M = new InfoTecnologicheM($x, 's'); }
-| f = CHANGE_TOOL { info_t_M = new InfoTecnologicheM($x, 'f'); }
-| g = LUBE_ON { info_t_M = new InfoTecnologicheM($x, 'g'); }
-| g = LUBE_OFF { info_t_M = new InfoTecnologicheM($x, 'g'); }
+| s = STOP_TOOL { info_t_M = new InfoTecnologicheM($s, 's'); }
+| f = CHANGE_TOOL { info_t_M = new InfoTecnologicheM($f, 'f'); }
+| g = LUBE_ON { info_t_M = new InfoTecnologicheM($g, 'g'); }
+| g = LUBE_OFF { info_t_M = new InfoTecnologicheM($g, 'g'); }
 | h = END_PROG { info_t_M = new InfoTecnologicheM($h, 'h'); }
 ;
 	
