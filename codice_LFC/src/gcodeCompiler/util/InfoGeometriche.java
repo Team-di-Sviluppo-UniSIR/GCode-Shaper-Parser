@@ -22,6 +22,9 @@ public class InfoGeometriche {
 			this.compensation = commmand.getText();
 	}
 
+	public InfoGeometriche() {
+	}
+
 	public InfoGeometriche(LinearMove lm) {
 		this.lm = lm;
 	}

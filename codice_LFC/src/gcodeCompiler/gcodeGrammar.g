@@ -74,7 +74,6 @@ block
 @init{ 
 				ArrayList<InfoGeometriche> info_g_list = new ArrayList<InfoGeometriche>();
 				ArrayList<InfoTecnologiche> info_t_list = new ArrayList<InfoTecnologiche>();
-				ArrayList<InfoTecnologicheM> info_t_M_list = new ArrayList<InfoTecnologicheM>();
 		 }
 	:
 		n = N_BLOCK (
@@ -92,7 +91,10 @@ block
 informazioni tecnologiche di tipo M per impostazione macchina utensile
 al massimo 3 istruzioni di tipo M nello stesso blocco
 */
-info_3M returns [List<InfoTecnologicheM> info_t_M_list1]
+info_3M returns [ArrayList<InfoTecnologicheM> info_t_M_list]
+@init{
+				info_t_M_list = new ArrayList<InfoTecnologicheM>();
+		 }
 	:
 		/*
 		 IMPORTANTISSIMO! 
@@ -100,7 +102,7 @@ info_3M returns [List<InfoTecnologicheM> info_t_M_list1]
 		 e antlr è intelligente da lavorare come se ()+ o ()* non ci fossero, dato che ne legge
 		 uno alla volta (ignorarli durante la scrittura della specifica)
 		*/
-		info_t_M1 = info_tecnologiche_M { info_t_M_list1.add(info_t_M1); } ( info_t_M1 = info_tecnologiche_M { info_t_M_list1.add(info_t_M1); })? (info_t_M1 = info_tecnologiche_M { info_t_M_list1.add(info_t_M1); })?
+		info_t_M = info_tecnologiche_M { info_t_M_list.add(info_t_M); } ( info_t_M = info_tecnologiche_M { info_t_M_list.add(info_t_M); })? (info_t_M = info_tecnologiche_M { info_t_M_list.add(info_t_M); })?
 	;
 
 /*
@@ -157,7 +159,7 @@ info_tecnologiche returns [InfoTecnologiche info_t]
 /*
 comandi costituenti il blocco info_3M
 */	
-info_tecnologiche_M returns [info_t_M]
+info_tecnologiche_M returns [InfoTecnologicheM info_t_M]
 :
 	x = ROT_TOOL_CW { info_t_M = new InfoTecnologicheM($x, 'x'); }
 | x = ROT_TOOL_ACW { info_t_M = new InfoTecnologicheM($x, 'x'); }
