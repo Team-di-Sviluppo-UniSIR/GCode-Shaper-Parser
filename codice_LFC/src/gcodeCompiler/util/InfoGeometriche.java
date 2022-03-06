@@ -16,11 +16,10 @@ public class InfoGeometriche {
 	 * anche più belli, li valuteremo)
 	 */
 	public InfoGeometriche(Token commmand, char type) {
-		if (type == 'x') {
+		if (type == 'x')
 			this.coord_abs_rel = commmand.getText();
-		} else {
+		else
 			this.compensation = commmand.getText();
-		}
 	}
 
 	public InfoGeometriche(LinearMove lm) {

@@ -16,14 +16,14 @@ public class gcodeGrammarHandler {
 	public static final int LAST_SYNTAX_ERROR = 10;
 
 	// struttura dati contenente i blocchi gcode
-	public SortedMap<String, blockDescriptor> blocks;
+	public SortedMap<String, BlockDescriptor> blocks;
 
 	List<String> errorList; // gestione errori
 	TokenStream lexerStream; // stream token lexer
 
 	// classe base per la gestione di parser e lexer
 	public gcodeGrammarHandler(TokenStream ls) {
-		blocks = new TreeMap<String, blockDescriptor>(); // istanzio struttura dati per blocchi
+		blocks = new TreeMap<String, BlockDescriptor>(); // istanzio struttura dati per blocchi
 		errorList = new ArrayList<String>(); // lista degli errori è una lista di stringhe
 		lexerStream = ls; // istanzio stream token lexer
 
@@ -32,9 +32,65 @@ public class gcodeGrammarHandler {
 	// TODO
 	// da modificare con le info tecnologiche e di tipo M (dove è null)
 	// creazione del blocco
-	public void createNewBlock(Token n, InfoGeometriche info_g) {
-		blocks.put(n.getText(), new blockDescriptor(n.getText(), info_g.getCoord_abs_rel(), info_g.getCompensation(),
-				info_g.getLm(), info_g.getCm(), null, null, null, null)); // da valorizzare i null
+	public void createNewBlock(Token n, List<InfoGeometriche> info_g_list, List<InfoTecnologiche> info_t_list,
+			List<InfoTecnologicheM> info_t_M_list) {
+		BlockDescriptor bd = BlockInit(n.getText(), info_g_list, info_t_list, info_t_M_list);
+		blocks.put(n.getText(), bd);
+	}
+
+	// inizializzazione del blocco con le sole info geometriche (per ora)
+	private BlockDescriptor BlockInit(String n, List<InfoGeometriche> info_g_list, List<InfoTecnologiche> info_t_list,
+			List<InfoTecnologicheM> info_t_M_list) {
+
+		BlockDescriptor bd = new BlockDescriptor(n);
+
+		for (InfoGeometriche i : info_g_list) {
+			if (i.getCm() != null)
+				bd.setcMove(i.getCm());
+
+			if (i.getLm() != null)
+				bd.setlMove(i.getLm());
+
+			if (i.getCompensation() != null)
+				bd.setCompensation(i.getCompensation());
+
+			if (i.getCoord_abs_rel() != null)
+				bd.setCoord_abs_rel(i.getCoord_abs_rel());
+		}
+
+		for (InfoTecnologiche j : info_t_list) {
+			if (j.getFree_move_speed() != null)
+				bd.setMoveSpeed(j.getFree_move_speed());
+
+			if (j.getJob_move_speed() != null)
+				bd.setWorkSpeed(j.getJob_move_speed());
+
+			if (j.getT() != null)
+				bd.setChangeTool(j.getT());
+		}
+
+		InfoTecnologicheM auxConf = new InfoTecnologicheM();
+
+		for (InfoTecnologicheM k : info_t_M_list) {
+			if (k.getChange_tool() != null)
+				auxConf.setChange_tool(k.getChange_tool());
+
+			if (k.getEnd_program() != null) {
+				auxConf.setEnd_program(k.getEnd_program());
+			}
+
+			if (k.getLube() != null)
+				auxConf.setLube(k.getLube());
+
+			if (k.getRot_tool() != null) {
+				auxConf.setRot_tool(k.getRot_tool());
+			}
+
+			if (k.getStop_tool() != null)
+				auxConf.setStop_tool(k.getStop_tool());
+		}
+
+		return bd;
 	}
 
 	// metodo che mi fornisce lista degli errori

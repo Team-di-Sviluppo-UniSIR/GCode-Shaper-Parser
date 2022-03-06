@@ -19,7 +19,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.IOException;
 import java.io.StringReader;
-
+import java.util.ArrayList;
 }
 
 @members {
@@ -71,16 +71,21 @@ contiene al massimo 3 info_tecnologiche_M
 l'ordine deve essere necessariamente [info_geometriche] [info_tecnologiche] [info_3M]
 */
 block
+@init{ 
+				ArrayList<InfoGeometriche> info_g_list = new ArrayList<InfoGeometriche>();
+				ArrayList<InfoTecnologiche> info_t_list = new ArrayList<InfoTecnologiche>();
+				ArrayList<InfoTecnologicheM> info_t_M_list = new ArrayList<InfoTecnologicheM>();
+		 }
 	:
 		n = N_BLOCK (
-							(info_g = info_geometriche)+ (		// per ora passiamo solo le info geometriche
-																				(info_3M)?
-		 																	| (info_tecnologiche)+ (info_3M)?
+								( info_g = info_geometriche { info_g_list.add(info_g); } )+ (		
+																				( info_t_M = info_3M { info_t_M_list.add(info_t_M); } )?
+		 																	| ( info_t = info_tecnologiche { info_t_list.add(info_t); } )+ ( info_t_M = info_3M { info_t_M_list.add(info_t_M); } )?
 		 															)
 		 																	
-							|	(info_tecnologiche)+ (info_3M)?
-							| info_3M 
-						){h.createNewBlock($n, info_g);}
+							|	( info_t = info_tecnologiche { info_t_list.add(info_t); } )+ ( info_t_M = info_3M { info_t_M_list.add(info_t_M); } )?
+							| info_t_M = info_3M { info_t_M_list.add(info_t_M); }
+						){ h.createNewBlock($n, info_g_list, info_t_list, info_t_M_list); }
 	;
 	
 /*
@@ -142,28 +147,28 @@ coordinate_IJK returns [Coordinate c_ijk] // restituisco oggetto di tipo Coordin
 informazioni tecnologiche per la definzione delle velocità
 di spostamento, lavorazione e cambio utensile
 */
-info_tecnologiche
+info_tecnologiche returns [InfoTecnologiche info_t]
 	:	
-		FREE_MOVE_SPEED // TODO lavorare su queste (sono dei semplici token)
-	|	JOB_MOVE_SPEED
-	| TOOL_CHANGE
+		x = FREE_MOVE_SPEED { info_t = new InfoTecnologiche($x, 'f'); }
+	|	x = JOB_MOVE_SPEED { info_t = new InfoTecnologiche($x, 'j'); }
+	| x = TOOL_CHANGE { info_t = new InfoTecnologiche($x, 't'); }
 	;
 	
 /*
 comandi costituenti il blocco info_3M
-*/
-info_tecnologiche_M
-	:
-		ROT_TOOL_CW // TODO lavorare su queste (sono dei semplici token)
-	|	ROT_TOOL_ACW
-	| STOP_TOOL
-	| CHANGE_TOOL
-	| LUBE_ON
-	| LUBE_OFF
-	| END_PROG
-	;
+*/	
+info_tecnologiche_M returns [InfoTecnologicheM info_t_M]
+:
+	x = ROT_TOOL_CW { info_t_M = new InfoTecnologicheM($x, 'x'); }
+| x = ROT_TOOL_ACW { info_t_M = new InfoTecnologicheM($x, 'x'); }
+| s = STOP_TOOL { info_t_M = new InfoTecnologicheM($x, 's'); }
+| f = CHANGE_TOOL { info_t_M = new InfoTecnologicheM($x, 'f'); }
+| g = LUBE_ON { info_t_M = new InfoTecnologicheM($x, 'g'); }
+| g = LUBE_OFF { info_t_M = new InfoTecnologicheM($x, 'g'); }
+| h = END_PROG { info_t_M = new InfoTecnologicheM($h, 'h'); }
+;
 	
-// FINISH con l'analizzato semantico. Dobbiamo gestire gli errori semantici.
+// FINISH con l'analizzatore semantico. Dobbiamo gestire gli errori semantici.
 
 // intero da 0 a 9
 fragment DIGIT
