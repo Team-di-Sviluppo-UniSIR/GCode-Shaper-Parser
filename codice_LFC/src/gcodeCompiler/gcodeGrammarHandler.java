@@ -29,8 +29,6 @@ public class gcodeGrammarHandler {
 
 	}
 
-	// TODO
-	// da modificare con le info tecnologiche e di tipo M (dove è null)
 	// creazione del blocco
 	public void createNewBlock(Token n, List<InfoGeometriche> info_g_list, List<InfoTecnologiche> info_t_list,
 			List<InfoTecnologicheM> info_t_M_list) {
@@ -38,7 +36,7 @@ public class gcodeGrammarHandler {
 		blocks.put(n.getText(), bd);
 	}
 
-	// inizializzazione del blocco con le sole info geometriche (per ora)
+	// inizializzazione del blocco con informazioni geometriche e tecnologiche
 	private BlockDescriptor BlockInit(String n, List<InfoGeometriche> info_g_list, List<InfoTecnologiche> info_t_list,
 			List<InfoTecnologicheM> info_t_M_list) {
 

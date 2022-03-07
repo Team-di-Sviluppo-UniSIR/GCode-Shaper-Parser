@@ -10,15 +10,15 @@ public class InfoTecnologicheM {
 	private String end_program;
 
 	public InfoTecnologicheM(Token commmand, char type) {
-		if (type == 'x') {
+		if (type == 'x')
 			this.rot_tool = commmand.getText();
-		} else if (type == 's') {
+		else if (type == 's')
 			this.stop_tool = commmand.getText();
-		} else if (type == 'f') {
+		else if (type == 'f')
 			this.change_tool = commmand.getText();
-		} else if (type == 'g') {
+		else if (type == 'g')
 			this.lube = commmand.getText();
-		} else
+		else
 			this.end_program = commmand.getText();
 	}
 

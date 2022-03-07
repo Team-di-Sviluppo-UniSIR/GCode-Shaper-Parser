@@ -4,9 +4,9 @@ import org.antlr.runtime.Token;
 
 // classe che descrive la struttura delle coordinate (X,Y,Z) e (I,J,K)
 public class Coordinate {
-	private String first;
-	private String second;
-	private String third;
+	private String first; // X o I
+	private String second; // Y o J
+	private String third; // Z o K
 
 	public Coordinate(Token first, Token second, Token third) {
 		if (first != null) {

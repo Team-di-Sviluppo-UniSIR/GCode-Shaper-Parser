@@ -91,17 +91,11 @@ block
 informazioni tecnologiche di tipo M per impostazione macchina utensile
 al massimo 3 istruzioni di tipo M nello stesso blocco
 */
-info_3M returns [ArrayList<InfoTecnologicheM> info_t_M_list]
+info_3M returns [ArrayList<InfoTecnologicheM> info_t_M_list] // restituisco lista info_g intercettata sul block
 @init{
 				info_t_M_list = new ArrayList<InfoTecnologicheM>();
 		 }
 	:
-		/*
-		 IMPORTANTISSIMO! 
-		 se ci sono i ()+ o ()* bisogna lavorare con la variabile sul blocco interno (vedi sopra)
-		 e antlr è intelligente da lavorare come se ()+ o ()* non ci fossero, dato che ne legge
-		 uno alla volta (ignorarli durante la scrittura della specifica)
-		*/
 		info_t_M = info_tecnologiche_M { info_t_M_list.add(info_t_M); } ( info_t_M = info_tecnologiche_M { info_t_M_list.add(info_t_M); })? (info_t_M = info_tecnologiche_M { info_t_M_list.add(info_t_M); })?
 	;
 
@@ -149,7 +143,7 @@ coordinate_IJK returns [Coordinate c_ijk] // restituisco oggetto di tipo Coordin
 informazioni tecnologiche per la definzione delle velocità
 di spostamento, lavorazione e cambio utensile
 */
-info_tecnologiche returns [InfoTecnologiche info_t]
+info_tecnologiche returns [InfoTecnologiche info_t] // restituisco oggetto info_t intercettato sul block
 	:	
 		x = FREE_MOVE_SPEED { info_t = new InfoTecnologiche($x, 'f'); }
 	|	x = JOB_MOVE_SPEED { info_t = new InfoTecnologiche($x, 'j'); }
@@ -159,7 +153,7 @@ info_tecnologiche returns [InfoTecnologiche info_t]
 /*
 comandi costituenti il blocco info_3M
 */	
-info_tecnologiche_M returns [InfoTecnologicheM info_t_M]
+info_tecnologiche_M returns [InfoTecnologicheM info_t_M] // restituisco oggetto info_t_M intercettata in info_3M
 :
 	x = ROT_TOOL_CW { info_t_M = new InfoTecnologicheM($x, 'x'); }
 | x = ROT_TOOL_ACW { info_t_M = new InfoTecnologicheM($x, 'x'); }
@@ -169,8 +163,6 @@ info_tecnologiche_M returns [InfoTecnologicheM info_t_M]
 | g = LUBE_OFF { info_t_M = new InfoTecnologicheM($g, 'g'); }
 | h = END_PROG { info_t_M = new InfoTecnologicheM($h, 'h'); }
 ;
-	
-// FINISH con l'analizzatore semantico. Dobbiamo gestire gli errori semantici.
 
 // intero da 0 a 9
 fragment DIGIT

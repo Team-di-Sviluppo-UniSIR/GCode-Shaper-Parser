@@ -1,4 +1,4 @@
-// $ANTLR 3.5.1 C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\src\\gcodeCompiler\\gcodeGrammar.g 2022-03-06 17:27:42
+// $ANTLR 3.5.1 C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\src\\gcodeCompiler\\gcodeGrammar.g 2022-03-07 08:53:18
 
 package gcodeCompiler;
 
@@ -448,14 +448,14 @@ public class gcodeGrammarParser extends Parser {
 				 
 		try {
 			// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\src\\gcodeCompiler\\gcodeGrammar.g:98:2: (info_t_M= info_tecnologiche_M (info_t_M= info_tecnologiche_M )? (info_t_M= info_tecnologiche_M )? )
-			// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\src\\gcodeCompiler\\gcodeGrammar.g:105:3: info_t_M= info_tecnologiche_M (info_t_M= info_tecnologiche_M )? (info_t_M= info_tecnologiche_M )?
+			// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\src\\gcodeCompiler\\gcodeGrammar.g:99:3: info_t_M= info_tecnologiche_M (info_t_M= info_tecnologiche_M )? (info_t_M= info_tecnologiche_M )?
 			{
-			pushFollow(FOLLOW_info_tecnologiche_M_in_info_3M322);
+			pushFollow(FOLLOW_info_tecnologiche_M_in_info_3M319);
 			info_t_M=info_tecnologiche_M();
 			state._fsp--;
 
 			 info_t_M_list.add(info_t_M); 
-			// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\src\\gcodeCompiler\\gcodeGrammar.g:105:67: (info_t_M= info_tecnologiche_M )?
+			// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\src\\gcodeCompiler\\gcodeGrammar.g:99:67: (info_t_M= info_tecnologiche_M )?
 			int alt10=2;
 			switch ( input.LA(1) ) {
 				case ROT_TOOL_CW:
@@ -496,9 +496,9 @@ public class gcodeGrammarParser extends Parser {
 			}
 			switch (alt10) {
 				case 1 :
-					// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\src\\gcodeCompiler\\gcodeGrammar.g:105:69: info_t_M= info_tecnologiche_M
+					// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\src\\gcodeCompiler\\gcodeGrammar.g:99:69: info_t_M= info_tecnologiche_M
 					{
-					pushFollow(FOLLOW_info_tecnologiche_M_in_info_3M332);
+					pushFollow(FOLLOW_info_tecnologiche_M_in_info_3M329);
 					info_t_M=info_tecnologiche_M();
 					state._fsp--;
 
@@ -508,7 +508,7 @@ public class gcodeGrammarParser extends Parser {
 
 			}
 
-			// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\src\\gcodeCompiler\\gcodeGrammar.g:105:135: (info_t_M= info_tecnologiche_M )?
+			// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\src\\gcodeCompiler\\gcodeGrammar.g:99:135: (info_t_M= info_tecnologiche_M )?
 			int alt11=2;
 			int LA11_0 = input.LA(1);
 			if ( (LA11_0==CHANGE_TOOL||LA11_0==END_PROG||(LA11_0 >= LUBE_OFF && LA11_0 <= LUBE_ON)||(LA11_0 >= ROT_TOOL_ACW && LA11_0 <= ROT_TOOL_CW)||LA11_0==STOP_TOOL) ) {
@@ -516,9 +516,9 @@ public class gcodeGrammarParser extends Parser {
 			}
 			switch (alt11) {
 				case 1 :
-					// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\src\\gcodeCompiler\\gcodeGrammar.g:105:136: info_t_M= info_tecnologiche_M
+					// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\src\\gcodeCompiler\\gcodeGrammar.g:99:136: info_t_M= info_tecnologiche_M
 					{
-					pushFollow(FOLLOW_info_tecnologiche_M_in_info_3M343);
+					pushFollow(FOLLOW_info_tecnologiche_M_in_info_3M340);
 					info_t_M=info_tecnologiche_M();
 					state._fsp--;
 
@@ -545,7 +545,7 @@ public class gcodeGrammarParser extends Parser {
 
 
 	// $ANTLR start "info_geometriche"
-	// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\src\\gcodeCompiler\\gcodeGrammar.g:112:1: info_geometriche returns [InfoGeometriche info_g] : (x= COORD_ABS |x= COORD_REL |l= FREE_MOVE c_xyz= coordinate_XYZ |l= JOB_MOVE c_xyz= coordinate_XYZ |c= CIRCLE_CW c_xyz= coordinate_XYZ c_ijk= coordinate_IJK |c= CIRCLE_ACW c_xyz= coordinate_XYZ c_ijk= coordinate_IJK |d= COMP_DIS |d= COMP_L |d= COMP_R );
+	// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\src\\gcodeCompiler\\gcodeGrammar.g:106:1: info_geometriche returns [InfoGeometriche info_g] : (x= COORD_ABS |x= COORD_REL |l= FREE_MOVE c_xyz= coordinate_XYZ |l= JOB_MOVE c_xyz= coordinate_XYZ |c= CIRCLE_CW c_xyz= coordinate_XYZ c_ijk= coordinate_IJK |c= CIRCLE_ACW c_xyz= coordinate_XYZ c_ijk= coordinate_IJK |d= COMP_DIS |d= COMP_L |d= COMP_R );
 	public final InfoGeometriche info_geometriche() throws RecognitionException {
 		InfoGeometriche info_g = null;
 
@@ -558,7 +558,7 @@ public class gcodeGrammarParser extends Parser {
 		Coordinate c_ijk =null;
 
 		try {
-			// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\src\\gcodeCompiler\\gcodeGrammar.g:113:2: (x= COORD_ABS |x= COORD_REL |l= FREE_MOVE c_xyz= coordinate_XYZ |l= JOB_MOVE c_xyz= coordinate_XYZ |c= CIRCLE_CW c_xyz= coordinate_XYZ c_ijk= coordinate_IJK |c= CIRCLE_ACW c_xyz= coordinate_XYZ c_ijk= coordinate_IJK |d= COMP_DIS |d= COMP_L |d= COMP_R )
+			// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\src\\gcodeCompiler\\gcodeGrammar.g:107:2: (x= COORD_ABS |x= COORD_REL |l= FREE_MOVE c_xyz= coordinate_XYZ |l= JOB_MOVE c_xyz= coordinate_XYZ |c= CIRCLE_CW c_xyz= coordinate_XYZ c_ijk= coordinate_IJK |c= CIRCLE_ACW c_xyz= coordinate_XYZ c_ijk= coordinate_IJK |d= COMP_DIS |d= COMP_L |d= COMP_R )
 			int alt12=9;
 			switch ( input.LA(1) ) {
 			case COORD_ABS:
@@ -613,24 +613,24 @@ public class gcodeGrammarParser extends Parser {
 			}
 			switch (alt12) {
 				case 1 :
-					// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\src\\gcodeCompiler\\gcodeGrammar.g:114:3: x= COORD_ABS
+					// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\src\\gcodeCompiler\\gcodeGrammar.g:108:3: x= COORD_ABS
 					{
-					x=(Token)match(input,COORD_ABS,FOLLOW_COORD_ABS_in_info_geometriche372); 
+					x=(Token)match(input,COORD_ABS,FOLLOW_COORD_ABS_in_info_geometriche369); 
 					 info_g = new InfoGeometriche(x, 'x'); 
 					}
 					break;
 				case 2 :
-					// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\src\\gcodeCompiler\\gcodeGrammar.g:115:4: x= COORD_REL
+					// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\src\\gcodeCompiler\\gcodeGrammar.g:109:4: x= COORD_REL
 					{
-					x=(Token)match(input,COORD_REL,FOLLOW_COORD_REL_in_info_geometriche383); 
+					x=(Token)match(input,COORD_REL,FOLLOW_COORD_REL_in_info_geometriche380); 
 					 info_g = new InfoGeometriche(x, 'x'); 
 					}
 					break;
 				case 3 :
-					// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\src\\gcodeCompiler\\gcodeGrammar.g:116:4: l= FREE_MOVE c_xyz= coordinate_XYZ
+					// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\src\\gcodeCompiler\\gcodeGrammar.g:110:4: l= FREE_MOVE c_xyz= coordinate_XYZ
 					{
-					l=(Token)match(input,FREE_MOVE,FOLLOW_FREE_MOVE_in_info_geometriche394); 
-					pushFollow(FOLLOW_coordinate_XYZ_in_info_geometriche400);
+					l=(Token)match(input,FREE_MOVE,FOLLOW_FREE_MOVE_in_info_geometriche391); 
+					pushFollow(FOLLOW_coordinate_XYZ_in_info_geometriche397);
 					c_xyz=coordinate_XYZ();
 					state._fsp--;
 
@@ -638,10 +638,10 @@ public class gcodeGrammarParser extends Parser {
 					}
 					break;
 				case 4 :
-					// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\src\\gcodeCompiler\\gcodeGrammar.g:117:4: l= JOB_MOVE c_xyz= coordinate_XYZ
+					// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\src\\gcodeCompiler\\gcodeGrammar.g:111:4: l= JOB_MOVE c_xyz= coordinate_XYZ
 					{
-					l=(Token)match(input,JOB_MOVE,FOLLOW_JOB_MOVE_in_info_geometriche411); 
-					pushFollow(FOLLOW_coordinate_XYZ_in_info_geometriche417);
+					l=(Token)match(input,JOB_MOVE,FOLLOW_JOB_MOVE_in_info_geometriche408); 
+					pushFollow(FOLLOW_coordinate_XYZ_in_info_geometriche414);
 					c_xyz=coordinate_XYZ();
 					state._fsp--;
 
@@ -649,14 +649,14 @@ public class gcodeGrammarParser extends Parser {
 					}
 					break;
 				case 5 :
-					// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\src\\gcodeCompiler\\gcodeGrammar.g:118:4: c= CIRCLE_CW c_xyz= coordinate_XYZ c_ijk= coordinate_IJK
+					// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\src\\gcodeCompiler\\gcodeGrammar.g:112:4: c= CIRCLE_CW c_xyz= coordinate_XYZ c_ijk= coordinate_IJK
 					{
-					c=(Token)match(input,CIRCLE_CW,FOLLOW_CIRCLE_CW_in_info_geometriche429); 
-					pushFollow(FOLLOW_coordinate_XYZ_in_info_geometriche435);
+					c=(Token)match(input,CIRCLE_CW,FOLLOW_CIRCLE_CW_in_info_geometriche426); 
+					pushFollow(FOLLOW_coordinate_XYZ_in_info_geometriche432);
 					c_xyz=coordinate_XYZ();
 					state._fsp--;
 
-					pushFollow(FOLLOW_coordinate_IJK_in_info_geometriche441);
+					pushFollow(FOLLOW_coordinate_IJK_in_info_geometriche438);
 					c_ijk=coordinate_IJK();
 					state._fsp--;
 
@@ -664,14 +664,14 @@ public class gcodeGrammarParser extends Parser {
 					}
 					break;
 				case 6 :
-					// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\src\\gcodeCompiler\\gcodeGrammar.g:119:4: c= CIRCLE_ACW c_xyz= coordinate_XYZ c_ijk= coordinate_IJK
+					// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\src\\gcodeCompiler\\gcodeGrammar.g:113:4: c= CIRCLE_ACW c_xyz= coordinate_XYZ c_ijk= coordinate_IJK
 					{
-					c=(Token)match(input,CIRCLE_ACW,FOLLOW_CIRCLE_ACW_in_info_geometriche452); 
-					pushFollow(FOLLOW_coordinate_XYZ_in_info_geometriche458);
+					c=(Token)match(input,CIRCLE_ACW,FOLLOW_CIRCLE_ACW_in_info_geometriche449); 
+					pushFollow(FOLLOW_coordinate_XYZ_in_info_geometriche455);
 					c_xyz=coordinate_XYZ();
 					state._fsp--;
 
-					pushFollow(FOLLOW_coordinate_IJK_in_info_geometriche464);
+					pushFollow(FOLLOW_coordinate_IJK_in_info_geometriche461);
 					c_ijk=coordinate_IJK();
 					state._fsp--;
 
@@ -679,23 +679,23 @@ public class gcodeGrammarParser extends Parser {
 					}
 					break;
 				case 7 :
-					// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\src\\gcodeCompiler\\gcodeGrammar.g:120:4: d= COMP_DIS
+					// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\src\\gcodeCompiler\\gcodeGrammar.g:114:4: d= COMP_DIS
 					{
-					d=(Token)match(input,COMP_DIS,FOLLOW_COMP_DIS_in_info_geometriche475); 
+					d=(Token)match(input,COMP_DIS,FOLLOW_COMP_DIS_in_info_geometriche472); 
 					 info_g = new InfoGeometriche(d, 'd'); 
 					}
 					break;
 				case 8 :
-					// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\src\\gcodeCompiler\\gcodeGrammar.g:121:4: d= COMP_L
+					// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\src\\gcodeCompiler\\gcodeGrammar.g:115:4: d= COMP_L
 					{
-					d=(Token)match(input,COMP_L,FOLLOW_COMP_L_in_info_geometriche486); 
+					d=(Token)match(input,COMP_L,FOLLOW_COMP_L_in_info_geometriche483); 
 					 info_g = new InfoGeometriche(d, 'd'); 
 					}
 					break;
 				case 9 :
-					// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\src\\gcodeCompiler\\gcodeGrammar.g:122:4: d= COMP_R
+					// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\src\\gcodeCompiler\\gcodeGrammar.g:116:4: d= COMP_R
 					{
-					d=(Token)match(input,COMP_R,FOLLOW_COMP_R_in_info_geometriche497); 
+					d=(Token)match(input,COMP_R,FOLLOW_COMP_R_in_info_geometriche494); 
 					 info_g = new InfoGeometriche(d, 'd'); 
 					}
 					break;
@@ -716,7 +716,7 @@ public class gcodeGrammarParser extends Parser {
 
 
 	// $ANTLR start "coordinate_XYZ"
-	// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\src\\gcodeCompiler\\gcodeGrammar.g:128:1: coordinate_XYZ returns [Coordinate c_xyz] : (x= X_CORD (y= Y_CORD )? (z= Z_CORD )? |y= Y_CORD (z= Z_CORD )? |z= Z_CORD ) ;
+	// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\src\\gcodeCompiler\\gcodeGrammar.g:122:1: coordinate_XYZ returns [Coordinate c_xyz] : (x= X_CORD (y= Y_CORD )? (z= Z_CORD )? |y= Y_CORD (z= Z_CORD )? |z= Z_CORD ) ;
 	public final Coordinate coordinate_XYZ() throws RecognitionException {
 		Coordinate c_xyz = null;
 
@@ -726,10 +726,10 @@ public class gcodeGrammarParser extends Parser {
 		Token z=null;
 
 		try {
-			// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\src\\gcodeCompiler\\gcodeGrammar.g:129:2: ( (x= X_CORD (y= Y_CORD )? (z= Z_CORD )? |y= Y_CORD (z= Z_CORD )? |z= Z_CORD ) )
-			// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\src\\gcodeCompiler\\gcodeGrammar.g:130:2: (x= X_CORD (y= Y_CORD )? (z= Z_CORD )? |y= Y_CORD (z= Z_CORD )? |z= Z_CORD )
+			// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\src\\gcodeCompiler\\gcodeGrammar.g:123:2: ( (x= X_CORD (y= Y_CORD )? (z= Z_CORD )? |y= Y_CORD (z= Z_CORD )? |z= Z_CORD ) )
+			// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\src\\gcodeCompiler\\gcodeGrammar.g:124:2: (x= X_CORD (y= Y_CORD )? (z= Z_CORD )? |y= Y_CORD (z= Z_CORD )? |z= Z_CORD )
 			{
-			// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\src\\gcodeCompiler\\gcodeGrammar.g:130:2: (x= X_CORD (y= Y_CORD )? (z= Z_CORD )? |y= Y_CORD (z= Z_CORD )? |z= Z_CORD )
+			// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\src\\gcodeCompiler\\gcodeGrammar.g:124:2: (x= X_CORD (y= Y_CORD )? (z= Z_CORD )? |y= Y_CORD (z= Z_CORD )? |z= Z_CORD )
 			int alt16=3;
 			switch ( input.LA(1) ) {
 			case X_CORD:
@@ -754,10 +754,10 @@ public class gcodeGrammarParser extends Parser {
 			}
 			switch (alt16) {
 				case 1 :
-					// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\src\\gcodeCompiler\\gcodeGrammar.g:130:4: x= X_CORD (y= Y_CORD )? (z= Z_CORD )?
+					// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\src\\gcodeCompiler\\gcodeGrammar.g:124:4: x= X_CORD (y= Y_CORD )? (z= Z_CORD )?
 					{
-					x=(Token)match(input,X_CORD,FOLLOW_X_CORD_in_coordinate_XYZ526); 
-					// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\src\\gcodeCompiler\\gcodeGrammar.g:130:15: (y= Y_CORD )?
+					x=(Token)match(input,X_CORD,FOLLOW_X_CORD_in_coordinate_XYZ523); 
+					// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\src\\gcodeCompiler\\gcodeGrammar.g:124:15: (y= Y_CORD )?
 					int alt13=2;
 					int LA13_0 = input.LA(1);
 					if ( (LA13_0==Y_CORD) ) {
@@ -765,15 +765,15 @@ public class gcodeGrammarParser extends Parser {
 					}
 					switch (alt13) {
 						case 1 :
-							// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\src\\gcodeCompiler\\gcodeGrammar.g:130:16: y= Y_CORD
+							// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\src\\gcodeCompiler\\gcodeGrammar.g:124:16: y= Y_CORD
 							{
-							y=(Token)match(input,Y_CORD,FOLLOW_Y_CORD_in_coordinate_XYZ533); 
+							y=(Token)match(input,Y_CORD,FOLLOW_Y_CORD_in_coordinate_XYZ530); 
 							}
 							break;
 
 					}
 
-					// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\src\\gcodeCompiler\\gcodeGrammar.g:130:29: (z= Z_CORD )?
+					// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\src\\gcodeCompiler\\gcodeGrammar.g:124:29: (z= Z_CORD )?
 					int alt14=2;
 					int LA14_0 = input.LA(1);
 					if ( (LA14_0==Z_CORD) ) {
@@ -781,9 +781,9 @@ public class gcodeGrammarParser extends Parser {
 					}
 					switch (alt14) {
 						case 1 :
-							// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\src\\gcodeCompiler\\gcodeGrammar.g:130:30: z= Z_CORD
+							// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\src\\gcodeCompiler\\gcodeGrammar.g:124:30: z= Z_CORD
 							{
-							z=(Token)match(input,Z_CORD,FOLLOW_Z_CORD_in_coordinate_XYZ542); 
+							z=(Token)match(input,Z_CORD,FOLLOW_Z_CORD_in_coordinate_XYZ539); 
 							}
 							break;
 
@@ -792,10 +792,10 @@ public class gcodeGrammarParser extends Parser {
 					}
 					break;
 				case 2 :
-					// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\src\\gcodeCompiler\\gcodeGrammar.g:131:4: y= Y_CORD (z= Z_CORD )?
+					// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\src\\gcodeCompiler\\gcodeGrammar.g:125:4: y= Y_CORD (z= Z_CORD )?
 					{
-					y=(Token)match(input,Y_CORD,FOLLOW_Y_CORD_in_coordinate_XYZ554); 
-					// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\src\\gcodeCompiler\\gcodeGrammar.g:131:15: (z= Z_CORD )?
+					y=(Token)match(input,Y_CORD,FOLLOW_Y_CORD_in_coordinate_XYZ551); 
+					// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\src\\gcodeCompiler\\gcodeGrammar.g:125:15: (z= Z_CORD )?
 					int alt15=2;
 					int LA15_0 = input.LA(1);
 					if ( (LA15_0==Z_CORD) ) {
@@ -803,9 +803,9 @@ public class gcodeGrammarParser extends Parser {
 					}
 					switch (alt15) {
 						case 1 :
-							// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\src\\gcodeCompiler\\gcodeGrammar.g:131:16: z= Z_CORD
+							// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\src\\gcodeCompiler\\gcodeGrammar.g:125:16: z= Z_CORD
 							{
-							z=(Token)match(input,Z_CORD,FOLLOW_Z_CORD_in_coordinate_XYZ561); 
+							z=(Token)match(input,Z_CORD,FOLLOW_Z_CORD_in_coordinate_XYZ558); 
 							}
 							break;
 
@@ -814,9 +814,9 @@ public class gcodeGrammarParser extends Parser {
 					}
 					break;
 				case 3 :
-					// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\src\\gcodeCompiler\\gcodeGrammar.g:132:4: z= Z_CORD
+					// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\src\\gcodeCompiler\\gcodeGrammar.g:126:4: z= Z_CORD
 					{
-					z=(Token)match(input,Z_CORD,FOLLOW_Z_CORD_in_coordinate_XYZ572); 
+					z=(Token)match(input,Z_CORD,FOLLOW_Z_CORD_in_coordinate_XYZ569); 
 					}
 					break;
 
@@ -840,7 +840,7 @@ public class gcodeGrammarParser extends Parser {
 
 
 	// $ANTLR start "coordinate_IJK"
-	// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\src\\gcodeCompiler\\gcodeGrammar.g:140:1: coordinate_IJK returns [Coordinate c_ijk] : (i= I_CORD (j= J_CORD )? (k= K_CORD )? |j= J_CORD (k= K_CORD )? |k= K_CORD ) ;
+	// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\src\\gcodeCompiler\\gcodeGrammar.g:134:1: coordinate_IJK returns [Coordinate c_ijk] : (i= I_CORD (j= J_CORD )? (k= K_CORD )? |j= J_CORD (k= K_CORD )? |k= K_CORD ) ;
 	public final Coordinate coordinate_IJK() throws RecognitionException {
 		Coordinate c_ijk = null;
 
@@ -850,10 +850,10 @@ public class gcodeGrammarParser extends Parser {
 		Token k=null;
 
 		try {
-			// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\src\\gcodeCompiler\\gcodeGrammar.g:141:2: ( (i= I_CORD (j= J_CORD )? (k= K_CORD )? |j= J_CORD (k= K_CORD )? |k= K_CORD ) )
-			// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\src\\gcodeCompiler\\gcodeGrammar.g:142:2: (i= I_CORD (j= J_CORD )? (k= K_CORD )? |j= J_CORD (k= K_CORD )? |k= K_CORD )
+			// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\src\\gcodeCompiler\\gcodeGrammar.g:135:2: ( (i= I_CORD (j= J_CORD )? (k= K_CORD )? |j= J_CORD (k= K_CORD )? |k= K_CORD ) )
+			// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\src\\gcodeCompiler\\gcodeGrammar.g:136:2: (i= I_CORD (j= J_CORD )? (k= K_CORD )? |j= J_CORD (k= K_CORD )? |k= K_CORD )
 			{
-			// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\src\\gcodeCompiler\\gcodeGrammar.g:142:2: (i= I_CORD (j= J_CORD )? (k= K_CORD )? |j= J_CORD (k= K_CORD )? |k= K_CORD )
+			// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\src\\gcodeCompiler\\gcodeGrammar.g:136:2: (i= I_CORD (j= J_CORD )? (k= K_CORD )? |j= J_CORD (k= K_CORD )? |k= K_CORD )
 			int alt20=3;
 			switch ( input.LA(1) ) {
 			case I_CORD:
@@ -878,10 +878,10 @@ public class gcodeGrammarParser extends Parser {
 			}
 			switch (alt20) {
 				case 1 :
-					// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\src\\gcodeCompiler\\gcodeGrammar.g:142:4: i= I_CORD (j= J_CORD )? (k= K_CORD )?
+					// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\src\\gcodeCompiler\\gcodeGrammar.g:136:4: i= I_CORD (j= J_CORD )? (k= K_CORD )?
 					{
-					i=(Token)match(input,I_CORD,FOLLOW_I_CORD_in_coordinate_IJK604); 
-					// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\src\\gcodeCompiler\\gcodeGrammar.g:142:15: (j= J_CORD )?
+					i=(Token)match(input,I_CORD,FOLLOW_I_CORD_in_coordinate_IJK601); 
+					// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\src\\gcodeCompiler\\gcodeGrammar.g:136:15: (j= J_CORD )?
 					int alt17=2;
 					int LA17_0 = input.LA(1);
 					if ( (LA17_0==J_CORD) ) {
@@ -889,15 +889,15 @@ public class gcodeGrammarParser extends Parser {
 					}
 					switch (alt17) {
 						case 1 :
-							// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\src\\gcodeCompiler\\gcodeGrammar.g:142:16: j= J_CORD
+							// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\src\\gcodeCompiler\\gcodeGrammar.g:136:16: j= J_CORD
 							{
-							j=(Token)match(input,J_CORD,FOLLOW_J_CORD_in_coordinate_IJK611); 
+							j=(Token)match(input,J_CORD,FOLLOW_J_CORD_in_coordinate_IJK608); 
 							}
 							break;
 
 					}
 
-					// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\src\\gcodeCompiler\\gcodeGrammar.g:142:29: (k= K_CORD )?
+					// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\src\\gcodeCompiler\\gcodeGrammar.g:136:29: (k= K_CORD )?
 					int alt18=2;
 					int LA18_0 = input.LA(1);
 					if ( (LA18_0==K_CORD) ) {
@@ -905,9 +905,9 @@ public class gcodeGrammarParser extends Parser {
 					}
 					switch (alt18) {
 						case 1 :
-							// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\src\\gcodeCompiler\\gcodeGrammar.g:142:30: k= K_CORD
+							// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\src\\gcodeCompiler\\gcodeGrammar.g:136:30: k= K_CORD
 							{
-							k=(Token)match(input,K_CORD,FOLLOW_K_CORD_in_coordinate_IJK620); 
+							k=(Token)match(input,K_CORD,FOLLOW_K_CORD_in_coordinate_IJK617); 
 							}
 							break;
 
@@ -916,10 +916,10 @@ public class gcodeGrammarParser extends Parser {
 					}
 					break;
 				case 2 :
-					// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\src\\gcodeCompiler\\gcodeGrammar.g:143:4: j= J_CORD (k= K_CORD )?
+					// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\src\\gcodeCompiler\\gcodeGrammar.g:137:4: j= J_CORD (k= K_CORD )?
 					{
-					j=(Token)match(input,J_CORD,FOLLOW_J_CORD_in_coordinate_IJK631); 
-					// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\src\\gcodeCompiler\\gcodeGrammar.g:143:15: (k= K_CORD )?
+					j=(Token)match(input,J_CORD,FOLLOW_J_CORD_in_coordinate_IJK628); 
+					// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\src\\gcodeCompiler\\gcodeGrammar.g:137:15: (k= K_CORD )?
 					int alt19=2;
 					int LA19_0 = input.LA(1);
 					if ( (LA19_0==K_CORD) ) {
@@ -927,9 +927,9 @@ public class gcodeGrammarParser extends Parser {
 					}
 					switch (alt19) {
 						case 1 :
-							// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\src\\gcodeCompiler\\gcodeGrammar.g:143:16: k= K_CORD
+							// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\src\\gcodeCompiler\\gcodeGrammar.g:137:16: k= K_CORD
 							{
-							k=(Token)match(input,K_CORD,FOLLOW_K_CORD_in_coordinate_IJK638); 
+							k=(Token)match(input,K_CORD,FOLLOW_K_CORD_in_coordinate_IJK635); 
 							}
 							break;
 
@@ -938,9 +938,9 @@ public class gcodeGrammarParser extends Parser {
 					}
 					break;
 				case 3 :
-					// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\src\\gcodeCompiler\\gcodeGrammar.g:144:4: k= K_CORD
+					// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\src\\gcodeCompiler\\gcodeGrammar.g:138:4: k= K_CORD
 					{
-					k=(Token)match(input,K_CORD,FOLLOW_K_CORD_in_coordinate_IJK649); 
+					k=(Token)match(input,K_CORD,FOLLOW_K_CORD_in_coordinate_IJK646); 
 					}
 					break;
 
@@ -964,7 +964,7 @@ public class gcodeGrammarParser extends Parser {
 
 
 	// $ANTLR start "info_tecnologiche"
-	// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\src\\gcodeCompiler\\gcodeGrammar.g:152:1: info_tecnologiche returns [InfoTecnologiche info_t] : (x= FREE_MOVE_SPEED |x= JOB_MOVE_SPEED |x= TOOL_CHANGE );
+	// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\src\\gcodeCompiler\\gcodeGrammar.g:146:1: info_tecnologiche returns [InfoTecnologiche info_t] : (x= FREE_MOVE_SPEED |x= JOB_MOVE_SPEED |x= TOOL_CHANGE );
 	public final InfoTecnologiche info_tecnologiche() throws RecognitionException {
 		InfoTecnologiche info_t = null;
 
@@ -972,7 +972,7 @@ public class gcodeGrammarParser extends Parser {
 		Token x=null;
 
 		try {
-			// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\src\\gcodeCompiler\\gcodeGrammar.g:153:2: (x= FREE_MOVE_SPEED |x= JOB_MOVE_SPEED |x= TOOL_CHANGE )
+			// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\src\\gcodeCompiler\\gcodeGrammar.g:147:2: (x= FREE_MOVE_SPEED |x= JOB_MOVE_SPEED |x= TOOL_CHANGE )
 			int alt21=3;
 			switch ( input.LA(1) ) {
 			case FREE_MOVE_SPEED:
@@ -997,23 +997,23 @@ public class gcodeGrammarParser extends Parser {
 			}
 			switch (alt21) {
 				case 1 :
-					// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\src\\gcodeCompiler\\gcodeGrammar.g:154:3: x= FREE_MOVE_SPEED
+					// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\src\\gcodeCompiler\\gcodeGrammar.g:148:3: x= FREE_MOVE_SPEED
 					{
-					x=(Token)match(input,FREE_MOVE_SPEED,FOLLOW_FREE_MOVE_SPEED_in_info_tecnologiche678); 
+					x=(Token)match(input,FREE_MOVE_SPEED,FOLLOW_FREE_MOVE_SPEED_in_info_tecnologiche676); 
 					 info_t = new InfoTecnologiche(x, 'f'); 
 					}
 					break;
 				case 2 :
-					// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\src\\gcodeCompiler\\gcodeGrammar.g:155:4: x= JOB_MOVE_SPEED
+					// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\src\\gcodeCompiler\\gcodeGrammar.g:149:4: x= JOB_MOVE_SPEED
 					{
-					x=(Token)match(input,JOB_MOVE_SPEED,FOLLOW_JOB_MOVE_SPEED_in_info_tecnologiche689); 
+					x=(Token)match(input,JOB_MOVE_SPEED,FOLLOW_JOB_MOVE_SPEED_in_info_tecnologiche687); 
 					 info_t = new InfoTecnologiche(x, 'j'); 
 					}
 					break;
 				case 3 :
-					// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\src\\gcodeCompiler\\gcodeGrammar.g:156:4: x= TOOL_CHANGE
+					// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\src\\gcodeCompiler\\gcodeGrammar.g:150:4: x= TOOL_CHANGE
 					{
-					x=(Token)match(input,TOOL_CHANGE,FOLLOW_TOOL_CHANGE_in_info_tecnologiche700); 
+					x=(Token)match(input,TOOL_CHANGE,FOLLOW_TOOL_CHANGE_in_info_tecnologiche698); 
 					 info_t = new InfoTecnologiche(x, 't'); 
 					}
 					break;
@@ -1034,7 +1034,7 @@ public class gcodeGrammarParser extends Parser {
 
 
 	// $ANTLR start "info_tecnologiche_M"
-	// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\src\\gcodeCompiler\\gcodeGrammar.g:162:1: info_tecnologiche_M returns [InfoTecnologicheM info_t_M] : (x= ROT_TOOL_CW |x= ROT_TOOL_ACW |s= STOP_TOOL |f= CHANGE_TOOL |g= LUBE_ON |g= LUBE_OFF |h= END_PROG );
+	// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\src\\gcodeCompiler\\gcodeGrammar.g:156:1: info_tecnologiche_M returns [InfoTecnologicheM info_t_M] : (x= ROT_TOOL_CW |x= ROT_TOOL_ACW |s= STOP_TOOL |f= CHANGE_TOOL |g= LUBE_ON |g= LUBE_OFF |h= END_PROG );
 	public final InfoTecnologicheM info_tecnologiche_M() throws RecognitionException {
 		InfoTecnologicheM info_t_M = null;
 
@@ -1046,7 +1046,7 @@ public class gcodeGrammarParser extends Parser {
 		Token h=null;
 
 		try {
-			// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\src\\gcodeCompiler\\gcodeGrammar.g:163:2: (x= ROT_TOOL_CW |x= ROT_TOOL_ACW |s= STOP_TOOL |f= CHANGE_TOOL |g= LUBE_ON |g= LUBE_OFF |h= END_PROG )
+			// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\src\\gcodeCompiler\\gcodeGrammar.g:157:2: (x= ROT_TOOL_CW |x= ROT_TOOL_ACW |s= STOP_TOOL |f= CHANGE_TOOL |g= LUBE_ON |g= LUBE_OFF |h= END_PROG )
 			int alt22=7;
 			switch ( input.LA(1) ) {
 			case ROT_TOOL_CW:
@@ -1091,51 +1091,51 @@ public class gcodeGrammarParser extends Parser {
 			}
 			switch (alt22) {
 				case 1 :
-					// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\src\\gcodeCompiler\\gcodeGrammar.g:164:2: x= ROT_TOOL_CW
+					// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\src\\gcodeCompiler\\gcodeGrammar.g:158:2: x= ROT_TOOL_CW
 					{
-					x=(Token)match(input,ROT_TOOL_CW,FOLLOW_ROT_TOOL_CW_in_info_tecnologiche_M725); 
+					x=(Token)match(input,ROT_TOOL_CW,FOLLOW_ROT_TOOL_CW_in_info_tecnologiche_M724); 
 					 info_t_M = new InfoTecnologicheM(x, 'x'); 
 					}
 					break;
 				case 2 :
-					// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\src\\gcodeCompiler\\gcodeGrammar.g:165:3: x= ROT_TOOL_ACW
+					// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\src\\gcodeCompiler\\gcodeGrammar.g:159:3: x= ROT_TOOL_ACW
 					{
-					x=(Token)match(input,ROT_TOOL_ACW,FOLLOW_ROT_TOOL_ACW_in_info_tecnologiche_M735); 
+					x=(Token)match(input,ROT_TOOL_ACW,FOLLOW_ROT_TOOL_ACW_in_info_tecnologiche_M734); 
 					 info_t_M = new InfoTecnologicheM(x, 'x'); 
 					}
 					break;
 				case 3 :
-					// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\src\\gcodeCompiler\\gcodeGrammar.g:166:3: s= STOP_TOOL
+					// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\src\\gcodeCompiler\\gcodeGrammar.g:160:3: s= STOP_TOOL
 					{
-					s=(Token)match(input,STOP_TOOL,FOLLOW_STOP_TOOL_in_info_tecnologiche_M745); 
+					s=(Token)match(input,STOP_TOOL,FOLLOW_STOP_TOOL_in_info_tecnologiche_M744); 
 					 info_t_M = new InfoTecnologicheM(s, 's'); 
 					}
 					break;
 				case 4 :
-					// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\src\\gcodeCompiler\\gcodeGrammar.g:167:3: f= CHANGE_TOOL
+					// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\src\\gcodeCompiler\\gcodeGrammar.g:161:3: f= CHANGE_TOOL
 					{
-					f=(Token)match(input,CHANGE_TOOL,FOLLOW_CHANGE_TOOL_in_info_tecnologiche_M755); 
+					f=(Token)match(input,CHANGE_TOOL,FOLLOW_CHANGE_TOOL_in_info_tecnologiche_M754); 
 					 info_t_M = new InfoTecnologicheM(f, 'f'); 
 					}
 					break;
 				case 5 :
-					// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\src\\gcodeCompiler\\gcodeGrammar.g:168:3: g= LUBE_ON
+					// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\src\\gcodeCompiler\\gcodeGrammar.g:162:3: g= LUBE_ON
 					{
-					g=(Token)match(input,LUBE_ON,FOLLOW_LUBE_ON_in_info_tecnologiche_M765); 
+					g=(Token)match(input,LUBE_ON,FOLLOW_LUBE_ON_in_info_tecnologiche_M764); 
 					 info_t_M = new InfoTecnologicheM(g, 'g'); 
 					}
 					break;
 				case 6 :
-					// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\src\\gcodeCompiler\\gcodeGrammar.g:169:3: g= LUBE_OFF
+					// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\src\\gcodeCompiler\\gcodeGrammar.g:163:3: g= LUBE_OFF
 					{
-					g=(Token)match(input,LUBE_OFF,FOLLOW_LUBE_OFF_in_info_tecnologiche_M775); 
+					g=(Token)match(input,LUBE_OFF,FOLLOW_LUBE_OFF_in_info_tecnologiche_M774); 
 					 info_t_M = new InfoTecnologicheM(g, 'g'); 
 					}
 					break;
 				case 7 :
-					// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\src\\gcodeCompiler\\gcodeGrammar.g:170:3: h= END_PROG
+					// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\src\\gcodeCompiler\\gcodeGrammar.g:164:3: h= END_PROG
 					{
-					h=(Token)match(input,END_PROG,FOLLOW_END_PROG_in_info_tecnologiche_M785); 
+					h=(Token)match(input,END_PROG,FOLLOW_END_PROG_in_info_tecnologiche_M784); 
 					 info_t_M = new InfoTecnologicheM(h, 'h'); 
 					}
 					break;
@@ -1166,44 +1166,44 @@ public class gcodeGrammarParser extends Parser {
 	public static final BitSet FOLLOW_info_tecnologiche_in_block249 = new BitSet(new long[]{0x000000006D928012L});
 	public static final BitSet FOLLOW_info_3M_in_block262 = new BitSet(new long[]{0x0000000000000002L});
 	public static final BitSet FOLLOW_info_3M_in_block281 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_info_tecnologiche_M_in_info_3M322 = new BitSet(new long[]{0x000000002D808012L});
-	public static final BitSet FOLLOW_info_tecnologiche_M_in_info_3M332 = new BitSet(new long[]{0x000000002D808012L});
-	public static final BitSet FOLLOW_info_tecnologiche_M_in_info_3M343 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_COORD_ABS_in_info_geometriche372 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_COORD_REL_in_info_geometriche383 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_FREE_MOVE_in_info_geometriche394 = new BitSet(new long[]{0x0000000700000000L});
-	public static final BitSet FOLLOW_coordinate_XYZ_in_info_geometriche400 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_JOB_MOVE_in_info_geometriche411 = new BitSet(new long[]{0x0000000700000000L});
-	public static final BitSet FOLLOW_coordinate_XYZ_in_info_geometriche417 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_CIRCLE_CW_in_info_geometriche429 = new BitSet(new long[]{0x0000000700000000L});
-	public static final BitSet FOLLOW_coordinate_XYZ_in_info_geometriche435 = new BitSet(new long[]{0x0000000000640000L});
-	public static final BitSet FOLLOW_coordinate_IJK_in_info_geometriche441 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_CIRCLE_ACW_in_info_geometriche452 = new BitSet(new long[]{0x0000000700000000L});
-	public static final BitSet FOLLOW_coordinate_XYZ_in_info_geometriche458 = new BitSet(new long[]{0x0000000000640000L});
-	public static final BitSet FOLLOW_coordinate_IJK_in_info_geometriche464 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_COMP_DIS_in_info_geometriche475 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_COMP_L_in_info_geometriche486 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_COMP_R_in_info_geometriche497 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_X_CORD_in_coordinate_XYZ526 = new BitSet(new long[]{0x0000000600000002L});
-	public static final BitSet FOLLOW_Y_CORD_in_coordinate_XYZ533 = new BitSet(new long[]{0x0000000400000002L});
-	public static final BitSet FOLLOW_Z_CORD_in_coordinate_XYZ542 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_Y_CORD_in_coordinate_XYZ554 = new BitSet(new long[]{0x0000000400000002L});
-	public static final BitSet FOLLOW_Z_CORD_in_coordinate_XYZ561 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_Z_CORD_in_coordinate_XYZ572 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_I_CORD_in_coordinate_IJK604 = new BitSet(new long[]{0x0000000000600002L});
-	public static final BitSet FOLLOW_J_CORD_in_coordinate_IJK611 = new BitSet(new long[]{0x0000000000400002L});
-	public static final BitSet FOLLOW_K_CORD_in_coordinate_IJK620 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_J_CORD_in_coordinate_IJK631 = new BitSet(new long[]{0x0000000000400002L});
-	public static final BitSet FOLLOW_K_CORD_in_coordinate_IJK638 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_K_CORD_in_coordinate_IJK649 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_FREE_MOVE_SPEED_in_info_tecnologiche678 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_JOB_MOVE_SPEED_in_info_tecnologiche689 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_TOOL_CHANGE_in_info_tecnologiche700 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_ROT_TOOL_CW_in_info_tecnologiche_M725 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_ROT_TOOL_ACW_in_info_tecnologiche_M735 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_STOP_TOOL_in_info_tecnologiche_M745 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_CHANGE_TOOL_in_info_tecnologiche_M755 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_LUBE_ON_in_info_tecnologiche_M765 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_LUBE_OFF_in_info_tecnologiche_M775 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_END_PROG_in_info_tecnologiche_M785 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_info_tecnologiche_M_in_info_3M319 = new BitSet(new long[]{0x000000002D808012L});
+	public static final BitSet FOLLOW_info_tecnologiche_M_in_info_3M329 = new BitSet(new long[]{0x000000002D808012L});
+	public static final BitSet FOLLOW_info_tecnologiche_M_in_info_3M340 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_COORD_ABS_in_info_geometriche369 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_COORD_REL_in_info_geometriche380 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_FREE_MOVE_in_info_geometriche391 = new BitSet(new long[]{0x0000000700000000L});
+	public static final BitSet FOLLOW_coordinate_XYZ_in_info_geometriche397 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_JOB_MOVE_in_info_geometriche408 = new BitSet(new long[]{0x0000000700000000L});
+	public static final BitSet FOLLOW_coordinate_XYZ_in_info_geometriche414 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_CIRCLE_CW_in_info_geometriche426 = new BitSet(new long[]{0x0000000700000000L});
+	public static final BitSet FOLLOW_coordinate_XYZ_in_info_geometriche432 = new BitSet(new long[]{0x0000000000640000L});
+	public static final BitSet FOLLOW_coordinate_IJK_in_info_geometriche438 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_CIRCLE_ACW_in_info_geometriche449 = new BitSet(new long[]{0x0000000700000000L});
+	public static final BitSet FOLLOW_coordinate_XYZ_in_info_geometriche455 = new BitSet(new long[]{0x0000000000640000L});
+	public static final BitSet FOLLOW_coordinate_IJK_in_info_geometriche461 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_COMP_DIS_in_info_geometriche472 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_COMP_L_in_info_geometriche483 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_COMP_R_in_info_geometriche494 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_X_CORD_in_coordinate_XYZ523 = new BitSet(new long[]{0x0000000600000002L});
+	public static final BitSet FOLLOW_Y_CORD_in_coordinate_XYZ530 = new BitSet(new long[]{0x0000000400000002L});
+	public static final BitSet FOLLOW_Z_CORD_in_coordinate_XYZ539 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_Y_CORD_in_coordinate_XYZ551 = new BitSet(new long[]{0x0000000400000002L});
+	public static final BitSet FOLLOW_Z_CORD_in_coordinate_XYZ558 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_Z_CORD_in_coordinate_XYZ569 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_I_CORD_in_coordinate_IJK601 = new BitSet(new long[]{0x0000000000600002L});
+	public static final BitSet FOLLOW_J_CORD_in_coordinate_IJK608 = new BitSet(new long[]{0x0000000000400002L});
+	public static final BitSet FOLLOW_K_CORD_in_coordinate_IJK617 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_J_CORD_in_coordinate_IJK628 = new BitSet(new long[]{0x0000000000400002L});
+	public static final BitSet FOLLOW_K_CORD_in_coordinate_IJK635 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_K_CORD_in_coordinate_IJK646 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_FREE_MOVE_SPEED_in_info_tecnologiche676 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_JOB_MOVE_SPEED_in_info_tecnologiche687 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_TOOL_CHANGE_in_info_tecnologiche698 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_ROT_TOOL_CW_in_info_tecnologiche_M724 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_ROT_TOOL_ACW_in_info_tecnologiche_M734 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_STOP_TOOL_in_info_tecnologiche_M744 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_CHANGE_TOOL_in_info_tecnologiche_M754 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_LUBE_ON_in_info_tecnologiche_M764 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_LUBE_OFF_in_info_tecnologiche_M774 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_END_PROG_in_info_tecnologiche_M784 = new BitSet(new long[]{0x0000000000000002L});
 }

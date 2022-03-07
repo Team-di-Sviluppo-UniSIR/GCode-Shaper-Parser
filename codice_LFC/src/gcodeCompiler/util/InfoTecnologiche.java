@@ -8,11 +8,10 @@ public class InfoTecnologiche {
 	private Tool t;
 
 	public InfoTecnologiche(Token commmand, char type) {
-		if (type == 'x') {
+		if (type == 'x')
 			this.free_move_speed = commmand.getText();
-		} else {
+		else
 			this.job_move_speed = commmand.getText();
-		}
 	}
 
 	public InfoTecnologiche(Tool t) {
