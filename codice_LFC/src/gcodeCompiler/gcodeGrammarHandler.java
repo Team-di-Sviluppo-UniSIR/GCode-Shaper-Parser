@@ -106,7 +106,7 @@ public class gcodeGrammarHandler {
 
 	public void printBlocks() {
 		for (Entry<Integer, BlockDescriptor> entry : blocks.entrySet()) {
-			System.out.println(entry.getKey() + " " + entry.getValue().getBlockInfos());
+			System.out.println("N"+entry.getKey() + " " + entry.getValue().getBlockInfos());
 		}
 	}
 
