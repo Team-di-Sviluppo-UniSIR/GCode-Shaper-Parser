@@ -17,14 +17,14 @@ public class gcodeGrammarHandler {
 	public static final int LAST_SYNTAX_ERROR = 10;
 
 	// struttura dati contenente i blocchi gcode
-	public SortedMap<String, BlockDescriptor> blocks;
+	public SortedMap<Integer, BlockDescriptor> blocks;
 
 	List<String> errorList; // gestione errori
 	TokenStream lexerStream; // stream token lexer
 
 	// classe base per la gestione di parser e lexer
 	public gcodeGrammarHandler(TokenStream ls) {
-		blocks = new TreeMap<String, BlockDescriptor>(); // istanzio struttura dati per blocchi
+		blocks = new TreeMap<Integer, BlockDescriptor>(); // istanzio struttura dati per blocchi
 		errorList = new ArrayList<String>(); // lista degli errori è una lista di stringhe
 		lexerStream = ls; // istanzio stream token lexer
 
@@ -34,7 +34,7 @@ public class gcodeGrammarHandler {
 	public void createNewBlock(Token n, List<InfoGeometriche> info_g_list, List<InfoTecnologiche> info_t_list,
 			List<InfoTecnologicheM> info_t_M_list) {
 		BlockDescriptor bd = BlockInit(n.getText(), info_g_list, info_t_list, info_t_M_list);
-		blocks.put(n.getText(), bd);
+		blocks.put(Integer.parseInt(n.getText().substring(1)), bd);
 	}
 
 	// inizializzazione del blocco con informazioni geometriche e tecnologiche
@@ -105,7 +105,7 @@ public class gcodeGrammarHandler {
 	}
 
 	public void printBlocks() {
-		for (Entry<String, BlockDescriptor> entry : blocks.entrySet()) {
+		for (Entry<Integer, BlockDescriptor> entry : blocks.entrySet()) {
 			System.out.println(entry.getKey() + " " + entry.getValue().getBlockInfos());
 		}
 	}
