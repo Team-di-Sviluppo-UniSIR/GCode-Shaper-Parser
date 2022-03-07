@@ -7,34 +7,46 @@ import java.util.SortedMap;
 import java.util.TreeMap;
 import org.antlr.runtime.*;
 import gcodeCompiler.util.*;
+import gcodeCompiler.util.Error;
 
 public class gcodeGrammarHandler {
-
 	// codici degli errori
-	public static final int UNDEFINED = -1;
 	public static final int TOKEN_ERROR = 0;
 	public static final int ERR_ON_SYNTAX = 1;
+
+	public static final int SEM_BLOCK_ORDER = 2;
+
+	public static final int UNDEFINED = -1;
 	public static final int LAST_SYNTAX_ERROR = 10;
 
 	// struttura dati contenente i blocchi gcode
 	public SortedMap<Integer, BlockDescriptor> blocks;
+	private int last_n;
 
-	List<String> errorList; // gestione errori
+	List<Error> errorList; // gestione errori
 	TokenStream lexerStream; // stream token lexer
 
 	// classe base per la gestione di parser e lexer
 	public gcodeGrammarHandler(TokenStream ls) {
 		blocks = new TreeMap<Integer, BlockDescriptor>(); // istanzio struttura dati per blocchi
-		errorList = new ArrayList<String>(); // lista degli errori è una lista di stringhe
+		errorList = new ArrayList<Error>(); // lista degli errori è una lista di stringhe
 		lexerStream = ls; // istanzio stream token lexer
-
+		last_n = -1;
 	}
 
 	// creazione del blocco
 	public void createNewBlock(Token n, List<InfoGeometriche> info_g_list, List<InfoTecnologiche> info_t_list,
 			List<InfoTecnologicheM> info_t_M_list) {
+
 		BlockDescriptor bd = BlockInit(n.getText(), info_g_list, info_t_list, info_t_M_list);
-		blocks.put(Integer.parseInt(n.getText().substring(1)), bd);
+
+		if (Integer.parseInt(n.getText().substring(1)) > last_n) {
+			blocks.put(Integer.parseInt(n.getText().substring(1)), bd);
+			last_n = Integer.parseInt(n.getText().substring(1));
+		} else {
+			this.semanticErrorHandler(SEM_BLOCK_ORDER, n, bd);
+		}
+
 	}
 
 	// inizializzazione del blocco con informazioni geometriche e tecnologiche
@@ -102,64 +114,61 @@ public class gcodeGrammarHandler {
 		}
 
 		return bd;
+
 	}
 
 	public void printBlocks() {
 		for (Entry<Integer, BlockDescriptor> entry : blocks.entrySet()) {
-			System.out.println("N"+entry.getKey() + " " + entry.getValue().getBlockInfos());
+			System.out.println("N" + entry.getKey() + " " + entry.getValue().toString());
 		}
 	}
 
 	// metodo che mi fornisce lista degli errori
-	public List<String> getErrorList() {
+	public List<Error> getErrorList() {
 		return errorList;
 	}
 
 	// h contiene le coordinate, m il messaggio d'errore standard
 	void handleError(String[] tokenNames, RecognitionException e, String h, String m) {
 		String type = "";
-		String st;
-		if (e.token.getType() >= 0)
-			type = tokenNames[e.token.getType()];
-		if (e.token.getType() == gcodeGrammarLexer.SCAN_ERROR)
-			st = "Lexical Error " + TOKEN_ERROR + " at ";
-		else
-			st = "Syntax Error " + ERR_ON_SYNTAX + " at ";
-		st += "[" + e.token.getLine() + ", " + (e.token.getCharPositionInLine() + 1) + "]: " + "Found ";
-		st += type;
-		st += " ('" + e.token.getText() + "')" + m;
+		String st = "";
+		Error errore = new Error();
 
-		if (e instanceof MissingTokenException)
-			st = st + m;
+		if (e.token.getType() == gcodeGrammarLexer.SCAN_ERROR) {
+			errore.setType((short) TOKEN_ERROR);
+			errore.setMessage("Found " + tokenNames[e.token.getType()] + " ('" + e.token.getText() + "')" + m);
+		} else {
+			errore.setType((short) ERR_ON_SYNTAX);
+			errore.setMessage("Found " + tokenNames[e.token.getType()] + " ('" + e.token.getText() + "')" + m);
+		}
 
-		errorList.add(st);
+		errore.setRow((short) e.token.getLine());
+		errore.setColumn((short) e.token.getCharPositionInLine());
+
+		errorList.add(errore);
 	}
 
 	// gestione degli errori semantici
-	void myErrorHandler(int code, Token tk) {
-		String st;
-
-		/*
-		 * non dovrebbe mai accadere, dato che chi chiama questo metodo lo fa per
-		 * gestire un errore semantico
-		 */
-		if (code == TOKEN_ERROR)
-			st = "Lexical Error " + code;
-		else if (code < LAST_SYNTAX_ERROR)
-			st = "Syntax Error " + code;
-		else
-			st = "Semantic Error " + code;
+	void semanticErrorHandler(int code, Token tk, BlockDescriptor bd) {
+		Error errore = new Error();
+		errore.setType((short) code);
 
 		// errore semantico è avvenuto in una certa posizione (riga, colonna)
-		if (tk != null)
-			st += " at [" + tk.getLine() + ", " + (tk.getCharPositionInLine() + 1) + "]";
-		st += ": ";
+		if (tk != null) {
+			errore.setRow((short) tk.getLine());
+			errore.setColumn((short) tk.getCharPositionInLine());
+		}
 
-		if (code == TOKEN_ERROR)
-			st += "Unrecognized token '" + tk.getText() + "'";
+		switch (code) {
+		case SEM_BLOCK_ORDER:
+			errore.setMessage("Found BLOCK_ERROR (" + bd.getNum_block() + " " + bd.toString() + ") - block number '" + bd.getNum_block()
+					+ "' must be greater than the previous one");
+			break;
+
+		}
 
 		// errori vanno ordinati
-		errorList.add(st);
+		errorList.add(errore);
 	}
 
 }

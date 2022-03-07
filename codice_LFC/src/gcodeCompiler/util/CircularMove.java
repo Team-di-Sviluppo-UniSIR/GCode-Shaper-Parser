@@ -38,8 +38,8 @@ public class CircularMove {
 		this.c_ijk = c_ijk;
 	}
 
-	public String getString() {
-		return this.moveType + " " + this.c_xyz.getString() + " " + this.c_ijk.getString();
+	public String toString() {
+		return this.moveType + " " + this.c_xyz.toString() + " " + this.c_ijk.toString();
 	}
 
 }

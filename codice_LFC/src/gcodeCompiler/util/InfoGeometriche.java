@@ -65,7 +65,7 @@ public class InfoGeometriche {
 		this.cm = cm;
 	}
 
-	public String getString() {
+	public String toString() {
 		String s = "";
 
 		if (this.coord_abs_rel != null)
@@ -75,10 +75,10 @@ public class InfoGeometriche {
 			s = s.concat(this.compensation);
 
 		if (this.lm != null)
-			s = s.concat(this.lm.getString());
+			s = s.concat(this.lm.toString());
 
 		if (this.cm != null)
-			s = s.concat(this.cm.getString());
+			s = s.concat(this.cm.toString());
 
 		return s;
 	}

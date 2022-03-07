@@ -51,17 +51,17 @@ public class BlockDescriptor {
 		this.infoTecM = infoTecM;
 	}
 
-	public String getBlockInfos() {
+	public String toString() {
 		String s = "";
 
 		if (this.infoGeo != null)
-			s = s.concat(this.infoGeo.getString());
+			s = s.concat(this.infoGeo.toString());
 
 		if (this.infoTec != null)
-			s = s.concat(this.infoTec.getString());
+			s = s.concat(this.infoTec.toString());
 
 		if (this.infoTecM != null)
-			s = s.concat(this.infoTecM.getString());
+			s = s.concat(this.infoTecM.toString());
 
 		return s;
 

@@ -20,6 +20,7 @@ import java.io.IOException;
 import java.io.IOException;
 import java.io.StringReader;
 import java.util.ArrayList;
+import gcodeCompiler.util.Error;
 }
 
 @members {
@@ -40,7 +41,7 @@ public gcodeGrammarHandler getHandler() {
 	return h;
 }
 
-public List<String> getErrorList () {
+public List<Error> getErrorList () {
   return h.getErrorList();
 }
 

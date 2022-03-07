@@ -1,17 +1,11 @@
 package gcodeMain;
 
 import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.io.IOException;
-import java.util.Hashtable;
-
-import org.antlr.runtime.ANTLRReaderStream;
-import org.antlr.runtime.CommonTokenStream;
+import java.util.Collections;
 import org.antlr.runtime.RecognitionException;
-
-import gcodeCompiler.gcodeGrammarLexer;
 import gcodeCompiler.gcodeGrammarParser;
-import gcodeCompiler.gcodeGrammarHandler;
+import gcodeCompiler.util.Error;
 
 public class ParserLauncher {
 	public static void main(String[] args) throws FileNotFoundException, IOException, RecognitionException {
@@ -29,8 +23,11 @@ public class ParserLauncher {
 		} else {
 			int i = 0;
 			System.out.println("Errori rilevati");
-			for (String msg : parser.getErrorList())
-				System.out.println(++i + " - " + msg);
+
+			Collections.sort(parser.getErrorList());
+
+			for (Error errore : parser.getErrorList())
+				System.out.println(++i + " - " + errore.toString());
 		}
 
 		System.out.println("\nParsing Completato");

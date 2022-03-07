@@ -33,7 +33,7 @@ public class Tool {
 		return "T" + this.toolSelection + this.toolConfiguration;
 	}
 
-	public String getString() {
+	public String toString() {
 		return "T" + this.toolSelection + this.toolConfiguration;
 	}
 

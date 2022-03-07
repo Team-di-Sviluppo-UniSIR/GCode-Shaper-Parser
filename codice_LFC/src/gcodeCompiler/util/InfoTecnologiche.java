@@ -45,7 +45,7 @@ public class InfoTecnologiche {
 		this.t = t;
 	}
 
-	public String getString() {
+	public String toString() {
 		String s = "";
 
 		if (this.free_move_speed != null)
@@ -55,7 +55,7 @@ public class InfoTecnologiche {
 			s = s.concat(job_move_speed);
 
 		if (t != null)
-			s = s.concat(t.getString());
+			s = s.concat(t.toString());
 
 		return s;
 	}

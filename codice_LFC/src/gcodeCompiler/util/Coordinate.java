@@ -22,7 +22,7 @@ public class Coordinate {
 		}
 	}
 
-	public String getString() {
+	public String toString() {
 		String s = "";
 
 		if (this.first != null)

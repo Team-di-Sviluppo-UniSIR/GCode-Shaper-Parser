@@ -65,7 +65,7 @@ public class InfoTecnologicheM {
 		this.end_program = end_program;
 	}
 
-	public String getString() {
+	public String toString() {
 		String s = "";
 
 		if (this.rot_tool != null)
