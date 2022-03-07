@@ -33,4 +33,8 @@ public class Tool {
 		return "T" + this.toolSelection + this.toolConfiguration;
 	}
 
+	public String getString() {
+		return "T" + this.toolSelection + this.toolConfiguration;
+	}
+
 }

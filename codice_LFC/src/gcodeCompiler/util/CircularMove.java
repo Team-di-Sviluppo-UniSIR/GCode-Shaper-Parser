@@ -4,7 +4,7 @@ import org.antlr.runtime.Token;
 
 // classe che descrive la struttura del movimento circolare
 public class CircularMove {
-	private String moveType; // G00, G01
+	private String moveType; // G02, G03
 	private Coordinate c_xyz; // coordinate punto finale
 	private Coordinate c_ijk; // coordinate centro
 
@@ -36,6 +36,10 @@ public class CircularMove {
 
 	public void setC_ijk(Coordinate c_ijk) {
 		this.c_ijk = c_ijk;
+	}
+
+	public String getString() {
+		return this.moveType + " " + this.c_xyz.getString() + " " + this.c_ijk.getString();
 	}
 
 }

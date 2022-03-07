@@ -65,4 +65,26 @@ public class InfoTecnologicheM {
 		this.end_program = end_program;
 	}
 
+	public String getString() {
+		String s = "";
+
+		if (this.rot_tool != null)
+			s = s.concat(this.rot_tool);
+
+		if (this.stop_tool != null)
+			s = s.concat(this.stop_tool);
+
+		if (this.change_tool != null)
+			s = s.concat(this.change_tool);
+
+		if (this.lube != null)
+			s = s.concat(this.lube);
+
+		if (this.end_program != null)
+			s = s.concat(this.end_program);
+
+		return s;
+
+	}
+
 }

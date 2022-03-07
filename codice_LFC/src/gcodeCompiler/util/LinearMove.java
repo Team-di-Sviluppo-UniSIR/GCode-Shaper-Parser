@@ -32,4 +32,8 @@ public class LinearMove {
 		this.c_xyz = c_xyz;
 	}
 
+	public String getString() {
+		return this.moveType + " " + this.c_xyz.getString();
+	}
+
 }

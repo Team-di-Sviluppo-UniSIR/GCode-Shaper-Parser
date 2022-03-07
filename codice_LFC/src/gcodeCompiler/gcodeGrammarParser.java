@@ -1,4 +1,4 @@
-// $ANTLR 3.5.1 C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\src\\gcodeCompiler\\gcodeGrammar.g 2022-03-07 08:53:18
+// $ANTLR 3.5.1 C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\src\\gcodeCompiler\\gcodeGrammar.g 2022-03-07 09:44:10
 
 package gcodeCompiler;
 
@@ -79,7 +79,7 @@ public class gcodeGrammarParser extends Parser {
 	@Override public String getGrammarFileName() { return "C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\src\\gcodeCompiler\\gcodeGrammar.g"; }
 
 
-	private gcodeGrammarHandler h;
+	public gcodeGrammarHandler h;
 
 	public gcodeGrammarParser(String fileIn) throws IOException {		
 		this(new CommonTokenStream(

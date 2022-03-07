@@ -23,7 +23,7 @@ import java.util.ArrayList;
 }
 
 @members {
-private gcodeGrammarHandler h;
+public gcodeGrammarHandler h;
 
 public gcodeGrammarParser(String fileIn) throws IOException {		
 	this(new CommonTokenStream(

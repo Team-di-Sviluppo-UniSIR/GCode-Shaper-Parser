@@ -44,4 +44,19 @@ public class InfoTecnologiche {
 	public void setT(Tool t) {
 		this.t = t;
 	}
+
+	public String getString() {
+		String s = "";
+
+		if (this.free_move_speed != null)
+			s = s.concat(free_move_speed);
+
+		if (this.job_move_speed != null)
+			s = s.concat(job_move_speed);
+
+		if (t != null)
+			s = s.concat(t.getString());
+
+		return s;
+	}
 }

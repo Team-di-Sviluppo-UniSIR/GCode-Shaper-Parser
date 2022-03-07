@@ -65,4 +65,22 @@ public class InfoGeometriche {
 		this.cm = cm;
 	}
 
+	public String getString() {
+		String s = "";
+
+		if (this.coord_abs_rel != null)
+			s = s.concat(this.coord_abs_rel);
+
+		if (this.compensation != null)
+			s = s.concat(this.compensation);
+
+		if (this.lm != null)
+			s = s.concat(this.lm.getString());
+
+		if (this.cm != null)
+			s = s.concat(this.cm.getString());
+
+		return s;
+	}
+
 }

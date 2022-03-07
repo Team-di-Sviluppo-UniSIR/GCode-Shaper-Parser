@@ -23,7 +23,8 @@ public class ParserLauncher {
 		parser.gcode();
 
 		if (parser.getErrorList().size() == 0) {
-			System.out.println("Parsing completato con successo");
+			System.out.println("Parsing completato con successo\n");
+			parser.h.printBlocks();
 
 		} else {
 			int i = 0;

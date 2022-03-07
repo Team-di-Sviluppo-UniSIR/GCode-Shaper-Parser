@@ -4,14 +4,14 @@ package gcodeCompiler.util;
 public class BlockDescriptor {
 	private String num_block; // N[]
 	private InfoGeometriche infoGeo;
-	private InfoTecnologiche infotTec;
+	private InfoTecnologiche infoTec;
 	private InfoTecnologicheM infoTecM; // M[]
 
 	public BlockDescriptor(String num_block, InfoGeometriche infoGeo, InfoTecnologiche infoTec,
 			InfoTecnologicheM infoTecM) {
 		this.num_block = num_block;
 		this.infoGeo = infoGeo;
-		this.infotTec = infoTec;
+		this.infoTec = infoTec;
 		this.infoTecM = infoTecM;
 	}
 
@@ -36,11 +36,11 @@ public class BlockDescriptor {
 	}
 
 	public InfoTecnologiche getInfotTec() {
-		return infotTec;
+		return infoTec;
 	}
 
 	public void setInfotTec(InfoTecnologiche infotTec) {
-		this.infotTec = infotTec;
+		this.infoTec = infotTec;
 	}
 
 	public InfoTecnologicheM getInfoTecM() {
@@ -49,6 +49,22 @@ public class BlockDescriptor {
 
 	public void setInfoTecM(InfoTecnologicheM infoTecM) {
 		this.infoTecM = infoTecM;
+	}
+
+	public String getBlockInfos() {
+		String s = "";
+
+		if (this.infoGeo != null)
+			s = s.concat(this.infoGeo.getString());
+
+		if (this.infoTec != null)
+			s = s.concat(this.infoTec.getString());
+
+		if (this.infoTecM != null)
+			s = s.concat(this.infoTecM.getString());
+
+		return s;
+
 	}
 
 }

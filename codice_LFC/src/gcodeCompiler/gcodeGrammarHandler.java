@@ -2,6 +2,7 @@ package gcodeCompiler;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map.Entry;
 import java.util.SortedMap;
 import java.util.TreeMap;
 import org.antlr.runtime.*;
@@ -101,6 +102,12 @@ public class gcodeGrammarHandler {
 		}
 
 		return bd;
+	}
+
+	public void printBlocks() {
+		for (Entry<String, BlockDescriptor> entry : blocks.entrySet()) {
+			System.out.println(entry.getKey() + " " + entry.getValue().getBlockInfos());
+		}
 	}
 
 	// metodo che mi fornisce lista degli errori

@@ -21,4 +21,19 @@ public class Coordinate {
 			this.third = third.getText();
 		}
 	}
+
+	public String getString() {
+		String s = "";
+
+		if (this.first != null)
+			s = s.concat(first+" ");
+
+		if (this.second != null)
+			s = s.concat(second+" ");
+
+		if (this.third != null)
+			s = s.concat(third);
+
+		return s;
+	}
 }
