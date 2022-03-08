@@ -1,4 +1,4 @@
-// $ANTLR 3.5.1 C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\src\\gcodeCompiler\\gcodeGrammar.g 2022-03-07 20:48:02
+// $ANTLR 3.5.1 C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\src\\gcodeCompiler\\gcodeGrammar.g 2022-03-08 08:21:04
 
 package gcodeCompiler;
 
@@ -14,33 +14,38 @@ public class gcodeGrammarLexer extends Lexer {
 	public static final int CHANGE_TOOL=4;
 	public static final int CIRCLE_ACW=5;
 	public static final int CIRCLE_CW=6;
-	public static final int COMP_DIS=7;
-	public static final int COMP_L=8;
-	public static final int COMP_R=9;
-	public static final int COORD_ABS=10;
-	public static final int COORD_REL=11;
-	public static final int CORD_DIGIT=12;
-	public static final int DIGIT=13;
-	public static final int END_PROG=14;
-	public static final int FREE_MOVE=15;
-	public static final int FREE_MOVE_SPEED=16;
-	public static final int I_CORD=17;
-	public static final int JOB_MOVE=18;
-	public static final int JOB_MOVE_SPEED=19;
-	public static final int J_CORD=20;
-	public static final int K_CORD=21;
-	public static final int LUBE_OFF=22;
-	public static final int LUBE_ON=23;
-	public static final int N_BLOCK=24;
-	public static final int ROT_TOOL_ACW=25;
-	public static final int ROT_TOOL_CW=26;
-	public static final int SCAN_ERROR=27;
-	public static final int STOP_TOOL=28;
-	public static final int TOOL_CHANGE=29;
-	public static final int WS=30;
-	public static final int X_CORD=31;
-	public static final int Y_CORD=32;
-	public static final int Z_CORD=33;
+	public static final int COMMENT=7;
+	public static final int COMP_DIS=8;
+	public static final int COMP_L=9;
+	public static final int COMP_R=10;
+	public static final int COORD_ABS=11;
+	public static final int COORD_REL=12;
+	public static final int CORD_DIGIT=13;
+	public static final int DIGIT=14;
+	public static final int END_PROG=15;
+	public static final int FREE_MOVE=16;
+	public static final int FREE_MOVE_SPEED=17;
+	public static final int I_CORD=18;
+	public static final int JOB_MOVE=19;
+	public static final int JOB_MOVE_SPEED=20;
+	public static final int J_CORD=21;
+	public static final int K_CORD=22;
+	public static final int LUBE_OFF=23;
+	public static final int LUBE_ON=24;
+	public static final int N_BLOCK=25;
+	public static final int ROT_TOOL_ACW=26;
+	public static final int ROT_TOOL_CW=27;
+	public static final int SCAN_ERROR=28;
+	public static final int STOP_TOOL=29;
+	public static final int TOOL_CHANGE=30;
+	public static final int WS=31;
+	public static final int X_CORD=32;
+	public static final int Y_CORD=33;
+	public static final int Z_CORD=34;
+
+	@Override
+	public void emitErrorMessage(String msg) {}
+
 
 	// delegates
 	// delegators
@@ -60,7 +65,7 @@ public class gcodeGrammarLexer extends Lexer {
 	// $ANTLR start "DIGIT"
 	public final void mDIGIT() throws RecognitionException {
 		try {
-			// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\src\\gcodeCompiler\\gcodeGrammar.g:170:2: ( '0' .. '9' )
+			// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\src\\gcodeCompiler\\gcodeGrammar.g:175:2: ( '0' .. '9' )
 			// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\src\\gcodeCompiler\\gcodeGrammar.g:
 			{
 			if ( (input.LA(1) >= '0' && input.LA(1) <= '9') ) {
@@ -83,10 +88,10 @@ public class gcodeGrammarLexer extends Lexer {
 	// $ANTLR start "CORD_DIGIT"
 	public final void mCORD_DIGIT() throws RecognitionException {
 		try {
-			// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\src\\gcodeCompiler\\gcodeGrammar.g:175:2: ( ( '-' )? ( DIGIT )+ )
-			// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\src\\gcodeCompiler\\gcodeGrammar.g:175:4: ( '-' )? ( DIGIT )+
+			// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\src\\gcodeCompiler\\gcodeGrammar.g:180:2: ( ( '-' )? ( DIGIT )+ )
+			// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\src\\gcodeCompiler\\gcodeGrammar.g:180:4: ( '-' )? ( DIGIT )+
 			{
-			// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\src\\gcodeCompiler\\gcodeGrammar.g:175:4: ( '-' )?
+			// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\src\\gcodeCompiler\\gcodeGrammar.g:180:4: ( '-' )?
 			int alt1=2;
 			int LA1_0 = input.LA(1);
 			if ( (LA1_0=='-') ) {
@@ -94,7 +99,7 @@ public class gcodeGrammarLexer extends Lexer {
 			}
 			switch (alt1) {
 				case 1 :
-					// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\src\\gcodeCompiler\\gcodeGrammar.g:175:5: '-'
+					// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\src\\gcodeCompiler\\gcodeGrammar.g:180:5: '-'
 					{
 					match('-'); 
 					}
@@ -102,7 +107,7 @@ public class gcodeGrammarLexer extends Lexer {
 
 			}
 
-			// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\src\\gcodeCompiler\\gcodeGrammar.g:175:10: ( DIGIT )+
+			// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\src\\gcodeCompiler\\gcodeGrammar.g:180:10: ( DIGIT )+
 			int cnt2=0;
 			loop2:
 			while (true) {
@@ -149,8 +154,8 @@ public class gcodeGrammarLexer extends Lexer {
 		try {
 			int _type = X_CORD;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\src\\gcodeCompiler\\gcodeGrammar.g:180:2: ( 'X' CORD_DIGIT )
-			// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\src\\gcodeCompiler\\gcodeGrammar.g:180:4: 'X' CORD_DIGIT
+			// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\src\\gcodeCompiler\\gcodeGrammar.g:185:2: ( 'X' CORD_DIGIT )
+			// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\src\\gcodeCompiler\\gcodeGrammar.g:185:4: 'X' CORD_DIGIT
 			{
 			match('X'); 
 			mCORD_DIGIT(); 
@@ -171,8 +176,8 @@ public class gcodeGrammarLexer extends Lexer {
 		try {
 			int _type = Y_CORD;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\src\\gcodeCompiler\\gcodeGrammar.g:185:2: ( 'Y' CORD_DIGIT )
-			// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\src\\gcodeCompiler\\gcodeGrammar.g:185:4: 'Y' CORD_DIGIT
+			// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\src\\gcodeCompiler\\gcodeGrammar.g:190:2: ( 'Y' CORD_DIGIT )
+			// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\src\\gcodeCompiler\\gcodeGrammar.g:190:4: 'Y' CORD_DIGIT
 			{
 			match('Y'); 
 			mCORD_DIGIT(); 
@@ -193,8 +198,8 @@ public class gcodeGrammarLexer extends Lexer {
 		try {
 			int _type = Z_CORD;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\src\\gcodeCompiler\\gcodeGrammar.g:190:2: ( 'Z' CORD_DIGIT )
-			// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\src\\gcodeCompiler\\gcodeGrammar.g:190:4: 'Z' CORD_DIGIT
+			// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\src\\gcodeCompiler\\gcodeGrammar.g:195:2: ( 'Z' CORD_DIGIT )
+			// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\src\\gcodeCompiler\\gcodeGrammar.g:195:4: 'Z' CORD_DIGIT
 			{
 			match('Z'); 
 			mCORD_DIGIT(); 
@@ -215,8 +220,8 @@ public class gcodeGrammarLexer extends Lexer {
 		try {
 			int _type = I_CORD;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\src\\gcodeCompiler\\gcodeGrammar.g:195:2: ( 'I' CORD_DIGIT )
-			// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\src\\gcodeCompiler\\gcodeGrammar.g:195:4: 'I' CORD_DIGIT
+			// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\src\\gcodeCompiler\\gcodeGrammar.g:200:2: ( 'I' CORD_DIGIT )
+			// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\src\\gcodeCompiler\\gcodeGrammar.g:200:4: 'I' CORD_DIGIT
 			{
 			match('I'); 
 			mCORD_DIGIT(); 
@@ -237,8 +242,8 @@ public class gcodeGrammarLexer extends Lexer {
 		try {
 			int _type = J_CORD;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\src\\gcodeCompiler\\gcodeGrammar.g:200:2: ( 'J' CORD_DIGIT )
-			// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\src\\gcodeCompiler\\gcodeGrammar.g:200:4: 'J' CORD_DIGIT
+			// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\src\\gcodeCompiler\\gcodeGrammar.g:205:2: ( 'J' CORD_DIGIT )
+			// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\src\\gcodeCompiler\\gcodeGrammar.g:205:4: 'J' CORD_DIGIT
 			{
 			match('J'); 
 			mCORD_DIGIT(); 
@@ -259,8 +264,8 @@ public class gcodeGrammarLexer extends Lexer {
 		try {
 			int _type = K_CORD;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\src\\gcodeCompiler\\gcodeGrammar.g:205:2: ( 'K' CORD_DIGIT )
-			// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\src\\gcodeCompiler\\gcodeGrammar.g:205:4: 'K' CORD_DIGIT
+			// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\src\\gcodeCompiler\\gcodeGrammar.g:210:2: ( 'K' CORD_DIGIT )
+			// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\src\\gcodeCompiler\\gcodeGrammar.g:210:4: 'K' CORD_DIGIT
 			{
 			match('K'); 
 			mCORD_DIGIT(); 
@@ -281,8 +286,8 @@ public class gcodeGrammarLexer extends Lexer {
 		try {
 			int _type = N_BLOCK;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\src\\gcodeCompiler\\gcodeGrammar.g:210:2: ( 'N' ( '1' .. '9' ) ( DIGIT )* )
-			// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\src\\gcodeCompiler\\gcodeGrammar.g:210:4: 'N' ( '1' .. '9' ) ( DIGIT )*
+			// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\src\\gcodeCompiler\\gcodeGrammar.g:215:2: ( 'N' ( '1' .. '9' ) ( DIGIT )* )
+			// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\src\\gcodeCompiler\\gcodeGrammar.g:215:4: 'N' ( '1' .. '9' ) ( DIGIT )*
 			{
 			match('N'); 
 			if ( (input.LA(1) >= '1' && input.LA(1) <= '9') ) {
@@ -293,7 +298,7 @@ public class gcodeGrammarLexer extends Lexer {
 				recover(mse);
 				throw mse;
 			}
-			// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\src\\gcodeCompiler\\gcodeGrammar.g:210:20: ( DIGIT )*
+			// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\src\\gcodeCompiler\\gcodeGrammar.g:215:20: ( DIGIT )*
 			loop3:
 			while (true) {
 				int alt3=2;
@@ -338,8 +343,8 @@ public class gcodeGrammarLexer extends Lexer {
 		try {
 			int _type = COORD_ABS;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\src\\gcodeCompiler\\gcodeGrammar.g:215:2: ( 'G90' )
-			// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\src\\gcodeCompiler\\gcodeGrammar.g:215:4: 'G90'
+			// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\src\\gcodeCompiler\\gcodeGrammar.g:220:2: ( 'G90' )
+			// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\src\\gcodeCompiler\\gcodeGrammar.g:220:4: 'G90'
 			{
 			match("G90"); 
 
@@ -359,8 +364,8 @@ public class gcodeGrammarLexer extends Lexer {
 		try {
 			int _type = COORD_REL;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\src\\gcodeCompiler\\gcodeGrammar.g:220:2: ( 'G91' )
-			// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\src\\gcodeCompiler\\gcodeGrammar.g:220:4: 'G91'
+			// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\src\\gcodeCompiler\\gcodeGrammar.g:225:2: ( 'G91' )
+			// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\src\\gcodeCompiler\\gcodeGrammar.g:225:4: 'G91'
 			{
 			match("G91"); 
 
@@ -380,8 +385,8 @@ public class gcodeGrammarLexer extends Lexer {
 		try {
 			int _type = FREE_MOVE;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\src\\gcodeCompiler\\gcodeGrammar.g:225:2: ( 'G00' )
-			// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\src\\gcodeCompiler\\gcodeGrammar.g:225:4: 'G00'
+			// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\src\\gcodeCompiler\\gcodeGrammar.g:230:2: ( 'G00' )
+			// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\src\\gcodeCompiler\\gcodeGrammar.g:230:4: 'G00'
 			{
 			match("G00"); 
 
@@ -401,8 +406,8 @@ public class gcodeGrammarLexer extends Lexer {
 		try {
 			int _type = JOB_MOVE;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\src\\gcodeCompiler\\gcodeGrammar.g:230:2: ( 'G01' )
-			// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\src\\gcodeCompiler\\gcodeGrammar.g:230:4: 'G01'
+			// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\src\\gcodeCompiler\\gcodeGrammar.g:235:2: ( 'G01' )
+			// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\src\\gcodeCompiler\\gcodeGrammar.g:235:4: 'G01'
 			{
 			match("G01"); 
 
@@ -422,8 +427,8 @@ public class gcodeGrammarLexer extends Lexer {
 		try {
 			int _type = CIRCLE_CW;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\src\\gcodeCompiler\\gcodeGrammar.g:235:2: ( 'G02' )
-			// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\src\\gcodeCompiler\\gcodeGrammar.g:235:4: 'G02'
+			// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\src\\gcodeCompiler\\gcodeGrammar.g:240:2: ( 'G02' )
+			// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\src\\gcodeCompiler\\gcodeGrammar.g:240:4: 'G02'
 			{
 			match("G02"); 
 
@@ -443,8 +448,8 @@ public class gcodeGrammarLexer extends Lexer {
 		try {
 			int _type = CIRCLE_ACW;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\src\\gcodeCompiler\\gcodeGrammar.g:241:2: ( 'G03' )
-			// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\src\\gcodeCompiler\\gcodeGrammar.g:241:4: 'G03'
+			// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\src\\gcodeCompiler\\gcodeGrammar.g:246:2: ( 'G03' )
+			// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\src\\gcodeCompiler\\gcodeGrammar.g:246:4: 'G03'
 			{
 			match("G03"); 
 
@@ -464,8 +469,8 @@ public class gcodeGrammarLexer extends Lexer {
 		try {
 			int _type = COMP_DIS;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\src\\gcodeCompiler\\gcodeGrammar.g:247:2: ( 'G40' )
-			// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\src\\gcodeCompiler\\gcodeGrammar.g:247:4: 'G40'
+			// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\src\\gcodeCompiler\\gcodeGrammar.g:252:2: ( 'G40' )
+			// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\src\\gcodeCompiler\\gcodeGrammar.g:252:4: 'G40'
 			{
 			match("G40"); 
 
@@ -485,8 +490,8 @@ public class gcodeGrammarLexer extends Lexer {
 		try {
 			int _type = COMP_L;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\src\\gcodeCompiler\\gcodeGrammar.g:252:2: ( 'G41' )
-			// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\src\\gcodeCompiler\\gcodeGrammar.g:252:4: 'G41'
+			// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\src\\gcodeCompiler\\gcodeGrammar.g:257:2: ( 'G41' )
+			// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\src\\gcodeCompiler\\gcodeGrammar.g:257:4: 'G41'
 			{
 			match("G41"); 
 
@@ -506,8 +511,8 @@ public class gcodeGrammarLexer extends Lexer {
 		try {
 			int _type = COMP_R;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\src\\gcodeCompiler\\gcodeGrammar.g:257:2: ( 'G42' )
-			// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\src\\gcodeCompiler\\gcodeGrammar.g:257:4: 'G42'
+			// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\src\\gcodeCompiler\\gcodeGrammar.g:262:2: ( 'G42' )
+			// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\src\\gcodeCompiler\\gcodeGrammar.g:262:4: 'G42'
 			{
 			match("G42"); 
 
@@ -527,8 +532,8 @@ public class gcodeGrammarLexer extends Lexer {
 		try {
 			int _type = FREE_MOVE_SPEED;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\src\\gcodeCompiler\\gcodeGrammar.g:262:2: ( 'F' ( '1' .. '9' ) ( DIGIT )* )
-			// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\src\\gcodeCompiler\\gcodeGrammar.g:262:4: 'F' ( '1' .. '9' ) ( DIGIT )*
+			// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\src\\gcodeCompiler\\gcodeGrammar.g:267:2: ( 'F' ( '1' .. '9' ) ( DIGIT )* )
+			// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\src\\gcodeCompiler\\gcodeGrammar.g:267:4: 'F' ( '1' .. '9' ) ( DIGIT )*
 			{
 			match('F'); 
 			if ( (input.LA(1) >= '1' && input.LA(1) <= '9') ) {
@@ -539,7 +544,7 @@ public class gcodeGrammarLexer extends Lexer {
 				recover(mse);
 				throw mse;
 			}
-			// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\src\\gcodeCompiler\\gcodeGrammar.g:262:20: ( DIGIT )*
+			// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\src\\gcodeCompiler\\gcodeGrammar.g:267:20: ( DIGIT )*
 			loop4:
 			while (true) {
 				int alt4=2;
@@ -584,8 +589,8 @@ public class gcodeGrammarLexer extends Lexer {
 		try {
 			int _type = JOB_MOVE_SPEED;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\src\\gcodeCompiler\\gcodeGrammar.g:267:2: ( 'S' ( '1' .. '9' ) ( DIGIT )* )
-			// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\src\\gcodeCompiler\\gcodeGrammar.g:267:4: 'S' ( '1' .. '9' ) ( DIGIT )*
+			// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\src\\gcodeCompiler\\gcodeGrammar.g:272:2: ( 'S' ( '1' .. '9' ) ( DIGIT )* )
+			// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\src\\gcodeCompiler\\gcodeGrammar.g:272:4: 'S' ( '1' .. '9' ) ( DIGIT )*
 			{
 			match('S'); 
 			if ( (input.LA(1) >= '1' && input.LA(1) <= '9') ) {
@@ -596,7 +601,7 @@ public class gcodeGrammarLexer extends Lexer {
 				recover(mse);
 				throw mse;
 			}
-			// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\src\\gcodeCompiler\\gcodeGrammar.g:267:20: ( DIGIT )*
+			// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\src\\gcodeCompiler\\gcodeGrammar.g:272:20: ( DIGIT )*
 			loop5:
 			while (true) {
 				int alt5=2;
@@ -641,8 +646,8 @@ public class gcodeGrammarLexer extends Lexer {
 		try {
 			int _type = TOOL_CHANGE;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\src\\gcodeCompiler\\gcodeGrammar.g:272:2: ( 'T0' ( '1' .. '9' ) '0' ( '1' .. '9' ) )
-			// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\src\\gcodeCompiler\\gcodeGrammar.g:272:4: 'T0' ( '1' .. '9' ) '0' ( '1' .. '9' )
+			// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\src\\gcodeCompiler\\gcodeGrammar.g:277:2: ( 'T0' ( '1' .. '9' ) '0' ( '1' .. '9' ) )
+			// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\src\\gcodeCompiler\\gcodeGrammar.g:277:4: 'T0' ( '1' .. '9' ) '0' ( '1' .. '9' )
 			{
 			match("T0"); 
 
@@ -679,8 +684,8 @@ public class gcodeGrammarLexer extends Lexer {
 		try {
 			int _type = ROT_TOOL_CW;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\src\\gcodeCompiler\\gcodeGrammar.g:277:2: ( 'M03' )
-			// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\src\\gcodeCompiler\\gcodeGrammar.g:277:4: 'M03'
+			// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\src\\gcodeCompiler\\gcodeGrammar.g:282:2: ( 'M03' )
+			// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\src\\gcodeCompiler\\gcodeGrammar.g:282:4: 'M03'
 			{
 			match("M03"); 
 
@@ -700,8 +705,8 @@ public class gcodeGrammarLexer extends Lexer {
 		try {
 			int _type = ROT_TOOL_ACW;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\src\\gcodeCompiler\\gcodeGrammar.g:282:2: ( 'M04' )
-			// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\src\\gcodeCompiler\\gcodeGrammar.g:282:4: 'M04'
+			// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\src\\gcodeCompiler\\gcodeGrammar.g:287:2: ( 'M04' )
+			// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\src\\gcodeCompiler\\gcodeGrammar.g:287:4: 'M04'
 			{
 			match("M04"); 
 
@@ -721,8 +726,8 @@ public class gcodeGrammarLexer extends Lexer {
 		try {
 			int _type = STOP_TOOL;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\src\\gcodeCompiler\\gcodeGrammar.g:287:2: ( 'M05' )
-			// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\src\\gcodeCompiler\\gcodeGrammar.g:287:4: 'M05'
+			// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\src\\gcodeCompiler\\gcodeGrammar.g:292:2: ( 'M05' )
+			// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\src\\gcodeCompiler\\gcodeGrammar.g:292:4: 'M05'
 			{
 			match("M05"); 
 
@@ -742,8 +747,8 @@ public class gcodeGrammarLexer extends Lexer {
 		try {
 			int _type = CHANGE_TOOL;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\src\\gcodeCompiler\\gcodeGrammar.g:292:2: ( 'M06' )
-			// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\src\\gcodeCompiler\\gcodeGrammar.g:292:4: 'M06'
+			// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\src\\gcodeCompiler\\gcodeGrammar.g:297:2: ( 'M06' )
+			// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\src\\gcodeCompiler\\gcodeGrammar.g:297:4: 'M06'
 			{
 			match("M06"); 
 
@@ -763,8 +768,8 @@ public class gcodeGrammarLexer extends Lexer {
 		try {
 			int _type = LUBE_ON;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\src\\gcodeCompiler\\gcodeGrammar.g:297:2: ( 'M08' )
-			// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\src\\gcodeCompiler\\gcodeGrammar.g:297:4: 'M08'
+			// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\src\\gcodeCompiler\\gcodeGrammar.g:302:2: ( 'M08' )
+			// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\src\\gcodeCompiler\\gcodeGrammar.g:302:4: 'M08'
 			{
 			match("M08"); 
 
@@ -784,8 +789,8 @@ public class gcodeGrammarLexer extends Lexer {
 		try {
 			int _type = LUBE_OFF;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\src\\gcodeCompiler\\gcodeGrammar.g:302:2: ( 'M09' )
-			// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\src\\gcodeCompiler\\gcodeGrammar.g:302:4: 'M09'
+			// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\src\\gcodeCompiler\\gcodeGrammar.g:307:2: ( 'M09' )
+			// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\src\\gcodeCompiler\\gcodeGrammar.g:307:4: 'M09'
 			{
 			match("M09"); 
 
@@ -805,8 +810,8 @@ public class gcodeGrammarLexer extends Lexer {
 		try {
 			int _type = END_PROG;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\src\\gcodeCompiler\\gcodeGrammar.g:307:2: ( 'M30' )
-			// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\src\\gcodeCompiler\\gcodeGrammar.g:307:4: 'M30'
+			// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\src\\gcodeCompiler\\gcodeGrammar.g:312:2: ( 'M30' )
+			// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\src\\gcodeCompiler\\gcodeGrammar.g:312:4: 'M30'
 			{
 			match("M30"); 
 
@@ -821,13 +826,158 @@ public class gcodeGrammarLexer extends Lexer {
 	}
 	// $ANTLR end "END_PROG"
 
+	// $ANTLR start "COMMENT"
+	public final void mCOMMENT() throws RecognitionException {
+		try {
+			int _type = COMMENT;
+			int _channel = DEFAULT_TOKEN_CHANNEL;
+			// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\src\\gcodeCompiler\\gcodeGrammar.g:317:5: ( '//' (~ ( '\\n' | '\\r' ) )* ( '\\r' )? '\\n' | '/*' ( options {greedy=false; } : . )* '*/' )
+			int alt9=2;
+			int LA9_0 = input.LA(1);
+			if ( (LA9_0=='/') ) {
+				int LA9_1 = input.LA(2);
+				if ( (LA9_1=='/') ) {
+					alt9=1;
+				}
+				else if ( (LA9_1=='*') ) {
+					alt9=2;
+				}
+
+				else {
+					int nvaeMark = input.mark();
+					try {
+						input.consume();
+						NoViableAltException nvae =
+							new NoViableAltException("", 9, 1, input);
+						throw nvae;
+					} finally {
+						input.rewind(nvaeMark);
+					}
+				}
+
+			}
+
+			else {
+				NoViableAltException nvae =
+					new NoViableAltException("", 9, 0, input);
+				throw nvae;
+			}
+
+			switch (alt9) {
+				case 1 :
+					// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\src\\gcodeCompiler\\gcodeGrammar.g:317:9: '//' (~ ( '\\n' | '\\r' ) )* ( '\\r' )? '\\n'
+					{
+					match("//"); 
+
+					// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\src\\gcodeCompiler\\gcodeGrammar.g:317:14: (~ ( '\\n' | '\\r' ) )*
+					loop6:
+					while (true) {
+						int alt6=2;
+						int LA6_0 = input.LA(1);
+						if ( ((LA6_0 >= '\u0000' && LA6_0 <= '\t')||(LA6_0 >= '\u000B' && LA6_0 <= '\f')||(LA6_0 >= '\u000E' && LA6_0 <= '\uFFFF')) ) {
+							alt6=1;
+						}
+
+						switch (alt6) {
+						case 1 :
+							// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\src\\gcodeCompiler\\gcodeGrammar.g:
+							{
+							if ( (input.LA(1) >= '\u0000' && input.LA(1) <= '\t')||(input.LA(1) >= '\u000B' && input.LA(1) <= '\f')||(input.LA(1) >= '\u000E' && input.LA(1) <= '\uFFFF') ) {
+								input.consume();
+							}
+							else {
+								MismatchedSetException mse = new MismatchedSetException(null,input);
+								recover(mse);
+								throw mse;
+							}
+							}
+							break;
+
+						default :
+							break loop6;
+						}
+					}
+
+					// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\src\\gcodeCompiler\\gcodeGrammar.g:317:28: ( '\\r' )?
+					int alt7=2;
+					int LA7_0 = input.LA(1);
+					if ( (LA7_0=='\r') ) {
+						alt7=1;
+					}
+					switch (alt7) {
+						case 1 :
+							// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\src\\gcodeCompiler\\gcodeGrammar.g:317:28: '\\r'
+							{
+							match('\r'); 
+							}
+							break;
+
+					}
+
+					match('\n'); 
+					_channel=HIDDEN;
+					}
+					break;
+				case 2 :
+					// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\src\\gcodeCompiler\\gcodeGrammar.g:318:9: '/*' ( options {greedy=false; } : . )* '*/'
+					{
+					match("/*"); 
+
+					// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\src\\gcodeCompiler\\gcodeGrammar.g:318:14: ( options {greedy=false; } : . )*
+					loop8:
+					while (true) {
+						int alt8=2;
+						int LA8_0 = input.LA(1);
+						if ( (LA8_0=='*') ) {
+							int LA8_1 = input.LA(2);
+							if ( (LA8_1=='/') ) {
+								alt8=2;
+							}
+							else if ( ((LA8_1 >= '\u0000' && LA8_1 <= '.')||(LA8_1 >= '0' && LA8_1 <= '\uFFFF')) ) {
+								alt8=1;
+							}
+
+						}
+						else if ( ((LA8_0 >= '\u0000' && LA8_0 <= ')')||(LA8_0 >= '+' && LA8_0 <= '\uFFFF')) ) {
+							alt8=1;
+						}
+
+						switch (alt8) {
+						case 1 :
+							// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\src\\gcodeCompiler\\gcodeGrammar.g:318:42: .
+							{
+							matchAny(); 
+							}
+							break;
+
+						default :
+							break loop8;
+						}
+					}
+
+					match("*/"); 
+
+					_channel=HIDDEN;
+					}
+					break;
+
+			}
+			state.type = _type;
+			state.channel = _channel;
+		}
+		finally {
+			// do for sure before leaving
+		}
+	}
+	// $ANTLR end "COMMENT"
+
 	// $ANTLR start "WS"
 	public final void mWS() throws RecognitionException {
 		try {
 			int _type = WS;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\src\\gcodeCompiler\\gcodeGrammar.g:313:5: ( ( ' ' | '\\t' | '\\r' | '\\n' ) )
-			// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\src\\gcodeCompiler\\gcodeGrammar.g:313:9: ( ' ' | '\\t' | '\\r' | '\\n' )
+			// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\src\\gcodeCompiler\\gcodeGrammar.g:322:5: ( ( ' ' | '\\t' | '\\r' | '\\n' ) )
+			// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\src\\gcodeCompiler\\gcodeGrammar.g:322:9: ( ' ' | '\\t' | '\\r' | '\\n' )
 			{
 			if ( (input.LA(1) >= '\t' && input.LA(1) <= '\n')||input.LA(1)=='\r'||input.LA(1)==' ' ) {
 				input.consume();
@@ -854,8 +1004,8 @@ public class gcodeGrammarLexer extends Lexer {
 		try {
 			int _type = SCAN_ERROR;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\src\\gcodeCompiler\\gcodeGrammar.g:320:12: ( . )
-			// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\src\\gcodeCompiler\\gcodeGrammar.g:320:14: .
+			// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\src\\gcodeCompiler\\gcodeGrammar.g:329:12: ( . )
+			// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\src\\gcodeCompiler\\gcodeGrammar.g:329:14: .
 			{
 			matchAny(); 
 			}
@@ -871,96 +1021,96 @@ public class gcodeGrammarLexer extends Lexer {
 
 	@Override
 	public void mTokens() throws RecognitionException {
-		// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\src\\gcodeCompiler\\gcodeGrammar.g:1:8: ( X_CORD | Y_CORD | Z_CORD | I_CORD | J_CORD | K_CORD | N_BLOCK | COORD_ABS | COORD_REL | FREE_MOVE | JOB_MOVE | CIRCLE_CW | CIRCLE_ACW | COMP_DIS | COMP_L | COMP_R | FREE_MOVE_SPEED | JOB_MOVE_SPEED | TOOL_CHANGE | ROT_TOOL_CW | ROT_TOOL_ACW | STOP_TOOL | CHANGE_TOOL | LUBE_ON | LUBE_OFF | END_PROG | WS | SCAN_ERROR )
-		int alt6=28;
-		int LA6_0 = input.LA(1);
-		if ( (LA6_0=='X') ) {
-			int LA6_1 = input.LA(2);
-			if ( (LA6_1=='-'||(LA6_1 >= '0' && LA6_1 <= '9')) ) {
-				alt6=1;
+		// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\src\\gcodeCompiler\\gcodeGrammar.g:1:8: ( X_CORD | Y_CORD | Z_CORD | I_CORD | J_CORD | K_CORD | N_BLOCK | COORD_ABS | COORD_REL | FREE_MOVE | JOB_MOVE | CIRCLE_CW | CIRCLE_ACW | COMP_DIS | COMP_L | COMP_R | FREE_MOVE_SPEED | JOB_MOVE_SPEED | TOOL_CHANGE | ROT_TOOL_CW | ROT_TOOL_ACW | STOP_TOOL | CHANGE_TOOL | LUBE_ON | LUBE_OFF | END_PROG | COMMENT | WS | SCAN_ERROR )
+		int alt10=29;
+		int LA10_0 = input.LA(1);
+		if ( (LA10_0=='X') ) {
+			int LA10_1 = input.LA(2);
+			if ( (LA10_1=='-'||(LA10_1 >= '0' && LA10_1 <= '9')) ) {
+				alt10=1;
 			}
 
 			else {
-				alt6=28;
+				alt10=29;
 			}
 
 		}
-		else if ( (LA6_0=='Y') ) {
-			int LA6_2 = input.LA(2);
-			if ( (LA6_2=='-'||(LA6_2 >= '0' && LA6_2 <= '9')) ) {
-				alt6=2;
+		else if ( (LA10_0=='Y') ) {
+			int LA10_2 = input.LA(2);
+			if ( (LA10_2=='-'||(LA10_2 >= '0' && LA10_2 <= '9')) ) {
+				alt10=2;
 			}
 
 			else {
-				alt6=28;
+				alt10=29;
 			}
 
 		}
-		else if ( (LA6_0=='Z') ) {
-			int LA6_3 = input.LA(2);
-			if ( (LA6_3=='-'||(LA6_3 >= '0' && LA6_3 <= '9')) ) {
-				alt6=3;
+		else if ( (LA10_0=='Z') ) {
+			int LA10_3 = input.LA(2);
+			if ( (LA10_3=='-'||(LA10_3 >= '0' && LA10_3 <= '9')) ) {
+				alt10=3;
 			}
 
 			else {
-				alt6=28;
+				alt10=29;
 			}
 
 		}
-		else if ( (LA6_0=='I') ) {
-			int LA6_4 = input.LA(2);
-			if ( (LA6_4=='-'||(LA6_4 >= '0' && LA6_4 <= '9')) ) {
-				alt6=4;
+		else if ( (LA10_0=='I') ) {
+			int LA10_4 = input.LA(2);
+			if ( (LA10_4=='-'||(LA10_4 >= '0' && LA10_4 <= '9')) ) {
+				alt10=4;
 			}
 
 			else {
-				alt6=28;
+				alt10=29;
 			}
 
 		}
-		else if ( (LA6_0=='J') ) {
-			int LA6_5 = input.LA(2);
-			if ( (LA6_5=='-'||(LA6_5 >= '0' && LA6_5 <= '9')) ) {
-				alt6=5;
+		else if ( (LA10_0=='J') ) {
+			int LA10_5 = input.LA(2);
+			if ( (LA10_5=='-'||(LA10_5 >= '0' && LA10_5 <= '9')) ) {
+				alt10=5;
 			}
 
 			else {
-				alt6=28;
+				alt10=29;
 			}
 
 		}
-		else if ( (LA6_0=='K') ) {
-			int LA6_6 = input.LA(2);
-			if ( (LA6_6=='-'||(LA6_6 >= '0' && LA6_6 <= '9')) ) {
-				alt6=6;
+		else if ( (LA10_0=='K') ) {
+			int LA10_6 = input.LA(2);
+			if ( (LA10_6=='-'||(LA10_6 >= '0' && LA10_6 <= '9')) ) {
+				alt10=6;
 			}
 
 			else {
-				alt6=28;
+				alt10=29;
 			}
 
 		}
-		else if ( (LA6_0=='N') ) {
-			int LA6_7 = input.LA(2);
-			if ( ((LA6_7 >= '1' && LA6_7 <= '9')) ) {
-				alt6=7;
+		else if ( (LA10_0=='N') ) {
+			int LA10_7 = input.LA(2);
+			if ( ((LA10_7 >= '1' && LA10_7 <= '9')) ) {
+				alt10=7;
 			}
 
 			else {
-				alt6=28;
+				alt10=29;
 			}
 
 		}
-		else if ( (LA6_0=='G') ) {
+		else if ( (LA10_0=='G') ) {
 			switch ( input.LA(2) ) {
 			case '9':
 				{
-				int LA6_22 = input.LA(3);
-				if ( (LA6_22=='0') ) {
-					alt6=8;
+				int LA10_23 = input.LA(3);
+				if ( (LA10_23=='0') ) {
+					alt10=8;
 				}
-				else if ( (LA6_22=='1') ) {
-					alt6=9;
+				else if ( (LA10_23=='1') ) {
+					alt10=9;
 				}
 
 				else {
@@ -970,7 +1120,7 @@ public class gcodeGrammarLexer extends Lexer {
 							input.consume();
 						}
 						NoViableAltException nvae =
-							new NoViableAltException("", 6, 22, input);
+							new NoViableAltException("", 10, 23, input);
 						throw nvae;
 					} finally {
 						input.rewind(nvaeMark);
@@ -984,22 +1134,22 @@ public class gcodeGrammarLexer extends Lexer {
 				switch ( input.LA(3) ) {
 				case '0':
 					{
-					alt6=10;
+					alt10=10;
 					}
 					break;
 				case '1':
 					{
-					alt6=11;
+					alt10=11;
 					}
 					break;
 				case '2':
 					{
-					alt6=12;
+					alt10=12;
 					}
 					break;
 				case '3':
 					{
-					alt6=13;
+					alt10=13;
 					}
 					break;
 				default:
@@ -1009,7 +1159,7 @@ public class gcodeGrammarLexer extends Lexer {
 							input.consume();
 						}
 						NoViableAltException nvae =
-							new NoViableAltException("", 6, 23, input);
+							new NoViableAltException("", 10, 24, input);
 						throw nvae;
 					} finally {
 						input.rewind(nvaeMark);
@@ -1022,17 +1172,17 @@ public class gcodeGrammarLexer extends Lexer {
 				switch ( input.LA(3) ) {
 				case '0':
 					{
-					alt6=14;
+					alt10=14;
 					}
 					break;
 				case '1':
 					{
-					alt6=15;
+					alt10=15;
 					}
 					break;
 				case '2':
 					{
-					alt6=16;
+					alt10=16;
 					}
 					break;
 				default:
@@ -1042,7 +1192,7 @@ public class gcodeGrammarLexer extends Lexer {
 							input.consume();
 						}
 						NoViableAltException nvae =
-							new NoViableAltException("", 6, 24, input);
+							new NoViableAltException("", 10, 25, input);
 						throw nvae;
 					} finally {
 						input.rewind(nvaeMark);
@@ -1051,75 +1201,75 @@ public class gcodeGrammarLexer extends Lexer {
 				}
 				break;
 			default:
-				alt6=28;
+				alt10=29;
 			}
 		}
-		else if ( (LA6_0=='F') ) {
-			int LA6_9 = input.LA(2);
-			if ( ((LA6_9 >= '1' && LA6_9 <= '9')) ) {
-				alt6=17;
+		else if ( (LA10_0=='F') ) {
+			int LA10_9 = input.LA(2);
+			if ( ((LA10_9 >= '1' && LA10_9 <= '9')) ) {
+				alt10=17;
 			}
 
 			else {
-				alt6=28;
+				alt10=29;
 			}
 
 		}
-		else if ( (LA6_0=='S') ) {
-			int LA6_10 = input.LA(2);
-			if ( ((LA6_10 >= '1' && LA6_10 <= '9')) ) {
-				alt6=18;
+		else if ( (LA10_0=='S') ) {
+			int LA10_10 = input.LA(2);
+			if ( ((LA10_10 >= '1' && LA10_10 <= '9')) ) {
+				alt10=18;
 			}
 
 			else {
-				alt6=28;
+				alt10=29;
 			}
 
 		}
-		else if ( (LA6_0=='T') ) {
-			int LA6_11 = input.LA(2);
-			if ( (LA6_11=='0') ) {
-				alt6=19;
+		else if ( (LA10_0=='T') ) {
+			int LA10_11 = input.LA(2);
+			if ( (LA10_11=='0') ) {
+				alt10=19;
 			}
 
 			else {
-				alt6=28;
+				alt10=29;
 			}
 
 		}
-		else if ( (LA6_0=='M') ) {
+		else if ( (LA10_0=='M') ) {
 			switch ( input.LA(2) ) {
 			case '0':
 				{
 				switch ( input.LA(3) ) {
 				case '3':
 					{
-					alt6=20;
+					alt10=20;
 					}
 					break;
 				case '4':
 					{
-					alt6=21;
+					alt10=21;
 					}
 					break;
 				case '5':
 					{
-					alt6=22;
+					alt10=22;
 					}
 					break;
 				case '6':
 					{
-					alt6=23;
+					alt10=23;
 					}
 					break;
 				case '8':
 					{
-					alt6=24;
+					alt10=24;
 					}
 					break;
 				case '9':
 					{
-					alt6=25;
+					alt10=25;
 					}
 					break;
 				default:
@@ -1129,7 +1279,7 @@ public class gcodeGrammarLexer extends Lexer {
 							input.consume();
 						}
 						NoViableAltException nvae =
-							new NoViableAltException("", 6, 28, input);
+							new NoViableAltException("", 10, 29, input);
 						throw nvae;
 					} finally {
 						input.rewind(nvaeMark);
@@ -1139,27 +1289,38 @@ public class gcodeGrammarLexer extends Lexer {
 				break;
 			case '3':
 				{
-				alt6=26;
+				alt10=26;
 				}
 				break;
 			default:
-				alt6=28;
+				alt10=29;
 			}
 		}
-		else if ( ((LA6_0 >= '\t' && LA6_0 <= '\n')||LA6_0=='\r'||LA6_0==' ') ) {
-			alt6=27;
+		else if ( (LA10_0=='/') ) {
+			int LA10_13 = input.LA(2);
+			if ( (LA10_13=='*'||LA10_13=='/') ) {
+				alt10=27;
+			}
+
+			else {
+				alt10=29;
+			}
+
 		}
-		else if ( ((LA6_0 >= '\u0000' && LA6_0 <= '\b')||(LA6_0 >= '\u000B' && LA6_0 <= '\f')||(LA6_0 >= '\u000E' && LA6_0 <= '\u001F')||(LA6_0 >= '!' && LA6_0 <= 'E')||LA6_0=='H'||LA6_0=='L'||(LA6_0 >= 'O' && LA6_0 <= 'R')||(LA6_0 >= 'U' && LA6_0 <= 'W')||(LA6_0 >= '[' && LA6_0 <= '\uFFFF')) ) {
-			alt6=28;
+		else if ( ((LA10_0 >= '\t' && LA10_0 <= '\n')||LA10_0=='\r'||LA10_0==' ') ) {
+			alt10=28;
+		}
+		else if ( ((LA10_0 >= '\u0000' && LA10_0 <= '\b')||(LA10_0 >= '\u000B' && LA10_0 <= '\f')||(LA10_0 >= '\u000E' && LA10_0 <= '\u001F')||(LA10_0 >= '!' && LA10_0 <= '.')||(LA10_0 >= '0' && LA10_0 <= 'E')||LA10_0=='H'||LA10_0=='L'||(LA10_0 >= 'O' && LA10_0 <= 'R')||(LA10_0 >= 'U' && LA10_0 <= 'W')||(LA10_0 >= '[' && LA10_0 <= '\uFFFF')) ) {
+			alt10=29;
 		}
 
 		else {
 			NoViableAltException nvae =
-				new NoViableAltException("", 6, 0, input);
+				new NoViableAltException("", 10, 0, input);
 			throw nvae;
 		}
 
-		switch (alt6) {
+		switch (alt10) {
 			case 1 :
 				// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\src\\gcodeCompiler\\gcodeGrammar.g:1:10: X_CORD
 				{
@@ -1343,14 +1504,21 @@ public class gcodeGrammarLexer extends Lexer {
 				}
 				break;
 			case 27 :
-				// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\src\\gcodeCompiler\\gcodeGrammar.g:1:259: WS
+				// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\src\\gcodeCompiler\\gcodeGrammar.g:1:259: COMMENT
+				{
+				mCOMMENT(); 
+
+				}
+				break;
+			case 28 :
+				// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\src\\gcodeCompiler\\gcodeGrammar.g:1:267: WS
 				{
 				mWS(); 
 
 				}
 				break;
-			case 28 :
-				// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\src\\gcodeCompiler\\gcodeGrammar.g:1:262: SCAN_ERROR
+			case 29 :
+				// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\src\\gcodeCompiler\\gcodeGrammar.g:1:270: SCAN_ERROR
 				{
 				mSCAN_ERROR(); 
 

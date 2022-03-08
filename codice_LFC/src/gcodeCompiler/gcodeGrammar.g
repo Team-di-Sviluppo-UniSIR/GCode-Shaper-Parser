@@ -7,6 +7,11 @@ options {
 
 @lexer::header {
 package gcodeCompiler;
+}	
+
+@lexer::members {
+@Override
+public void emitErrorMessage(String msg) {}
 }
 
 @header {

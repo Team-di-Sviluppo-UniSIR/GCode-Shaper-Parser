@@ -4,6 +4,8 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Collections;
 import org.antlr.runtime.RecognitionException;
+
+import gcodeCompiler.gcodeGrammarLexer;
 import gcodeCompiler.gcodeGrammarParser;
 import gcodeCompiler.util.Error;
 
@@ -14,6 +16,8 @@ public class ParserLauncher {
 		System.out.println("Parsing con ANTLR\n");
 
 		gcodeGrammarParser parser = new gcodeGrammarParser(fileIn);
+
+		
 		parser.gcode();
 
 		if (parser.getErrorList().size() == 0) {

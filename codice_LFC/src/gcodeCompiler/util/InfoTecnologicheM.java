@@ -66,7 +66,7 @@ public class InfoTecnologicheM {
 	}
 
 	public String toString() {
-		String s = "";
+		String s = " ";
 
 		if (this.rot_tool != null)
 			s = s.concat(this.rot_tool);
