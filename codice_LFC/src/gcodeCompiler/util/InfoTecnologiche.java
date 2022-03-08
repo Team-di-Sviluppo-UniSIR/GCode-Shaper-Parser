@@ -7,11 +7,14 @@ public class InfoTecnologiche {
 	private String job_move_speed;
 	private Tool t;
 
-	public InfoTecnologiche(Token commmand, char type) {
+	public InfoTecnologiche(Token command, char type) {
 		if (type == 'x')
-			this.free_move_speed = commmand.getText();
-		else
-			this.job_move_speed = commmand.getText();
+			this.free_move_speed = command.getText();
+		else if (type == 'j')
+			this.job_move_speed = command.getText();
+		else if (type == 't') {
+			this.t = new Tool(command.getText().substring(1, 3), command.getText().substring(3, 5));
+		}
 	}
 
 	public InfoTecnologiche(Tool t) {

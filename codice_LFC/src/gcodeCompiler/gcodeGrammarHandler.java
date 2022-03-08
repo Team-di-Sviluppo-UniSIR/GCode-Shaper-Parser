@@ -8,6 +8,7 @@ import java.util.TreeMap;
 import org.antlr.runtime.*;
 import gcodeCompiler.util.*;
 import gcodeCompiler.util.Error;
+import java.io.*;
 
 public class gcodeGrammarHandler {
 	// codici degli errori lessicali e sintattici
@@ -16,6 +17,8 @@ public class gcodeGrammarHandler {
 
 	// codici degli errori semantici
 	public static final int SEM_BLOCK_ORDER = 2; // errore numero blocco
+	public static final int SEM_NO_END_PROG = 3; // errore mancato token M30 fine programma
+	public static final int SEM_TOOL_ERR=4;  //errore M06 senza T[][] e viceversa
 
 	// codici di supporto
 	public static final int UNDEFINED = -1;
@@ -27,6 +30,7 @@ public class gcodeGrammarHandler {
 
 	List<Error> errorList; // lista degli errori
 	TokenStream lexerStream; // stream token lexer
+	Token last_token;
 
 	// classe base per la gestione di parser e lexer
 	public gcodeGrammarHandler(TokenStream ls) {
@@ -51,6 +55,7 @@ public class gcodeGrammarHandler {
 			this.semanticErrorHandler(SEM_BLOCK_ORDER, n, bd);
 		}
 
+		last_token = n;
 	}
 
 	// inizializzazione del blocco con informazioni geometriche e tecnologiche
@@ -154,7 +159,7 @@ public class gcodeGrammarHandler {
 	}
 
 	// gestione degli errori semantici
-	void semanticErrorHandler(int code, Token tk, BlockDescriptor bd) {
+	public void semanticErrorHandler(int code, Token tk, BlockDescriptor bd) {
 		Error errore = new Error();
 		errore.setType((short) code);
 
@@ -166,14 +171,28 @@ public class gcodeGrammarHandler {
 
 		switch (code) {
 		case SEM_BLOCK_ORDER:
-			errore.setMessage("Found BLOCK_NUMBERING_ERROR (" + bd.getNum_block() + " " + bd.toString() + ") - block number '"
-					+ bd.getNum_block() + "' must be greater than the previous one 'N" + this.last_n + "'");
+			errore.setMessage(
+					"Found BLOCK_NUMBERING_ERROR (" + bd.getNum_block() + " " + bd.toString() + ") - block number '"
+							+ bd.getNum_block() + "' must be greater than the previous one 'N" + this.last_n + "'");
+			break;
+
+		case SEM_NO_END_PROG:
+			errore.setMessage("Found NO_M30_ERROR (" + bd.getNum_block() + " " + bd.toString() + ") - the last block ('"
+					+ bd.getNum_block() + "') must contain M30 (end program) ");
+			break;
+			
+		case SEM_TOOL_ERR:
+			errore.setMessage("Found CHANGE_TOOL_ERROR (" + bd.getNum_block() + " " + bd.toString() + ") - M06 and T must always be together ");
 			break;
 
 		}
 
 		// errori vanno ordinati
 		errorList.add(errore);
+	}
+
+	public Token getLast_token() {
+		return last_token;
 	}
 
 }

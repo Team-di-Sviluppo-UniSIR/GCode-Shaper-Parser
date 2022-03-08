@@ -65,7 +65,7 @@ public class Error implements Comparable<Error> {
 			s += "Syntax Error (" + ERR_ON_SYNTAX + ") ";
 			break;
 
-		case SEM_BLOCK_ORDER:
+		default:
 			s += "Semantic Error (" + SEM_BLOCK_ORDER + ") ";
 			break;
 		}
