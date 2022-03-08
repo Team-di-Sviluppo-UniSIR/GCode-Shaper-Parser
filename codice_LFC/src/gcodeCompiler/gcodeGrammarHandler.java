@@ -40,9 +40,11 @@ public class gcodeGrammarHandler {
 
 		BlockDescriptor bd = BlockInit(n.getText(), info_g_list, info_t_list, info_t_M_list);
 
-		if (Integer.parseInt(n.getText().substring(1)) > last_n) {
-			blocks.put(Integer.parseInt(n.getText().substring(1)), bd);
-			last_n = Integer.parseInt(n.getText().substring(1));
+		int num = Integer.parseInt(n.getText().substring(1));
+
+		if (num > last_n) {
+			blocks.put(num, bd);
+			last_n = num;
 		} else {
 			this.semanticErrorHandler(SEM_BLOCK_ORDER, n, bd);
 		}
@@ -161,8 +163,8 @@ public class gcodeGrammarHandler {
 
 		switch (code) {
 		case SEM_BLOCK_ORDER:
-			errore.setMessage("Found BLOCK_ERROR (" + bd.getNum_block() + " " + bd.toString() + ") - block number '" + bd.getNum_block()
-					+ "' must be greater than the previous one");
+			errore.setMessage("Found BLOCK_ERROR (" + bd.getNum_block() + " " + bd.toString() + ") - block number '"
+					+ bd.getNum_block() + "' must be greater than the previous one");
 			break;
 
 		}

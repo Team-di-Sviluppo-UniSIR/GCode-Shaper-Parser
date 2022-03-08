@@ -66,19 +66,19 @@ public class InfoTecnologicheM {
 	}
 
 	public String toString() {
-		String s = " ";
+		String s = "";
 
 		if (this.rot_tool != null)
-			s = s.concat(this.rot_tool);
+			s = s.concat(this.rot_tool) + " ";
 
 		if (this.stop_tool != null)
-			s = s.concat(this.stop_tool);
+			s = s.concat(this.stop_tool) + " ";
 
 		if (this.change_tool != null)
-			s = s.concat(this.change_tool);
+			s = s.concat(this.change_tool) + " ";
 
 		if (this.lube != null)
-			s = s.concat(this.lube);
+			s = s.concat(this.lube) + " ";
 
 		if (this.end_program != null)
 			s = s.concat(this.end_program);

@@ -49,13 +49,13 @@ public class InfoTecnologiche {
 		String s = "";
 
 		if (this.free_move_speed != null)
-			s = s.concat(free_move_speed);
+			s = s.concat(free_move_speed) + " ";
 
 		if (this.job_move_speed != null)
-			s = s.concat(job_move_speed);
+			s = s.concat(job_move_speed) + " ";
 
 		if (t != null)
-			s = s.concat(t.toString());
+			s = s.concat(t.toString()) + " ";
 
 		return s;
 	}

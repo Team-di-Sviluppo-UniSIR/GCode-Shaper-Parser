@@ -212,7 +212,7 @@ K_CORD
 
 // identificativo numerico del blocco
 N_BLOCK	
-	:	'N' ('1' .. '9')(DIGIT)*
+	:	'N' ('0' .. '9')(DIGIT)*
 	;
 	
 // coordinate assolute

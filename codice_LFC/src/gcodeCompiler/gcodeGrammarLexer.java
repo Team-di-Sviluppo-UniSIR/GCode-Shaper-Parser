@@ -1,4 +1,4 @@
-// $ANTLR 3.5.1 C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\src\\gcodeCompiler\\gcodeGrammar.g 2022-03-08 08:21:04
+// $ANTLR 3.5.1 C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\src\\gcodeCompiler\\gcodeGrammar.g 2022-03-08 08:41:04
 
 package gcodeCompiler;
 
@@ -286,11 +286,11 @@ public class gcodeGrammarLexer extends Lexer {
 		try {
 			int _type = N_BLOCK;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\src\\gcodeCompiler\\gcodeGrammar.g:215:2: ( 'N' ( '1' .. '9' ) ( DIGIT )* )
-			// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\src\\gcodeCompiler\\gcodeGrammar.g:215:4: 'N' ( '1' .. '9' ) ( DIGIT )*
+			// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\src\\gcodeCompiler\\gcodeGrammar.g:215:2: ( 'N' ( '0' .. '9' ) ( DIGIT )* )
+			// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\src\\gcodeCompiler\\gcodeGrammar.g:215:4: 'N' ( '0' .. '9' ) ( DIGIT )*
 			{
 			match('N'); 
-			if ( (input.LA(1) >= '1' && input.LA(1) <= '9') ) {
+			if ( (input.LA(1) >= '0' && input.LA(1) <= '9') ) {
 				input.consume();
 			}
 			else {
@@ -1092,7 +1092,7 @@ public class gcodeGrammarLexer extends Lexer {
 		}
 		else if ( (LA10_0=='N') ) {
 			int LA10_7 = input.LA(2);
-			if ( ((LA10_7 >= '1' && LA10_7 <= '9')) ) {
+			if ( ((LA10_7 >= '0' && LA10_7 <= '9')) ) {
 				alt10=7;
 			}
 

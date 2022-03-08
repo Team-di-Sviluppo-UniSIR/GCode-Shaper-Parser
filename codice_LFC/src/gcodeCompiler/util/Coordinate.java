@@ -25,20 +25,11 @@ public class Coordinate {
 	public String toString() {
 		String s = "";
 
-		if (this.first != null) {
-			if (this.second != null)
-				s = s.concat(first + " ");
-			else
-				s = s.concat(first);
-		}
+		if (this.first != null)
+			s = s.concat(first + " ");
 
-		if (this.second != null) {
-
-			if (this.third != null)
-				s = s.concat(second + " ");
-			else
-				s = s.concat(second);
-		}
+		if (this.second != null)
+			s = s.concat(second + " ");
 
 		if (this.third != null)
 			s = s.concat(third);
