@@ -14,9 +14,11 @@ import gcodeCompiler.gcodeGrammarHandler;
 
 public class GcodeErrorManager {
 	static void gcodeErrorMgmt(gcodeGrammarParser parser) {
-
-		GcodeErrorManager.checkM30(parser);
-		GcodeErrorManager.checkToolError(parser);
+		
+		if (parser.getErrorList().size() == 0) {
+			GcodeErrorManager.checkM30(parser);
+			GcodeErrorManager.checkToolError(parser);
+		}
 
 		if (parser.getErrorList().size() == 0) {
 			System.out.println("Parsing completed successfully with 0 errors\n");

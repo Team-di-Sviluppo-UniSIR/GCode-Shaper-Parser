@@ -69,6 +69,7 @@ gcode
 	@init { setup(); }
 	:
 	block+
+	EOF
 	;
 	
 /*
@@ -92,18 +93,6 @@ block
 							| info_t_M_list = info_3M
 						){ h.createNewBlock($n, info_g_list, info_t_list, info_t_M_list); }
 						
-	;
-	
-block_corretto
-	:
-		N_BLOCK (
-								(info_geometriche)+ (
-																				(info_tecnologiche)+ (info_tecnologiche_M)*
-																			|	(info_tecnologiche_M)+ (info_tecnologiche)*
-																		) 
-							| (info_tecnologiche)+ (info_tecnologiche_M)*
-							| (info_tecnologiche_M)+ (info_tecnologiche)*
-						)	
 	;
 	
 /*
