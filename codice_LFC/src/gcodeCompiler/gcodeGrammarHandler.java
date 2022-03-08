@@ -10,20 +10,22 @@ import gcodeCompiler.util.*;
 import gcodeCompiler.util.Error;
 
 public class gcodeGrammarHandler {
-	// codici degli errori
-	public static final int TOKEN_ERROR = 0;
-	public static final int ERR_ON_SYNTAX = 1;
+	// codici degli errori lessicali e sintattici
+	public static final int TOKEN_ERROR = 0; // errore lessicale
+	public static final int ERR_ON_SYNTAX = 1; // errore sintattico
 
-	public static final int SEM_BLOCK_ORDER = 2;
+	// codici degli errori semantici
+	public static final int SEM_BLOCK_ORDER = 2; // errore numero blocco
 
+	// codici di supporto
 	public static final int UNDEFINED = -1;
 	public static final int LAST_SYNTAX_ERROR = 10;
 
 	// struttura dati contenente i blocchi gcode
 	public SortedMap<Integer, BlockDescriptor> blocks;
-	private int last_n;
+	private int last_n; // ultimo numero di blocco
 
-	List<Error> errorList; // gestione errori
+	List<Error> errorList; // lista degli errori
 	TokenStream lexerStream; // stream token lexer
 
 	// classe base per la gestione di parser e lexer
@@ -119,6 +121,7 @@ public class gcodeGrammarHandler {
 
 	}
 
+	// funzione di stampa della lista di blocchi
 	public void printBlocks() {
 		for (Entry<Integer, BlockDescriptor> entry : blocks.entrySet()) {
 			System.out.println("N" + entry.getKey() + " " + entry.getValue().toString());
@@ -163,8 +166,8 @@ public class gcodeGrammarHandler {
 
 		switch (code) {
 		case SEM_BLOCK_ORDER:
-			errore.setMessage("Found BLOCK_ERROR (" + bd.getNum_block() + " " + bd.toString() + ") - block number '"
-					+ bd.getNum_block() + "' must be greater than the previous one");
+			errore.setMessage("Found BLOCK_NUMBERING_ERROR (" + bd.getNum_block() + " " + bd.toString() + ") - block number '"
+					+ bd.getNum_block() + "' must be greater than the previous one 'N" + this.last_n + "'");
 			break;
 
 		}
