@@ -129,26 +129,29 @@ public class GcodeErrorManager {
 	// errore SEM_NO_SPINDLE_ROTATION
 	private static void checkSpindleRotation(gcodeGrammarParser parser) {
 		Collection<BlockDescriptor> valuesCollection = parser.h.blocks.values();
-
-		int i = -1;
+		boolean presence = false;
+		boolean error = false;
+		boolean first = false;
+		int i = 1;
 		for (BlockDescriptor bd : valuesCollection) {
-			++i;
+			
 			if (bd.getInfoTecM() != null) {
-				if (bd.getInfoTecM().getRot_tool() != null)
-					break;
+				if(bd.getInfoTecM().getRot_tool() != null)
+					presence = true;
 			}
-		}
-
-		int j = -1;
-		for (BlockDescriptor bd : valuesCollection) {
-			if (((bd.getInfoGeo().getLm() != null && bd.getInfoGeo().getLm().getMoveType().compareTo("G01") == 0)
-					|| bd.getInfoGeo().getCm() != null) && j < i) {
+			if((bd.getInfoGeo().getLm() != null || bd.getInfoGeo().getCm() != null) && !presence) {
+				error = true;				
+			}
+			
+			if(error && !first) {
 				Token t = new CommonToken(0);
-				t.setLine(j);
+				t.setLine(i);
 				t.setCharPositionInLine(0);
 				parser.h.semanticErrorHandler(gcodeGrammarHandler.SEM_NO_SPINDLE_ROTATION, t, bd);
+				first = true;
 			}
-			++j;
+			i++;
+				
 		}
 	}
 
