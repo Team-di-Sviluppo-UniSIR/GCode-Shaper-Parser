@@ -2,18 +2,15 @@ package gcodeMain;
 
 import java.util.Collection;
 import java.util.Collections;
-import java.util.concurrent.atomic.AtomicInteger;
-
 import org.antlr.runtime.CommonToken;
 import org.antlr.runtime.Token;
-
 import gcodeCompiler.gcodeGrammarParser;
 import gcodeCompiler.util.BlockDescriptor;
 import gcodeCompiler.util.Error;
 import gcodeCompiler.gcodeGrammarHandler;
 
 public class GcodeErrorManager {
-	static void gcodeErrorMgmt(gcodeGrammarParser parser) {
+	static boolean gcodeErrorMgmt(gcodeGrammarParser parser) {
 
 		/*
 		 * nel caso non ci siano errori lessicali o sintattici, effettua verifica
@@ -34,6 +31,7 @@ public class GcodeErrorManager {
 			System.out.println("Parsing completed successfully with 0 errors\n");
 			System.out.println("Block list");
 			parser.h.printBlocks();
+			return true;
 
 		} else {
 			/*
@@ -55,6 +53,8 @@ public class GcodeErrorManager {
 			for (Error errore : parser.getErrorList())
 				System.err.println(++i + " - " + errore.toString());
 		}
+		
+		return false;
 	}
 
 	// Errore SEM_NO_END_PROG
@@ -134,16 +134,16 @@ public class GcodeErrorManager {
 		boolean first = false;
 		int i = 1;
 		for (BlockDescriptor bd : valuesCollection) {
-			
+
 			if (bd.getInfoTecM() != null) {
-				if(bd.getInfoTecM().getRot_tool() != null)
+				if (bd.getInfoTecM().getRot_tool() != null)
 					presence = true;
 			}
-			if((bd.getInfoGeo().getLm() != null || bd.getInfoGeo().getCm() != null) && !presence) {
-				error = true;				
+			if ((bd.getInfoGeo().getLm() != null || bd.getInfoGeo().getCm() != null) && !presence) {
+				error = true;
 			}
-			
-			if(error && !first) {
+
+			if (error && !first) {
 				Token t = new CommonToken(0);
 				t.setLine(i);
 				t.setCharPositionInLine(0);
@@ -151,7 +151,7 @@ public class GcodeErrorManager {
 				first = true;
 			}
 			i++;
-				
+
 		}
 	}
 
