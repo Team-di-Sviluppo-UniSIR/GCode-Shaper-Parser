@@ -10,7 +10,7 @@ import gcodeCompiler.util.Error;
 public class ParserLauncher {
 
 	public static void main(String[] args) throws FileNotFoundException, IOException, RecognitionException {
-		String fileIn = ".\\resources\\input.file";
+		String fileIn = ".\\resources\\input.gcode";
 		
 		System.out.println("GCODE PARSING WITH ANTLR3\n");
 

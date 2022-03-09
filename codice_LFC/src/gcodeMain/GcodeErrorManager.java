@@ -16,7 +16,13 @@ public class GcodeErrorManager {
 		 * nel caso non ci siano errori lessicali o sintattici, effettua verifica
 		 * presenza errori semantici
 		 */
-		if (parser.getErrorList().size() == 0) {
+		boolean check = false;
+		for (Error e : parser.getErrorList()) {
+			if (e.getType() != gcodeGrammarHandler.TOKEN_ERROR || e.getType() != gcodeGrammarHandler.ERR_ON_SYNTAX)
+				check = true;
+		}
+
+		if (parser.getErrorList().size() == 0 || !check) {
 			GcodeErrorManager.checkM30(parser);
 			GcodeErrorManager.checkToolError(parser);
 			GcodeErrorManager.checkCoordinateType(parser);
@@ -24,6 +30,8 @@ public class GcodeErrorManager {
 			GcodeErrorManager.checkM05(parser);
 			GcodeErrorManager.checkSF_move(parser);
 			GcodeErrorManager.checkSF_job(parser);
+
+			check = false;
 		}
 
 		/*
@@ -158,7 +166,7 @@ public class GcodeErrorManager {
 		}
 	}
 
-	//controllo di aver chiamato M03/M04 quando chiamo M05
+	// controllo di aver chiamato M03/M04 quando chiamo M05
 	private static void checkM05(gcodeGrammarParser parser) {
 		Collection<BlockDescriptor> valuesCollection = parser.h.blocks.values();
 		boolean presence = false;
@@ -183,8 +191,8 @@ public class GcodeErrorManager {
 
 		}
 	}
-	
-	//controllo di aver definito le velocità prima di effettuare un movimento
+
+	// controllo di aver definito le velocità prima di effettuare un movimento
 	private static void checkSF_move(gcodeGrammarParser parser) {
 		Collection<BlockDescriptor> valuesCollection = parser.h.blocks.values();
 		boolean define_F = false;
@@ -193,12 +201,12 @@ public class GcodeErrorManager {
 		for (BlockDescriptor bd : valuesCollection) {
 			error = false;
 			if (bd.getInfotTec().getFree_move_speed() != null)
-					define_F = true;
-			if(bd.getInfoGeo().getLm() != null) {
-				if(bd.getInfoGeo().getLm().getMoveType().compareTo("G00") == 0 && !define_F)
+				define_F = true;
+			if (bd.getInfoGeo().getLm() != null) {
+				if (bd.getInfoGeo().getLm().getMoveType().compareTo("G00") == 0 && !define_F)
 					error = true;
 			}
-			
+
 			if (error) {
 				Token t = new CommonToken(0);
 				t.setLine(i);
@@ -208,8 +216,8 @@ public class GcodeErrorManager {
 			i++;
 		}
 	}
-		
-	//controllo di aver definito le velocità prima di effettuare una lavorazione
+
+	// controllo di aver definito le velocità prima di effettuare una lavorazione
 	private static void checkSF_job(gcodeGrammarParser parser) {
 		Collection<BlockDescriptor> valuesCollection = parser.h.blocks.values();
 		boolean define_F = false;
@@ -222,13 +230,13 @@ public class GcodeErrorManager {
 				define_F = true;
 			if (bd.getInfotTec().getJob_move_speed() != null)
 				define_S = true;
-			if(bd.getInfoGeo().getLm() != null) {
-				if(bd.getInfoGeo().getLm().getMoveType().compareTo("G01") == 0 && !define_F)
+			if (bd.getInfoGeo().getLm() != null) {
+				if (bd.getInfoGeo().getLm().getMoveType().compareTo("G01") == 0 && !define_F)
 					error = true;
 			}
-			if(bd.getInfoGeo().getCm() != null) {
-				if((bd.getInfoGeo().getCm().getMoveType().compareTo("G02") == 0 
-				  ||bd.getInfoGeo().getCm().getMoveType().compareTo("G03") == 0 ) && !define_F)
+			if (bd.getInfoGeo().getCm() != null) {
+				if ((bd.getInfoGeo().getCm().getMoveType().compareTo("G02") == 0
+						|| bd.getInfoGeo().getCm().getMoveType().compareTo("G03") == 0) && !define_F)
 					error = true;
 			}
 

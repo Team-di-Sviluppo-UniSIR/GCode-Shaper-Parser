@@ -57,7 +57,8 @@ public class gcodeGrammarHandler {
 			blocks.put(num, bd);
 			last_n = num;
 		} else {
-			this.semanticErrorHandler(SEM_BLOCK_ORDER, n, bd);
+			if (this.errorList.size() == 0)
+				this.semanticErrorHandler(SEM_BLOCK_ORDER, n, bd);
 		}
 
 		last_token = n;
@@ -68,21 +69,43 @@ public class gcodeGrammarHandler {
 			List<InfoTecnologicheM> info_t_M_list) {
 
 		BlockDescriptor bd = new BlockDescriptor(n.getText());
+		String tokenText = null;
 
 		InfoGeometriche geoConf = new InfoGeometriche();
 
 		for (InfoGeometriche i : info_g_list) {
 			if (i.getCm() != null)
-				geoConf.setCm(i.getCm());
+				if (geoConf.getCm() == null)
+					geoConf.setCm(i.getCm());
+				else
+					tokenText = i.getCm().toString() + "' (circular movement)";
 
 			if (i.getLm() != null)
-				geoConf.setLm(i.getLm());
+				if (geoConf.getLm() == null)
+					geoConf.setLm(i.getLm());
+				else
+					tokenText = i.getLm().toString() + "' (linear movement)";
 
 			if (i.getCompensation() != null)
-				geoConf.setCompensation(i.getCompensation());
+				if (geoConf.getCompensation() == null)
+					geoConf.setCompensation(i.getCompensation());
+				else
+					tokenText = i.getCompensation() + "' (tool compensation)";
 
 			if (i.getCoord_abs_rel() != null)
-				geoConf.setCoord_abs_rel(i.getCoord_abs_rel());
+				if (geoConf.getCoord_abs_rel() == null)
+					geoConf.setCoord_abs_rel(i.getCoord_abs_rel());
+				else
+					tokenText = i.getCoord_abs_rel().toString() + "' (coordinates type)";
+
+			if (tokenText != null) {
+				Token t = new CommonToken(0);
+				t.setText(tokenText);
+				t.setLine(n.getLine());
+				t.setCharPositionInLine(0);
+				this.semanticErrorHandler(gcodeGrammarHandler.SEM_DUPLICATE_ERR, t, bd);
+				tokenText = null;
+			}
 		}
 
 		bd.setInfoGeo(geoConf);
@@ -90,40 +113,32 @@ public class gcodeGrammarHandler {
 		InfoTecnologiche tecConf = new InfoTecnologiche();
 
 		for (InfoTecnologiche j : info_t_list) {
-			if (j.getFree_move_speed() != null) {
+			if (j.getFree_move_speed() != null)
 				if (tecConf.getFree_move_speed() == null)
 					tecConf.setFree_move_speed(j.getFree_move_speed());
-				else {
-					Token t = new CommonToken(0);
-					t.setText(j.getFree_move_speed());
-					t.setLine(n.getLine());
-					t.setCharPositionInLine(0);
-					this.semanticErrorHandler(gcodeGrammarHandler.SEM_DUPLICATE_ERR, t, bd);
-				}
-			}
+				else
+					tokenText = j.getFree_move_speed() + "' (movement speed)";
 
-			if (j.getJob_move_speed() != null) {
+			if (j.getJob_move_speed() != null)
 				if (tecConf.getJob_move_speed() == null)
 					tecConf.setJob_move_speed(j.getJob_move_speed());
-				else {
-					Token t = new CommonToken(0);
-					t.setText(j.getJob_move_speed());
-					t.setLine(n.getLine());
-					t.setCharPositionInLine(0);
-					this.semanticErrorHandler(gcodeGrammarHandler.SEM_DUPLICATE_ERR, t, bd);
-				}
-			}
+				else
+					tokenText = j.getJob_move_speed() + "' (working speed)";
 
 			if (j.getT() != null)
 				if (tecConf.getT() == null)
 					tecConf.setT(j.getT());
-				else {
-					Token t = new CommonToken(0);
-					t.setText(j.getT().toString());
-					t.setLine(n.getLine());
-					t.setCharPositionInLine(0);
-					this.semanticErrorHandler(gcodeGrammarHandler.SEM_DUPLICATE_ERR, t, bd);
-				}
+				else
+					tokenText = j.getT().toString() + "' (tool setting)";
+
+			if (tokenText != null) {
+				Token t = new CommonToken(0);
+				t.setText(tokenText);
+				t.setLine(n.getLine());
+				t.setCharPositionInLine(0);
+				this.semanticErrorHandler(gcodeGrammarHandler.SEM_DUPLICATE_ERR, t, bd);
+				tokenText = null;
+			}
 		}
 
 		bd.setInfotTec(tecConf);
@@ -133,21 +148,43 @@ public class gcodeGrammarHandler {
 
 			for (InfoTecnologicheM k : info_t_M_list) {
 				if (k.getChange_tool() != null)
-					tecMConf.setChange_tool(k.getChange_tool());
+					if (tecMConf.getChange_tool() == null)
+						tecMConf.setChange_tool(k.getChange_tool());
+					else
+						tokenText = k.getChange_tool() + "' (change tool)";
 
-				if (k.getEnd_program() != null) {
-					tecMConf.setEnd_program(k.getEnd_program());
-				}
+				if (k.getEnd_program() != null)
+					if (tecMConf.getEnd_program() == null)
+						tecMConf.setEnd_program(k.getEnd_program());
+					else
+						tokenText = k.getEnd_program() + "' (end program)";
 
 				if (k.getLube() != null)
-					tecMConf.setLube(k.getLube());
+					if (tecMConf.getLube() == null)
+						tecMConf.setLube(k.getLube());
+					else
+						tokenText = k.getLube() + "' (lube)";
 
-				if (k.getRot_tool() != null) {
-					tecMConf.setRot_tool(k.getRot_tool());
-				}
+				if (k.getRot_tool() != null)
+					if (tecMConf.getRot_tool() == null)
+						tecMConf.setRot_tool(k.getRot_tool());
+					else
+						tokenText = k.getRot_tool() + "' (tool rotation)";
 
 				if (k.getStop_tool() != null)
-					tecMConf.setStop_tool(k.getStop_tool());
+					if (tecMConf.getStop_tool() == null)
+						tecMConf.setStop_tool(k.getStop_tool());
+					else
+						tokenText = k.getStop_tool() + "' (stop tool rotation)";
+
+				if (tokenText != null) {
+					Token t = new CommonToken(0);
+					t.setText(tokenText);
+					t.setLine(n.getLine());
+					t.setCharPositionInLine(0);
+					this.semanticErrorHandler(gcodeGrammarHandler.SEM_DUPLICATE_ERR, t, bd);
+					tokenText = null;
+				}
 			}
 
 			bd.setInfoTecM(tecMConf);
@@ -241,7 +278,7 @@ public class gcodeGrammarHandler {
 
 		case SEM_DUPLICATE_ERR:
 			errore.setMessage("Found DUPLICATED_COMMAND_ERROR at block '" + bd.getNum_block() + "' - command '"
-					+ tk.getText() + "' already defined");
+					+ tk.getText() + " already defined");
 			break;
 
 		case SEM_END_ROT_ERR:
@@ -252,7 +289,7 @@ public class gcodeGrammarHandler {
 		case SEM_MOVE_SPEED_ERR:
 			errore.setMessage("Found NO_MOVE_SPEED_ERROR (" + bd.getNum_block() + " " + bd.toString()
 					+ ") - movement declared (" + bd.getInfoGeo().getLm().getMoveType() + " \"\r\n"
-					+ bd.getInfoGeo().getLm().getC_xyz().toString() + ") but movement speed non defined");
+					+ bd.getInfoGeo().getLm().getC_xyz().toString() + ") but movement speed 'F' non defined");
 			break;
 
 		case SEM_JOB_SPEED_ERR:
@@ -260,11 +297,13 @@ public class gcodeGrammarHandler {
 				errore.setMessage("Found NO_JOB_SPEED_ERROR (" + bd.getNum_block() + " " + bd.toString()
 						+ ") - circular processing movement declared (" + bd.getInfoGeo().getCm().getMoveType() + " "
 						+ bd.getInfoGeo().getCm().getC_xyz().toString() + " "
-						+ bd.getInfoGeo().getCm().getC_ijk().toString() + ") but movement speed non defined");
+						+ bd.getInfoGeo().getCm().getC_ijk().toString()
+						+ ") but working movement speed 'S' non defined");
 			else
-				errore.setMessage("Found NO_JOB_ROTATION_ERORR (" + bd.getNum_block() + " " + bd.toString()
+				errore.setMessage("Found NO_JOB_SPEED_ERROR (" + bd.getNum_block() + " " + bd.toString()
 						+ ") - linear processing movement declared (" + bd.getInfoGeo().getLm().getMoveType() + " "
-						+ bd.getInfoGeo().getLm().getC_xyz().toString() + ") but movement speed non defined");
+						+ bd.getInfoGeo().getLm().getC_xyz().toString()
+						+ ") but working movement speed 'S' non defined");
 			break;
 
 		}
