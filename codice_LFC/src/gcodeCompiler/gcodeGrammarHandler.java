@@ -22,6 +22,8 @@ public class gcodeGrammarHandler {
 	public static final int SEM_NO_SPINDLE_ROTATION = 6; // errore G01, G02, G03 senza M03, M04
 	public static final int SEM_DUPLICATE_ERR = 7; // comando duplicato nel medesimo blocco
 	public static final int SEM_END_ROT_ERR = 8; // disattivazione mandrino prima di averlo attivato
+	public static final int SEM_MOVE_SPEED_ERR = 9; // velocità spostamento F non definita prima di G00
+	public static final int SEM_JOB_SPEED_ERR = 10; // velocità lavorazione S non definita prima di G01, G02, G03
 
 	// codici di supporto
 	public static final int UNDEFINED = -1;
@@ -245,6 +247,24 @@ public class gcodeGrammarHandler {
 		case SEM_END_ROT_ERR:
 			errore.setMessage("Found END_ROTATION_ERROR (" + bd.getNum_block() + " " + bd.toString()
 					+ ") - spindle must be ON before being turned OFF");
+			break;
+
+		case SEM_MOVE_SPEED_ERR:
+			errore.setMessage("Found NO_MOVE_SPEED_ERROR (" + bd.getNum_block() + " " + bd.toString()
+					+ ") - movement declared (\" + bd.getInfoGeo().getLm().getMoveType() + \" \"\r\n"
+					+ bd.getInfoGeo().getLm().getC_xyz().toString() + ") but movement speed non defined");
+			break;
+
+		case SEM_JOB_SPEED_ERR:
+			if (bd.getInfoGeo().getCm() != null)
+				errore.setMessage("Found NO_JOB_SPEED_ERROR (" + bd.getNum_block() + " " + bd.toString()
+						+ ") - circular processing movement declared (" + bd.getInfoGeo().getCm().getMoveType() + " "
+						+ bd.getInfoGeo().getCm().getC_xyz().toString() + " "
+						+ bd.getInfoGeo().getCm().getC_ijk().toString() + ") but movement speed non defined");
+			else
+				errore.setMessage("Found NO_JOB_ROTATION_ERORR (" + bd.getNum_block() + " " + bd.toString()
+						+ ") - linear processing movement declared (" + bd.getInfoGeo().getLm().getMoveType() + " "
+						+ bd.getInfoGeo().getLm().getC_xyz().toString() + ") but movement speed non defined");
 			break;
 
 		}
