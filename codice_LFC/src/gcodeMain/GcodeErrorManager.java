@@ -31,6 +31,7 @@ public class GcodeErrorManager {
 			GcodeErrorManager.checkSF_move(parser);
 			GcodeErrorManager.checkSF_job(parser);
 			GcodeErrorManager.checkSpeedCoordType(parser);
+			GcodeErrorManager.checkAbsBeforeRel(parser);
 
 			check = false;
 		}
@@ -116,27 +117,28 @@ public class GcodeErrorManager {
 	// errore SEM_NO_COORDINATE_TYPE
 	private static void checkCoordinateType(gcodeGrammarParser parser) {
 		Collection<BlockDescriptor> valuesCollection = parser.h.blocks.values();
+		boolean presence = false;
+		boolean error = false;
+		int i = 1;
 
-		int i = 0;
 		for (BlockDescriptor bd : valuesCollection) {
-			++i;
+			error = false;
 
 			if (bd.getInfoGeo().getCoord_abs_rel() != null)
-				break;
-		}
+				presence = true;
 
-		int j = 0;
-		for (BlockDescriptor bd : valuesCollection) {
-			++j;
+			if ((bd.getInfoGeo().getLm() != null || bd.getInfoGeo().getCm() != null) && !presence)
+				error = true;
 
-			if (bd.getInfoGeo().getCm() != null || bd.getInfoGeo().getLm() != null) {
-				if (j <= i) {
-					Token t = new CommonToken(0);
-					t.setLine(j);
-					t.setCharPositionInLine(0);
-					parser.h.semanticErrorHandler(gcodeGrammarHandler.SEM_NO_COORDINATE_TYPE, t, bd);
-				}
+			if (error) {
+				Token t = new CommonToken(0);
+				t.setLine(i);
+				t.setCharPositionInLine(0);
+				parser.h.semanticErrorHandler(gcodeGrammarHandler.SEM_NO_COORDINATE_TYPE, t, bd);
 			}
+
+			i++;
+
 		}
 	}
 
@@ -293,28 +295,39 @@ public class GcodeErrorManager {
 		}
 	}
 
+	/*
+	 * verifico che prima di avere movimento relativo G91 abbia riferimento assoluto
+	 * in G90 con coordinate espresse in G00
+	 */
 	private static void checkAbsBeforeRel(gcodeGrammarParser parser) {
-		// TODO
 		Collection<BlockDescriptor> valuesCollection = parser.h.blocks.values();
 		boolean presence = false;
+		boolean move = false;
 		boolean error = false;
 		int i = 1;
 
 		for (BlockDescriptor bd : valuesCollection) {
 			error = false;
 
-			if (bd.getInfoGeo().getCoord_abs_rel() != null)
+			if (bd.getInfoGeo().getCoord_abs_rel() != null
+					&& bd.getInfoGeo().getCoord_abs_rel().toString().equals("G90"))
 				presence = true;
 
-			if ((bd.getInfotTec().getFree_move_speed() != null || bd.getInfotTec().getJob_move_speed() != null)
-					&& !presence)
+			if (bd.getInfoGeo().getLm() != null && presence
+					&& bd.getInfoGeo().getLm().getMoveType().toString().equals("G00")) {
+				move = true;
+			}
+
+			if ((bd.getInfoGeo().getCoord_abs_rel() != null
+					&& bd.getInfoGeo().getCoord_abs_rel().toString().equals("G91"))
+					&& (!presence || (presence && !move)))
 				error = true;
 
 			if (error) {
 				Token t = new CommonToken(0);
 				t.setLine(i);
 				t.setCharPositionInLine(0);
-				parser.h.semanticErrorHandler(gcodeGrammarHandler.SEM_NO_SPEED_COORD_TYPE, t, bd);
+				parser.h.semanticErrorHandler(gcodeGrammarHandler.SEM_NO_ABS_BEFORE_REL, t, bd);
 			}
 
 			i++;
