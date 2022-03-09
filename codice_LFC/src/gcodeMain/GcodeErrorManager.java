@@ -40,7 +40,7 @@ public class GcodeErrorManager {
 		 */
 		if (parser.getErrorList().size() == 0) {
 			System.out.println("Parsing completed successfully with 0 errors\n");
-			System.out.println("Block list");
+			System.out.println("** Block list **");
 			parser.h.printBlocks();
 			return true;
 
