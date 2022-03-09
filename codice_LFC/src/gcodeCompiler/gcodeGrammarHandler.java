@@ -25,6 +25,7 @@ public class gcodeGrammarHandler {
 	public static final int SEM_MOVE_SPEED_ERR = 9; // velocità spostamento F non definita prima di G00
 	public static final int SEM_JOB_SPEED_ERR = 11; // velocità lavorazione S non definita prima di G01, G02, G03
 	public static final int SEM_NO_SPEED_COORD_TYPE = 12; // velocità F o S senza aver definito tipo coordinata G90, G91
+	public static final int SEM_NO_ABS_BEFORE_REL = 13; // assenza riferimento in G90 prima di un G91
 
 	// codici di supporto
 	public static final int UNDEFINED = -1;
@@ -76,13 +77,13 @@ public class gcodeGrammarHandler {
 
 		for (InfoGeometriche i : info_g_list) {
 			if (i.getCm() != null)
-				if (geoConf.getCm() == null)
+				if (geoConf.getCm() == null && geoConf.getLm() == null)
 					geoConf.setCm(i.getCm());
 				else
 					tokenText = i.getCm().toString() + "' (circular movement)";
 
 			if (i.getLm() != null)
-				if (geoConf.getLm() == null)
+				if (geoConf.getLm() == null && geoConf.getCm() == null)
 					geoConf.setLm(i.getLm());
 				else
 					tokenText = i.getLm().toString() + "' (linear movement)";
@@ -317,6 +318,11 @@ public class gcodeGrammarHandler {
 						+ ") - movement speed declared (" + bd.getInfotTec().getJob_move_speed()
 						+ ") but no coordinate type (G90, G91) defined");
 
+			break;
+
+		case SEM_NO_ABS_BEFORE_REL:
+			errore.setMessage("Found NO_ABS_BEFORE_REL_ERROR (" + bd.getNum_block() + " " + bd.toString()
+					+ ") - G90 reference needed before G91 command");
 			break;
 
 		}

@@ -155,7 +155,8 @@ public class GcodeErrorManager {
 				if (bd.getInfoTecM().getRot_tool() != null)
 					presence = true;
 
-			if ((bd.getInfoGeo().getLm() != null || bd.getInfoGeo().getCm() != null) && !presence)
+			if (((bd.getInfoGeo().getLm() != null && !bd.getInfoGeo().getLm().getMoveType().toString().equals("G00"))
+					|| bd.getInfoGeo().getCm() != null) && !presence)
 				error = true;
 
 			if (error && !first) {
@@ -236,7 +237,7 @@ public class GcodeErrorManager {
 		for (BlockDescriptor bd : valuesCollection) {
 			error = false;
 
-			if (bd.getInfotTec().getFree_move_speed() != null)
+			if (bd.getInfotTec().getJob_move_speed() != null)
 				define_F = true;
 
 			if (bd.getInfotTec().getJob_move_speed() != null)
@@ -275,6 +276,7 @@ public class GcodeErrorManager {
 
 			if (bd.getInfoGeo().getCoord_abs_rel() != null)
 				presence = true;
+
 			if ((bd.getInfotTec().getFree_move_speed() != null || bd.getInfotTec().getJob_move_speed() != null)
 					&& !presence)
 				error = true;
@@ -285,7 +287,35 @@ public class GcodeErrorManager {
 				t.setCharPositionInLine(0);
 				parser.h.semanticErrorHandler(gcodeGrammarHandler.SEM_NO_SPEED_COORD_TYPE, t, bd);
 			}
-			
+
+			i++;
+
+		}
+	}
+
+	private static void checkAbsBeforeRel(gcodeGrammarParser parser) {
+		Collection<BlockDescriptor> valuesCollection = parser.h.blocks.values();
+		boolean presence = false;
+		boolean error = false;
+		int i = 1;
+
+		for (BlockDescriptor bd : valuesCollection) {
+			error = false;
+
+			if (bd.getInfoGeo().getCoord_abs_rel() != null)
+				presence = true;
+
+			if ((bd.getInfotTec().getFree_move_speed() != null || bd.getInfotTec().getJob_move_speed() != null)
+					&& !presence)
+				error = true;
+
+			if (error) {
+				Token t = new CommonToken(0);
+				t.setLine(i);
+				t.setCharPositionInLine(0);
+				parser.h.semanticErrorHandler(gcodeGrammarHandler.SEM_NO_SPEED_COORD_TYPE, t, bd);
+			}
+
 			i++;
 
 		}
