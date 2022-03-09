@@ -24,6 +24,7 @@ public class gcodeGrammarHandler {
 	public static final int SEM_END_ROT_ERR = 8; // disattivazione mandrino prima di averlo attivato
 	public static final int SEM_MOVE_SPEED_ERR = 9; // velocità spostamento F non definita prima di G00
 	public static final int SEM_JOB_SPEED_ERR = 11; // velocità lavorazione S non definita prima di G01, G02, G03
+	public static final int SEM_NO_SPEED_COORD_TYPE = 12; // velocità F o S senza aver definito tipo coordinata G90, G91
 
 	// codici di supporto
 	public static final int UNDEFINED = -1;
@@ -288,7 +289,7 @@ public class gcodeGrammarHandler {
 
 		case SEM_MOVE_SPEED_ERR:
 			errore.setMessage("Found NO_MOVE_SPEED_ERROR (" + bd.getNum_block() + " " + bd.toString()
-					+ ") - movement declared (" + bd.getInfoGeo().getLm().getMoveType() + " \"\r\n"
+					+ ") - movement declared (" + bd.getInfoGeo().getLm().getMoveType() + " "
 					+ bd.getInfoGeo().getLm().getC_xyz().toString() + ") but movement speed 'F' non defined");
 			break;
 
@@ -304,6 +305,18 @@ public class gcodeGrammarHandler {
 						+ ") - linear processing movement declared (" + bd.getInfoGeo().getLm().getMoveType() + " "
 						+ bd.getInfoGeo().getLm().getC_xyz().toString()
 						+ ") but working movement speed 'S' non defined");
+			break;
+
+		case SEM_NO_SPEED_COORD_TYPE:
+			if (bd.getInfotTec().getFree_move_speed() != null)
+				errore.setMessage("Found NO_COORD_TYPE_SPEED_ERROR (" + bd.getNum_block() + " " + bd.toString()
+						+ ") - working movement speed declared (" + bd.getInfotTec().getFree_move_speed()
+						+ ") but no coordinate type (G90, G91) defined");
+			else
+				errore.setMessage("Found NO_COORD_TYPE_SPEED_ERROR (" + bd.getNum_block() + " " + bd.toString()
+						+ ") - movement speed declared (" + bd.getInfotTec().getJob_move_speed()
+						+ ") but no coordinate type (G90, G91) defined");
+
 			break;
 
 		}

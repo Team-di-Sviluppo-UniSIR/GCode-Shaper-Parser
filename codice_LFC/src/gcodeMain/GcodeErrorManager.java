@@ -30,6 +30,7 @@ public class GcodeErrorManager {
 			GcodeErrorManager.checkM05(parser);
 			GcodeErrorManager.checkSF_move(parser);
 			GcodeErrorManager.checkSF_job(parser);
+			GcodeErrorManager.checkSpeedCoordType(parser);
 
 			check = false;
 		}
@@ -119,6 +120,7 @@ public class GcodeErrorManager {
 		int i = 0;
 		for (BlockDescriptor bd : valuesCollection) {
 			++i;
+
 			if (bd.getInfoGeo().getCoord_abs_rel() != null)
 				break;
 		}
@@ -126,6 +128,7 @@ public class GcodeErrorManager {
 		int j = 0;
 		for (BlockDescriptor bd : valuesCollection) {
 			++j;
+
 			if (bd.getInfoGeo().getCm() != null || bd.getInfoGeo().getLm() != null) {
 				if (j <= i) {
 					Token t = new CommonToken(0);
@@ -144,15 +147,16 @@ public class GcodeErrorManager {
 		boolean error = false;
 		boolean first = false;
 		int i = 1;
+
 		for (BlockDescriptor bd : valuesCollection) {
 			error = false;
-			if (bd.getInfoTecM() != null) {
+
+			if (bd.getInfoTecM() != null)
 				if (bd.getInfoTecM().getRot_tool() != null)
 					presence = true;
-			}
-			if ((bd.getInfoGeo().getLm() != null || bd.getInfoGeo().getCm() != null) && !presence) {
+
+			if ((bd.getInfoGeo().getLm() != null || bd.getInfoGeo().getCm() != null) && !presence)
 				error = true;
-			}
 
 			if (error && !first) {
 				Token t = new CommonToken(0);
@@ -172,14 +176,15 @@ public class GcodeErrorManager {
 		boolean presence = false;
 		boolean error = false;
 		int i = 1;
+
 		for (BlockDescriptor bd : valuesCollection) {
 			error = false;
 			if (bd.getInfoTecM() != null && bd.getInfoTecM().getRot_tool() != null)
 				presence = true;
-			if (bd.getInfoTecM() != null) {
+
+			if (bd.getInfoTecM() != null)
 				if (bd.getInfoTecM().getStop_tool() != null && !presence)
 					error = true;
-			}
 
 			if (error) {
 				Token t = new CommonToken(0);
@@ -187,6 +192,7 @@ public class GcodeErrorManager {
 				t.setCharPositionInLine(0);
 				parser.h.semanticErrorHandler(gcodeGrammarHandler.SEM_END_ROT_ERR, t, bd);
 			}
+
 			i++;
 
 		}
@@ -198,14 +204,16 @@ public class GcodeErrorManager {
 		boolean define_F = false;
 		boolean error = false;
 		int i = 1;
+
 		for (BlockDescriptor bd : valuesCollection) {
 			error = false;
+
 			if (bd.getInfotTec().getFree_move_speed() != null)
 				define_F = true;
-			if (bd.getInfoGeo().getLm() != null) {
+
+			if (bd.getInfoGeo().getLm() != null)
 				if (bd.getInfoGeo().getLm().getMoveType().compareTo("G00") == 0 && !define_F)
 					error = true;
-			}
 
 			if (error) {
 				Token t = new CommonToken(0);
@@ -224,16 +232,20 @@ public class GcodeErrorManager {
 		boolean define_S = false;
 		boolean error = false;
 		int i = 1;
+
 		for (BlockDescriptor bd : valuesCollection) {
 			error = false;
+
 			if (bd.getInfotTec().getFree_move_speed() != null)
 				define_F = true;
+
 			if (bd.getInfotTec().getJob_move_speed() != null)
 				define_S = true;
-			if (bd.getInfoGeo().getLm() != null) {
+
+			if (bd.getInfoGeo().getLm() != null)
 				if (bd.getInfoGeo().getLm().getMoveType().compareTo("G01") == 0 && !define_F)
 					error = true;
-			}
+
 			if (bd.getInfoGeo().getCm() != null) {
 				if ((bd.getInfoGeo().getCm().getMoveType().compareTo("G02") == 0
 						|| bd.getInfoGeo().getCm().getMoveType().compareTo("G03") == 0) && !define_F)
@@ -247,6 +259,35 @@ public class GcodeErrorManager {
 				parser.h.semanticErrorHandler(gcodeGrammarHandler.SEM_JOB_SPEED_ERR, t, bd);
 			}
 			i++;
+		}
+	}
+
+	// controllo che prima di aver definito la velocità F o S, ho definito il tipo
+	// di coordinate (G90, G91)
+	private static void checkSpeedCoordType(gcodeGrammarParser parser) {
+		Collection<BlockDescriptor> valuesCollection = parser.h.blocks.values();
+		boolean presence = false;
+		boolean error = false;
+		int i = 1;
+
+		for (BlockDescriptor bd : valuesCollection) {
+			error = false;
+
+			if (bd.getInfoGeo().getCoord_abs_rel() != null)
+				presence = true;
+			if ((bd.getInfotTec().getFree_move_speed() != null || bd.getInfotTec().getJob_move_speed() != null)
+					&& !presence)
+				error = true;
+
+			if (error) {
+				Token t = new CommonToken(0);
+				t.setLine(i);
+				t.setCharPositionInLine(0);
+				parser.h.semanticErrorHandler(gcodeGrammarHandler.SEM_NO_SPEED_COORD_TYPE, t, bd);
+			}
+			
+			i++;
+
 		}
 	}
 
