@@ -21,6 +21,7 @@ public class gcodeGrammarHandler {
 	public static final int SEM_NO_COORDINATE_TYPE = 5; // errore G00, G01, G02, G03 senza G90, G91
 	public static final int SEM_NO_SPINDLE_ROTATION = 6; // errore G01, G02, G03 senza M03, M04
 	public static final int SEM_DUPLICATE_ERR = 7; // comando duplicato nel medesimo blocco
+	public static final int SEM_END_ROT_ERR = 8; // disattivazione mandrino prima di averlo attivato
 
 	// codici di supporto
 	public static final int UNDEFINED = -1;
@@ -239,6 +240,11 @@ public class gcodeGrammarHandler {
 		case SEM_DUPLICATE_ERR:
 			errore.setMessage("Found DUPLICATED_COMMAND_ERROR at block '" + bd.getNum_block() + "' - command '"
 					+ tk.getText() + "' already defined");
+			break;
+
+		case SEM_END_ROT_ERR:
+			errore.setMessage("Found END_ROTATION_ERROR (" + bd.getNum_block() + " " + bd.toString()
+					+ ") - spindle must be ON before being turned OFF");
 			break;
 
 		}

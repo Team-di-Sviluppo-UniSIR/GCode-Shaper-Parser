@@ -86,6 +86,10 @@ public class Error implements Comparable<Error> {
 		case gcodeGrammarHandler.SEM_DUPLICATE_ERR:
 			s += "Semantic Error (" + gcodeGrammarHandler.SEM_DUPLICATE_ERR + ") ";
 			break;
+			
+		case gcodeGrammarHandler.SEM_END_ROT_ERR:
+			s += "Semantic Error (" + gcodeGrammarHandler.SEM_END_ROT_ERR + ") ";
+			break;
 
 		}
 

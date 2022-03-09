@@ -21,6 +21,7 @@ public class GcodeErrorManager {
 			GcodeErrorManager.checkToolError(parser);
 			GcodeErrorManager.checkCoordinateType(parser);
 			GcodeErrorManager.checkSpindleRotation(parser);
+			GcodeErrorManager.checkM05(parser);
 		}
 
 		/*
@@ -53,7 +54,7 @@ public class GcodeErrorManager {
 			for (Error errore : parser.getErrorList())
 				System.err.println(++i + " - " + errore.toString());
 		}
-		
+
 		return false;
 	}
 
@@ -149,6 +150,32 @@ public class GcodeErrorManager {
 				t.setCharPositionInLine(0);
 				parser.h.semanticErrorHandler(gcodeGrammarHandler.SEM_NO_SPINDLE_ROTATION, t, bd);
 				first = true;
+			}
+			i++;
+
+		}
+	}
+
+	//controllo di aver chiamato M03/M04 quando chiamo M05
+	private static void checkM05(gcodeGrammarParser parser) {
+		Collection<BlockDescriptor> valuesCollection = parser.h.blocks.values();
+		boolean presence = false;
+		boolean error = false;
+		int i = 1;
+		for (BlockDescriptor bd : valuesCollection) {
+
+			if (bd.getInfoTecM() != null && bd.getInfoTecM().getRot_tool() != null)
+				presence = true;
+			if (bd.getInfoTecM() != null) {
+				if (bd.getInfoTecM().getStop_tool() != null && !presence)
+					error = true;
+			}
+
+			if (error) {
+				Token t = new CommonToken(0);
+				t.setLine(i);
+				t.setCharPositionInLine(0);
+				parser.h.semanticErrorHandler(gcodeGrammarHandler.SEM_END_ROT_ERR, t, bd);
 			}
 			i++;
 
