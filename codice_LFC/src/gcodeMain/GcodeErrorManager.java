@@ -22,6 +22,8 @@ public class GcodeErrorManager {
 			GcodeErrorManager.checkCoordinateType(parser);
 			GcodeErrorManager.checkSpindleRotation(parser);
 			GcodeErrorManager.checkM05(parser);
+			GcodeErrorManager.checkSF_move(parser);
+			GcodeErrorManager.checkSF_job(parser);
 		}
 
 		/*
@@ -78,7 +80,7 @@ public class GcodeErrorManager {
 	private static void checkToolError(gcodeGrammarParser parser) {
 		Collection<BlockDescriptor> valuesCollection = parser.h.blocks.values();
 
-		int i = 0;
+		int i = 1;
 		for (BlockDescriptor bd : valuesCollection) {
 			boolean check = false;
 			if (bd.getInfotTec().getT() != null) {
@@ -106,14 +108,14 @@ public class GcodeErrorManager {
 	private static void checkCoordinateType(gcodeGrammarParser parser) {
 		Collection<BlockDescriptor> valuesCollection = parser.h.blocks.values();
 
-		int i = -1;
+		int i = 0;
 		for (BlockDescriptor bd : valuesCollection) {
 			++i;
 			if (bd.getInfoGeo().getCoord_abs_rel() != null)
 				break;
 		}
 
-		int j = -1;
+		int j = 0;
 		for (BlockDescriptor bd : valuesCollection) {
 			++j;
 			if (bd.getInfoGeo().getCm() != null || bd.getInfoGeo().getLm() != null) {
@@ -135,7 +137,7 @@ public class GcodeErrorManager {
 		boolean first = false;
 		int i = 1;
 		for (BlockDescriptor bd : valuesCollection) {
-
+			error = false;
 			if (bd.getInfoTecM() != null) {
 				if (bd.getInfoTecM().getRot_tool() != null)
 					presence = true;
@@ -163,7 +165,7 @@ public class GcodeErrorManager {
 		boolean error = false;
 		int i = 1;
 		for (BlockDescriptor bd : valuesCollection) {
-
+			error = false;
 			if (bd.getInfoTecM() != null && bd.getInfoTecM().getRot_tool() != null)
 				presence = true;
 			if (bd.getInfoTecM() != null) {
@@ -179,6 +181,64 @@ public class GcodeErrorManager {
 			}
 			i++;
 
+		}
+	}
+	
+	//controllo di aver definito le velocità prima di effettuare un movimento
+	private static void checkSF_move(gcodeGrammarParser parser) {
+		Collection<BlockDescriptor> valuesCollection = parser.h.blocks.values();
+		boolean define_F = false;
+		boolean error = false;
+		int i = 1;
+		for (BlockDescriptor bd : valuesCollection) {
+			error = false;
+			if (bd.getInfotTec().getFree_move_speed() != null)
+					define_F = true;
+			if(bd.getInfoGeo().getLm() != null) {
+				if(bd.getInfoGeo().getLm().getMoveType().compareTo("G00") == 0 && !define_F)
+					error = true;
+			}
+			
+			if (error) {
+				Token t = new CommonToken(0);
+				t.setLine(i);
+				t.setCharPositionInLine(0);
+				parser.h.semanticErrorHandler(gcodeGrammarHandler.SEM_MOVE_SPEED_ERR, t, bd);
+			}
+			i++;
+		}
+	}
+		
+	//controllo di aver definito le velocità prima di effettuare una lavorazione
+	private static void checkSF_job(gcodeGrammarParser parser) {
+		Collection<BlockDescriptor> valuesCollection = parser.h.blocks.values();
+		boolean define_F = false;
+		boolean define_S = false;
+		boolean error = false;
+		int i = 1;
+		for (BlockDescriptor bd : valuesCollection) {
+			error = false;
+			if (bd.getInfotTec().getFree_move_speed() != null)
+				define_F = true;
+			if (bd.getInfotTec().getJob_move_speed() != null)
+				define_S = true;
+			if(bd.getInfoGeo().getLm() != null) {
+				if(bd.getInfoGeo().getLm().getMoveType().compareTo("G01") == 0 && !define_F)
+					error = true;
+			}
+			if(bd.getInfoGeo().getCm() != null) {
+				if((bd.getInfoGeo().getCm().getMoveType().compareTo("G02") == 0 
+				  ||bd.getInfoGeo().getCm().getMoveType().compareTo("G03") == 0 ) && !define_F)
+					error = true;
+			}
+
+			if (error) {
+				Token t = new CommonToken(0);
+				t.setLine(i);
+				t.setCharPositionInLine(0);
+				parser.h.semanticErrorHandler(gcodeGrammarHandler.SEM_JOB_SPEED_ERR, t, bd);
+			}
+			i++;
 		}
 	}
 

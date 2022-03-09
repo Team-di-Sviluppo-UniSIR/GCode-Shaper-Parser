@@ -23,7 +23,7 @@ public class gcodeGrammarHandler {
 	public static final int SEM_DUPLICATE_ERR = 7; // comando duplicato nel medesimo blocco
 	public static final int SEM_END_ROT_ERR = 8; // disattivazione mandrino prima di averlo attivato
 	public static final int SEM_MOVE_SPEED_ERR = 9; // velocità spostamento F non definita prima di G00
-	public static final int SEM_JOB_SPEED_ERR = 10; // velocità lavorazione S non definita prima di G01, G02, G03
+	public static final int SEM_JOB_SPEED_ERR = 11; // velocità lavorazione S non definita prima di G01, G02, G03
 
 	// codici di supporto
 	public static final int UNDEFINED = -1;
@@ -251,7 +251,7 @@ public class gcodeGrammarHandler {
 
 		case SEM_MOVE_SPEED_ERR:
 			errore.setMessage("Found NO_MOVE_SPEED_ERROR (" + bd.getNum_block() + " " + bd.toString()
-					+ ") - movement declared (\" + bd.getInfoGeo().getLm().getMoveType() + \" \"\r\n"
+					+ ") - movement declared (" + bd.getInfoGeo().getLm().getMoveType() + " \"\r\n"
 					+ bd.getInfoGeo().getLm().getC_xyz().toString() + ") but movement speed non defined");
 			break;
 
