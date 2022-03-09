@@ -8,7 +8,7 @@ public class InfoTecnologiche {
 	private Tool t;
 
 	public InfoTecnologiche(Token command, char type) {
-		if (type == 'x')
+		if (type == 'f')
 			this.free_move_speed = command.getText();
 		else if (type == 'j')
 			this.job_move_speed = command.getText();

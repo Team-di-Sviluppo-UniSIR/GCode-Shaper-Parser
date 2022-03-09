@@ -1,14 +1,12 @@
 package gcodeCompiler.util;
 
+import gcodeCompiler.gcodeGrammarHandler;
+
 public class Error implements Comparable<Error> {
 	private short type;
 	private short row;
 	private short column;
 	private String message;
-
-	public static final int TOKEN_ERROR = 0;
-	public static final int ERR_ON_SYNTAX = 1;
-	public static final int SEM_BLOCK_ORDER = 2;
 
 	public Error(short type, short row, short column, String message) {
 		this.type = type;
@@ -57,17 +55,38 @@ public class Error implements Comparable<Error> {
 		String s = "";
 
 		switch (type) {
-		case TOKEN_ERROR:
-			s += "Lexical Error (" + TOKEN_ERROR + ") ";
+		case gcodeGrammarHandler.TOKEN_ERROR:
+			s += "Lexical Error (" + gcodeGrammarHandler.TOKEN_ERROR + ") ";
 			break;
 
-		case ERR_ON_SYNTAX:
-			s += "Syntax Error (" + ERR_ON_SYNTAX + ") ";
+		case gcodeGrammarHandler.ERR_ON_SYNTAX:
+			s += "Syntax Error (" + gcodeGrammarHandler.ERR_ON_SYNTAX + ") ";
 			break;
 
-		default:
-			s += "Semantic Error (" + SEM_BLOCK_ORDER + ") ";
+		case gcodeGrammarHandler.SEM_BLOCK_ORDER:
+			s += "Semantic Error (" + gcodeGrammarHandler.SEM_BLOCK_ORDER + ") ";
 			break;
+
+		case gcodeGrammarHandler.SEM_NO_END_PROG:
+			s += "Semantic Error (" + gcodeGrammarHandler.SEM_NO_END_PROG + ") ";
+			break;
+
+		case gcodeGrammarHandler.SEM_TOOL_ERR:
+			s += "Semantic Error (" + gcodeGrammarHandler.SEM_TOOL_ERR + ") ";
+			break;
+
+		case gcodeGrammarHandler.SEM_NO_COORDINATE_TYPE:
+			s += "Semantic Error (" + gcodeGrammarHandler.SEM_NO_COORDINATE_TYPE + ") ";
+			break;
+
+		case gcodeGrammarHandler.SEM_NO_SPINDLE_ROTATION:
+			s += "Semantic Error (" + gcodeGrammarHandler.SEM_NO_SPINDLE_ROTATION + ") ";
+			break;
+
+		case gcodeGrammarHandler.SEM_DUPLICATE_ERR:
+			s += "Semantic Error (" + gcodeGrammarHandler.SEM_DUPLICATE_ERR + ") ";
+			break;
+
 		}
 
 		s += "at [" + row + ", " + column + "]: " + message;

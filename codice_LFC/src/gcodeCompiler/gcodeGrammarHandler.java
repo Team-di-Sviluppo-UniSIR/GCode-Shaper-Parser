@@ -8,7 +8,6 @@ import java.util.TreeMap;
 import org.antlr.runtime.*;
 import gcodeCompiler.util.*;
 import gcodeCompiler.util.Error;
-import java.io.*;
 
 public class gcodeGrammarHandler {
 	// codici degli errori lessicali e sintattici
@@ -18,7 +17,10 @@ public class gcodeGrammarHandler {
 	// codici degli errori semantici
 	public static final int SEM_BLOCK_ORDER = 2; // errore numero blocco
 	public static final int SEM_NO_END_PROG = 3; // errore mancato token M30 fine programma
-	public static final int SEM_TOOL_ERR=4;  //errore M06 senza T[][] e viceversa
+	public static final int SEM_TOOL_ERR = 4; // errore M06 senza T[][] e viceversa
+	public static final int SEM_NO_COORDINATE_TYPE = 5; // errore G00, G01, G02, G03 senza G90, G91
+	public static final int SEM_NO_SPINDLE_ROTATION = 6; // errore G01, G02, G03 senza M03, M04
+	public static final int SEM_DUPLICATE_ERR = 7; // comando duplicato nel medesimo blocco
 
 	// codici di supporto
 	public static final int UNDEFINED = -1;
@@ -44,7 +46,7 @@ public class gcodeGrammarHandler {
 	public void createNewBlock(Token n, List<InfoGeometriche> info_g_list, List<InfoTecnologiche> info_t_list,
 			List<InfoTecnologicheM> info_t_M_list) {
 
-		BlockDescriptor bd = BlockInit(n.getText(), info_g_list, info_t_list, info_t_M_list);
+		BlockDescriptor bd = BlockInit(n, info_g_list, info_t_list, info_t_M_list);
 
 		int num = Integer.parseInt(n.getText().substring(1));
 
@@ -59,10 +61,10 @@ public class gcodeGrammarHandler {
 	}
 
 	// inizializzazione del blocco con informazioni geometriche e tecnologiche
-	private BlockDescriptor BlockInit(String n, List<InfoGeometriche> info_g_list, List<InfoTecnologiche> info_t_list,
+	private BlockDescriptor BlockInit(Token n, List<InfoGeometriche> info_g_list, List<InfoTecnologiche> info_t_list,
 			List<InfoTecnologicheM> info_t_M_list) {
 
-		BlockDescriptor bd = new BlockDescriptor(n);
+		BlockDescriptor bd = new BlockDescriptor(n.getText());
 
 		InfoGeometriche geoConf = new InfoGeometriche();
 
@@ -85,14 +87,40 @@ public class gcodeGrammarHandler {
 		InfoTecnologiche tecConf = new InfoTecnologiche();
 
 		for (InfoTecnologiche j : info_t_list) {
-			if (j.getFree_move_speed() != null)
-				tecConf.setFree_move_speed(j.getFree_move_speed());
+			if (j.getFree_move_speed() != null) {
+				if (tecConf.getFree_move_speed() == null)
+					tecConf.setFree_move_speed(j.getFree_move_speed());
+				else {
+					Token t = new CommonToken(0);
+					t.setText(j.getFree_move_speed());
+					t.setLine(n.getLine());
+					t.setCharPositionInLine(0);
+					this.semanticErrorHandler(gcodeGrammarHandler.SEM_DUPLICATE_ERR, t, bd);
+				}
+			}
 
-			if (j.getJob_move_speed() != null)
-				tecConf.setJob_move_speed(j.getJob_move_speed());
+			if (j.getJob_move_speed() != null) {
+				if (tecConf.getJob_move_speed() == null)
+					tecConf.setJob_move_speed(j.getJob_move_speed());
+				else {
+					Token t = new CommonToken(0);
+					t.setText(j.getJob_move_speed());
+					t.setLine(n.getLine());
+					t.setCharPositionInLine(0);
+					this.semanticErrorHandler(gcodeGrammarHandler.SEM_DUPLICATE_ERR, t, bd);
+				}
+			}
 
 			if (j.getT() != null)
-				tecConf.setT(j.getT());
+				if (tecConf.getT() == null)
+					tecConf.setT(j.getT());
+				else {
+					Token t = new CommonToken(0);
+					t.setText(j.getT().toString());
+					t.setLine(n.getLine());
+					t.setCharPositionInLine(0);
+					this.semanticErrorHandler(gcodeGrammarHandler.SEM_DUPLICATE_ERR, t, bd);
+				}
 		}
 
 		bd.setInfotTec(tecConf);
@@ -140,8 +168,6 @@ public class gcodeGrammarHandler {
 
 	// h contiene le coordinate, m il messaggio d'errore standard
 	void handleError(String[] tokenNames, RecognitionException e, String h, String m) {
-		String type = "";
-		String st = "";
 		Error errore = new Error();
 
 		if (e.token.getType() == gcodeGrammarLexer.SCAN_ERROR) {
@@ -177,12 +203,42 @@ public class gcodeGrammarHandler {
 			break;
 
 		case SEM_NO_END_PROG:
-			errore.setMessage("Found NO_M30_ERROR (" + bd.getNum_block() + " " + bd.toString() + ") - the last block ('"
-					+ bd.getNum_block() + "') must contain M30 (end program) ");
+			errore.setMessage("Found NO_M30_ERROR (" + bd.getNum_block() + " " + bd.toString() + ") - the last block ("
+					+ bd.getNum_block() + ") must contain 'M30' (end program)");
 			break;
-			
+
 		case SEM_TOOL_ERR:
-			errore.setMessage("Found CHANGE_TOOL_ERROR (" + bd.getNum_block() + " " + bd.toString() + ") - M06 and T must always be together ");
+			errore.setMessage("Found CHANGE_TOOL_ERROR (" + bd.getNum_block() + " " + bd.toString()
+					+ ") - 'M06' and T must always be together");
+			break;
+
+		case SEM_NO_COORDINATE_TYPE:
+			if (bd.getInfoGeo().getCm() != null)
+				errore.setMessage("Found NO_COORDINATE_TYPE_ERROR (" + bd.getNum_block() + " " + bd.toString()
+						+ ") - movement declared (" + bd.getInfoGeo().getCm().getMoveType() + " "
+						+ bd.getInfoGeo().getCm().getC_xyz().toString() + " "
+						+ bd.getInfoGeo().getCm().getC_ijk().toString() + ") but no coordinate type specified");
+			else
+				errore.setMessage("Found NO_COORDINATE_TYPE_ERROR (" + bd.getNum_block() + " " + bd.toString()
+						+ ") - movement declared (" + bd.getInfoGeo().getLm().getMoveType() + " "
+						+ bd.getInfoGeo().getLm().getC_xyz().toString() + ") but no coordinate type specified");
+			break;
+
+		case SEM_NO_SPINDLE_ROTATION:
+			if (bd.getInfoGeo().getCm() != null)
+				errore.setMessage("Found NO_SPINDLE_ROTATION_ERORR (" + bd.getNum_block() + " " + bd.toString()
+						+ ") - processing movement declared (" + bd.getInfoGeo().getCm().getMoveType() + " "
+						+ bd.getInfoGeo().getCm().getC_xyz().toString() + " "
+						+ bd.getInfoGeo().getCm().getC_ijk().toString() + ") but spindle not in rotation");
+			else
+				errore.setMessage("Found NO_SPINDLE_ROTATION_ERORR (" + bd.getNum_block() + " " + bd.toString()
+						+ ") - processing movement declared (" + bd.getInfoGeo().getLm().getMoveType() + " "
+						+ bd.getInfoGeo().getLm().getC_xyz().toString() + ") but spindle not in rotation");
+			break;
+
+		case SEM_DUPLICATE_ERR:
+			errore.setMessage("Found DUPLICATED_COMMAND_ERROR at block '" + bd.getNum_block() + "' - command '"
+					+ tk.getText() + "' already defined");
 			break;
 
 		}
