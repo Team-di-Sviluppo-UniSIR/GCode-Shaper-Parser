@@ -294,6 +294,7 @@ public class GcodeErrorManager {
 	}
 
 	private static void checkAbsBeforeRel(gcodeGrammarParser parser) {
+		// TODO
 		Collection<BlockDescriptor> valuesCollection = parser.h.blocks.values();
 		boolean presence = false;
 		boolean error = false;
