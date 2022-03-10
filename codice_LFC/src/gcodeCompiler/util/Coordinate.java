@@ -39,4 +39,16 @@ public class Coordinate {
 		else
 			return s;
 	}
+
+	public int getFirst() {
+		return Integer.parseInt(first);
+	}
+
+	public int getSecond() {
+		return Integer.parseInt(second);
+	}
+
+	public int getThird() {
+		return Integer.parseInt(third);
+	}
 }
