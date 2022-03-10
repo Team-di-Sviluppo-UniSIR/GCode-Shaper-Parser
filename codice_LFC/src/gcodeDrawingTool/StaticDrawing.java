@@ -1,9 +1,7 @@
 package gcodeDrawingTool;
 
 import java.awt.*;
-import java.awt.event.*;
 import javax.swing.*;
-
 import org.antlr.runtime.CommonToken;
 import org.antlr.runtime.Token;
 
@@ -34,6 +32,10 @@ public class StaticDrawing extends JFrame {
 		setVisible(true);
 	}
 
+	/*
+	 * sarà necessario creare una funzione per la stampa in coordinate assolute ed
+	 * una per la stampa in coordinate relative
+	 */
 	private class DrawCanvas extends JPanel {
 		@Override
 		public void paintComponent(Graphics g) {
@@ -78,6 +80,9 @@ public class StaticDrawing extends JFrame {
 
 			g.drawLine(100, 300, 300, 300);
 
+			Token quattrocento = new CommonToken(0);
+			quattrocento.setText("400");
+
 			Token trecento = new CommonToken(0);
 			trecento.setText("300");
 
@@ -87,42 +92,37 @@ public class StaticDrawing extends JFrame {
 			Token moveType = new CommonToken(0);
 			moveType.setText("G02");
 
-			Coordinate puntoFinale = new Coordinate(trecento, duecento, null);
-			Coordinate puntoCentrale = new Coordinate(duecento, duecento, null);
+			Coordinate puntoFinale = new Coordinate(quattrocento, quattrocento, null);
+			Coordinate puntoCentrale = new Coordinate(quattrocento, trecento, null);
 			CircularMove cm = new CircularMove(moveType, puntoFinale, puntoCentrale);
 
-			// g.drawArc(300 - 100, 300, 100 + 100, 100 + 100, 90, 90);
+			// g.drawArc(300 - 100, 300, 100 + 100, 100 + 100, 0, 90);
 
 			/*
 			 * TODO funzione per disegnare l'arco in GCODE che usi però la struttura del
 			 * drawArc()
 			 */
-			circularInterpolation(cm, g);
+			// circularInterpolationMAN(cm, g);
+
+			circularInterpolation(new Coordinate(trecento, trecento, null), cm, g);
 
 		}
 
-		// TODO
-		/*
-		 * Da sistemare: deve implementare tutti gli archi sia G02 che G03 possiamo
-		 * implementarla mantenendo il sistma di riferimento con origine in altro a
-		 * sinistra per semplificare le cose
-		 */
-		private void circularInterpolation(CircularMove cm, Graphics g) {
-			int raggio = cm.getC_xyz().getFirst() - cm.getC_ijk().getFirst();
+		// versione manuale della conversione interpolazione circolare
+		private void circularInterpolationMAN(CircularMove cm, Graphics g) {
+			int raggio1 = Math.abs(cm.getC_xyz().getFirst() - cm.getC_ijk().getFirst());
+			int raggio2 = Math.abs(cm.getC_xyz().getSecond() - cm.getC_ijk().getSecond());
 
-			int xTopLeft = cm.getC_ijk().getFirst();
-			int yTopLeft = cm.getC_ijk().getSecond() + raggio;
+			int raggio = raggio2;
+
+			int xTopLeft = cm.getC_ijk().getFirst() - raggio;
+			int yTopLeft = cm.getC_ijk().getSecond() - raggio;
 
 			int width = raggio * 2;
 			int height = raggio * 2;
 
-			int startAngle = 90;
-			int arcAngle = 0;
-
-			if (cm.getC_xyz().getSecond() == cm.getC_ijk().getSecond())
-				arcAngle = -90;
-			else if (cm.getC_xyz().getFirst() == cm.getC_ijk().getFirst())
-				arcAngle = -180;
+			int startAngle = -180;
+			int arcAngle = -90;
 
 			System.out.println("\nraggio: " + raggio);
 			System.out.println("xTopLeft: " + xTopLeft);
@@ -133,6 +133,88 @@ public class StaticDrawing extends JFrame {
 
 			// alla fine disegno usando il metodo della libreria
 			g.drawArc(xTopLeft, yTopLeft, width, height, startAngle, arcAngle);
+		}
+
+		// versione definitiva dell'interpolazione circolare (solo 90 gradi)
+		private void circularInterpolation(Coordinate pt_prev, CircularMove cm, Graphics g) {
+			int raggio1 = Math.abs(cm.getC_xyz().getFirst() - cm.getC_ijk().getFirst());
+			int raggio2 = Math.abs(cm.getC_xyz().getSecond() - cm.getC_ijk().getSecond());
+			int raggio = 0;
+
+			int xTopLeft = 0;
+			int yTopLeft = 0;
+
+			int startAngle = 0;
+			int arcAngle = 0;
+
+			if (cm.getC_xyz().getFirst() == cm.getC_ijk().getFirst()) {
+				raggio = raggio2;
+				xTopLeft = cm.getC_ijk().getFirst() - raggio;
+				yTopLeft = cm.getC_ijk().getSecond() - raggio;
+
+				if (cm.getC_xyz().getSecond() > cm.getC_ijk().getSecond()) {
+					if (cm.getMoveType().equals("G02")) { // 1
+						startAngle = -180;
+						arcAngle = -90;
+					} else { // 8
+						startAngle = 0;
+						arcAngle = 90;
+					}
+				} else if (cm.getC_xyz().getSecond() < cm.getC_ijk().getSecond()) {
+					if (cm.getMoveType().equals("G02")) { // 4
+						startAngle = 0;
+						arcAngle = -90;
+					} else { // 5
+						startAngle = -180;
+						arcAngle = 90;
+					}
+				}
+			}
+
+			if (cm.getC_xyz().getSecond() == cm.getC_ijk().getSecond()) {
+				raggio = raggio1;
+				if (cm.getC_xyz().getFirst() > cm.getC_ijk().getFirst()) {
+					if (cm.getMoveType().equals("G03")) { // 2
+						xTopLeft = cm.getC_ijk().getFirst() - raggio;
+						yTopLeft = cm.getC_ijk().getSecond() - raggio * 3;
+						startAngle = -90;
+						arcAngle = 90;
+					} else { // 3
+						xTopLeft = cm.getC_ijk().getFirst() - raggio;
+						yTopLeft = cm.getC_ijk().getSecond() + raggio;
+						startAngle = 90;
+						arcAngle = -90;
+					}
+				}
+
+				if (cm.getC_ijk().getFirst() > cm.getC_xyz().getFirst()) {
+					if (cm.getMoveType().equals("G03")) { // 6
+						xTopLeft = cm.getC_ijk().getFirst() - raggio;
+						yTopLeft = cm.getC_ijk().getSecond() + raggio;
+						startAngle = 90;
+						arcAngle = 90;
+					} else { // 7
+						xTopLeft = cm.getC_ijk().getFirst() - raggio;
+						yTopLeft = cm.getC_ijk().getSecond() - raggio * 3;
+						startAngle = -180;
+						arcAngle = -90;
+					}
+				}
+			}
+
+			int width = raggio * 2;
+			int height = raggio * 2;
+
+			System.out.println("\nraggio: " + raggio);
+			System.out.println("xTopLeft: " + xTopLeft);
+			System.out.println("yTopLeft: " + yTopLeft);
+			System.out.println("width = height: " + width);
+			System.out.println("startAngle: " + startAngle);
+			System.out.println("arcAngle: " + arcAngle);
+
+			// alla fine disegno usando il metodo della libreria
+			g.drawArc(xTopLeft, yTopLeft, width, height, startAngle, arcAngle);
+
 		}
 	}
 }
