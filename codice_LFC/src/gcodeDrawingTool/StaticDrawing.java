@@ -20,7 +20,7 @@ public class StaticDrawing extends JFrame {
 	public static final int CANVAS_WIDTH = 700;
 	public static final int CANVAS_HEIGHT = 700;
 	private DrawCanvas canvas;
-
+	
 	public StaticDrawing(gcodeGrammarParser parser) {
 		canvas = new DrawCanvas();
 		canvas.setPreferredSize(new Dimension(CANVAS_WIDTH, CANVAS_HEIGHT));
@@ -37,6 +37,7 @@ public class StaticDrawing extends JFrame {
 	 * una per la stampa in coordinate relative
 	 */
 	private class DrawCanvas extends JPanel {
+	
 		@Override
 		public void paintComponent(Graphics g) {
 			super.paintComponent(g);
@@ -78,22 +79,22 @@ public class StaticDrawing extends JFrame {
 			 * CANVAS_HEIGHT + 50 - prova[i - 1], prova[i], CANVAS_HEIGHT + 50 - prova[i +
 			 * 1]); }
 			 */
-			g.drawLine(250, CANVAS_HEIGHT - 200, 250, CANVAS_HEIGHT - 50);
+			g.drawLine(0, CANVAS_HEIGHT - 50, 0, CANVAS_HEIGHT - 200);
 
 			Token moveType = new CommonToken(0);
-			moveType.setText("G02");
+			moveType.setText("G03");
 
 			Token X = new CommonToken(0);
-			X.setText("300");
+			X.setText("50");
 
 			Token Y = new CommonToken(0);
 			Y.setText("250");
 
 			Token I = new CommonToken(0);
-			I.setText("300");
+			I.setText("0");
 
 			Token J = new CommonToken(0);
-			J.setText("200");
+			J.setText("250");
 
 			Coordinate puntoFinale = new Coordinate(X, Y, null);
 			Coordinate puntoCentrale = new Coordinate(I, J, null);
@@ -112,7 +113,6 @@ public class StaticDrawing extends JFrame {
 
 			if (cm.getC_xyz().getFirst() == cm.getC_ijk().getFirst()) {
 				raggio = raggio2;
-
 				if (cm.getC_xyz().getSecond() > cm.getC_ijk().getSecond()) {
 					if (cm.getMoveType().equals("G02")) { // 1
 						startAngle = -180;

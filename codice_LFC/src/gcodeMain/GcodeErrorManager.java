@@ -335,4 +335,35 @@ public class GcodeErrorManager {
 		}
 	}
 
+	private static void check90degrees(gcodeGrammarParser parser) {
+		Collection<BlockDescriptor> valuesCollection = parser.h.blocks.values();
+		boolean error = false;
+		int i = 1;
+
+		int xp = 0; // coordinate iniziali
+		int yp = 0;
+
+		for (BlockDescriptor bd : valuesCollection) {
+			error = false;
+
+			if (bd.getInfoGeo() != null && bd.getInfoGeo().getCm() != null) {
+
+			} else if (bd.getInfoGeo() != null && bd.getInfoGeo().getLm() != null) {
+
+				if ((Integer) bd.getInfoGeo().getLm().getC_xyz().getFirst() != null)
+					xp = bd.getInfoGeo().getLm().getC_xyz().getFirst();
+				yp = bd.getInfoGeo().getLm().getC_xyz().getSecond();
+			}
+
+			if (error) {
+				Token t = new CommonToken(0);
+				t.setLine(i);
+				t.setCharPositionInLine(0);
+				parser.h.semanticErrorHandler(gcodeGrammarHandler.SEM_NO_ABS_BEFORE_REL, t, bd);
+			}
+
+			i++;
+		}
+	}
+
 }

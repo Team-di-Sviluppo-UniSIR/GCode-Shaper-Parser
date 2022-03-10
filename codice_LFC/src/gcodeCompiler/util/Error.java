@@ -107,6 +107,10 @@ public class Error implements Comparable<Error> {
 			s += "Semantic Error (" + gcodeGrammarHandler.SEM_NO_ABS_BEFORE_REL + ") ";
 			break;
 
+		case gcodeGrammarHandler.SEM_NOT_90_DEGREE:
+			s += "Semantic Error (" + gcodeGrammarHandler.SEM_NOT_90_DEGREE + ") ";
+			break;
+
 		}
 
 		s += "at [" + row + ", " + column + "]: " + message;

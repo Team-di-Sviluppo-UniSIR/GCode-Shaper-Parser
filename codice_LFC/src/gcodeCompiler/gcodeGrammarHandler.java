@@ -26,6 +26,7 @@ public class gcodeGrammarHandler {
 	public static final int SEM_JOB_SPEED_ERR = 11; // velocità lavorazione S non definita prima di G01, G02, G03
 	public static final int SEM_NO_SPEED_COORD_TYPE = 12; // velocità F o S senza aver definito tipo coordinata G90, G91
 	public static final int SEM_NO_ABS_BEFORE_REL = 13; // assenza riferimento in G90 prima di un G91
+	public static final int SEM_NOT_90_DEGREE = 14; // interpolazione circolare diversa da 90 gradi
 
 	// codici di supporto
 	public static final int UNDEFINED = -1;
@@ -323,6 +324,11 @@ public class gcodeGrammarHandler {
 		case SEM_NO_ABS_BEFORE_REL:
 			errore.setMessage("Found NO_ABS_BEFORE_REL_ERROR (" + bd.getNum_block() + " " + bd.toString()
 					+ ") - G90 reference needed before G91 command");
+			break;
+
+		case SEM_NOT_90_DEGREE:
+			errore.setMessage("Found NOT_90_DEGREE_ERROR (" + bd.getNum_block() + " " + bd.toString()
+					+ ") - circular interpolation must be exacty 90 degrees");
 			break;
 
 		}

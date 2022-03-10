@@ -41,14 +41,23 @@ public class Coordinate {
 	}
 
 	public int getFirst() {
-		return Integer.parseInt(first);
+		if (first != null)
+			return Integer.parseInt(first);
+		else
+			return (Integer) null;
 	}
 
 	public int getSecond() {
-		return Integer.parseInt(second);
+		if (second != null)
+			return Integer.parseInt(second);
+		else
+			return (Integer) null;
 	}
 
 	public int getThird() {
-		return Integer.parseInt(third);
+		if (third != null)
+			return Integer.parseInt(third);
+		else
+			return (Integer) null;
 	}
 }
