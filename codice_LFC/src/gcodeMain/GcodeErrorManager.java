@@ -7,6 +7,7 @@ import org.antlr.runtime.Token;
 import gcodeCompiler.gcodeGrammarParser;
 import gcodeCompiler.util.BlockDescriptor;
 import gcodeCompiler.util.Error;
+import gcodeDrawingTool.GCodeDrawingViewer;
 import gcodeCompiler.gcodeGrammarHandler;
 
 public class GcodeErrorManager {
@@ -347,12 +348,20 @@ public class GcodeErrorManager {
 			error = false;
 
 			if (bd.getInfoGeo() != null && bd.getInfoGeo().getCm() != null) {
+				// TODO verifica coordinate GO2/G03
+				
+				/*
+				 * if(condizione di errore)
+				 * 	error = true;
+				 */
 
 			} else if (bd.getInfoGeo() != null && bd.getInfoGeo().getLm() != null) {
 
 				if ((Integer) bd.getInfoGeo().getLm().getC_xyz().getFirst() != null)
 					xp = bd.getInfoGeo().getLm().getC_xyz().getFirst();
-				yp = bd.getInfoGeo().getLm().getC_xyz().getSecond();
+
+				if ((Integer) bd.getInfoGeo().getLm().getC_xyz().getSecond() != null)
+					yp = bd.getInfoGeo().getLm().getC_xyz().getSecond();
 			}
 
 			if (error) {
@@ -361,6 +370,9 @@ public class GcodeErrorManager {
 				t.setCharPositionInLine(0);
 				parser.h.semanticErrorHandler(gcodeGrammarHandler.SEM_NO_ABS_BEFORE_REL, t, bd);
 			}
+			
+			// TODO compensazione yp
+			
 
 			i++;
 		}

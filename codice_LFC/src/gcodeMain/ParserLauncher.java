@@ -6,7 +6,7 @@ import java.util.Collections;
 import org.antlr.runtime.RecognitionException;
 import gcodeCompiler.gcodeGrammarParser;
 import gcodeCompiler.util.Error;
-import gcodeDrawingTool.StaticDrawing;
+import gcodeDrawingTool.GCodeDrawingViewer;
 
 public class ParserLauncher {
 
@@ -28,7 +28,7 @@ public class ParserLauncher {
 		// qui innestiamo la funzione di stampa grafica
 		if (draw) {
 			System.out.println("\nE' possibile effettuare la stampa del disegno");
-			new StaticDrawing(parser);
+			new GCodeDrawingViewer(parser);
 		} else
 			System.out.println("\nNon è possibile effettuare la stampa del disegno");
 
