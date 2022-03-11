@@ -38,14 +38,14 @@ public class gcodeGrammarHandler {
 
 	List<Error> errorList; // lista degli errori
 	TokenStream lexerStream; // stream token lexer
-	Token last_token;
+	Token last_token; // ultimo token letto dal lexer
 
 	// classe base per la gestione di parser e lexer
 	public gcodeGrammarHandler(TokenStream ls) {
 		blocks = new TreeMap<Integer, BlockDescriptor>(); // istanzio struttura dati per blocchi
 		errorList = new ArrayList<Error>(); // lista degli errori è una lista di stringhe
 		lexerStream = ls; // istanzio stream token lexer
-		last_n = -1;
+		last_n = -1; // ultimo numero di blocco
 	}
 
 	// creazione del blocco
@@ -333,10 +333,11 @@ public class gcodeGrammarHandler {
 
 		}
 
-		// errori vanno ordinati
+		// inserimento errore generato all'interno della lista degli errori
 		errorList.add(errore);
 	}
 
+	// restitutizione ultimo token letto dal lexer
 	public Token getLast_token() {
 		return last_token;
 	}

@@ -25,6 +25,7 @@ public class GcodeErrorManager {
 				check = true;
 		}
 
+		// gestione degli errori semantici
 		if (parser.getErrorList().size() == 0 || !check) {
 			GcodeErrorManager.checkM30(parser);
 			GcodeErrorManager.checkToolError(parser);
@@ -74,12 +75,13 @@ public class GcodeErrorManager {
 		return false;
 	}
 
-	// Errore SEM_NO_END_PROG
+	// errore SEM_NO_END_PROG
 	private static void checkM30(gcodeGrammarParser parser) {
 		BlockDescriptor bd = parser.h.blocks.get(parser.h.blocks.lastKey());
 		Token last = parser.h.getLast_token();
 		last.setCharPositionInLine(bd.toString().length() + bd.getNum_block().toString().length() + 2);
 
+		// verifico che nell'ultim blocco sia presente il terminatore di programma (M30)
 		boolean check = false;
 		if (bd.getInfoTecM() == null)
 			check = true;
@@ -90,10 +92,14 @@ public class GcodeErrorManager {
 			parser.h.semanticErrorHandler(gcodeGrammarHandler.SEM_NO_END_PROG, last, bd);
 	}
 
-	// Errore SEM_TOOL_ERR
+	// errore SEM_TOOL_ERR
 	private static void checkToolError(gcodeGrammarParser parser) {
 		Collection<BlockDescriptor> valuesCollection = parser.h.blocks.values();
 
+		/*
+		 * verifico che quando dichiaro T[][] sia presente anche il comando di cambio
+		 * tool (M06)
+		 */
 		int i = 1;
 		for (BlockDescriptor bd : valuesCollection) {
 			boolean check = false;
@@ -125,6 +131,10 @@ public class GcodeErrorManager {
 		boolean error = false;
 		int i = 1;
 
+		/*
+		 * verifico che prima di aver dichiarato un movimento, sia stato definito il
+		 * tipo di coordinate (assolute o relative)
+		 */
 		for (BlockDescriptor bd : valuesCollection) {
 			error = false;
 
@@ -154,6 +164,11 @@ public class GcodeErrorManager {
 		boolean first = false;
 		int i = 1;
 
+		/*
+		 * verifico che prima di aver dichiarato una lavorazione di qualsiasi tipo
+		 * (qualsiasi movimento purchè non di spostamento G00, in cui non si ha contatto
+		 * del tool con il materiale di lavoro) sia stata attivata la rotazione del tool
+		 */
 		for (BlockDescriptor bd : valuesCollection) {
 			error = false;
 
@@ -177,13 +192,14 @@ public class GcodeErrorManager {
 		}
 	}
 
-	// controllo di aver chiamato M03/M04 quando chiamo M05
+	// errore SEM_END_ROT_ERR
 	private static void checkM05(gcodeGrammarParser parser) {
 		Collection<BlockDescriptor> valuesCollection = parser.h.blocks.values();
 		boolean presence = false;
 		boolean error = false;
 		int i = 1;
 
+		// controllo di aver chiamato M03/M04 quando chiamo M05
 		for (BlockDescriptor bd : valuesCollection) {
 			error = false;
 			if (bd.getInfoTecM() != null && bd.getInfoTecM().getRot_tool() != null)
@@ -205,13 +221,14 @@ public class GcodeErrorManager {
 		}
 	}
 
-	// controllo di aver definito le velocità prima di effettuare un movimento
+	// errore SEM_MOVE_SPEED_ERR
 	private static void checkSF_move(gcodeGrammarParser parser) {
 		Collection<BlockDescriptor> valuesCollection = parser.h.blocks.values();
 		boolean define_F = false;
 		boolean error = false;
 		int i = 1;
 
+		// controllo di aver definito le velocità prima di effettuare un movimento
 		for (BlockDescriptor bd : valuesCollection) {
 			error = false;
 
@@ -232,7 +249,7 @@ public class GcodeErrorManager {
 		}
 	}
 
-	// controllo di aver definito le velocità prima di effettuare una lavorazione
+	// errore SEM_JOB_SPEED_ERR
 	private static void checkSF_job(gcodeGrammarParser parser) {
 		Collection<BlockDescriptor> valuesCollection = parser.h.blocks.values();
 		boolean define_F = false;
@@ -240,6 +257,7 @@ public class GcodeErrorManager {
 		boolean error = false;
 		int i = 1;
 
+		// controllo di aver definito le velocità prima di effettuare una lavorazione
 		for (BlockDescriptor bd : valuesCollection) {
 			error = false;
 
@@ -269,13 +287,17 @@ public class GcodeErrorManager {
 		}
 	}
 
-	// controllo che prima di aver definito la velocità F o S, ho definito il tipo
-	// di coordinate (G90, G91)
+	// errore SEM_NO_SPEED_COORD_TYPE
 	private static void checkSpeedCoordType(gcodeGrammarParser parser) {
 		Collection<BlockDescriptor> valuesCollection = parser.h.blocks.values();
 		boolean presence = false;
 		boolean error = false;
 		int i = 1;
+
+		/*
+		 * controllo che prima di aver definito la velocità F o S, ho definito il tipo
+		 * di coordinate (G90, G91)
+		 */
 
 		for (BlockDescriptor bd : valuesCollection) {
 			error = false;
@@ -299,10 +321,7 @@ public class GcodeErrorManager {
 		}
 	}
 
-	/*
-	 * verifico che prima di avere movimento relativo G91 abbia riferimento assoluto
-	 * in G90 con coordinate espresse in G00
-	 */
+	// errore SEM_NO_ABS_BEFORE_REL
 	private static void checkAbsBeforeRel(gcodeGrammarParser parser) {
 		Collection<BlockDescriptor> valuesCollection = parser.h.blocks.values();
 		boolean presence = false;
@@ -310,6 +329,10 @@ public class GcodeErrorManager {
 		boolean error = false;
 		int i = 1;
 
+		/*
+		 * verifico che prima di avere movimento relativo G91 abbia riferimento assoluto
+		 * in G90 con coordinate espresse in G00
+		 */
 		for (BlockDescriptor bd : valuesCollection) {
 			error = false;
 
@@ -339,7 +362,7 @@ public class GcodeErrorManager {
 		}
 	}
 
-	// verifica che interpolazione circolare sia esattamente di 90 gradi
+	// errore SEM_NOT_90_DEGREE
 	private static void check90degrees(gcodeGrammarParser parser) {
 		Collection<BlockDescriptor> valuesCollection = parser.h.blocks.values();
 		boolean notError = false;
@@ -348,11 +371,13 @@ public class GcodeErrorManager {
 		int xp = 0; // coordinate iniziali
 		int yp = 0;
 
-		boolean cordAbsolute = true;
+		boolean cordAbsolute = true; // tipologia di coordinata
 
+		// verifica che interpolazione circolare sia esattamente di 90 gradi
 		for (BlockDescriptor bd : valuesCollection) {
 			notError = false;
 
+			// discrimino la tipologia di coordinata (assoluta o relativa)
 			if (bd.getInfoGeo().getCoord_abs_rel() != null) {
 				if (bd.getInfoGeo().getCoord_abs_rel().equals("G90"))
 					cordAbsolute = true;
@@ -360,14 +385,24 @@ public class GcodeErrorManager {
 					cordAbsolute = false;
 			}
 
+			/*
+			 * caso di movimento lineare: mi serve solo per calcolare il prossimo punto di
+			 * partenza
+			 */
 			if (bd.getInfoGeo() != null && bd.getInfoGeo().getLm() != null) {
 
+				// acquisizione x
 				if (bd.getInfoGeo().getLm().getC_xyz().isFirstNotNull())
 					if (cordAbsolute)
 						xp = bd.getInfoGeo().getLm().getC_xyz().getFirst();
 					else
+						/*
+						 * se coordinate sono relative, calcolo il punto assoluto sulla base dello
+						 * scostamento relativo
+						 */
 						xp = xp + bd.getInfoGeo().getLm().getC_xyz().getFirst();
 
+				// discorso analogo per la Y
 				if (bd.getInfoGeo().getLm().getC_xyz().isSecondNotNull())
 					if (cordAbsolute)
 						yp = bd.getInfoGeo().getLm().getC_xyz().getSecond();
@@ -375,17 +410,24 @@ public class GcodeErrorManager {
 						yp = yp + bd.getInfoGeo().getLm().getC_xyz().getSecond();
 			}
 
+			// caso di interpolazione circolare: verifico
 			if (bd.getInfoGeo() != null && bd.getInfoGeo().getCm() != null) {
-				CircularMove cm = bd.getInfoGeo().getCm();
-				String tipo = cm.getMoveType();
-				boolean orario = tipo.equals("G02");
+				CircularMove cm = bd.getInfoGeo().getCm(); // oggetto CircularMove
+				String tipo = cm.getMoveType(); // tipologia (G02 o G03)
+				boolean orario = tipo.equals("G02"); // interpolazione circolare oraria o antioraria
 
+				// coordinate punto finale
 				int xd = cm.getC_xyz().getFirst();
 				int yd = cm.getC_xyz().getSecond();
 
+				// coordiante centro
 				int xc = cm.getC_ijk().getFirst();
 				int yc = cm.getC_ijk().getSecond();
 
+				/*
+				 * se coordinate relative, calcolo punto assoluto sulla base dello scostamento
+				 * relativo
+				 */
 				if (!cordAbsolute) {
 					xd = xp + xd;
 					yd = yp + yd;
@@ -393,6 +435,7 @@ public class GcodeErrorManager {
 					yc = yp + yc;
 				}
 
+				// verifico gli 8 casi di interpolazione circolare
 				if (orario && yd >= yc && xc >= xp && xc == xd && yp == yc) // 1
 					notError = true;
 
@@ -417,9 +460,14 @@ public class GcodeErrorManager {
 				if (!orario && xp >= xc && yd >= yc && xd == xc && yc == yp) // 8
 					notError = true;
 
+				/*
+				 * il punto finale dell'interpolazione circolare diventa il punto di partenza
+				 * del prossimo movimento
+				 */
 				xp = xd;
 				yp = yd;
 
+				// nel caso sia presente errore, lo inserisco nella lista
 				if (!notError) {
 					Token t = new CommonToken(0);
 					t.setLine(i);

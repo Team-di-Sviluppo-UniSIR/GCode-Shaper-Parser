@@ -13,7 +13,6 @@ import gcodeCompiler.util.BlockDescriptor;
 import gcodeCompiler.util.CircularMove;
 import gcodeCompiler.util.Coordinate;
 
-
 @SuppressWarnings("serial")
 class StaticDrawingController extends JPanel {
 	gcodeGrammarParser parser;
@@ -50,6 +49,7 @@ class StaticDrawingController extends JPanel {
 		int startAngle = 0;
 		int arcAngle = 0;
 
+		// analisi degli 8 casi di interpolazione circolare da un punto
 		if (cm.getC_xyz().getFirst() == cm.getC_ijk().getFirst()) {
 			raggio = raggio2;
 			if (cm.getC_xyz().getSecond() > cm.getC_ijk().getSecond()) {
@@ -94,9 +94,11 @@ class StaticDrawingController extends JPanel {
 			}
 		}
 
+		// larghezza e altezza del rettangolo sono pari al doppio del raggio
 		int width = raggio * 2;
 		int height = raggio * 2;
 
+		// calcolo coordinate punto estremo in alto a sinistra del rettangolo
 		int xTopLeft = cm.getC_ijk().getFirst() - raggio;
 		int yTopLeft = GCodeDrawingViewer.CANVAS_HEIGHT - cm.getC_ijk().getSecond() - raggio;
 
@@ -105,10 +107,20 @@ class StaticDrawingController extends JPanel {
 
 	}
 
-	// static drawing (coordinate assolute e relative)
+	/*
+	 * static drawing (coordinate assolute e relative). Effettua la stampa sia
+	 * dell'interpolazione lineare che circolare (oraria ed antioraria).
+	 */
 	private void staticDrawing(gcodeGrammarParser parser, Graphics g) {
 		Collection<BlockDescriptor> valuesCollection = parser.h.blocks.values();
 		int i = 1;
+
+		/*
+		 * IMPORTANTE: per centrare il disegno nella finestra, viene adottata una
+		 * compensazione delle coordinate fornite nel file. Altro aspetto importante è
+		 * legato al fatto che il sistema di riferimento è ribaltato rispetto all'asse
+		 * Y. Viene risolto sottraendo le coordinate all'altezza della finestra.
+		 */
 		int compensazione_assi = 200;
 
 		// coordinate iniziali (origine degli assi)
@@ -124,8 +136,10 @@ class StaticDrawingController extends JPanel {
 		// coordinate assolute o relative
 		boolean coordAbsolute = true;
 
+		// scorro i blocchi per disegnarli
 		for (BlockDescriptor bd : valuesCollection) {
 
+			// informazione legata al tipo di coordinate
 			if (bd.getInfoGeo().getCoord_abs_rel() != null) {
 				if (bd.getInfoGeo().getCoord_abs_rel().equals("G90"))
 					coordAbsolute = true;
@@ -133,11 +147,16 @@ class StaticDrawingController extends JPanel {
 					coordAbsolute = false;
 			}
 
+			// movimento lineare
 			if (bd.getInfoGeo().getLm() != null) {
 				if (bd.getInfoGeo().getLm().getC_xyz().isFirstNotNull())
 					if (coordAbsolute)
 						x = bd.getInfoGeo().getLm().getC_xyz().getFirst();
 					else
+						/*
+						 * In caso di coordinate relative devo ottenere il punto assoluto sommando la
+						 * variazione al punto precedente
+						 */
 						x = xp + bd.getInfoGeo().getLm().getC_xyz().getFirst();
 				else
 					x = xp;
@@ -170,11 +189,16 @@ class StaticDrawingController extends JPanel {
 				zp = z;
 			}
 
+			// interpolazione circolare
 			if (bd.getInfoGeo().getCm() != null) {
+
+				// coordinate del punto finale
 				int xp_temp = bd.getInfoGeo().getCm().getC_xyz().getFirst();
 				int yp_temp = bd.getInfoGeo().getCm().getC_xyz().getSecond();
 				int zp_temp = bd.getInfoGeo().getCm().getC_xyz().getThird();
 
+				// nel caso di coordinare relative, calcolo punto finale e centro come
+				// variazione dal punto di riferimento precedente
 				if (!coordAbsolute) {
 					Coordinate finale = new Coordinate("X" + String.valueOf(xp + xp_temp),
 							"Y" + String.valueOf(yp + yp_temp), "Z" + String.valueOf(zp + zp_temp));
@@ -190,11 +214,19 @@ class StaticDrawingController extends JPanel {
 					CircularMove cm = new CircularMove(t, finale, centro);
 					circularInterpolation(cm, g, compensazione_assi);
 
+					/*
+					 * il nuovo punto di riferimento diventa il punto finale dell'interpolazione
+					 * circolare calcolato in coordinate assolute
+					 */
 					xp = cm.getC_xyz().getFirst();
 					yp = cm.getC_xyz().getSecond();
 					zp = cm.getC_xyz().getThird();
 
 				} else {
+					/*
+					 * calcolo nuovo punto di riferimento in caso di interpolazione circolare ma
+					 * direttamente in coordinate assolute (G90)
+					 */
 					xp = xp_temp;
 					yp = yp_temp;
 					zp = zp_temp;
