@@ -38,7 +38,11 @@ class StaticDrawingController extends JPanel {
 		g.drawString("     Work speed: 100", 10, 50);
 		g.drawString("Coordinate type: absolute", 10, 65);
 
-		staticDrawing(parser, g);
+		g.setColor(Color.WHITE);
+		drawReferenceSystem(g); // print del sistema di riferimento
+
+		g.setColor(Color.GREEN);
+		staticDrawing(parser, g); // print della figura
 	}
 
 	// versione definitiva dell'interpolazione circolare
@@ -113,7 +117,6 @@ class StaticDrawingController extends JPanel {
 	 */
 	private void staticDrawing(gcodeGrammarParser parser, Graphics g) {
 		Collection<BlockDescriptor> valuesCollection = parser.h.blocks.values();
-		int i = 1;
 
 		/*
 		 * IMPORTANTE: per centrare il disegno nella finestra, viene adottata una
@@ -121,7 +124,7 @@ class StaticDrawingController extends JPanel {
 		 * legato al fatto che il sistema di riferimento è ribaltato rispetto all'asse
 		 * Y. Viene risolto sottraendo le coordinate all'altezza della finestra.
 		 */
-		int compensazione_assi = 200;
+		int compensazione_assi = GCodeDrawingViewer.AXIS_COMP;
 
 		// coordinate iniziali (origine degli assi)
 		int xp = 0;
@@ -235,6 +238,42 @@ class StaticDrawingController extends JPanel {
 				}
 			}
 
+		}
+	}
+
+	private void drawReferenceSystem(Graphics g) {
+		int height = GCodeDrawingViewer.CANVAS_HEIGHT;
+		int comp = GCodeDrawingViewer.AXIS_COMP;
+		int diff = 2;
+		int axle = 600;
+
+		// asse Y
+		g.drawLine(comp - diff, height - comp + 30, comp - diff, height - axle);
+
+		// asse X
+		g.drawLine(comp - 30, height - comp + diff, axle, height - comp + diff);
+
+		g.setFont(new Font("Monospaced", Font.PLAIN, 20));
+
+		// freccia asse Y
+		g.drawLine(comp - diff + 5, height - axle + 15, comp - diff, height - axle);
+		g.drawLine(comp - diff - 5, height - axle + 15, comp - diff, height - axle);
+		g.drawString("Y", comp - diff - 25, height - axle + 15);
+
+		// freccia asse X
+		g.drawLine(585, height - comp + diff + 5, axle, height - comp + diff);
+		g.drawLine(585, height - comp + diff - 5, axle, height - comp + diff);
+		g.drawString("X", 585, height - comp + diff + 25);
+
+		g.setFont(new Font("Monospaced", Font.PLAIN, 10));
+
+		// tacche asse Y
+		for (int i = 25; i < 475; i += 25) {
+			g.drawLine(comp - 8, height - comp - i, comp - diff, height - comp - i);
+			g.drawString(String.valueOf(i), comp - 30, height - comp - i + 3);
+
+			g.drawLine(comp + i, height - comp + diff + 8, comp + i, height - comp + diff);
+			g.drawString(String.valueOf(i), comp + i - 8, height - comp + diff + 23);
 		}
 	}
 }

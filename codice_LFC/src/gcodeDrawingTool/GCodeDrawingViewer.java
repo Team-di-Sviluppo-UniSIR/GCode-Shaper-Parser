@@ -10,6 +10,7 @@ public class GCodeDrawingViewer extends JFrame {
 	// dimensioni della finestra
 	public static final int CANVAS_WIDTH = 700;
 	public static final int CANVAS_HEIGHT = 700;
+	public static final int AXIS_COMP = 100;
 	private StaticDrawingController canvas;
 
 	// metodo di display della finestra
