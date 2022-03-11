@@ -339,6 +339,7 @@ public class GcodeErrorManager {
 		}
 	}
 
+	// verifica che interpolazione circolare sia esattamente di 90 gradi
 	private static void check90degrees(gcodeGrammarParser parser) {
 		Collection<BlockDescriptor> valuesCollection = parser.h.blocks.values();
 		boolean notError = false;
@@ -352,10 +353,12 @@ public class GcodeErrorManager {
 		for (BlockDescriptor bd : valuesCollection) {
 			notError = false;
 
-			if (bd.getInfoGeo().getCoord_abs_rel() != null && bd.getInfoGeo().getCoord_abs_rel().equals("G90"))
-				cordAbsolute = true;
-			else
-				cordAbsolute = false;
+			if (bd.getInfoGeo().getCoord_abs_rel() != null) {
+				if (bd.getInfoGeo().getCoord_abs_rel().equals("G90"))
+					cordAbsolute = true;
+				else
+					cordAbsolute = false;
+			}
 
 			if (bd.getInfoGeo() != null && bd.getInfoGeo().getLm() != null) {
 
@@ -390,28 +393,28 @@ public class GcodeErrorManager {
 					yc = yp + yc;
 				}
 
-				if (orario && yd > yc && xc > xp && xc == xd && yp == yd) // 1
+				if (orario && yd >= yc && xc >= xp && xc == xd && yp == yc) // 1
 					notError = true;
 
-				if (!orario && xd > xc && yc > yp && xp == xc && yd == yc) // 2
+				if (!orario && xd >= xc && yc >= yp && xp == xc && yd == yc) // 2
 					notError = true;
 
-				if (orario && xd > xc && yp > yc && xp == xc && yc == yd) // 3
+				if (orario && xd >= xc && yp >= yc && xp == xc && yc == yd) // 3
 					notError = true;
 
-				if (!orario && xc > xp && yc > yd && yp == yc && xc == xd) // 4
+				if (!orario && xc >= xp && yc >= yd && yp == yc && xc == xd) // 4
 					notError = true;
 
-				if (orario && xp > xc && yc > yd && xc == xd && yc == yp) // 5
+				if (orario && xp >= xc && yc >= yd && xc == xd && yc == yp) // 5
 					notError = true;
 
-				if (!orario && xc > xd && yp > yc && yd == yc && xc == xp) // 6
+				if (!orario && xc >= xd && yp >= yc && yd == yc && xc == xp) // 6
 					notError = true;
 
-				if (orario && xc > xd && yc > yp && yd == yc && xp == xc) // 7
+				if (orario && xc >= xd && yc >= yp && yd == yc && xp == xc) // 7
 					notError = true;
 
-				if (!orario && xp > xc && yd > yc && xd == xc && yc == yp) // 8
+				if (!orario && xp >= xc && yd >= yc && xd == xc && yc == yp) // 8
 					notError = true;
 
 				xp = xd;

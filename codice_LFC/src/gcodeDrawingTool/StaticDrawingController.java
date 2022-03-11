@@ -4,22 +4,16 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.util.Collection;
-
 import javax.swing.JPanel;
-
 import org.antlr.runtime.CommonToken;
 import org.antlr.runtime.Token;
 
-import gcodeCompiler.gcodeGrammarHandler;
 import gcodeCompiler.gcodeGrammarParser;
 import gcodeCompiler.util.BlockDescriptor;
 import gcodeCompiler.util.CircularMove;
 import gcodeCompiler.util.Coordinate;
 
-/*
- * sarà necessario creare una funzione per la stampa in coordinate assolute ed
- * una per la stampa in coordinate relative
- */
+
 @SuppressWarnings("serial")
 class StaticDrawingController extends JPanel {
 	gcodeGrammarParser parser;
