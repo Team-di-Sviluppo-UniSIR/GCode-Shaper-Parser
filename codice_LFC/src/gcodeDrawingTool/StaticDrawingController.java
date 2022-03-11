@@ -207,9 +207,6 @@ class StaticDrawingController extends JPanel {
 
 					circularInterpolation(bd.getInfoGeo().getCm(), g, compensazione_assi);
 				}
-
-				parser.h.printBlocks();
-				System.out.println("\n\n");
 			}
 
 		}

@@ -6,7 +6,9 @@ import org.antlr.runtime.CommonToken;
 import org.antlr.runtime.Token;
 import gcodeCompiler.gcodeGrammarParser;
 import gcodeCompiler.util.BlockDescriptor;
+import gcodeCompiler.util.CircularMove;
 import gcodeCompiler.util.Error;
+import gcodeCompiler.util.InfoGeometriche;
 import gcodeDrawingTool.GCodeDrawingViewer;
 import gcodeCompiler.gcodeGrammarHandler;
 
@@ -33,6 +35,7 @@ public class GcodeErrorManager {
 			GcodeErrorManager.checkSF_job(parser);
 			GcodeErrorManager.checkSpeedCoordType(parser);
 			GcodeErrorManager.checkAbsBeforeRel(parser);
+			GcodeErrorManager.check90degrees(parser);
 
 			check = false;
 		}
@@ -338,43 +341,93 @@ public class GcodeErrorManager {
 
 	private static void check90degrees(gcodeGrammarParser parser) {
 		Collection<BlockDescriptor> valuesCollection = parser.h.blocks.values();
-		boolean error = false;
+		boolean notError = false;
 		int i = 1;
 
 		int xp = 0; // coordinate iniziali
 		int yp = 0;
 
+		boolean cordAbsolute = true;
+
 		for (BlockDescriptor bd : valuesCollection) {
-			error = false;
+			notError = false;
+
+			if (bd.getInfoGeo().getCoord_abs_rel() != null && bd.getInfoGeo().getCoord_abs_rel().equals("G90"))
+				cordAbsolute = true;
+			else
+				cordAbsolute = false;
+
+			if (bd.getInfoGeo() != null && bd.getInfoGeo().getLm() != null) {
+
+				if (bd.getInfoGeo().getLm().getC_xyz().isFirstNotNull())
+					if (cordAbsolute)
+						xp = bd.getInfoGeo().getLm().getC_xyz().getFirst();
+					else
+						xp = xp + bd.getInfoGeo().getLm().getC_xyz().getFirst();
+
+				if (bd.getInfoGeo().getLm().getC_xyz().isSecondNotNull())
+					if (cordAbsolute)
+						yp = bd.getInfoGeo().getLm().getC_xyz().getSecond();
+					else
+						yp = yp + bd.getInfoGeo().getLm().getC_xyz().getSecond();
+			}
 
 			if (bd.getInfoGeo() != null && bd.getInfoGeo().getCm() != null) {
-				// TODO verifica coordinate GO2/G03
-				
-				/*
-				 * if(condizione di errore)
-				 * 	error = true;
-				 */
+				CircularMove cm = bd.getInfoGeo().getCm();
+				String tipo = cm.getMoveType();
+				boolean orario = tipo.equals("G02");
 
-			} else if (bd.getInfoGeo() != null && bd.getInfoGeo().getLm() != null) {
+				int xd = cm.getC_xyz().getFirst();
+				int yd = cm.getC_xyz().getSecond();
 
-				if ((Integer) bd.getInfoGeo().getLm().getC_xyz().getFirst() != null)
-					xp = bd.getInfoGeo().getLm().getC_xyz().getFirst();
+				int xc = cm.getC_ijk().getFirst();
+				int yc = cm.getC_ijk().getSecond();
 
-				if ((Integer) bd.getInfoGeo().getLm().getC_xyz().getSecond() != null)
-					yp = bd.getInfoGeo().getLm().getC_xyz().getSecond();
+				if (!cordAbsolute) {
+					xd = xp + xd;
+					yd = yp + yd;
+					xc = xp + xc;
+					yc = yp + yc;
+				}
+
+				if (orario && yd > yc && xc > xp && xc == xd && yp == yd) // 1
+					notError = true;
+
+				if (!orario && xd > xc && yc > yp && xp == xc && yd == yc) // 2
+					notError = true;
+
+				if (orario && xd > xc && yp > yc && xp == xc && yc == yd) // 3
+					notError = true;
+
+				if (!orario && xc > xp && yc > yd && yp == yc && xc == xd) // 4
+					notError = true;
+
+				if (orario && xp > xc && yc > yd && xc == xd && yc == yp) // 5
+					notError = true;
+
+				if (!orario && xc > xd && yp > yc && yd == yc && xc == xp) // 6
+					notError = true;
+
+				if (orario && xc > xd && yc > yp && yd == yc && xp == xc) // 7
+					notError = true;
+
+				if (!orario && xp > xc && yd > yc && xd == xc && yc == yp) // 8
+					notError = true;
+
+				xp = xd;
+				yp = yd;
+
+				if (!notError) {
+					Token t = new CommonToken(0);
+					t.setLine(i);
+					t.setCharPositionInLine(0);
+					parser.h.semanticErrorHandler(gcodeGrammarHandler.SEM_NOT_90_DEGREE, t, bd);
+				}
+
 			}
-
-			if (error) {
-				Token t = new CommonToken(0);
-				t.setLine(i);
-				t.setCharPositionInLine(0);
-				parser.h.semanticErrorHandler(gcodeGrammarHandler.SEM_NO_ABS_BEFORE_REL, t, bd);
-			}
-			
-			// TODO compensazione yp
-			
 
 			i++;
+
 		}
 	}
 
