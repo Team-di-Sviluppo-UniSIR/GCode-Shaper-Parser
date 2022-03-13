@@ -7,6 +7,7 @@ import org.antlr.runtime.RecognitionException;
 import gcodeCompiler.gcodeGrammarParser;
 import gcodeCompiler.util.Error;
 import gcodeDrawingTool.GCodeDrawingViewer;
+import gcodeIDE.*;
 
 public class ParserLauncher {
 
@@ -29,6 +30,7 @@ public class ParserLauncher {
 		if (draw) {
 			System.out.println("\nE' possibile effettuare la stampa del disegno");
 			new GCodeDrawingViewer(parser);
+			GCodeIDEWindow.gCodeIDEWindow();
 		} else
 			System.out.println("\nNon è possibile effettuare la stampa del disegno");
 
