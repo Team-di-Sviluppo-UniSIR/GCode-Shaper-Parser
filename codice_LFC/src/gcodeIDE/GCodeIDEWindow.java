@@ -102,8 +102,8 @@ public class GCodeIDEWindow extends JFrame implements ActionListener {
 		String s = e.getActionCommand();
 
 		if (s.equals("PARSE")) {
-
 			String fileIn = ".\\temp_files\\temp.txt";
+
 			ByteArrayOutputStream baos = new ByteArrayOutputStream();
 			PrintStream ps = new PrintStream(baos);
 			PrintStream old = System.out;
@@ -111,7 +111,8 @@ public class GCodeIDEWindow extends JFrame implements ActionListener {
 
 			try {
 				PrintWriter out = new PrintWriter(fileIn);
-				out.println(areaInserimento.getText());
+
+				out.println(areaInserimento.getText().toUpperCase());
 				out.close();
 
 				System.out.println("GCODE PARSING WITH ANTLR3\n");
@@ -134,8 +135,8 @@ public class GCodeIDEWindow extends JFrame implements ActionListener {
 					areaConsole.setForeground(Color.BLACK);
 					areaConsole.setText(baos.toString());
 					areaConsole.setCaretPosition(0);
-
 					new GCodeDrawingViewer(parser);
+
 				} else {
 					System.out.println("\nNon è possibile effettuare la stampa del disegno");
 					System.out.flush();
