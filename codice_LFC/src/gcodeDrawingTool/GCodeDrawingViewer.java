@@ -20,6 +20,7 @@ public class GCodeDrawingViewer extends JFrame {
 		canvas.setPreferredSize(new Dimension(CANVAS_WIDTH, CANVAS_HEIGHT));
 		Container cp = getContentPane();
 		cp.add(canvas);
+		setResizable(false);
 		pack();
 		setTitle("G-Code Drawing Tool v1.0");
 		setVisible(true);
