@@ -8,6 +8,7 @@ import javax.swing.JPanel;
 import org.antlr.runtime.CommonToken;
 import org.antlr.runtime.Token;
 
+import gcodeCompiler.gcodeGrammarHandler;
 import gcodeCompiler.gcodeGrammarParser;
 import gcodeCompiler.util.BlockDescriptor;
 import gcodeCompiler.util.CircularMove;
@@ -26,23 +27,86 @@ class StaticDrawingController extends JPanel {
 		super.paintComponent(g);
 		setBackground(Color.BLACK); // colore sfondo
 
-		/*
-		 * disegno una casella di testo: la casella di testo fa parte dell'area
-		 * disegnabile, quindi dovremo limitare le coordinate in Y per evitare che
-		 * entrino nell'area della casella di testo
-		 */
+		drawSpecs(parser, g);
+		drawReferenceSystem(g); // print del sistema di riferimento
+		staticDrawing(parser, g); // print della figura
+	}
+
+	private void drawSpecs(gcodeGrammarParser parser, Graphics g) {
 		g.setColor(Color.WHITE);
 		g.setFont(new Font("Monospaced", Font.PLAIN, 15));
-		g.drawString("  Tool rotation: clockwise", 10, 20);
-		g.drawString("     Move speed: 100", 10, 35);
-		g.drawString("     Work speed: 100", 10, 50);
-		g.drawString("Coordinate type: absolute", 10, 65);
 
-		g.setColor(Color.WHITE);
-		drawReferenceSystem(g); // print del sistema di riferimento
+		Collection<BlockDescriptor> valuesCollection = parser.h.blocks.values();
+		boolean coordAbsolute = true;
+		boolean toolRotCW = true;
+		boolean lubeON = false;
+		int compensazione = 0;
 
-		g.setColor(Color.GREEN);
-		staticDrawing(parser, g); // print della figura
+		String moveSpeed = null;
+		String jobSpeed = null;
+
+		for (BlockDescriptor bd : valuesCollection) {
+			if (bd.getInfoGeo().getCoord_abs_rel() != null)
+				if (bd.getInfoGeo().getCoord_abs_rel().equals("G90"))
+					coordAbsolute = true;
+				else
+					coordAbsolute = false;
+
+			if (bd.getInfoTecM() != null && bd.getInfoTecM().getRot_tool() != null)
+				if (bd.getInfoTecM().getRot_tool().equals("M03"))
+					toolRotCW = true;
+				else
+					toolRotCW = false;
+
+			if (bd.getInfoTecM() != null && bd.getInfoTecM().getLube() != null)
+				if (bd.getInfoTecM().getLube().equals("M08"))
+					lubeON = true;
+
+			if (bd.getInfotTec().getFree_move_speed() != null)
+				moveSpeed = bd.getInfotTec().getFree_move_speed();
+
+			if (bd.getInfotTec().getJob_move_speed() != null)
+				jobSpeed = bd.getInfotTec().getJob_move_speed();
+
+			if (bd.getInfoGeo().getCompensation() != null)
+				if (bd.getInfoGeo().getCompensation().equals("G41"))
+					compensazione = 1;
+				else if (bd.getInfoGeo().getCompensation().equals("G42"))
+					compensazione = 2;
+
+		}
+
+		if (toolRotCW)
+			g.drawString("  Tool rotation: clockwise", 10, 45);
+		else
+			g.drawString("  Tool rotation: anticlockwise", 10, 45);
+
+		g.drawString("     Move speed: " + moveSpeed.substring(1) + " mm/min", 10, 65);
+		g.drawString("     Work speed: " + jobSpeed.substring(1) + " rpm", 10, 85);
+
+		if (coordAbsolute)
+			g.drawString("Coordinate type: absolute", 350, 45);
+		else
+			g.drawString("Coordinate type: relative", 350, 45);
+
+		switch (compensazione) {
+		case 0:
+			g.drawString("   Compensation: OFF", 350, 65);
+			break;
+
+		case 1:
+			g.drawString("   Compensation: left", 350, 65);
+			break;
+
+		case 2:
+			g.drawString("   Compensation: right", 350, 65);
+			break;
+		}
+
+		if (lubeON)
+			g.drawString("   Cooling lube: ON", 350, 85);
+		else
+			g.drawString("   Cooling lube: OFF", 350, 85);
 	}
 
 	// versione definitiva dell'interpolazione circolare
@@ -117,6 +181,7 @@ class StaticDrawingController extends JPanel {
 	 */
 	private void staticDrawing(gcodeGrammarParser parser, Graphics g) {
 		Collection<BlockDescriptor> valuesCollection = parser.h.blocks.values();
+		g.setColor(Color.GREEN);
 
 		/*
 		 * IMPORTANTE: per centrare il disegno nella finestra, viene adottata una
@@ -246,6 +311,8 @@ class StaticDrawingController extends JPanel {
 		int comp = GCodeDrawingViewer.AXIS_COMP;
 		int diff = 2;
 		int axle = 600;
+
+		g.setColor(Color.WHITE);
 
 		// asse Y
 		g.drawLine(comp - diff, height - comp + 30, comp - diff, height - axle);
