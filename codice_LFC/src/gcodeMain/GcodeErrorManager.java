@@ -13,7 +13,7 @@ import gcodeDrawingTool.GCodeDrawingViewer;
 import gcodeCompiler.gcodeGrammarHandler;
 
 public class GcodeErrorManager {
-	static boolean gcodeErrorMgmt(gcodeGrammarParser parser) {
+	public static boolean gcodeErrorMgmt(gcodeGrammarParser parser) {
 
 		/*
 		 * nel caso non ci siano errori lessicali o sintattici, effettua verifica
@@ -60,16 +60,16 @@ public class GcodeErrorManager {
 			int i = 0;
 
 			if (parser.getErrorList().size() == 1)
-				System.err.println("Parsing failed (1 error)\n");
+				System.out.println("Parsing failed (1 error)\n");
 			else
-				System.err.println("Parsing failed (" + parser.getErrorList().size() + " errors)\n");
+				System.out.println("Parsing failed (" + parser.getErrorList().size() + " errors)\n");
 
-			System.err.println("** Error list **");
+			System.out.println("** Error list **");
 
 			Collections.sort(parser.getErrorList());
 
 			for (Error errore : parser.getErrorList())
-				System.err.println(++i + " - " + errore.toString());
+				System.out.println(++i + " - " + errore.toString());
 		}
 
 		return false;

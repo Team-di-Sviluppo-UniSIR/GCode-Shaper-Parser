@@ -2,8 +2,20 @@ package gcodeIDE;
 
 // Java Program to create a simple JTextArea
 import java.awt.event.*;
+import java.io.ByteArrayOutputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.PrintStream;
+import java.io.PrintWriter;
 import java.awt.*;
 import javax.swing.*;
+
+import org.antlr.runtime.RecognitionException;
+
+import gcodeCompiler.*;
+import gcodeCompiler.util.*;
+import gcodeDrawingTool.*;
+import gcodeMain.*;
 
 @SuppressWarnings("serial")
 public class GCodeIDEWindow extends JFrame implements ActionListener {
@@ -31,6 +43,7 @@ public class GCodeIDEWindow extends JFrame implements ActionListener {
 		GCodeIDEWindow ide = new GCodeIDEWindow();
 
 		frame = new JFrame("G-Code IDE v1.0");
+		frame.setResizable(false);
 
 		parse_button = new JButton("PARSE");
 		reset_button = new JButton("RESET");
@@ -53,8 +66,6 @@ public class GCodeIDEWindow extends JFrame implements ActionListener {
 		scorrimento_console.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
 
 		scritta_console = new JLabel();
-
-		l = new JLabel("nothing entered"); // da togliere
 
 		JPanel p = new JPanel();
 		p.setLayout(null);
@@ -81,8 +92,6 @@ public class GCodeIDEWindow extends JFrame implements ActionListener {
 		scorrimento_console.setSize(WIDTH - 55, HEIGHT / 2 - 100);
 		scorrimento_console.setLocation(20, (HEIGHT / 2 - 50) + 20 + 20 + 50);
 
-		p.add(l);
-
 		frame.add(p);
 		frame.setSize(WIDTH, HEIGHT);
 		frame.show();
@@ -93,17 +102,59 @@ public class GCodeIDEWindow extends JFrame implements ActionListener {
 		String s = e.getActionCommand();
 
 		if (s.equals("PARSE")) {
-			l.setText(areaInserimento.getText());
+
+			String fileIn = ".\\temp_files\\temp.txt";
+			ByteArrayOutputStream baos = new ByteArrayOutputStream();
+			PrintStream ps = new PrintStream(baos);
+			PrintStream old = System.out;
+			System.setOut(ps);
+
+			try {
+				PrintWriter out = new PrintWriter(fileIn);
+				out.println(areaInserimento.getText());
+				out.close();
+
+				System.out.println("GCODE PARSING WITH ANTLR3\n");
+
+				// istanziamento parser
+				gcodeGrammarParser parser = new gcodeGrammarParser(fileIn);
+
+				// avvio parser
+				parser.gcode();
+
+				// check e print degli errori
+				boolean draw = GcodeErrorManager.gcodeErrorMgmt(parser);
+
+				// TODO
+				// qui innestiamo la funzione di stampa grafica
+				if (draw) {
+					System.out.println("\nE' possibile effettuare la stampa del disegno");
+					System.out.flush();
+					System.setOut(old);
+					areaConsole.setForeground(Color.BLACK);
+					areaConsole.setText(baos.toString());
+					areaConsole.setCaretPosition(0);
+
+					new GCodeDrawingViewer(parser);
+				} else {
+					System.out.println("\nNon è possibile effettuare la stampa del disegno");
+					System.out.flush();
+					System.setOut(old);
+					areaConsole.setForeground(Color.RED);
+					areaConsole.setText(baos.toString());
+					areaConsole.setCaretPosition(0);
+				}
+
+			} catch (IOException | RecognitionException e1) {
+				e1.printStackTrace();
+			}
+
 		}
 
 		if (s.equals("RESET")) {
-			l.setText(areaInserimento.getText() + " cancellato");
+			areaInserimento.setText("");
+			areaConsole.setText("");
 		}
-	}
-
-	// main class da togliere
-	public static void main(String[] args) {
-		gCodeIDEWindow();
 	}
 
 }
