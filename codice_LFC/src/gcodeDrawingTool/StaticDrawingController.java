@@ -77,36 +77,36 @@ class StaticDrawingController extends JPanel {
 		}
 
 		if (toolRotCW)
-			g.drawString("  Tool rotation: clockwise", 10, 45);
+			g.drawString("  Tool rotation: clockwise", 45, 45);
 		else
-			g.drawString("  Tool rotation: anticlockwise", 10, 45);
+			g.drawString("  Tool rotation: anticlockwise", 45, 45);
 
-		g.drawString("     Move speed: " + moveSpeed.substring(1) + " mm/min", 10, 65);
-		g.drawString("     Work speed: " + jobSpeed.substring(1) + " rpm", 10, 85);
+		g.drawString("     Move speed: " + moveSpeed.substring(1) + " mm/min", 45, 65);
+		g.drawString("     Work speed: " + jobSpeed.substring(1) + " rpm", 45, 85);
 
 		if (coordAbsolute)
-			g.drawString("Coordinate type: absolute", 350, 45);
+			g.drawString("Coordinate type: absolute", 385, 45);
 		else
-			g.drawString("Coordinate type: relative", 350, 45);
+			g.drawString("Coordinate type: relative", 385, 45);
 
 		switch (compensazione) {
 		case 0:
-			g.drawString("   Compensation: OFF", 350, 65);
+			g.drawString("   Compensation: OFF", 385, 65);
 			break;
 
 		case 1:
-			g.drawString("   Compensation: left", 350, 65);
+			g.drawString("   Compensation: left", 385, 65);
 			break;
 
 		case 2:
-			g.drawString("   Compensation: right", 350, 65);
+			g.drawString("   Compensation: right", 385, 65);
 			break;
 		}
 
 		if (lubeON)
-			g.drawString("   Cooling lube: ON", 350, 85);
+			g.drawString("   Cooling lube: ON", 385, 85);
 		else
-			g.drawString("   Cooling lube: OFF", 350, 85);
+			g.drawString("   Cooling lube: OFF", 385, 85);
 	}
 
 	// versione definitiva dell'interpolazione circolare
