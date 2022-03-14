@@ -51,14 +51,14 @@ public class GCodeIDEWindow extends JFrame implements ActionListener {
 		parse_button.addActionListener(ide);
 		reset_button.addActionListener(ide);
 
-		areaInserimento = new JTextArea(25, 40);
+		areaInserimento = new JTextArea(10, 40);
 		areaInserimento.setFont(new Font("Monospace", Font.PLAIN, 18));
 		areaInserimento.setForeground(Color.BLACK);
 		scorrimento_ins = new JScrollPane(areaInserimento);
-		scorrimento_ins.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+		scorrimento_ins.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED);
 		scorrimento_ins.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED);
 
-		areaConsole = new JTextArea(25, 60);
+		areaConsole = new JTextArea(10, 60);
 		areaConsole.setFont(new Font("Courier", Font.PLAIN, 16));
 		areaConsole.setEditable(false);
 		scorrimento_console = new JScrollPane(areaConsole);
