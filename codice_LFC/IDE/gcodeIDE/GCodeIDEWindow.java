@@ -126,7 +126,6 @@ public class GCodeIDEWindow extends JFrame implements ActionListener {
 				// check e print degli errori
 				boolean draw = GcodeErrorManager.gcodeErrorMgmt(parser);
 
-				// TODO
 				// qui innestiamo la funzione di stampa grafica
 				if (draw) {
 					System.out.println("\nE' possibile effettuare la stampa del disegno");
