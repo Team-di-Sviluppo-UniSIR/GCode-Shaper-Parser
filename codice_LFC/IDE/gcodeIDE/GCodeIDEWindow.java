@@ -20,17 +20,22 @@ import gcodeMain.*;
 @SuppressWarnings("serial")
 public class GCodeIDEWindow extends JFrame implements ActionListener {
 
-	private static final int WIDTH = 800;
-	private static final int HEIGHT = 800;
+	private static final int WIDTH = 1500;
+	private static final int HEIGHT = 850;
 
 	static JFrame frame;
 	static JButton parse_button;
 	static JButton reset_button;
-	static JTextArea areaInserimento;
+	static JTextArea areaGCODE;
 	static JLabel scritta_console;
-	static JScrollPane scorrimento_ins;
+	static JScrollPane scorrimento_GCODE;
 	static JTextArea areaConsole;
 	static JScrollPane scorrimento_console;
+	static JTextArea areaSHAPER;
+	static JScrollPane scorrimento_SHAPER;
+	static JButton convert_button;
+	static JLabel scritta_shaper;
+	static JLabel scritta_gcode;
 
 	static JLabel l; // da togliere
 
@@ -45,18 +50,27 @@ public class GCodeIDEWindow extends JFrame implements ActionListener {
 		frame = new JFrame("G-Code IDE v1.0");
 		frame.setResizable(false);
 
+		areaSHAPER = new JTextArea(10, 30);
+		areaSHAPER.setFont(new Font("Monospace", Font.PLAIN, 18));
+		areaSHAPER.setForeground(Color.BLACK);
+		scorrimento_SHAPER = new JScrollPane(areaSHAPER);
+		scorrimento_SHAPER.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED);
+		scorrimento_SHAPER.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+
+		convert_button = new JButton("CONVERT");
 		parse_button = new JButton("PARSE");
 		reset_button = new JButton("RESET");
 
+		convert_button.addActionListener(ide);
 		parse_button.addActionListener(ide);
 		reset_button.addActionListener(ide);
 
-		areaInserimento = new JTextArea(10, 40);
-		areaInserimento.setFont(new Font("Monospace", Font.PLAIN, 18));
-		areaInserimento.setForeground(Color.BLACK);
-		scorrimento_ins = new JScrollPane(areaInserimento);
-		scorrimento_ins.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED);
-		scorrimento_ins.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+		areaGCODE = new JTextArea(10, 30);
+		areaGCODE.setFont(new Font("Monospace", Font.PLAIN, 18));
+		areaGCODE.setForeground(Color.BLACK);
+		scorrimento_GCODE = new JScrollPane(areaGCODE);
+		scorrimento_GCODE.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED);
+		scorrimento_GCODE.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED);
 
 		areaConsole = new JTextArea(10, 60);
 		areaConsole.setFont(new Font("Courier", Font.PLAIN, 16));
@@ -66,31 +80,53 @@ public class GCodeIDEWindow extends JFrame implements ActionListener {
 		scorrimento_console.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
 
 		scritta_console = new JLabel();
+		scritta_shaper = new JLabel();
+		scritta_gcode = new JLabel();
 
 		JPanel p = new JPanel();
 		p.setLayout(null);
 
-		p.add(scorrimento_ins);
-		scorrimento_ins.setSize(WIDTH - 200, HEIGHT / 2 - 50);
-		scorrimento_ins.setLocation(20, 20);
+		p.add(scorrimento_SHAPER);
+		scorrimento_SHAPER.setSize(575, 800 / 2 - 50);
+		scorrimento_SHAPER.setLocation(20, 20 + 50);
+
+		p.add(scorrimento_GCODE);
+		scorrimento_GCODE.setSize(575, 800 / 2 - 50);
+		scorrimento_GCODE.setLocation(750, 20 + 50);
+		
+		p.add(convert_button);
+		convert_button.setSize(110, 30);
+		convert_button.setLocation(618, 165 + 50);
 
 		p.add(parse_button);
 		parse_button.setSize(110, 30);
-		parse_button.setLocation(WIDTH - 150, 140);
+		parse_button.setLocation(WIDTH - 150, 140 + 50);
 
 		p.add(reset_button);
 		reset_button.setSize(110, 30);
-		reset_button.setLocation(WIDTH - 150, 190);
+		reset_button.setLocation(WIDTH - 150, 190 + 50);
+		
+		p.add(scritta_shaper);
+		scritta_shaper.setText("Shaper Metalanguage Input");
+		scritta_shaper.setSize(300, 50);
+		scritta_shaper.setLocation(20, 20);
+		scritta_shaper.setFont(new Font("Monospace", Font.PLAIN, 20));
+		
+		p.add(scritta_gcode);
+		scritta_gcode.setText("G-Code Language Input");
+		scritta_gcode.setSize(300, 50);
+		scritta_gcode.setLocation(750, 20);
+		scritta_gcode.setFont(new Font("Monospace", Font.PLAIN, 20));
 
 		p.add(scritta_console);
-		scritta_console.setText("G-Code Parser Console");
+		scritta_console.setText("Console");
 		scritta_console.setSize(300, 50);
-		scritta_console.setLocation(20, (HEIGHT / 2 - 50) + 40);
+		scritta_console.setLocation(20, (800 / 2 - 50) + 40 + 50);
 		scritta_console.setFont(new Font("Monospace", Font.PLAIN, 20));
 
 		p.add(scorrimento_console);
-		scorrimento_console.setSize(WIDTH - 55, HEIGHT / 2 - 100);
-		scorrimento_console.setLocation(20, (HEIGHT / 2 - 50) + 20 + 20 + 50);
+		scorrimento_console.setSize(WIDTH - 55, 800 / 2 - 100);
+		scorrimento_console.setLocation(20, (800 / 2 - 50) + 20 + 20 + 50 + 50);
 
 		frame.add(p);
 		frame.setSize(WIDTH, HEIGHT);
@@ -100,7 +136,16 @@ public class GCodeIDEWindow extends JFrame implements ActionListener {
 	// if the button is pressed
 	public void actionPerformed(ActionEvent e) {
 		String s = e.getActionCommand();
+		
+		// premuto il pulsante CONVERT
+		if(s.equals("CONVERT")) {
+			// TODO
+			// instanziazione parser SHAPER
+			
+			areaGCODE.setText(areaSHAPER.getText().toUpperCase());
+		}
 
+		// premuto il pulsante PARSE
 		if (s.equals("PARSE")) {
 			String fileIn = ".\\temp_files\\temp.txt";
 
@@ -112,7 +157,7 @@ public class GCodeIDEWindow extends JFrame implements ActionListener {
 			try {
 				PrintWriter out = new PrintWriter(fileIn);
 
-				out.println(areaInserimento.getText().toUpperCase());
+				out.println(areaGCODE.getText().toUpperCase());
 				out.close();
 
 				System.out.println("GCODE PARSING WITH ANTLR3\n");
@@ -151,8 +196,10 @@ public class GCodeIDEWindow extends JFrame implements ActionListener {
 
 		}
 
+		// premuto il pulsante RESET
 		if (s.equals("RESET")) {
-			areaInserimento.setText("");
+			areaSHAPER.setText("");
+			areaGCODE.setText("");
 			areaConsole.setText("");
 		}
 	}
