@@ -236,10 +236,10 @@ public class GCodeIDEWindow extends JFrame implements ActionListener {
 					areaConsole.setForeground(Color.BLACK);
 					areaConsole.setText(baos.toString());
 					areaConsole.setCaretPosition(0);
-					new GCodeDrawingViewer(parser);
+					new GCodeDrawingViewer(parser); // apertura finestra disegno
 
 				} else {
-					System.out.println("\nWe tried all our best but we cannot draw the G-Code specification");
+					System.out.println("\nWe tried all our best but we couldnt draw the G-Code specification");
 					System.out.flush();
 					System.setOut(old);
 					areaConsole.setForeground(Color.RED);

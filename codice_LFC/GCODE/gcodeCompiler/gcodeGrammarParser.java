@@ -10,7 +10,7 @@ import java.io.IOException;
 import java.io.IOException;
 import java.io.StringReader;
 import java.util.ArrayList;
-import gcodeCompiler.util.Error;
+import gcodeCompiler.util.GCodeError;
 
 
 import org.antlr.runtime.*;
@@ -97,7 +97,7 @@ public class gcodeGrammarParser extends Parser {
 		return h;
 	}
 
-	public List<Error> getErrorList () {
+	public List<GCodeError> getErrorList () {
 	  return h.getErrorList();
 	}
 

@@ -7,7 +7,7 @@ import java.util.SortedMap;
 import java.util.TreeMap;
 import org.antlr.runtime.*;
 import gcodeCompiler.util.*;
-import gcodeCompiler.util.Error;
+import gcodeCompiler.util.GCodeError;
 
 public class gcodeGrammarHandler {
 	// codici degli errori lessicali e sintattici
@@ -36,14 +36,14 @@ public class gcodeGrammarHandler {
 	public SortedMap<Integer, BlockDescriptor> blocks;
 	private int last_n; // ultimo numero di blocco
 
-	List<Error> errorList; // lista degli errori
+	List<GCodeError> errorList; // lista degli errori
 	TokenStream lexerStream; // stream token lexer
 	Token last_token; // ultimo token letto dal lexer
 
 	// classe base per la gestione di parser e lexer
 	public gcodeGrammarHandler(TokenStream ls) {
 		blocks = new TreeMap<Integer, BlockDescriptor>(); // istanzio struttura dati per blocchi
-		errorList = new ArrayList<Error>(); // lista degli errori è una lista di stringhe
+		errorList = new ArrayList<GCodeError>(); // lista degli errori è una lista di stringhe
 		lexerStream = ls; // istanzio stream token lexer
 		last_n = -1; // ultimo numero di blocco
 	}
@@ -205,13 +205,13 @@ public class gcodeGrammarHandler {
 	}
 
 	// metodo che mi fornisce lista degli errori
-	public List<Error> getErrorList() {
+	public List<GCodeError> getErrorList() {
 		return errorList;
 	}
 
 	// h contiene le coordinate, m il messaggio d'errore standard
 	void handleError(String[] tokenNames, RecognitionException e, String h, String m) {
-		Error errore = new Error();
+		GCodeError errore = new GCodeError();
 
 		if (e.token.getType() == gcodeGrammarLexer.SCAN_ERROR) {
 			errore.setType((short) TOKEN_ERROR);
@@ -229,7 +229,7 @@ public class gcodeGrammarHandler {
 
 	// gestione degli errori semantici
 	public void semanticErrorHandler(int code, Token tk, BlockDescriptor bd) {
-		Error errore = new Error();
+		GCodeError errore = new GCodeError();
 		errore.setType((short) code);
 
 		// errore semantico è avvenuto in una certa posizione (riga, colonna)

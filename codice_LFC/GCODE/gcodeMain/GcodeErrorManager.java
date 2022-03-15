@@ -7,7 +7,7 @@ import org.antlr.runtime.Token;
 import gcodeCompiler.gcodeGrammarParser;
 import gcodeCompiler.util.BlockDescriptor;
 import gcodeCompiler.util.CircularMove;
-import gcodeCompiler.util.Error;
+import gcodeCompiler.util.GCodeError;
 import gcodeCompiler.util.InfoGeometriche;
 import gcodeDrawingTool.GCodeDrawingViewer;
 import gcodeCompiler.gcodeGrammarHandler;
@@ -20,7 +20,7 @@ public class GcodeErrorManager {
 		 * presenza errori semantici
 		 */
 		boolean check = false;
-		for (Error e : parser.getErrorList()) {
+		for (GCodeError e : parser.getErrorList()) {
 			if (e.getType() != gcodeGrammarHandler.TOKEN_ERROR || e.getType() != gcodeGrammarHandler.ERR_ON_SYNTAX)
 				check = true;
 		}
@@ -68,7 +68,7 @@ public class GcodeErrorManager {
 
 			Collections.sort(parser.getErrorList());
 
-			for (Error errore : parser.getErrorList())
+			for (GCodeError errore : parser.getErrorList())
 				System.out.println(++i + " - " + errore.toString());
 		}
 

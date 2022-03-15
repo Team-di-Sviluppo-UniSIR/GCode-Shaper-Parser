@@ -2,20 +2,20 @@ package gcodeCompiler.util;
 
 import gcodeCompiler.gcodeGrammarHandler;
 
-public class Error implements Comparable<Error> {
+public class GCodeError implements Comparable<GCodeError> {
 	private short type;
 	private short row;
 	private short column;
 	private String message;
 
-	public Error(short type, short row, short column, String message) {
+	public GCodeError(short type, short row, short column, String message) {
 		this.type = type;
 		this.row = row;
 		this.column = column;
 		this.message = message;
 	}
 
-	public Error() {
+	public GCodeError() {
 	}
 
 	public short getType() {
@@ -119,7 +119,7 @@ public class Error implements Comparable<Error> {
 	}
 
 	@Override
-	public int compareTo(Error o) {
+	public int compareTo(GCodeError o) {
 		if (this.row > o.getRow())
 			return 1;
 		else if (this.row < o.getRow()) {

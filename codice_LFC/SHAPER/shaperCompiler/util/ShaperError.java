@@ -1,6 +1,6 @@
 package shaperCompiler.util;
 
-import gcodeCompiler.util.Error;
+import gcodeCompiler.util.GCodeError;
 import shaperCompiler.shaperGrammarHandler;
 
 public class ShaperError implements Comparable<ShaperError> {
