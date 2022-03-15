@@ -1,6 +1,5 @@
 package gcodeIDE;
 
-// Java Program to create a simple JTextArea
 import java.awt.event.*;
 import java.io.ByteArrayOutputStream;
 import java.io.FileNotFoundException;
