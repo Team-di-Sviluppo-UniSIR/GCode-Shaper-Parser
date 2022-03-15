@@ -146,8 +146,6 @@ public class GCodeIDEWindow extends JFrame implements ActionListener {
 		
 		// premuto il pulsante CONVERT
 		if(s.equals("CONVERT")) {
-			// TODO
-			// instanziazione parser SHAPER
 			
 			String fileIn = ".\\temp_files\\shaper_temp.txt";
 			

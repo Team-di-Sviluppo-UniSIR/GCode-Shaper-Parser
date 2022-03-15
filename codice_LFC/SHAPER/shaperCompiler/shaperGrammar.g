@@ -55,51 +55,58 @@ public void displayRecognitionError(String[] tokenNames, RecognitionException e)
 
 shaper
 @init { setup(); }
-	:	
-		(circle | square | rectangle | triangle)
-		configuration
-		EOF
+	:	(
+			( c = circle s = configuration ) { h.createShape(s, c); }
+		| ( t = triangle s = configuration ) { h.createShape(s, t); }
+		| ( r = rectangle s = configuration ) { h.createShape(s, r); }
+		| ( q = square s = configuration ) { h.createShape(s, q); }
+		) EOF
 	;
 	
-circle
+circle returns [Circle c]
 	:	
-		CIRCLE CIRCLE_C OB X_CORD CB OB Y_CORD CB  CIRCLE_R
+		(CIRCLE CIRCLE_C OB x = X_CORD CB OB y = Y_CORD CB  r = CIRCLE_R)
+		{ c = new Circle($x, $y, $r); }
 	;
 	
-square
+square returns [Square s]
 	:	
-		SQUARE P1 OB X_CORD CB OB Y_CORD CB P2 OB X_CORD CB OB Y_CORD CB SQUARE_CONFIG
+		(SQUARE P1 OB x1 = X_CORD CB OB y1 = Y_CORD CB P2 x2 = OB X_CORD CB OB y2 = Y_CORD CB conf = SQUARE_CONFIG)
+		{ s = new Square($x1, $y1, $x2, $y2, $conf); }
 	;
 	
-rectangle
+rectangle returns [Rectangle r]
 	:	
-		RECTANGLE P1 OB X_CORD CB OB Y_CORD CB (P2 | RECTANGLE_B) OB X_CORD CB OB Y_CORD CB (P3 | RECTANGLE_H) OB X_CORD CB OB Y_CORD CB 
+		(RECTANGLE P1 OB x1 = X_CORD CB OB y1 = Y_CORD CB (P2 | RECTANGLE_B) OB x2 = X_CORD CB OB y2 = Y_CORD CB (P3 | RECTANGLE_H) OB x3 = X_CORD CB OB y3 = Y_CORD CB) 
+		{ r = new Rectangle($x1, $y1, $x2, $y2, $x3, $y3); }
 	;
 	
-triangle
+triangle returns [Triangle t]
 	:	
-		TRIANGLE P1 OB X_CORD CB OB Y_CORD CB P2 OB X_CORD CB OB Y_CORD CB P3 OB X_CORD CB OB Y_CORD CB 
+		(TRIANGLE P1 OB x1 = X_CORD CB OB y1 = Y_CORD CB P2 OB x2 = X_CORD CB OB y2 = Y_CORD CB P3 OB x3 = X_CORD CB OB y3 = Y_CORD CB)
+		{ t = new Triangle($x1, $y1, $x2, $y2, $x3, $y3); }
 	;
 	
-configuration
+configuration returns [Shape s]
 	:	
-		CONFIG (
-								(		MOVE_SPEED (
-																	JOB_SPEED LUBE_SET ON_OFF
-																|	LUBE_SET ON_OFF JOB_SPEED
+		 ( CONFIG (
+								(		ms = MOVE_SPEED (
+																	js = JOB_SPEED LUBE_SET lb = ON_OFF
+																|	LUBE_SET lb = ON_OFF js = JOB_SPEED
 												 			)
-								)
-							| (		JOB_SPEED (
-																	MOVE_SPEED LUBE_SET ON_OFF
-																|	LUBE_SET ON_OFF MOVE_SPEED
+								) { s = new Shape(' ', $ms, $js, $lb); } 
+							| (		js = JOB_SPEED (
+																	ms = MOVE_SPEED LUBE_SET lb = ON_OFF
+																|	LUBE_SET lb = ON_OFF ms = MOVE_SPEED
 												 			)
-								)
-							| (		LUBE_SET ON_OFF (
-																			JOB_SPEED MOVE_SPEED
-																		|	MOVE_SPEED JOB_SPEED
+								) { s = new Shape(' ', $ms, $js, $lb); } 
+							| (		LUBE_SET lb = ON_OFF (
+																			js = JOB_SPEED ms = MOVE_SPEED
+																		|	ms = MOVE_SPEED js = JOB_SPEED
 												 						)
-								)
-					 )
+								) { s = new Shape(' ', $ms, $js, $lb); } 
+					 ) 
+			)
 	;
 	
 CIRCLE

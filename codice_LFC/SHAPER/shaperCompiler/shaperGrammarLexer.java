@@ -1,4 +1,4 @@
-// $ANTLR 3.5.1 C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\SHAPER\\shaperCompiler\\shaperGrammar.g 2022-03-14 20:20:13
+// $ANTLR 3.5.1 C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\SHAPER\\shaperCompiler\\shaperGrammar.g 2022-03-15 20:56:35
 
 package shaperCompiler;
 
@@ -61,8 +61,8 @@ public class shaperGrammarLexer extends Lexer {
 		try {
 			int _type = CIRCLE;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\SHAPER\\shaperCompiler\\shaperGrammar.g:106:2: ( 'CIRCLE' )
-			// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\SHAPER\\shaperCompiler\\shaperGrammar.g:107:3: 'CIRCLE'
+			// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\SHAPER\\shaperCompiler\\shaperGrammar.g:113:2: ( 'CIRCLE' )
+			// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\SHAPER\\shaperCompiler\\shaperGrammar.g:114:3: 'CIRCLE'
 			{
 			match("CIRCLE"); 
 
@@ -82,8 +82,8 @@ public class shaperGrammarLexer extends Lexer {
 		try {
 			int _type = SQUARE;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\SHAPER\\shaperCompiler\\shaperGrammar.g:111:2: ( 'SQUARE' )
-			// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\SHAPER\\shaperCompiler\\shaperGrammar.g:112:3: 'SQUARE'
+			// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\SHAPER\\shaperCompiler\\shaperGrammar.g:118:2: ( 'SQUARE' )
+			// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\SHAPER\\shaperCompiler\\shaperGrammar.g:119:3: 'SQUARE'
 			{
 			match("SQUARE"); 
 
@@ -103,8 +103,8 @@ public class shaperGrammarLexer extends Lexer {
 		try {
 			int _type = RECTANGLE;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\SHAPER\\shaperCompiler\\shaperGrammar.g:116:2: ( 'RECTANGLE' )
-			// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\SHAPER\\shaperCompiler\\shaperGrammar.g:117:3: 'RECTANGLE'
+			// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\SHAPER\\shaperCompiler\\shaperGrammar.g:123:2: ( 'RECTANGLE' )
+			// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\SHAPER\\shaperCompiler\\shaperGrammar.g:124:3: 'RECTANGLE'
 			{
 			match("RECTANGLE"); 
 
@@ -124,8 +124,8 @@ public class shaperGrammarLexer extends Lexer {
 		try {
 			int _type = TRIANGLE;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\SHAPER\\shaperCompiler\\shaperGrammar.g:121:2: ( 'TRIANGLE' )
-			// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\SHAPER\\shaperCompiler\\shaperGrammar.g:122:3: 'TRIANGLE'
+			// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\SHAPER\\shaperCompiler\\shaperGrammar.g:128:2: ( 'TRIANGLE' )
+			// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\SHAPER\\shaperCompiler\\shaperGrammar.g:129:3: 'TRIANGLE'
 			{
 			match("TRIANGLE"); 
 
@@ -145,8 +145,8 @@ public class shaperGrammarLexer extends Lexer {
 		try {
 			int _type = CIRCLE_C;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\SHAPER\\shaperCompiler\\shaperGrammar.g:127:2: ( 'C' )
-			// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\SHAPER\\shaperCompiler\\shaperGrammar.g:128:3: 'C'
+			// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\SHAPER\\shaperCompiler\\shaperGrammar.g:134:2: ( 'C' )
+			// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\SHAPER\\shaperCompiler\\shaperGrammar.g:135:3: 'C'
 			{
 			match('C'); 
 			}
@@ -165,11 +165,11 @@ public class shaperGrammarLexer extends Lexer {
 		try {
 			int _type = CIRCLE_R;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\SHAPER\\shaperCompiler\\shaperGrammar.g:132:2: ( 'R' ( DIGIT )+ )
-			// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\SHAPER\\shaperCompiler\\shaperGrammar.g:133:3: 'R' ( DIGIT )+
+			// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\SHAPER\\shaperCompiler\\shaperGrammar.g:139:2: ( 'R' ( DIGIT )+ )
+			// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\SHAPER\\shaperCompiler\\shaperGrammar.g:140:3: 'R' ( DIGIT )+
 			{
 			match('R'); 
-			// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\SHAPER\\shaperCompiler\\shaperGrammar.g:133:7: ( DIGIT )+
+			// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\SHAPER\\shaperCompiler\\shaperGrammar.g:140:7: ( DIGIT )+
 			int cnt1=0;
 			loop1:
 			while (true) {
@@ -218,8 +218,8 @@ public class shaperGrammarLexer extends Lexer {
 		try {
 			int _type = SQUARE_L;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\SHAPER\\shaperCompiler\\shaperGrammar.g:137:2: ( 'L' )
-			// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\SHAPER\\shaperCompiler\\shaperGrammar.g:138:3: 'L'
+			// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\SHAPER\\shaperCompiler\\shaperGrammar.g:144:2: ( 'L' )
+			// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\SHAPER\\shaperCompiler\\shaperGrammar.g:145:3: 'L'
 			{
 			match('L'); 
 			}
@@ -238,8 +238,8 @@ public class shaperGrammarLexer extends Lexer {
 		try {
 			int _type = RECTANGLE_P;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\SHAPER\\shaperCompiler\\shaperGrammar.g:142:2: ( 'P' )
-			// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\SHAPER\\shaperCompiler\\shaperGrammar.g:143:3: 'P'
+			// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\SHAPER\\shaperCompiler\\shaperGrammar.g:149:2: ( 'P' )
+			// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\SHAPER\\shaperCompiler\\shaperGrammar.g:150:3: 'P'
 			{
 			match('P'); 
 			}
@@ -258,8 +258,8 @@ public class shaperGrammarLexer extends Lexer {
 		try {
 			int _type = RECTANGLE_B;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\SHAPER\\shaperCompiler\\shaperGrammar.g:147:2: ( 'B' )
-			// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\SHAPER\\shaperCompiler\\shaperGrammar.g:148:3: 'B'
+			// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\SHAPER\\shaperCompiler\\shaperGrammar.g:154:2: ( 'B' )
+			// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\SHAPER\\shaperCompiler\\shaperGrammar.g:155:3: 'B'
 			{
 			match('B'); 
 			}
@@ -278,8 +278,8 @@ public class shaperGrammarLexer extends Lexer {
 		try {
 			int _type = RECTANGLE_H;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\SHAPER\\shaperCompiler\\shaperGrammar.g:152:2: ( 'H' )
-			// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\SHAPER\\shaperCompiler\\shaperGrammar.g:153:3: 'H'
+			// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\SHAPER\\shaperCompiler\\shaperGrammar.g:159:2: ( 'H' )
+			// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\SHAPER\\shaperCompiler\\shaperGrammar.g:160:3: 'H'
 			{
 			match('H'); 
 			}
@@ -298,8 +298,8 @@ public class shaperGrammarLexer extends Lexer {
 		try {
 			int _type = P1;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\SHAPER\\shaperCompiler\\shaperGrammar.g:157:2: ( 'P1' )
-			// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\SHAPER\\shaperCompiler\\shaperGrammar.g:158:3: 'P1'
+			// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\SHAPER\\shaperCompiler\\shaperGrammar.g:164:2: ( 'P1' )
+			// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\SHAPER\\shaperCompiler\\shaperGrammar.g:165:3: 'P1'
 			{
 			match("P1"); 
 
@@ -319,8 +319,8 @@ public class shaperGrammarLexer extends Lexer {
 		try {
 			int _type = P2;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\SHAPER\\shaperCompiler\\shaperGrammar.g:162:2: ( 'P2' )
-			// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\SHAPER\\shaperCompiler\\shaperGrammar.g:163:3: 'P2'
+			// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\SHAPER\\shaperCompiler\\shaperGrammar.g:169:2: ( 'P2' )
+			// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\SHAPER\\shaperCompiler\\shaperGrammar.g:170:3: 'P2'
 			{
 			match("P2"); 
 
@@ -340,8 +340,8 @@ public class shaperGrammarLexer extends Lexer {
 		try {
 			int _type = P3;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\SHAPER\\shaperCompiler\\shaperGrammar.g:167:2: ( 'P3' )
-			// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\SHAPER\\shaperCompiler\\shaperGrammar.g:168:3: 'P3'
+			// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\SHAPER\\shaperCompiler\\shaperGrammar.g:174:2: ( 'P3' )
+			// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\SHAPER\\shaperCompiler\\shaperGrammar.g:175:3: 'P3'
 			{
 			match("P3"); 
 
@@ -361,7 +361,7 @@ public class shaperGrammarLexer extends Lexer {
 		try {
 			int _type = SQUARE_CONFIG;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\SHAPER\\shaperCompiler\\shaperGrammar.g:172:2: ( 'UP' | 'DOWN' )
+			// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\SHAPER\\shaperCompiler\\shaperGrammar.g:179:2: ( 'UP' | 'DOWN' )
 			int alt2=2;
 			int LA2_0 = input.LA(1);
 			if ( (LA2_0=='U') ) {
@@ -379,14 +379,14 @@ public class shaperGrammarLexer extends Lexer {
 
 			switch (alt2) {
 				case 1 :
-					// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\SHAPER\\shaperCompiler\\shaperGrammar.g:173:3: 'UP'
+					// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\SHAPER\\shaperCompiler\\shaperGrammar.g:180:3: 'UP'
 					{
 					match("UP"); 
 
 					}
 					break;
 				case 2 :
-					// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\SHAPER\\shaperCompiler\\shaperGrammar.g:174:4: 'DOWN'
+					// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\SHAPER\\shaperCompiler\\shaperGrammar.g:181:4: 'DOWN'
 					{
 					match("DOWN"); 
 
@@ -408,11 +408,11 @@ public class shaperGrammarLexer extends Lexer {
 		try {
 			int _type = X_CORD;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\SHAPER\\shaperCompiler\\shaperGrammar.g:179:2: ( 'X' ( DIGIT )+ )
-			// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\SHAPER\\shaperCompiler\\shaperGrammar.g:180:3: 'X' ( DIGIT )+
+			// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\SHAPER\\shaperCompiler\\shaperGrammar.g:186:2: ( 'X' ( DIGIT )+ )
+			// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\SHAPER\\shaperCompiler\\shaperGrammar.g:187:3: 'X' ( DIGIT )+
 			{
 			match('X'); 
-			// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\SHAPER\\shaperCompiler\\shaperGrammar.g:180:7: ( DIGIT )+
+			// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\SHAPER\\shaperCompiler\\shaperGrammar.g:187:7: ( DIGIT )+
 			int cnt3=0;
 			loop3:
 			while (true) {
@@ -461,11 +461,11 @@ public class shaperGrammarLexer extends Lexer {
 		try {
 			int _type = Y_CORD;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\SHAPER\\shaperCompiler\\shaperGrammar.g:185:2: ( 'Y' ( DIGIT )+ )
-			// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\SHAPER\\shaperCompiler\\shaperGrammar.g:186:3: 'Y' ( DIGIT )+
+			// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\SHAPER\\shaperCompiler\\shaperGrammar.g:192:2: ( 'Y' ( DIGIT )+ )
+			// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\SHAPER\\shaperCompiler\\shaperGrammar.g:193:3: 'Y' ( DIGIT )+
 			{
 			match('Y'); 
-			// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\SHAPER\\shaperCompiler\\shaperGrammar.g:186:7: ( DIGIT )+
+			// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\SHAPER\\shaperCompiler\\shaperGrammar.g:193:7: ( DIGIT )+
 			int cnt4=0;
 			loop4:
 			while (true) {
@@ -514,8 +514,8 @@ public class shaperGrammarLexer extends Lexer {
 		try {
 			int _type = CONFIG;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\SHAPER\\shaperCompiler\\shaperGrammar.g:191:2: ( 'CONFIGURATION' )
-			// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\SHAPER\\shaperCompiler\\shaperGrammar.g:192:3: 'CONFIGURATION'
+			// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\SHAPER\\shaperCompiler\\shaperGrammar.g:198:2: ( 'CONFIGURATION' )
+			// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\SHAPER\\shaperCompiler\\shaperGrammar.g:199:3: 'CONFIGURATION'
 			{
 			match("CONFIGURATION"); 
 
@@ -535,12 +535,12 @@ public class shaperGrammarLexer extends Lexer {
 		try {
 			int _type = MOVE_SPEED;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\SHAPER\\shaperCompiler\\shaperGrammar.g:196:2: ( 'MS' ( DIGIT )+ )
-			// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\SHAPER\\shaperCompiler\\shaperGrammar.g:197:3: 'MS' ( DIGIT )+
+			// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\SHAPER\\shaperCompiler\\shaperGrammar.g:203:2: ( 'MS' ( DIGIT )+ )
+			// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\SHAPER\\shaperCompiler\\shaperGrammar.g:204:3: 'MS' ( DIGIT )+
 			{
 			match("MS"); 
 
-			// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\SHAPER\\shaperCompiler\\shaperGrammar.g:197:8: ( DIGIT )+
+			// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\SHAPER\\shaperCompiler\\shaperGrammar.g:204:8: ( DIGIT )+
 			int cnt5=0;
 			loop5:
 			while (true) {
@@ -589,12 +589,12 @@ public class shaperGrammarLexer extends Lexer {
 		try {
 			int _type = JOB_SPEED;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\SHAPER\\shaperCompiler\\shaperGrammar.g:201:2: ( 'JS' ( DIGIT )+ )
-			// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\SHAPER\\shaperCompiler\\shaperGrammar.g:202:3: 'JS' ( DIGIT )+
+			// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\SHAPER\\shaperCompiler\\shaperGrammar.g:208:2: ( 'JS' ( DIGIT )+ )
+			// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\SHAPER\\shaperCompiler\\shaperGrammar.g:209:3: 'JS' ( DIGIT )+
 			{
 			match("JS"); 
 
-			// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\SHAPER\\shaperCompiler\\shaperGrammar.g:202:8: ( DIGIT )+
+			// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\SHAPER\\shaperCompiler\\shaperGrammar.g:209:8: ( DIGIT )+
 			int cnt6=0;
 			loop6:
 			while (true) {
@@ -643,8 +643,8 @@ public class shaperGrammarLexer extends Lexer {
 		try {
 			int _type = LUBE_SET;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\SHAPER\\shaperCompiler\\shaperGrammar.g:206:2: ( 'LB' )
-			// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\SHAPER\\shaperCompiler\\shaperGrammar.g:207:3: 'LB'
+			// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\SHAPER\\shaperCompiler\\shaperGrammar.g:213:2: ( 'LB' )
+			// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\SHAPER\\shaperCompiler\\shaperGrammar.g:214:3: 'LB'
 			{
 			match("LB"); 
 
@@ -664,7 +664,7 @@ public class shaperGrammarLexer extends Lexer {
 		try {
 			int _type = ON_OFF;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\SHAPER\\shaperCompiler\\shaperGrammar.g:211:2: ( 'ON' | 'OFF' )
+			// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\SHAPER\\shaperCompiler\\shaperGrammar.g:218:2: ( 'ON' | 'OFF' )
 			int alt7=2;
 			int LA7_0 = input.LA(1);
 			if ( (LA7_0=='O') ) {
@@ -698,14 +698,14 @@ public class shaperGrammarLexer extends Lexer {
 
 			switch (alt7) {
 				case 1 :
-					// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\SHAPER\\shaperCompiler\\shaperGrammar.g:212:3: 'ON'
+					// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\SHAPER\\shaperCompiler\\shaperGrammar.g:219:3: 'ON'
 					{
 					match("ON"); 
 
 					}
 					break;
 				case 2 :
-					// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\SHAPER\\shaperCompiler\\shaperGrammar.g:213:4: 'OFF'
+					// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\SHAPER\\shaperCompiler\\shaperGrammar.g:220:4: 'OFF'
 					{
 					match("OFF"); 
 
@@ -727,8 +727,8 @@ public class shaperGrammarLexer extends Lexer {
 		try {
 			int _type = OB;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\SHAPER\\shaperCompiler\\shaperGrammar.g:217:2: ( '(' )
-			// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\SHAPER\\shaperCompiler\\shaperGrammar.g:218:3: '('
+			// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\SHAPER\\shaperCompiler\\shaperGrammar.g:224:2: ( '(' )
+			// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\SHAPER\\shaperCompiler\\shaperGrammar.g:225:3: '('
 			{
 			match('('); 
 			}
@@ -747,8 +747,8 @@ public class shaperGrammarLexer extends Lexer {
 		try {
 			int _type = CB;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\SHAPER\\shaperCompiler\\shaperGrammar.g:222:2: ( ')' )
-			// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\SHAPER\\shaperCompiler\\shaperGrammar.g:223:3: ')'
+			// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\SHAPER\\shaperCompiler\\shaperGrammar.g:229:2: ( ')' )
+			// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\SHAPER\\shaperCompiler\\shaperGrammar.g:230:3: ')'
 			{
 			match(')'); 
 			}
@@ -765,7 +765,7 @@ public class shaperGrammarLexer extends Lexer {
 	// $ANTLR start "DIGIT"
 	public final void mDIGIT() throws RecognitionException {
 		try {
-			// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\SHAPER\\shaperCompiler\\shaperGrammar.g:229:2: ( '0' .. '9' )
+			// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\SHAPER\\shaperCompiler\\shaperGrammar.g:236:2: ( '0' .. '9' )
 			// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\SHAPER\\shaperCompiler\\shaperGrammar.g:
 			{
 			if ( (input.LA(1) >= '0' && input.LA(1) <= '9') ) {
@@ -790,7 +790,7 @@ public class shaperGrammarLexer extends Lexer {
 		try {
 			int _type = COMMENT;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\SHAPER\\shaperCompiler\\shaperGrammar.g:235:5: ( '//' (~ ( '\\n' | '\\r' ) )* ( '\\r' )? '\\n' | '/*' ( options {greedy=false; } : . )* '*/' )
+			// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\SHAPER\\shaperCompiler\\shaperGrammar.g:242:5: ( '//' (~ ( '\\n' | '\\r' ) )* ( '\\r' )? '\\n' | '/*' ( options {greedy=false; } : . )* '*/' )
 			int alt11=2;
 			int LA11_0 = input.LA(1);
 			if ( (LA11_0=='/') ) {
@@ -824,11 +824,11 @@ public class shaperGrammarLexer extends Lexer {
 
 			switch (alt11) {
 				case 1 :
-					// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\SHAPER\\shaperCompiler\\shaperGrammar.g:235:9: '//' (~ ( '\\n' | '\\r' ) )* ( '\\r' )? '\\n'
+					// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\SHAPER\\shaperCompiler\\shaperGrammar.g:242:9: '//' (~ ( '\\n' | '\\r' ) )* ( '\\r' )? '\\n'
 					{
 					match("//"); 
 
-					// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\SHAPER\\shaperCompiler\\shaperGrammar.g:235:14: (~ ( '\\n' | '\\r' ) )*
+					// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\SHAPER\\shaperCompiler\\shaperGrammar.g:242:14: (~ ( '\\n' | '\\r' ) )*
 					loop8:
 					while (true) {
 						int alt8=2;
@@ -857,7 +857,7 @@ public class shaperGrammarLexer extends Lexer {
 						}
 					}
 
-					// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\SHAPER\\shaperCompiler\\shaperGrammar.g:235:28: ( '\\r' )?
+					// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\SHAPER\\shaperCompiler\\shaperGrammar.g:242:28: ( '\\r' )?
 					int alt9=2;
 					int LA9_0 = input.LA(1);
 					if ( (LA9_0=='\r') ) {
@@ -865,7 +865,7 @@ public class shaperGrammarLexer extends Lexer {
 					}
 					switch (alt9) {
 						case 1 :
-							// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\SHAPER\\shaperCompiler\\shaperGrammar.g:235:28: '\\r'
+							// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\SHAPER\\shaperCompiler\\shaperGrammar.g:242:28: '\\r'
 							{
 							match('\r'); 
 							}
@@ -878,11 +878,11 @@ public class shaperGrammarLexer extends Lexer {
 					}
 					break;
 				case 2 :
-					// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\SHAPER\\shaperCompiler\\shaperGrammar.g:236:9: '/*' ( options {greedy=false; } : . )* '*/'
+					// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\SHAPER\\shaperCompiler\\shaperGrammar.g:243:9: '/*' ( options {greedy=false; } : . )* '*/'
 					{
 					match("/*"); 
 
-					// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\SHAPER\\shaperCompiler\\shaperGrammar.g:236:14: ( options {greedy=false; } : . )*
+					// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\SHAPER\\shaperCompiler\\shaperGrammar.g:243:14: ( options {greedy=false; } : . )*
 					loop10:
 					while (true) {
 						int alt10=2;
@@ -903,7 +903,7 @@ public class shaperGrammarLexer extends Lexer {
 
 						switch (alt10) {
 						case 1 :
-							// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\SHAPER\\shaperCompiler\\shaperGrammar.g:236:42: .
+							// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\SHAPER\\shaperCompiler\\shaperGrammar.g:243:42: .
 							{
 							matchAny(); 
 							}
@@ -935,8 +935,8 @@ public class shaperGrammarLexer extends Lexer {
 		try {
 			int _type = WS;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\SHAPER\\shaperCompiler\\shaperGrammar.g:240:5: ( ( ' ' | '\\t' | '\\r' | '\\n' ) )
-			// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\SHAPER\\shaperCompiler\\shaperGrammar.g:240:9: ( ' ' | '\\t' | '\\r' | '\\n' )
+			// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\SHAPER\\shaperCompiler\\shaperGrammar.g:247:5: ( ( ' ' | '\\t' | '\\r' | '\\n' ) )
+			// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\SHAPER\\shaperCompiler\\shaperGrammar.g:247:9: ( ' ' | '\\t' | '\\r' | '\\n' )
 			{
 			if ( (input.LA(1) >= '\t' && input.LA(1) <= '\n')||input.LA(1)=='\r'||input.LA(1)==' ' ) {
 				input.consume();
@@ -963,8 +963,8 @@ public class shaperGrammarLexer extends Lexer {
 		try {
 			int _type = SCAN_ERROR;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\SHAPER\\shaperCompiler\\shaperGrammar.g:248:2: ( . )
-			// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\SHAPER\\shaperCompiler\\shaperGrammar.g:249:3: .
+			// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\SHAPER\\shaperCompiler\\shaperGrammar.g:255:2: ( . )
+			// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\SHAPER\\shaperCompiler\\shaperGrammar.g:256:3: .
 			{
 			matchAny(); 
 			}
