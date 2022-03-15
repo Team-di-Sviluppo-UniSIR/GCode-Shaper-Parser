@@ -16,6 +16,9 @@ import gcodeCompiler.*;
 import gcodeCompiler.util.*;
 import gcodeDrawingTool.*;
 import gcodeMain.*;
+import shaperCompiler.*;
+import shaperCompiler.util.*;
+import shaperMain.*;
 
 @SuppressWarnings("serial")
 public class GCodeIDEWindow extends JFrame implements ActionListener {
@@ -34,10 +37,9 @@ public class GCodeIDEWindow extends JFrame implements ActionListener {
 	static JTextArea areaSHAPER;
 	static JScrollPane scorrimento_SHAPER;
 	static JButton convert_button;
+	static JButton clear_button;
 	static JLabel scritta_shaper;
 	static JLabel scritta_gcode;
-
-	static JLabel l; // da togliere
 
 	GCodeIDEWindow() {
 	}
@@ -60,10 +62,12 @@ public class GCodeIDEWindow extends JFrame implements ActionListener {
 		convert_button = new JButton("CONVERT");
 		parse_button = new JButton("PARSE");
 		reset_button = new JButton("RESET");
+		clear_button = new JButton("CLEAR");
 
 		convert_button.addActionListener(ide);
 		parse_button.addActionListener(ide);
 		reset_button.addActionListener(ide);
+		clear_button.addActionListener(ide);
 
 		areaGCODE = new JTextArea(10, 30);
 		areaGCODE.setFont(new Font("Monospace", Font.PLAIN, 18));
@@ -100,11 +104,15 @@ public class GCodeIDEWindow extends JFrame implements ActionListener {
 
 		p.add(parse_button);
 		parse_button.setSize(110, 30);
-		parse_button.setLocation(WIDTH - 150, 140 + 50);
+		parse_button.setLocation(WIDTH - 150, 140 + 25);
+		
+		p.add(clear_button);
+		clear_button.setSize(110, 30);
+		clear_button.setLocation(WIDTH - 150, 165 + 50);
 
 		p.add(reset_button);
 		reset_button.setSize(110, 30);
-		reset_button.setLocation(WIDTH - 150, 190 + 50);
+		reset_button.setLocation(WIDTH - 150, 190 + 50 + 25);
 		
 		p.add(scritta_shaper);
 		scritta_shaper.setText("Shaper Metalanguage Input");
@@ -142,12 +150,61 @@ public class GCodeIDEWindow extends JFrame implements ActionListener {
 			// TODO
 			// instanziazione parser SHAPER
 			
-			areaGCODE.setText(areaSHAPER.getText().toUpperCase());
+			String fileIn = ".\\temp_files\\shaper_temp.txt";
+			
+			ByteArrayOutputStream baos = new ByteArrayOutputStream();
+			PrintStream ps = new PrintStream(baos);
+			PrintStream old = System.out;
+			System.setOut(ps);
+			
+			try {
+				PrintWriter out = new PrintWriter(fileIn);
+
+				out.println(areaSHAPER.getText().toUpperCase());
+				out.close();
+
+				System.out.println("SHAPER METALANGUAGE PARSING WITH ANTLR3\n");
+
+				// istanziamento parser
+				shaperGrammarParser parser = new shaperGrammarParser(fileIn);
+
+				// avvio parser
+				parser.shaper();
+
+				// check e print degli errori
+				boolean convert = ShaperErrorManager.shaperErrorMgmt(parser);
+
+				// qui innestiamo la funzione di stampa grafica
+				if (convert) {
+					System.out.println("\nShaper Metalanguage specification successfully converted to G-Code");
+					System.out.flush();
+					System.setOut(old);
+					areaConsole.setForeground(Color.BLACK);
+					areaConsole.setText(baos.toString());
+					areaConsole.setCaretPosition(0);
+					
+					// TODO
+					// operazione da fare quando non ci sono stati errori
+					// conversione SHAPER in GCODE
+					areaGCODE.setText("GCODE WILL BE SHOWN HERE");
+
+				} else {
+					System.out.println("\nCannot convert Shaper Metalanguage specification to G-Code");
+					System.out.flush();
+					System.setOut(old);
+					areaConsole.setForeground(Color.RED);
+					areaConsole.setText(baos.toString());
+					areaConsole.setCaretPosition(0);
+				}
+
+			} catch (IOException | RecognitionException e1) {
+				e1.printStackTrace();
+			}
 		}
 
 		// premuto il pulsante PARSE
 		if (s.equals("PARSE")) {
-			String fileIn = ".\\temp_files\\temp.txt";
+			String fileIn = ".\\temp_files\\gcode_temp.txt";
 
 			ByteArrayOutputStream baos = new ByteArrayOutputStream();
 			PrintStream ps = new PrintStream(baos);
@@ -160,7 +217,7 @@ public class GCodeIDEWindow extends JFrame implements ActionListener {
 				out.println(areaGCODE.getText().toUpperCase());
 				out.close();
 
-				System.out.println("GCODE PARSING WITH ANTLR3\n");
+				System.out.println("GCODE LANGUAGE PARSING WITH ANTLR3\n");
 
 				// istanziamento parser
 				gcodeGrammarParser parser = new gcodeGrammarParser(fileIn);
@@ -173,7 +230,7 @@ public class GCodeIDEWindow extends JFrame implements ActionListener {
 
 				// qui innestiamo la funzione di stampa grafica
 				if (draw) {
-					System.out.println("\nE' possibile effettuare la stampa del disegno");
+					System.out.println("\nG-Code drawing is on it's way");
 					System.out.flush();
 					System.setOut(old);
 					areaConsole.setForeground(Color.BLACK);
@@ -182,7 +239,7 @@ public class GCodeIDEWindow extends JFrame implements ActionListener {
 					new GCodeDrawingViewer(parser);
 
 				} else {
-					System.out.println("\nNon è possibile effettuare la stampa del disegno");
+					System.out.println("\nWe tried all our best but we cannot draw the G-Code specification");
 					System.out.flush();
 					System.setOut(old);
 					areaConsole.setForeground(Color.RED);
@@ -194,6 +251,12 @@ public class GCodeIDEWindow extends JFrame implements ActionListener {
 				e1.printStackTrace();
 			}
 
+		}
+		
+		// premuto il pulsante CLEAR
+		if(s.equals("CLEAR")) {
+			areaSHAPER.setText("");
+			areaConsole.setText("");
 		}
 
 		// premuto il pulsante RESET

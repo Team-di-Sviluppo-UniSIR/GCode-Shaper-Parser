@@ -1,8 +1,9 @@
 package shaperCompiler.util;
 
+import gcodeCompiler.util.Error;
 import shaperCompiler.shaperGrammarHandler;
 
-public class ShaperError {
+public class ShaperError implements Comparable<ShaperError> {
 	private short type;
 	private short row;
 	private short column;
@@ -16,6 +17,38 @@ public class ShaperError {
 	}
 
 	public ShaperError() {
+	}
+
+	public short getType() {
+		return type;
+	}
+
+	public void setType(short type) {
+		this.type = type;
+	}
+
+	public short getRow() {
+		return row;
+	}
+
+	public void setRow(short row) {
+		this.row = row;
+	}
+
+	public short getColumn() {
+		return column;
+	}
+
+	public void setColumn(short column) {
+		this.column = column;
+	}
+
+	public String getMessage() {
+		return message;
+	}
+
+	public void setMessage(String message) {
+		this.message = message;
 	}
 
 	@Override
@@ -38,20 +71,19 @@ public class ShaperError {
 		return s;
 	}
 
-	public void setType(short type) {
-		this.type = type;
+	@Override
+	public int compareTo(ShaperError o) {
+		if (this.row > o.getRow())
+			return 1;
+		else if (this.row < o.getRow()) {
+			return -1;
+		} else {
+			if (this.column > o.getColumn())
+				return 1;
+			else if (this.column < o.getColumn())
+				return -1;
+			else
+				return 0;
+		}
 	}
-
-	public void setMessage(String message) {
-		this.message = message;
-	}
-
-	public void setRow(short row) {
-		this.row = row;
-	}
-
-	public void setColumn(short column) {
-		this.column = column;
-	}
-
 }

@@ -12,23 +12,20 @@ public class ParserLauncher {
 
 	public static void main(String[] args) throws FileNotFoundException, IOException, RecognitionException {
 
-	  	String fileIn = ".\\resources\\shaperInput.shaper";
+		/*
+		 * String fileIn = ".\\resources\\shaperInput.shaper";
+		 * 
+		 * System.out.println ("Parsing con ANTLR");
+		 * 
+		 * shaperGrammarParser parser = new shaperGrammarParser(fileIn);
+		 * parser.shaper();
+		 * 
+		 * if (parser.getErrorList().size() == 0)
+		 * System.out.println("Parsing completato con successo"); else { int i = 0;
+		 * System.out.println("Errori rilevati"); for (ShaperError msg :
+		 * parser.getErrorList()) System.out.println(++i + " - " + msg); }
+		 */
 
-		System.out.println ("Parsing con ANTLR");
-
-		shaperGrammarParser parser = new shaperGrammarParser(fileIn);
-		parser.shaper();
-		
-		if (parser.getErrorList().size() == 0)
-			System.out.println("Parsing completato con successo");
-		else {
-			int i = 0;
-			System.out.println("Errori rilevati");
-			for (ShaperError msg : parser.getErrorList())
-				System.out.println(++i + " - " + msg);
-		}
-		
-		
 		GCodeIDEWindow.gCodeIDEWindow();
 
 	}
