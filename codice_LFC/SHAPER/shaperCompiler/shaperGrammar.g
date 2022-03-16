@@ -23,7 +23,7 @@ import java.io.IOException;
 
 // inserito il costruttore
 @members {
-shaperGrammarHandler h;
+public shaperGrammarHandler h;
 
  public shaperGrammarParser(String fileIn) throws FileNotFoundException, IOException {		
 	this(new CommonTokenStream(
@@ -65,13 +65,13 @@ shaper
 	
 circle returns [Circle c]
 	:	
-		(CIRCLE CIRCLE_C OB x = X_CORD CB OB y = Y_CORD CB  r = CIRCLE_R)
+		(CIRCLE CIRCLE_C OB x = X_CORD CB OB y = Y_CORD CB r = CIRCLE_R)
 		{ c = new Circle($x, $y, $r); }
 	;
 	
 square returns [Square s]
 	:	
-		(SQUARE P1 OB x1 = X_CORD CB OB y1 = Y_CORD CB P2 x2 = OB X_CORD CB OB y2 = Y_CORD CB conf = SQUARE_CONFIG)
+		(SQUARE P1 OB x1 = X_CORD CB OB y1 = Y_CORD CB P2 OB x2 = X_CORD CB OB y2 = Y_CORD CB conf = SQUARE_CONFIG)
 		{ s = new Square($x1, $y1, $x2, $y2, $conf); }
 	;
 	

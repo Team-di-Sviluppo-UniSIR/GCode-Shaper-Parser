@@ -4,6 +4,7 @@ import org.antlr.runtime.Token;
 
 public class Shape {
 	char type;
+
 	String moveSpeed;
 	String jobSpeed;
 	String lube;
@@ -21,6 +22,11 @@ public class Shape {
 
 	public Shape(char type) {
 		this.type = type;
+	}
+
+	@Override
+	public String toString() {
+		return "CONFIGURATION: " + moveSpeed + " " + jobSpeed + " " + lube;
 	}
 
 	public char getType() {

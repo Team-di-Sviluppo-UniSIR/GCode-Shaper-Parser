@@ -24,4 +24,58 @@ public class Triangle extends Shape {
 		this.yp3 = yp3.getText();
 	}
 
+	@Override
+	public String toString() {
+		return "     TRIANGLE: P1(" + xp1 + ", " + yp1 + ") P2(" + xp2 + ", " + yp2 + ") P3(" + xp3 + ", " + yp3 + ")\n"
+				+ super.toString();
+	}
+
+	public String getXp1() {
+		return xp1;
+	}
+
+	public void setXp1(String xp1) {
+		this.xp1 = xp1;
+	}
+
+	public String getYp1() {
+		return yp1;
+	}
+
+	public void setYp1(String yp1) {
+		this.yp1 = yp1;
+	}
+
+	public String getXp2() {
+		return xp2;
+	}
+
+	public void setXp2(String xp2) {
+		this.xp2 = xp2;
+	}
+
+	public String getYp2() {
+		return yp2;
+	}
+
+	public void setYp2(String yp2) {
+		this.yp2 = yp2;
+	}
+
+	public String getXp3() {
+		return xp3;
+	}
+
+	public void setXp3(String xp3) {
+		this.xp3 = xp3;
+	}
+
+	public String getYp3() {
+		return yp3;
+	}
+
+	public void setYp3(String yp3) {
+		this.yp3 = yp3;
+	}
+
 }

@@ -1,5 +1,6 @@
 package shaperMain;
 
+import java.io.FileNotFoundException;
 import java.util.Collections;
 
 import shaperCompiler.*;
@@ -35,9 +36,8 @@ public class ShaperErrorManager {
 			System.out.println("Parsing completed successfully with 0 errors\n");
 			System.out.println("** Shape Infos **");
 
-			// TODO
 			// print delle informazioni struttura dati shaper
-			// parser.h.printBlocks();
+			parser.h.printShape();
 			return true;
 
 		} else {

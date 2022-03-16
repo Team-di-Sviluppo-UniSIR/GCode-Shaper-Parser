@@ -180,10 +180,9 @@ public class GCodeIDEWindow extends JFrame implements ActionListener {
 					areaConsole.setText(baos.toString());
 					areaConsole.setCaretPosition(0);
 					
-					// TODO
 					// operazione da fare quando non ci sono stati errori
 					// conversione SHAPER in GCODE
-					areaGCODE.setText("GCODE WILL BE SHOWN HERE");
+					areaGCODE.setText(parser.h.conversion());
 
 				} else {
 					System.out.println("\nCannot convert Shaper Metalanguage specification to G-Code");

@@ -13,13 +13,19 @@ public class Square extends Shape {
 	String orientation;
 
 	public Square(Token xp1, Token yp1, Token xp2, Token yp2, Token orientation) {
-		
+
 		super('s');
 		this.xp1 = xp1.getText();
 		this.yp1 = yp1.getText();
 		this.xp2 = xp2.getText();
 		this.yp2 = yp2.getText();
 		this.orientation = orientation.getText();
+	}
+
+	@Override
+	public String toString() {
+		return "       SQUARE: P1(" + xp1 + ", " + yp1 + ") P2(" + xp2 + ", " + yp2 + ") " + orientation + "\n"
+				+ super.toString();
 	}
 
 }

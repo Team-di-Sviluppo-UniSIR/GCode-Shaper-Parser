@@ -1,4 +1,4 @@
-// $ANTLR 3.5.1 C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\SHAPER\\shaperCompiler\\shaperGrammar.g 2022-03-15 20:56:35
+// $ANTLR 3.5.1 C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\SHAPER\\shaperCompiler\\shaperGrammar.g 2022-03-16 18:50:38
 
 package shaperCompiler;
 
@@ -71,7 +71,7 @@ public class shaperGrammarParser extends Parser {
 	@Override public String getGrammarFileName() { return "C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\SHAPER\\shaperCompiler\\shaperGrammar.g"; }
 
 
-	shaperGrammarHandler h;
+	public shaperGrammarHandler h;
 
 	 public shaperGrammarParser(String fileIn) throws FileNotFoundException, IOException {		
 		this(new CommonTokenStream(
@@ -224,7 +224,7 @@ public class shaperGrammarParser extends Parser {
 
 			}
 
-			match(input,EOF,FOLLOW_EOF_in_shaper149); 
+			match(input,EOF,FOLLOW_EOF_in_shaper150); 
 			}
 
 		}
@@ -257,14 +257,14 @@ public class shaperGrammarParser extends Parser {
 			// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\SHAPER\\shaperCompiler\\shaperGrammar.g:68:3: ( CIRCLE CIRCLE_C OB x= X_CORD CB OB y= Y_CORD CB r= CIRCLE_R )
 			// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\SHAPER\\shaperCompiler\\shaperGrammar.g:68:4: CIRCLE CIRCLE_C OB x= X_CORD CB OB y= Y_CORD CB r= CIRCLE_R
 			{
-			match(input,CIRCLE,FOLLOW_CIRCLE_in_circle169); 
-			match(input,CIRCLE_C,FOLLOW_CIRCLE_C_in_circle171); 
-			match(input,OB,FOLLOW_OB_in_circle173); 
-			x=(Token)match(input,X_CORD,FOLLOW_X_CORD_in_circle179); 
-			match(input,CB,FOLLOW_CB_in_circle181); 
-			match(input,OB,FOLLOW_OB_in_circle183); 
-			y=(Token)match(input,Y_CORD,FOLLOW_Y_CORD_in_circle189); 
-			match(input,CB,FOLLOW_CB_in_circle191); 
+			match(input,CIRCLE,FOLLOW_CIRCLE_in_circle170); 
+			match(input,CIRCLE_C,FOLLOW_CIRCLE_C_in_circle172); 
+			match(input,OB,FOLLOW_OB_in_circle174); 
+			x=(Token)match(input,X_CORD,FOLLOW_X_CORD_in_circle180); 
+			match(input,CB,FOLLOW_CB_in_circle182); 
+			match(input,OB,FOLLOW_OB_in_circle184); 
+			y=(Token)match(input,Y_CORD,FOLLOW_Y_CORD_in_circle190); 
+			match(input,CB,FOLLOW_CB_in_circle192); 
 			r=(Token)match(input,CIRCLE_R,FOLLOW_CIRCLE_R_in_circle198); 
 			}
 
@@ -286,7 +286,7 @@ public class shaperGrammarParser extends Parser {
 
 
 	// $ANTLR start "square"
-	// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\SHAPER\\shaperCompiler\\shaperGrammar.g:72:1: square returns [Square s] : ( SQUARE P1 OB x1= X_CORD CB OB y1= Y_CORD CB P2 x2= OB X_CORD CB OB y2= Y_CORD CB conf= SQUARE_CONFIG ) ;
+	// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\SHAPER\\shaperCompiler\\shaperGrammar.g:72:1: square returns [Square s] : ( SQUARE P1 OB x1= X_CORD CB OB y1= Y_CORD CB P2 OB x2= X_CORD CB OB y2= Y_CORD CB conf= SQUARE_CONFIG ) ;
 	public final Square square() throws RecognitionException {
 		Square s = null;
 
@@ -298,11 +298,11 @@ public class shaperGrammarParser extends Parser {
 		Token conf=null;
 
 		try {
-			// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\SHAPER\\shaperCompiler\\shaperGrammar.g:73:2: ( ( SQUARE P1 OB x1= X_CORD CB OB y1= Y_CORD CB P2 x2= OB X_CORD CB OB y2= Y_CORD CB conf= SQUARE_CONFIG ) )
-			// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\SHAPER\\shaperCompiler\\shaperGrammar.g:74:3: ( SQUARE P1 OB x1= X_CORD CB OB y1= Y_CORD CB P2 x2= OB X_CORD CB OB y2= Y_CORD CB conf= SQUARE_CONFIG )
+			// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\SHAPER\\shaperCompiler\\shaperGrammar.g:73:2: ( ( SQUARE P1 OB x1= X_CORD CB OB y1= Y_CORD CB P2 OB x2= X_CORD CB OB y2= Y_CORD CB conf= SQUARE_CONFIG ) )
+			// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\SHAPER\\shaperCompiler\\shaperGrammar.g:74:3: ( SQUARE P1 OB x1= X_CORD CB OB y1= Y_CORD CB P2 OB x2= X_CORD CB OB y2= Y_CORD CB conf= SQUARE_CONFIG )
 			{
-			// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\SHAPER\\shaperCompiler\\shaperGrammar.g:74:3: ( SQUARE P1 OB x1= X_CORD CB OB y1= Y_CORD CB P2 x2= OB X_CORD CB OB y2= Y_CORD CB conf= SQUARE_CONFIG )
-			// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\SHAPER\\shaperCompiler\\shaperGrammar.g:74:4: SQUARE P1 OB x1= X_CORD CB OB y1= Y_CORD CB P2 x2= OB X_CORD CB OB y2= Y_CORD CB conf= SQUARE_CONFIG
+			// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\SHAPER\\shaperCompiler\\shaperGrammar.g:74:3: ( SQUARE P1 OB x1= X_CORD CB OB y1= Y_CORD CB P2 OB x2= X_CORD CB OB y2= Y_CORD CB conf= SQUARE_CONFIG )
+			// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\SHAPER\\shaperCompiler\\shaperGrammar.g:74:4: SQUARE P1 OB x1= X_CORD CB OB y1= Y_CORD CB P2 OB x2= X_CORD CB OB y2= Y_CORD CB conf= SQUARE_CONFIG
 			{
 			match(input,SQUARE,FOLLOW_SQUARE_in_square223); 
 			match(input,P1,FOLLOW_P1_in_square225); 
@@ -313,8 +313,8 @@ public class shaperGrammarParser extends Parser {
 			y1=(Token)match(input,Y_CORD,FOLLOW_Y_CORD_in_square243); 
 			match(input,CB,FOLLOW_CB_in_square245); 
 			match(input,P2,FOLLOW_P2_in_square247); 
-			x2=(Token)match(input,OB,FOLLOW_OB_in_square253); 
-			match(input,X_CORD,FOLLOW_X_CORD_in_square255); 
+			match(input,OB,FOLLOW_OB_in_square249); 
+			x2=(Token)match(input,X_CORD,FOLLOW_X_CORD_in_square255); 
 			match(input,CB,FOLLOW_CB_in_square257); 
 			match(input,OB,FOLLOW_OB_in_square259); 
 			y2=(Token)match(input,Y_CORD,FOLLOW_Y_CORD_in_square265); 
@@ -691,15 +691,15 @@ public class shaperGrammarParser extends Parser {
 	public static final BitSet FOLLOW_configuration_in_shaper118 = new BitSet(new long[]{0x0000000000000000L});
 	public static final BitSet FOLLOW_square_in_shaper134 = new BitSet(new long[]{0x0000000000000200L});
 	public static final BitSet FOLLOW_configuration_in_shaper140 = new BitSet(new long[]{0x0000000000000000L});
-	public static final BitSet FOLLOW_EOF_in_shaper149 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_CIRCLE_in_circle169 = new BitSet(new long[]{0x0000000000000040L});
-	public static final BitSet FOLLOW_CIRCLE_C_in_circle171 = new BitSet(new long[]{0x0000000000004000L});
-	public static final BitSet FOLLOW_OB_in_circle173 = new BitSet(new long[]{0x0000000020000000L});
-	public static final BitSet FOLLOW_X_CORD_in_circle179 = new BitSet(new long[]{0x0000000000000010L});
-	public static final BitSet FOLLOW_CB_in_circle181 = new BitSet(new long[]{0x0000000000004000L});
-	public static final BitSet FOLLOW_OB_in_circle183 = new BitSet(new long[]{0x0000000040000000L});
-	public static final BitSet FOLLOW_Y_CORD_in_circle189 = new BitSet(new long[]{0x0000000000000010L});
-	public static final BitSet FOLLOW_CB_in_circle191 = new BitSet(new long[]{0x0000000000000080L});
+	public static final BitSet FOLLOW_EOF_in_shaper150 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_CIRCLE_in_circle170 = new BitSet(new long[]{0x0000000000000040L});
+	public static final BitSet FOLLOW_CIRCLE_C_in_circle172 = new BitSet(new long[]{0x0000000000004000L});
+	public static final BitSet FOLLOW_OB_in_circle174 = new BitSet(new long[]{0x0000000020000000L});
+	public static final BitSet FOLLOW_X_CORD_in_circle180 = new BitSet(new long[]{0x0000000000000010L});
+	public static final BitSet FOLLOW_CB_in_circle182 = new BitSet(new long[]{0x0000000000004000L});
+	public static final BitSet FOLLOW_OB_in_circle184 = new BitSet(new long[]{0x0000000040000000L});
+	public static final BitSet FOLLOW_Y_CORD_in_circle190 = new BitSet(new long[]{0x0000000000000010L});
+	public static final BitSet FOLLOW_CB_in_circle192 = new BitSet(new long[]{0x0000000000000080L});
 	public static final BitSet FOLLOW_CIRCLE_R_in_circle198 = new BitSet(new long[]{0x0000000000000002L});
 	public static final BitSet FOLLOW_SQUARE_in_square223 = new BitSet(new long[]{0x0000000000010000L});
 	public static final BitSet FOLLOW_P1_in_square225 = new BitSet(new long[]{0x0000000000004000L});
@@ -710,7 +710,7 @@ public class shaperGrammarParser extends Parser {
 	public static final BitSet FOLLOW_Y_CORD_in_square243 = new BitSet(new long[]{0x0000000000000010L});
 	public static final BitSet FOLLOW_CB_in_square245 = new BitSet(new long[]{0x0000000000020000L});
 	public static final BitSet FOLLOW_P2_in_square247 = new BitSet(new long[]{0x0000000000004000L});
-	public static final BitSet FOLLOW_OB_in_square253 = new BitSet(new long[]{0x0000000020000000L});
+	public static final BitSet FOLLOW_OB_in_square249 = new BitSet(new long[]{0x0000000020000000L});
 	public static final BitSet FOLLOW_X_CORD_in_square255 = new BitSet(new long[]{0x0000000000000010L});
 	public static final BitSet FOLLOW_CB_in_square257 = new BitSet(new long[]{0x0000000000004000L});
 	public static final BitSet FOLLOW_OB_in_square259 = new BitSet(new long[]{0x0000000040000000L});
