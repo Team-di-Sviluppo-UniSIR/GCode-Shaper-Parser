@@ -1,7 +1,6 @@
 package shaperCompiler;
 
 import java.io.FileNotFoundException;
-import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
 import org.antlr.runtime.RecognitionException;
@@ -63,7 +62,7 @@ public class shaperGrammarHandler {
 		errorList.add(errore);
 	}
 
-	public String conversion() throws FileNotFoundException {
+	public String conversion() {
 
 		String preamble = "N10 G90 G40 F" + s.getMoveSpeed().substring(1) + " S" + s.getJobSpeed().substring(1)
 				+ " M03 " + s.getLube();
@@ -89,6 +88,7 @@ public class shaperGrammarHandler {
 					+ c.getY_center().substring(1) + "\n";
 			body += "N60 G02 X" + x_center + " Y" + (y_center + radius) + " I" + c.getX_center().substring(1) + " J"
 					+ c.getY_center().substring(1);
+
 			finish = "N70 M05 ";
 			break;
 
@@ -98,22 +98,115 @@ public class shaperGrammarHandler {
 			body += "N30 G01 " + t.getXp2() + " " + t.getYp2() + "\n";
 			body += "N40 G01 " + t.getXp3() + " " + t.getYp3() + "\n";
 			body += "N50 G01 " + t.getXp1() + " " + t.getYp1();
+
 			finish = "N60 M05 ";
 			break;
 
 		case 'r':
 			Rectangle r = (Rectangle) s;
-			body = "N20 G00 " + r.getXp1() + " " + r.getYp1() + "\n";
-			body += "N30 G01 " + r.getXp2() + " " + r.getYp2() + "\n";
-			body += "N40 G01 " + r.getXp2() + " " + r.getYp3() + "\n";
-			body += "N50 G01 " + r.getXp3() + " " + r.getYp3() + "\n";
-			body += "N60 G01 " + r.getXp1() + " " + r.getYp1();
+
+			int xp1 = Integer.parseInt(r.getXp1().substring(1));
+			int yp1 = Integer.parseInt(r.getYp1().substring(1));
+			int xp2 = Integer.parseInt(r.getXp2().substring(1));
+			int yp2 = Integer.parseInt(r.getYp2().substring(1));
+			int xp3 = Integer.parseInt(r.getXp3().substring(1));
+			int yp3 = Integer.parseInt(r.getYp3().substring(1));
+
+			if (yp1 - yp2 != 0 && xp2 - xp1 != 0) {
+				// risoluzione geometrica
+				double mAB = (yp2 - yp1) / (xp2 - xp1);
+				double mCA = -1 / mAB;
+
+				/*
+				 * METODO DI CRAMER ax + by = e kx + dy = f
+				 */
+				double a = -mAB;
+				double b = 1;
+				double e = -mAB * xp3 + yp3;
+
+				double k = -mCA;
+				double d = 1;
+				double f = -mCA * xp2 + yp2;
+
+				double x = ((e * d) - (b * f)) / ((a * d) - (b * k));
+				double y = ((a * f) - (e * k)) / ((a * d) - (b * k));
+
+				int xp4 = (int) Math.round(x);
+				int yp4 = (int) Math.round(y);
+
+				body = "N20 G00 X" + xp1 + " Y" + yp1 + "\n";
+				body += "N30 G01 X" + xp2 + " Y" + yp2 + "\n";
+				body += "N40 G01 X" + xp4 + " Y" + yp4 + "\n";
+				body += "N50 G01 X" + xp3 + " Y" + yp3 + "\n";
+				body += "N60 G01 X" + xp1 + " Y" + yp1;
+
+			} else if (yp1 - yp2 == 0) {
+				body = "N20 G00 " + r.getXp1() + " " + r.getYp1() + "\n";
+				body += "N30 G01 " + r.getXp2() + " " + r.getYp2() + "\n";
+				body += "N40 G01 " + r.getXp2() + " " + r.getYp3() + "\n";
+				body += "N50 G01 " + r.getXp3() + " " + r.getYp3() + "\n";
+				body += "N60 G01 " + r.getXp1() + " " + r.getYp1();
+
+			} else {
+				body = "N20 G00 " + r.getXp3() + " " + r.getYp3() + "\n";
+				body += "N30 G01 " + r.getXp1() + " " + r.getYp1() + "\n";
+				body += "N40 G01 " + r.getXp2() + " " + r.getYp2() + "\n";
+				body += "N50 G01 " + r.getXp3() + " " + r.getYp2() + "\n";
+				body += "N60 G01 " + r.getXp3() + " " + r.getYp3();
+			}
+
 			finish = "N70 M05 ";
+
+			break;
+
+		case 's':
+			Square q = (Square) s;
+
+			int xp11 = Integer.parseInt(q.getXp1().substring(1));
+			int yp11 = Integer.parseInt(q.getYp1().substring(1));
+			int xp21 = Integer.parseInt(q.getXp2().substring(1));
+			int yp21 = Integer.parseInt(q.getYp2().substring(1));
+
+			int xp31;
+			int yp31;
+
+			int xp41;
+			int yp41;
+
+			int delta_x = xp21 - xp11;
+			int delta_y = yp21 - yp11;
+
+			// UP
+			if (q.getOrientation().equals("UP")) {
+				xp31 = xp21 - delta_y;
+				yp31 = yp21 + delta_x;
+				xp41 = xp11 - delta_y;
+				yp41 = yp11 + delta_x;
+			} else {
+				// DOWN
+				xp31 = xp21 + delta_y;
+				yp31 = yp21 - delta_x;
+				xp41 = xp11 + delta_y;
+				yp41 = yp11 - delta_x;
+			}
+
+			body = "N20 G00 X" + xp11 + " Y" + yp11 + "\n";
+			body += "N30 G01 X" + xp21 + " Y" + yp21 + "\n";
+			body += "N40 G01 X" + xp31 + " Y" + yp31 + "\n";
+			body += "N50 G01 X" + xp41 + " Y" + yp41 + "\n";
+			body += "N60 G01 X" + xp11 + " Y" + yp11;
+			finish = "N70 M05 ";
+
+			// TODO
+			// calcolo lati
+
+			finish = "N80 M05";
+
 			break;
 		}
 
 		if (s.getLube().equals("M08"))
-			finish = finish + "M09";
+			finish = finish + " M09";
 
 		finish += " M30";
 

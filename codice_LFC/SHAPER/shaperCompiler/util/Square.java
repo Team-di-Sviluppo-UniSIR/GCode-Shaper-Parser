@@ -28,4 +28,44 @@ public class Square extends Shape {
 				+ super.toString();
 	}
 
+	public String getXp1() {
+		return xp1;
+	}
+
+	public void setXp1(String xp1) {
+		this.xp1 = xp1;
+	}
+
+	public String getYp1() {
+		return yp1;
+	}
+
+	public void setYp1(String yp1) {
+		this.yp1 = yp1;
+	}
+
+	public String getXp2() {
+		return xp2;
+	}
+
+	public void setXp2(String xp2) {
+		this.xp2 = xp2;
+	}
+
+	public String getYp2() {
+		return yp2;
+	}
+
+	public void setYp2(String yp2) {
+		this.yp2 = yp2;
+	}
+
+	public String getOrientation() {
+		return orientation;
+	}
+
+	public void setOrientation(String orientation) {
+		this.orientation = orientation;
+	}
+
 }
