@@ -22,8 +22,11 @@ public class ShaperErrorManager {
 
 		// gestione degli errori semantici
 		if (parser.getErrorList().size() == 0 || !check) {
+			
 			// TODO
 			// errori semantici
+			// istanziare qui funzione errore semantico
+			// ShaperErrorManager.nome_funzione();
 
 			check = false;
 		}

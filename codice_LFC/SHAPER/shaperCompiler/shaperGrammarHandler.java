@@ -4,14 +4,23 @@ import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
 import org.antlr.runtime.RecognitionException;
+import org.antlr.runtime.Token;
 import org.antlr.runtime.TokenStream;
 
+import gcodeCompiler.util.BlockDescriptor;
+import gcodeCompiler.util.GCodeError;
 import shaperCompiler.util.*;
 
 public class shaperGrammarHandler {
 	// codici degli errori lessicali e sintattici
 	public static final int TOKEN_ERROR = 0; // errore lessicale
 	public static final int ERR_ON_SYNTAX = 1; // errore sintattico
+
+	/*
+	 * AGGIUNGERE QUI CODICE ERRORE SEMANTICO
+	 * 
+	 * public static final int SEM_DUMMY = 2;
+	 */
 
 	// codici di supporto
 	public static final int UNDEFINED = -1;
@@ -197,11 +206,6 @@ public class shaperGrammarHandler {
 			body += "N60 G01 X" + xp11 + " Y" + yp11;
 			finish = "N70 M05 ";
 
-			// TODO
-			// calcolo lati
-
-			finish = "N80 M05";
-
 			break;
 		}
 
@@ -212,5 +216,32 @@ public class shaperGrammarHandler {
 
 		return preamble + "\n" + body + "\n" + finish;
 
+	}
+
+	public void semanticErrorHandler(int code, Token tk, BlockDescriptor bd) {
+		ShaperError errore = new ShaperError();
+		errore.setType((short) code);
+
+		// errore semantico è avvenuto in una certa posizione (riga, colonna)
+		if (tk != null) {
+			errore.setRow((short) tk.getLine());
+			errore.setColumn((short) tk.getCharPositionInLine());
+		}
+
+		// TODO
+		// inserire messaggio errore semantico
+		
+		/*
+		switch (code) {
+		case SEM_DUMMY:
+			errore.setMessage(
+					"Found DUMMY_ERROR (" + bd.getNum_block() + " " + bd.toString() + ") - block number '"
+							+ bd.getNum_block() + "' must be greater than the previous one 'N" + this.last_n + "'");
+			break;
+		}
+		*/
+		
+		// inserimento errore generato all'interno della lista degli errori
+		errorList.add(errore);
 	}
 }
