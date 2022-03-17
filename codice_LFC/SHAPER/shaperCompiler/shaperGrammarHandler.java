@@ -10,17 +10,17 @@ import org.antlr.runtime.TokenStream;
 import gcodeCompiler.util.BlockDescriptor;
 import gcodeCompiler.util.GCodeError;
 import shaperCompiler.util.*;
+import shaperMain.ShaperErrorManager;
 
 public class shaperGrammarHandler {
 	// codici degli errori lessicali e sintattici
 	public static final int TOKEN_ERROR = 0; // errore lessicale
 	public static final int ERR_ON_SYNTAX = 1; // errore sintattico
 
-	/*
-	 * AGGIUNGERE QUI CODICE ERRORE SEMANTICO
-	 * 
-	 * public static final int SEM_DUMMY = 2;
-	 */
+	// codici errori semantici
+	public static final int SEM_TRIANG_INEQ = 2;
+	public static final int SEM_MAX_COORD = 3;
+	public static final int SEM_RECT_PERPEN = 4;
 
 	// codici di supporto
 	public static final int UNDEFINED = -1;
@@ -218,7 +218,7 @@ public class shaperGrammarHandler {
 
 	}
 
-	public void semanticErrorHandler(int code, Token tk, BlockDescriptor bd) {
+	public void semanticErrorHandler(int code, Token tk) {
 		ShaperError errore = new ShaperError();
 		errore.setType((short) code);
 
@@ -228,20 +228,27 @@ public class shaperGrammarHandler {
 			errore.setColumn((short) tk.getCharPositionInLine());
 		}
 
-		// TODO
-		// inserire messaggio errore semantico
-		
-		/*
 		switch (code) {
-		case SEM_DUMMY:
-			errore.setMessage(
-					"Found DUMMY_ERROR (" + bd.getNum_block() + " " + bd.toString() + ") - block number '"
-							+ bd.getNum_block() + "' must be greater than the previous one 'N" + this.last_n + "'");
+		case SEM_TRIANG_INEQ:
+			errore.setMessage("Found TRIANG_INEQ_ERROR - triangle does not comply with triangular inequality");
+			break;
+
+		case SEM_MAX_COORD:
+			errore.setMessage("Found MAX_COORD_ERROR - all coordinates must be positive and lower than "
+					+ ShaperErrorManager.MAX_COORDINATE + " pixel to be displayed");
+			break;
+
+		case SEM_RECT_PERPEN:
+			errore.setMessage("Found NOT_RECT_PERP_ERROR - sides of the rectangle must be perpendicular");
 			break;
 		}
-		*/
-		
+
 		// inserimento errore generato all'interno della lista degli errori
 		errorList.add(errore);
 	}
+
+	public Shape getS() {
+		return s;
+	}
+
 }

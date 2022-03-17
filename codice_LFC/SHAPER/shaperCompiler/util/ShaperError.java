@@ -64,6 +64,18 @@ public class ShaperError implements Comparable<ShaperError> {
 			s += "Syntax Error (" + shaperGrammarHandler.ERR_ON_SYNTAX + ") ";
 			break;
 
+		case shaperGrammarHandler.SEM_TRIANG_INEQ:
+			s += "Semantic Error (" + shaperGrammarHandler.SEM_TRIANG_INEQ + ") ";
+			break;
+
+		case shaperGrammarHandler.SEM_MAX_COORD:
+			s += "Semantic Error (" + shaperGrammarHandler.SEM_MAX_COORD + ") ";
+			break;
+			
+		case shaperGrammarHandler.SEM_RECT_PERPEN:
+			s += "Semantic Error (" + shaperGrammarHandler.SEM_RECT_PERPEN + ") ";
+			break;
+
 		}
 
 		s += "at [" + row + ", " + column + "]: " + message;
