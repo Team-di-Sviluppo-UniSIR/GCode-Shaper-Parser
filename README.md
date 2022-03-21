@@ -1,6 +1,3 @@
-# progetto_LFC
-Repository contenente tutto il materiale inerente il progetto sviluppato per il corso di Linguaggi Formali e Compilatori
-
 # What are GCODE Parser and Shaper
 ***GCode-Shaper-Parser*** aims to provide students an useful tool for understanding and practicing with G-code, a programming language for CNC machines:
 - ***GCODE Parser*** is the main compiler developed for parsing G-code language and provide a graphical representation of the written code.
@@ -8,8 +5,11 @@ Repository contenente tutto il materiale inerente il progetto sviluppato per il 
 
 Both GCODE Parser and Shaper are written in Java using ANTLR package.</br>
 [GCode-Shaper-IDE](https://github.com/Team-di-Sviluppo-UniSIR/GCode-Shaper-Parser) is a GUI developed for helping users in the usage of *GCode-Shaper-Parser*.
-</br>
+</br><br>
 
+<p align="center">
+<img src="https://user-images.githubusercontent.com/36960844/159361755-69dc1814-108e-4e51-a1cf-40373253df1b.png" width=90% />
+</p>
 
 # Install
 Qui spieghiamo come installare dalla release
