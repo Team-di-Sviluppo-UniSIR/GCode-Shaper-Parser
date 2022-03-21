@@ -15,7 +15,7 @@ Both GCODE Parser and Shaper are written in Java using ANTLR package.</br>
 *GCode-Shaper-IDE* v1.0 executable program can be downloaded from the [Releases](https://github.com/Team-di-Sviluppo-UniSIR/GCode-Shaper-Parser/releases/tag/v1.0) section of this repo ("GCodeShaperIDE.exe"). 
 
 # Examples
-Code examples that can help users with the understanding of both *GCODE Parser* and *Shaper* syntaxes are here provided: 
+Code examples that can help users in understanding both *GCODE Parser* and *Shaper* syntaxes are here provided: 
 1. [G-code Parser code examples](https://github.com/Team-di-Sviluppo-UniSIR/GCode-Shaper-Parser)
 2. [Shaper code examples](https://github.com/Team-di-Sviluppo-UniSIR/GCode-Shaper-Parser)
 
