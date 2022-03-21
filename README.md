@@ -15,14 +15,14 @@ Both GCODE Parser and Shaper are written in Java using ANTLR package.</br>
 Qui spieghiamo come installare dalla release
 
 # Examples
-We provide a series of examples to help you start using our parsers:
-1. link a esempi di utilizzo GCODE
-2. link a esempi di utilizzo SHAPER
+Code examples that help users with the understanding of both *GCODE Parser* and *Shaper* syntax are here provided: 
+1. [G-code Parser code examples](https://github.com/Team-di-Sviluppo-UniSIR/GCode-Shaper-Parser)
+2. [Shaper code examples](https://github.com/Team-di-Sviluppo-UniSIR/GCode-Shaper-Parser)
 
 # Docs
-We provide the full documentation (syntax and errors) of our parsers. These may help you understanding our tools:
-1. link alla documentazione GCODE
-2. link alla documentazione SHAPER
+Convenient docs (syntax and errors) for understanding both *GCODE Parser* and *Shaper* syntax are here provided:
+1. [G-code Parser docs ](https://github.com/Team-di-Sviluppo-UniSIR/GCode-Shaper-Parser)
+2. [Shaper docs ](https://github.com/Team-di-Sviluppo-UniSIR/GCode-Shaper-Parser)
 
 # Error list
 All errors in Gcode and Shaper parsers.
