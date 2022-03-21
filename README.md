@@ -11,7 +11,7 @@ Both GCODE Parser and Shaper are written in Java using ANTLR package.</br>
 <img src="https://user-images.githubusercontent.com/36960844/159366726-d1435940-8992-414c-9498-cfcd8bc91229.png" width=90% />
 </p>
 
-# Install
+# Installation
 Qui spieghiamo come installare dalla release
 
 # Examples
