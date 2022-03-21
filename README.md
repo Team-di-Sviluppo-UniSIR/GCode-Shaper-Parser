@@ -4,7 +4,7 @@
 - ***Shaper*** is a metalanguage built upon G-code in order to simplify the definition of CNC commands and help the users understand the rules of G-code language.
 
 Both GCODE Parser and Shaper are written in Java using ANTLR package.</br>
-[GCode-Shaper-IDE](https://github.com/Team-di-Sviluppo-UniSIR/GCode-Shaper-Parser) is a GUI developed for helping users in the usage of *GCode-Shaper-Parser*.
+[GCode-Shaper-IDE](https://github.com/Team-di-Sviluppo-UniSIR/GCode-Shaper-Parser/releases/tag/v1.0) is a GUI developed for helping users in the usage of *GCode-Shaper-Parser*.
 </br><br>
 
 <p align="center">
