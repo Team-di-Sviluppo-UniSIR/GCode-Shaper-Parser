@@ -1,6 +1,24 @@
 # progetto_LFC
 Repository contenente tutto il materiale inerente il progetto sviluppato per il corso di Linguaggi Formali e Compilatori
 
+# What is GCODE Parser
+
+# What is Shaper metalanguage
+
+
+# Install
+Qui spieghiamo come installare dalla release
+
+# Examples
+We provide a series of examples to help you start using our parsers:
+1. link a esempi di utilizzo GCODE
+2. link a esempi di utilizzo SHAPER
+
+# Docs
+We provide the full documentation (syntax and errors) of our parsers. These may help you understanding our tools:
+1. link alla documentazione GCODE
+2. link alla documentazione SHAPER
+
 # Error list
 All errors in Gcode and Shaper parsers.
 
