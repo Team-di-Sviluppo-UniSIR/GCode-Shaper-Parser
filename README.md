@@ -1,9 +1,7 @@
 # progetto_LFC
 Repository contenente tutto il materiale inerente il progetto sviluppato per il corso di Linguaggi Formali e Compilatori
 
-# What is GCODE Parser
-
-# What is Shaper metalanguage
+# What are GCODE Parser and Shaper metalanguage
 
 
 # Install
