@@ -21,8 +21,8 @@ Code examples that can help users with the understanding of both *GCODE Parser* 
 
 # Docs
 Helpful docs (syntax and errors) for understanding both *GCODE Parser* and *Shaper* syntaxes are here provided:
-1. [G-code Parser docs ](https://github.com/Team-di-Sviluppo-UniSIR/GCode-Shaper-Parser)
-2. [Shaper docs ](https://github.com/Team-di-Sviluppo-UniSIR/GCode-Shaper-Parser)
+1. [G-code Parser docs](https://github.com/Team-di-Sviluppo-UniSIR/GCode-Shaper-Parser/tree/main/docs/gcode%20parser)
+2. [Shaper docs](https://github.com/Team-di-Sviluppo-UniSIR/GCode-Shaper-Parser/tree/main/docs/shaper%20metalanguage)
 
 # Error list
 All errors in Gcode and Shaper parsers.
