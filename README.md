@@ -12,7 +12,7 @@ Both GCODE Parser and Shaper are written in Java using ANTLR package.</br>
 </p>
 
 # Installation
-Qui spieghiamo come installare dalla release
+*GCode-Shaper-IDE* v1.0 executable program can be downloaded from the [Releases](https://github.com/Team-di-Sviluppo-UniSIR/GCode-Shaper-Parser/releases/tag/v1.0) section of this repo ("GCodeShaperIDE.exe"). 
 
 # Examples
 Code examples that help users with the understanding of both *GCODE Parser* and *Shaper* syntax are here provided: 
