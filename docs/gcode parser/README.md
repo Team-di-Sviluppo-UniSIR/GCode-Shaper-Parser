@@ -10,23 +10,75 @@ A G-code specification is composed by an infinite number of N-blocks, each of th
 
 ### EBNF Notation
 ```
-shaper ::=  
+block ::= N_BLOCK (
+                    ( info_geometriche )+  (
+                                               ( info_3M )?  
+                                             | ( info_tecnologiche )+ ( info_3M )? 
+                                           )
+                    | ( info_tecnologiche )+ ( info_3M  )? 
+                    | info_3M	 
+                  )  
 ```
 ### Syntax Diagram
-![shaper_rail](https://user-images.githubusercontent.com/36998696/159554938-aa71c5c5-c419-4c64-8c83-ea2ef6b72f86.png)
+![block_rail](https://user-images.githubusercontent.com/36998696/159574128-d7a2bc33-2044-4549-9893-c9790bfbfd37.png)
 </br></br>
 
 # info_geometriche
-The *configuration* directive is indipendent from the particular *shape* defined and it requires to specify the following parameters:
-- *movement speed*, that is the speed associated to the tool while not in use;
-- *job speed*, defined as the speed associated to the tool while in use;
-- *lube power option*, it is used to set the lube on or off (M08 or M09 G-code directive respectively)
+
+### EBNF Notation
+```
+info_geometriche ::= (  COORD_ABS
+                      | COORD_REL
+                      | FREE_MOVE coordinate_XYZ
+                      | JOB_MOVE coordinate_XYZ
+                      | CIRCLE_CW coordinate_XYZ coordinate_IJK
+                      | CIRCLE_ACW coordinate_XYZ coordinate_IJK
+                      | COMP_DIS
+                      | COMP_L
+                      | COMP_R
+                     )
+```
+### Syntax Diagram
+![info_geometriche](https://user-images.githubusercontent.com/36998696/159574833-58a51ecd-809a-477f-b565-c47fbade1039.png)
+</br></br>
 
 # info_tecnologiche
 
-# info_3M
+### EBNF Notation
+```
+info_tecnologiche ::= FREE_MOVE_SPEED
+                    | JOB_MOVE_SPEED
+                    | TOOL_CHANGE
+```
+### Syntax Diagram
+![info_tecnologiche](https://user-images.githubusercontent.com/36998696/159575620-45e1c984-ef92-4cd9-9ff3-bd5005e40998.png)
+</br></br>
 
 # info_3M
+
+### EBNF Notation
+```
+info_3M ::= info_tecnologiche_M ( info_tecnologiche_M )? ( info_tecnologiche_M )?
+```
+### Syntax Diagram
+![info_3M](https://user-images.githubusercontent.com/36998696/159576293-edcb4641-9d63-4422-8c3b-f39e283dcd25.png)
+</br></br>
+
+# info_tecnologiche_M
+
+### EBNF Notation
+```
+info_tecnologiche_M ::= ROT_TOOL_CW 
+                      | ROT_TOOL_ACW
+                      | STOP_TOOL
+                      | CHANGE_TOOL
+                      | LUBE_ON
+                      | LUBE_OFF
+                      | END_PROG
+```
+### Syntax Diagram
+![info_tecnologiche_M](https://user-images.githubusercontent.com/36998696/159575838-9efbf27f-d50f-4622-a316-279bcdfff1c0.png)
+</br></br>
 
 # Examples
 ```
