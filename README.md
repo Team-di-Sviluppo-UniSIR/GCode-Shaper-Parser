@@ -14,13 +14,14 @@ Both GCODE Parser and Shaper are written in Java using ANTLR package.</br>
 # Installation
 *GCode-Shaper-IDE* v1.0 executable program can be downloaded from the [Releases](https://github.com/Team-di-Sviluppo-UniSIR/GCode-Shaper-Parser/releases/tag/v1.0) section of this repo ("GCodeShaperIDE.exe"). 
 
-# Examples
-Code examples that can help users in understanding both *GCODE Parser* and *Shaper* usage are here provided: 
-1. [G-code Parser code examples](https://github.com/Team-di-Sviluppo-UniSIR/GCode-Shaper-Parser/tree/main/examples/gcode%20parser)
-2. [Shaper code examples](https://github.com/Team-di-Sviluppo-UniSIR/GCode-Shaper-Parser/tree/main/examples/shaper%20metalanguage)
+[//]: # I commented this section
+[//]: # # Examples
+[//]: # Code examples that can help users in understanding both *GCODE Parser* and *Shaper* usage are here provided: 
+[//]: # 1. [G-code Parser code examples](https://github.com/Team-di-Sviluppo-UniSIR/GCode-Shaper-Parser/tree/main/examples/gcode%20parser)
+[//]: # 2. [Shaper code examples](https://github.com/Team-di-Sviluppo-UniSIR/GCode-Shaper-Parser/tree/main/examples/shaper%20metalanguage)
 
 # Docs
-Helpful docs (syntax and errors) for understanding both *GCODE Parser* and *Shaper* syntaxes are here provided:
+Helpful docs with syntax, examples and errors for understanding both *GCODE Parser* and *Shaper* are here provided:
 1. [G-code Parser docs](https://github.com/Team-di-Sviluppo-UniSIR/GCode-Shaper-Parser/tree/main/docs/gcode%20parser)
 2. [Shaper docs](https://github.com/Team-di-Sviluppo-UniSIR/GCode-Shaper-Parser/tree/main/docs/shaper%20metalanguage)
 
