@@ -166,3 +166,7 @@ Se ci sono errori, fare come cerchio
 ```
  code che solleva errore
 ```
+</br></br>
+
+# References
+For the *token list specification* see description [tokenList.md](/link_al_nostro_file) file.
