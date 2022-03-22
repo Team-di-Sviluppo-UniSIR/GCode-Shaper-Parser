@@ -84,7 +84,7 @@ CONFIGURATION MS54 JS10 LB ON
 
 ### Errors
 The *circle* command can rase the following *exceptions*: 
-- *MAX_COORD_ERROR*: this error can be thrown due to huge radius lenght or due to center coordinates too close to the Cartesian plan limits
+- [*MAX_COORD_ERROR*](errors/shaper%20metalanguage): this error can be thrown due to huge radius lenght or due to center coordinates too close to the Cartesian plan limits
 
 ```
  CIRCLE C(X400)(Y400) R300
@@ -92,7 +92,7 @@ The *circle* command can rase the following *exceptions*:
 ```
 ```
  ** Error list **
- 1 - Semantic Error ([3](https://github.com/Team-di-Sviluppo-UniSIR/GCode-Shaper-Parser/tree/main/errors/shaper%20metalanguage)) at [0, 0]: Found MAX_COORD_ERROR - all coordinates must be positive and lower than 500 pixel to be displayed
+ 1 - Semantic Error (3) at [0, 0]: Found MAX_COORD_ERROR - all coordinates must be positive and lower than 500 pixel to be displayed
 ```
 
 ## Triangle
