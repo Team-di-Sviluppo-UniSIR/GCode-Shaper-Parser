@@ -1,4 +1,5 @@
 # List of errors of Shaper Metalanguage
+Here are listed all the errors that Shaper parser is designed to throw. For more info check [docs section](https://github.com/Team-di-Sviluppo-UniSIR/GCode-Shaper-Parser/tree/main/docs/shaper%20metalanguage).
 <table>
   <tr>
     <td><b>Error number</b></td>
