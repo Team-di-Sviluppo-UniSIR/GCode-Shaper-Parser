@@ -7,6 +7,7 @@
 | DIGIT  | \['0'..'9'\] |
 | WS |   \[ ' '  \|  '\t'  \|  '\r'  \|  '\n'  \]+  |
 | COMMENT | \['//' ~('\n'\|'\r')* '\r'? '\n' \| '/*' ( options {greedy=false;} : . )* '*/'\] |
+| **Reserved Words** | |
 | END_PROG  | 'M30' |
 | LUBE_OFF | 'M09' |
 | LUBE_ON | 'M08' |
