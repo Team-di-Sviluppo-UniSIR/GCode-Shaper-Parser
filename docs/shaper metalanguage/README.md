@@ -83,7 +83,7 @@ circle ::= CIRCLE CIRCLE_C
 ```
 
 ### Errors
-The *circle* command can raise the following *semantic erorrs*: 
+The *circle* command can raise the following *semantic errors*: 
 - [*MAX_COORD_ERROR*](../../errors/shaper%20metalanguage/README.md): this error can be thrown due to huge radius lenght or due to center coordinates too close to the Cartesian plan limits
 
 ```
