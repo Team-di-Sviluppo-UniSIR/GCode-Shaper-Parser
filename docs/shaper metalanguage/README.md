@@ -12,45 +12,38 @@ shaper ::=  (   circle
      	    ) configuration
 ```
 ### Syntax Diagram
-SINTAX DIAGRAM FOTO SISTEMATO (per parametri foto vedi readme della mainpage)
+![shaper_rail](https://user-images.githubusercontent.com/36998696/159554938-aa71c5c5-c419-4c64-8c83-ea2ef6b72f86.png)
 </br></br>
 
 # Configuration
 The *configuration* directive is indipendent from the particular *shape* defined and it requires to specify the following parameters:
-- movement speed, ?? Ghislo ?? G00 parameter 
-- job speed, ?? Ghislo ??
-- lube power option, it is used to set the lube on or off (M08 or M09 G-code directive respectively)
+- *movement speed*, that is the speed associated to the tool while not in use;
+- *job speed*, defined as the speed associated to the tool while in use;
+- *lube power option*, it is used to set the lube on or off (M08 or M09 G-code directive respectively)
 
 ### EBNF Notation
-Da sistemare graficamente (si veda progetto JCO)
 ```
-configuration
-	:	
-		CONFIG  (
-					  ( MOVE_SPEED (
-									  JOB_SPEED LUBE_SET ON_OFF
-								   |  LUBE_SET ON_OFF JOB_SPEED
-								 )
-					  )  
-					| (	JOB_SPEED (
-									  MOVE_SPEED LUBE_SET ON_OFF
-								   |  LUBE_SET ON_OFF MOVE_SPEED
-								  )
-					  )
-					| (	LUBE_SET ON_OFF (
-											JOB_SPEED MOVE_SPEED
-										 |	MOVE_SPEED JOB_SPEED
-										)
-					  )
-				) 
-			
-	;
+configuration ::= CONFIG  (
+			    ( MOVE_SPEED (
+				             JOB_SPEED LUBE_SET ON_OFF
+					   | LUBE_SET ON_OFF JOB_SPEED
+					 )
+			    )  
+			   | ( JOB_SPEED (
+					     MOVE_SPEED LUBE_SET ON_OFF
+					   | LUBE_SET ON_OFF MOVE_SPEED
+					 )
+			     )
+			   | ( LUBE_SET ON_OFF (
+						   JOB_SPEED MOVE_SPEED
+					         | MOVE_SPEED JOB_SPEED
+					       )
+			     )
+			   ) 
 ```
 
 ### Syntax Diagram
-Da inserire syntax diagram
-
-SINTAX DIAGRAM FOTO SISTEMATO (per parametri foto vedi readme della mainpage)
+![configuration_rail](https://user-images.githubusercontent.com/36998696/159557392-dc699722-621c-464e-b2a7-4275954c4027.png)
 
 ### Examples
 Examples of *configuration* definition are shown in the shapes paragraph.
@@ -64,26 +57,24 @@ Shaper currently provides support for 4 different type of *shape* figures:
 - square
 
 ## Circle
-Introduzione al cerchio e che cosa fa (il comando cerchio mi permette di fare un cerchio con centro in XX di raggio BLABLA etc etc bello)
+The *circle* command allows to draw a circle in the Cartesian plane with a given center and radius. It requires to specify the following parameters:
+- *center coordinates*, that are the spatial coodinates of the circle's center
+- *radius*, that is the distance between the center and any point belonging to the circle's circumference
 
 ### EBNF Notation
 ```
-circle
-	:	
-		CIRCLE CIRCLE_C 
-                  OB 
-							              X_CORD 
-					        	    CB 
-						            OB 
-							              Y_CORD 
-						            CB 
-			     CIRCLE_R
-
+circle ::= CIRCLE CIRCLE_C 
+                 	  OB 
+			    X_CORD 
+			  CB 
+			  OB 
+			    Y_CORD 
+			  CB 
+		  CIRCLE_R
 ```
 
 ### Syntax Diagram
-
-SINTAX DIAGRAM FOTO SISTEMATO (per parametri foto vedi readme della mainpage)
+![circle_rail](https://user-images.githubusercontent.com/36998696/159558288-7c07020e-026e-43f6-8267-3d56701df36d.png)
 
 ### Examples
 ```
@@ -99,15 +90,39 @@ Qui mettiamo quali sono gli errori che il cerchio può sollevare. Facciamo un es
 ```
 
 ## Triangle
-Introduzione al comando
+The *triangle* command allows to draw a triangle in the Cartesian plane with three given points. It requires to specify the following parameters:
+- *first vertex coordinates*, that are the spatial coodinates of the first triangle's vertex
+- *second vertex coordinates*, that are the spatial coodinates of the second triangle's vertex
+- *third vertex coordinates*, that are the spatial coodinates of the third triangle's vertex
+
 
 ### EBNF Notation
 ```
-code here
+triangle ::= TRIANGLE P1 
+                 	OB 
+			  X_CORD 
+			CB 
+			OB 
+			  Y_CORD 
+			CB 
+		      P2
+			OB 
+			  X_CORD 
+			CB 
+			OB 
+			  Y_CORD 
+			CB 
+		      P3 
+			OB 
+			  X_CORD 
+			CB 
+			OB 
+			  Y_CORD 
+			CB  
 ```
 
 ### Syntax Diagram
-Syntax photo
+![triangle_rail](https://user-images.githubusercontent.com/36998696/159559786-7ecbfd9e-263c-44ca-8d66-798b47cde7b0.png)
 
 ### Examples
 ```
@@ -121,15 +136,38 @@ Se ci sono errori, fare come cerchio
 ```
 
 ## Rectangle
-Introduzione al comando
+The *rectangle* command allows to draw a rectangle in the Cartesian plane with three given points. It requires to specify the following parameters:
+- *first point coordinates*, that are the spatial coordinates of the first rectangle's point
+- *second point coordinates*, that are the spatial coordinates of the second rectangle's point
+- *third point coordinates*, that are the spatial coordinates of the third rectangle's point
 
 ### EBNF Notation
 ```
-code here
+rectangle ::= RECTANGLE P1 
+			  OB 
+			    X_CORD 
+			  CB 
+			  OB 
+		            Y_CORD 
+			  CB 
+			( P2 | RECTANGLE_B ) 
+			  OB 
+			    X_CORD 
+		          CB 
+			  OB 
+			    Y_CORD 
+		          CB 
+			( P3 | RECTANGLE_H ) 
+		          OB 
+			    X_CORD 
+		          CB 
+			  OB 
+			    Y_CORD 
+			  CB
 ```
 
 ### Syntax Diagram
-Syntax photo
+![rectangle_rail](https://user-images.githubusercontent.com/36998696/159561199-1addbc78-3466-4bd5-a66e-43221b3565a8.jpg)
 
 ### Examples
 ```
@@ -143,15 +181,32 @@ Se ci sono errori, fare come cerchio
 ```
 
 ## Square
-Introduzione al comando
+The *square* command allows to draw a square in the Cartesian plane with three given points. It requires to specify the following parameters:
+- *first point coordinates*, that are the spatial coordinates of the first rectangle's point
+- *second point coordinates*, that are the spatial coordinates of the second rectangle's point
+- *square orientation*, that is the spatial orientation of the shape (UP, DOWN)
 
 ### EBNF Notation
 ```
-code here
+square ::= SQUARE P1 
+		    OB 
+		      X_CORD 
+	            CB 
+	            OB 
+		      Y_CORD 
+	            CB 
+	          P2 
+		    OB 
+		      X_CORD 
+		    CB 
+		    OB 
+		      Y_CORD 
+		    CB 
+	          SQUARE_CONFIG
 ```
 
 ### Syntax Diagram
-Syntax photo
+![square_rail](https://user-images.githubusercontent.com/36998696/159562091-87a0c31c-1062-40e8-82d4-82acf5f493f8.png)
 
 ### Examples
 ```
