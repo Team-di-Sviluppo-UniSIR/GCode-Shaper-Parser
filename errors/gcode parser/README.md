@@ -1,4 +1,4 @@
-
+# List of errors of the GCODE Language
 <table>
   <tr>
     <td><b>Error number</b></td>
