@@ -1,8 +1,7 @@
 # Overview
 G-code Parser is built with the idea of being able to parse a simplified version of the original [G-code programming language](https://en.wikipedia.org/wiki/G-code) used to program CNC machines. The are some differences between the real G-code and the G-code which is parsed by this compiler, like:
 - G-code Parser requires a stricter order for the directives defined inside the N-blocks (*info_geometriche*-*info_tecnologiche*-*info_3M*)
-- G-code Parser is not parsing any rules concerning unit of measurement (like G94, G95, G96, G97). The parser is built considering G94 and G97 as default and they can't be changed
-- G-code Parser can't deal with arcs which are not exactly equal to 90 degrees
+- G-code Parser is not parsing any rules concerning unit of measurement (like G94, G95, G96, G97). The parser is built considering G94 and G97 as default and they can't be changed.
 
 A G-code specification is composed by an infinite number of N-blocks, each of them with same structure. Each block must begin with an **increasing** N-block number and the last block must containt the **M30** directive. The structure of a block is composed by 3 main structures that, if defined, must follow the following order:
 1. *info_geometriche*
@@ -82,9 +81,44 @@ info_tecnologiche_M ::= ROT_TOOL_CW
 </br></br>
 
 # Examples
+### Example 1
+#### G-code Specification
 ```
-Testare diverse forme di rettangolo (magari mettere commenti come "equilatero", "rettangolo" etc)
+N10 G90 G42 F300 S1000 T0101 M06  M03 M08 
+N20 G00 X0 Y-10
+N30 G01 Y250
+N40 G01 X100
+N50 G03 X200 Y150 I200 J250
+N60 G03 X300 Y250 I200 J250
+N70 G01 X450
+N80 G01 X0 Y0
+N90 G00 X0 Y-10 M05 M09 M30
 ```
+#### Output
+<p align="left">
+<img src="https://user-images.githubusercontent.com/36998696/159581482-d1403923-9a36-4422-b738-a7f9e6211e23.jpg" width=40% />
+</p>
+
+### Example 2
+#### G-code Specification
+```
+N0 G90 F100 S100 M03 M08
+N1 G00 X0 Y50
+N2 G01 X0 Y200
+N3 G02 X50 Y250 I50 J200
+N4 G01 X200 Y250
+N5 G01 X200 Y200
+N6 G01 X250 Y200
+N7 G01 X250 Y50
+N8 G02 X200 Y0 I200 J50
+N9 G01 X50 Y0
+N10 G02 X0 Y50 I50 J50
+N11 M30
+```
+#### Output
+<p align="left">
+<img src="https://user-images.githubusercontent.com/36998696/159582453-a36f574f-8897-42c7-9141-df48265b3787.jpg" width=40% />
+</p>
 
 # References
 For the *token list specification* see description [tokenList.md](/docs/gcode%20parser/tokenList.md) file.
