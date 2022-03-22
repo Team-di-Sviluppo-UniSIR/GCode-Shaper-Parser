@@ -169,4 +169,4 @@ Se ci sono errori, fare come cerchio
 </br>
 
 # References
-For the *token list specification* see description [tokenList.md](/link_al_nostro_file) file.
+For the *token list specification* see description [tokenList.md](/docs/shaper metalanguage/tokenList.md) file.
