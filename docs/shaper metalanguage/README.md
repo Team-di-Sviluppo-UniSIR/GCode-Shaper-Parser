@@ -84,7 +84,7 @@ CONFIGURATION MS54 JS10 LB ON
 
 ### Errors
 The *circle* command can rase the following *exceptions*: 
-- [*MAX_COORD_ERROR*](../errors/shaper%20metalanguage): this error can be thrown due to huge radius lenght or due to center coordinates too close to the Cartesian plan limits
+- [*MAX_COORD_ERROR*](../errors/shaper%20metalanguage/README.md): this error can be thrown due to huge radius lenght or due to center coordinates too close to the Cartesian plan limits
 
 ```
  CIRCLE C(X400)(Y400) R300
