@@ -9,6 +9,7 @@
 | COMMENT | \['//' ~('\n'\|'\r')* '\r'? '\n' \| '/*' ( options {greedy=false;} : . )* '*/'\] |
 | OB  | '(' |
 | CB | ')' |
+| **Reserved Words** | |
 | ON_OFF | 'ON' \| 'OFF' |
 | LUBE_SET | 'LB' |
 | JOB_SPEED | 'JS' DIGIT+ |
