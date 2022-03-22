@@ -92,7 +92,7 @@ The *circle* command can rase the following *exceptions*:
 ```
 ```
  ** Error list **
- 1 - Semantic Error ([3](/../errors/shaper metalanguage/)) at [0, 0]: Found MAX_COORD_ERROR - all coordinates must be positive and lower than 500 pixel to be displayed
+ 1 - Semantic Error ([3](https://github.com/Team-di-Sviluppo-UniSIR/GCode-Shaper-Parser/tree/main/errors/shaper%20metalanguage)) at [0, 0]: Found MAX_COORD_ERROR - all coordinates must be positive and lower than 500 pixel to be displayed
 ```
 
 ## Triangle
