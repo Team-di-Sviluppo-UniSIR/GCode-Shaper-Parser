@@ -132,7 +132,17 @@ triangle ::= TRIANGLE P1
 
 ### Examples
 ```
-Testare diverse forme di rettangolo (magari mettere commenti come "equilatero", "rettangolo" etc)
+//ISOSCELES TRIANGLE
+TRIANGLE P1(X100)(Y100)P2(X150)(Y250)P3(X200)(Y100)
+CONFIGURATION MS54 JS10 LB ON
+
+//SCALENE TRIANGLE
+TRIANGLE P1(X100)(Y100)P2(X150)(Y200)P3(X300)(Y100)
+CONFIGURATION MS54 JS10 LB ON
+
+//TRIANGLE RECTANGLE
+TRIANGLE P1(X100)(Y100)P2(X100)(Y200)P3(X300)(Y100)
+CONFIGURATION MS54 JS10 LB ON
 ```
 
 ### Errors
@@ -140,7 +150,12 @@ The *triangle* command can rase the following *exceptions*:
 - [*MAX_COORD_ERROR*](../../errors/shaper%20metalanguage/README.md) -> this error can be thrown due to point coordinates too close to the Cartesian plan limits
 
 ```
- code che solleva errore
+TRIANGLE P1(X400)(Y400)P2(X650)(Y650)P3(X600)(Y400)
+CONFIGURATION MS54 JS10 LB ON
+```
+```
+ ** Error list **
+ 1 - Semantic Error (3) at [0, 0]: Found MAX_COORD_ERROR - all coordinates must be positive and lower than 500 pixel to be displayed
 ```
 
 ## Rectangle
