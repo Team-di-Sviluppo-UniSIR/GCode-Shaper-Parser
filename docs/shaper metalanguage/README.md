@@ -136,7 +136,9 @@ Testare diverse forme di rettangolo (magari mettere commenti come "equilatero", 
 ```
 
 ### Errors
-Se ci sono errori, fare come cerchio
+The *triangle* command can rase the following *exceptions*: 
+- MAX_COORD_ERROR -> this error can be thrown due to point coordinates too close to the Cartesian plan limits
+
 ```
  code che solleva errore
 ```
