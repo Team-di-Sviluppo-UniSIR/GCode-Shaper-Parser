@@ -137,7 +137,7 @@ Testare diverse forme di rettangolo (magari mettere commenti come "equilatero", 
 
 ### Errors
 The *triangle* command can rase the following *exceptions*: 
-- MAX_COORD_ERROR -> this error can be thrown due to point coordinates too close to the Cartesian plan limits
+- [*MAX_COORD_ERROR*](../../errors/shaper%20metalanguage/README.md) -> this error can be thrown due to point coordinates too close to the Cartesian plan limits
 
 ```
  code che solleva errore
