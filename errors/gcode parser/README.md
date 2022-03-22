@@ -1,4 +1,5 @@
 # List of errors of G-code Parser
+Here are listed all the errors that G-code parser is designed to throw. For more info check [docs section](https://github.com/Team-di-Sviluppo-UniSIR/GCode-Shaper-Parser/tree/main/docs/gcode%20parser). 
 <table>
   <tr>
     <td><b>Error number</b></td>
