@@ -83,7 +83,7 @@ circle ::= CIRCLE CIRCLE_C
 ```
 
 ### Errors
-The *circle* command can rase the following *exceptions*: 
+The *circle* command can raise the following *semantic erorrs*: 
 - [*MAX_COORD_ERROR*](../../errors/shaper%20metalanguage/README.md): this error can be thrown due to huge radius lenght or due to center coordinates too close to the Cartesian plan limits
 
 ```
@@ -146,7 +146,7 @@ triangle ::= TRIANGLE P1
 ```
 
 ### Errors
-The *triangle* command can rase the following *exceptions*: 
+The *triangle* command can raise the following *semantic errors*: 
 - [*MAX_COORD_ERROR*](../../errors/shaper%20metalanguage/README.md): this error can be thrown due to point coordinates too close to the Cartesian plan limits
 
 ```
@@ -212,7 +212,7 @@ rectangle ::= RECTANGLE P1
 ```
 
 ### Errors
-The *triangle* command can rase the following *exceptions*: 
+The *triangle* command can raise the following *semantic errors*: 
 - [*MAX_COORD_ERROR*](../../errors/shaper%20metalanguage/README.md): this error can be thrown due to point coordinates too close to the Cartesian plan limits
 - [*NOT_RECT_PERP_ERROR*](../../errors/shaper%20metalanguage/README.md): this error can be thrown due to non-perpendicular shape's sides
 ```
@@ -269,7 +269,7 @@ square ::= SQUARE P1
 ```
 
 ### Errors
-The *triangle* command can rase the following *exceptions*: 
+The *triangle* command can raise the following *semantic errors*: 
 - [*MAX_COORD_ERROR*](../../errors/shaper%20metalanguage/README.md): this error can be thrown due to point coordinates too close to the Cartesian plan limits
 ```
  SQUARE P1(X150)(Y350) P2(X350)(Y350) CONFIG UP
