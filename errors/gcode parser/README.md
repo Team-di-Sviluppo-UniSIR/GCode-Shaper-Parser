@@ -1,4 +1,4 @@
-# List of errors of the GCODE Language
+# List of errors of G-code Parser
 <table>
   <tr>
     <td><b>Error number</b></td>
