@@ -1,3 +1,4 @@
+# List of errors of the Shaper Language
 <table>
   <tr>
     <td><b>Error number</b></td>
