@@ -20,7 +20,7 @@ Helpful docs with syntax, examples and errors for understanding both *GCODE Pars
 2. [Shaper docs](https://github.com/Team-di-Sviluppo-UniSIR/GCode-Shaper-Parser/tree/main/docs/shaper%20metalanguage)
 
 # Errors
-All errors in G-code parser and Shaper are here listed:
+All errors in G-code Parser and Shaper are here listed:
 1. [G-code Parser error list](https://github.com/Team-di-Sviluppo-UniSIR/GCode-Shaper-Parser/tree/main/examples/gcode%20parser)
 2. [Shaper error list](https://github.com/Team-di-Sviluppo-UniSIR/GCode-Shaper-Parser/tree/main/examples/shaper%20metalanguage)
 
