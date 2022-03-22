@@ -2,7 +2,7 @@
 G-code Parser is built with the idea of being able to parse a simplified version of the original [G-code programming language](https://en.wikipedia.org/wiki/G-code) used to program CNC machines. The are some differences between the real G-code and the G-code which is parsed by this compiler, like:
 - G-code Parser requires a stricter order for the directives defined inside the N-blocks (*info_geometriche*-*info_tecnologiche*-*info_3M*)
 - G-code Parser is not parsing any rules concerning unit of measurement (like G94, G95, G96, G97). The parser is built considering G94 and G97 as default and they can't be changed
-- GCode Shaper can't deal with arcs which are not exactly equal to 90 degrees
+- G-code Parser can't deal with arcs which are not exactly equal to 90 degrees
 
 A G-code specification is composed by an infinite number of N-blocks, each of them with same structure. Each block must begin with an **increasing** N-block number and the last block must containt the **M30** directive. The structure of a block is composed by 3 main structures that, if defined, must follow the following order:
 1. *info_geometriche*
