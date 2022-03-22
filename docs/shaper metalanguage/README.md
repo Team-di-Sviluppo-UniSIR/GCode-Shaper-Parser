@@ -83,10 +83,16 @@ CONFIGURATION MS54 JS10 LB ON
 ```
 
 ### Errors
-Qui mettiamo quali sono gli errori che il cerchio può sollevare. Facciamo un esempio di codice che solleva l'errore. Mettiamo un link alla pagina che contiene la tabella degli errori e specifichiamo il suo numero.
+The *circle* command can rase the following *exceptions*: 
+- MAX_COORD_ERROR -> this error can be thrown due to huge radius lenght or due to center coordinates too close to the Cartesian plan limits
 
 ```
- code here
+ CIRCLE C(X400)(Y400) R300
+ CONFIGURATION MS54 JS10 LB ON
+ 
+ ** Error list **
+ 1 - Semantic Error (3) at [0, 0]: Found MAX_COORD_ERROR - all coordinates must be positive and lower than 500 pixel to be displayed
+
 ```
 
 ## Triangle
