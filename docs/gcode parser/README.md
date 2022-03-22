@@ -121,5 +121,26 @@ N11 M30
 <img src="https://user-images.githubusercontent.com/36998696/159582453-a36f574f-8897-42c7-9141-df48265b3787.jpg" width=40% />
 </p>
 
+### Example 3
+#### G-code Specification
+```
+N10 G90 G42 T0301 F400 S500 M03 M06 M08
+N20 G01 X0 Y300
+N30 G01 X100 Y300
+N40 G03 X150 Y250 I150 J300
+N50 G03 X200 Y300 I150 J300
+N60 G01 X300 Y300
+N70 G01 X300 Y200
+N80 G01 X200 Y100
+N90 G01 X200 Y0
+N100 G01 X0 Y0
+N110 M05 M09 M30
+```
+#### Output
+<p align="left">
+<img src="https://user-images.githubusercontent.com/36998696/159583207-23a2fca5-6dc7-4973-b9b2-78bf3cb3da95.jpg" width=40% />
+</p>
+
+
 # References
 For the *token list specification* see description [tokenList.md](/docs/gcode%20parser/tokenList.md) file.
