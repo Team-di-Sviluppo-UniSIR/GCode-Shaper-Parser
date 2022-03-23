@@ -143,5 +143,5 @@ N110 M05 M09 M30
 
 
 # References
-For the *token list specification* see description [tokenList.md](/docs/gcode%20parser/tokenList.md) file.
+For the *token list specification* see description [tokenList.md](/docs/gcode%20parser/tokenList.md) file. </br>
 For the full syntax grammar of GCode Parser check "[GCode Parser Syntax Grammar.pdf](https://github.com/Team-di-Sviluppo-UniSIR/GCode-Shaper-Parser/blob/main/docs/gcode%20parser/GCode%20Parser%20Syntax%20Grammar.pdf)" file.
