@@ -283,4 +283,4 @@ The *square* command can raise the following *semantic errors*:
 
 # References
 For the *token list specification* see description [tokenList.md](/docs/shaper%20metalanguage/tokenList.md) file. </br>
-For the full syntax grammar of Shaper metalanguage check "Shaper Parser Syntax Grammar.pdf" file.
+For the full syntax grammar of Shaper metalanguage check "[Shaper Parser Syntax Grammar.pdf](https://github.com/Team-di-Sviluppo-UniSIR/GCode-Shaper-Parser/tree/main/docs/shaper%20metalanguage#:~:text=Shaper%20Parser%20Syntax%20Grammar.pdf)" file.
