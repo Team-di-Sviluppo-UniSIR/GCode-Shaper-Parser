@@ -172,7 +172,11 @@ Helpful docs with syntax, examples and errors for understanding both *GCODE Pars
 2. [Shaper docs](https://github.com/Team-di-Sviluppo-UniSIR/GCode-Shaper-Parser/tree/main/docs/shaper%20metalanguage)
 
 # Semantic analysis
-Dire qui come è stata gestita l'analisi semantica e come sono stati trasferiti gli attributi.
+## GCode parser
+Following the GCode definition, each block of the source code can contain one or more instruction and, each of them, can has further informations about the movement, the speed, the tecnology and other possibile details of the CNC machine tool. An important difference between the GCode and our "light GCode" is that in the reality all the instruction informations can be listed randomly while in our solution is specified a fix order to be followed. The GCode grammar implemented in this software is based on this assumption and is built via a bottom-up approach that combine two main method: the first one is used to create the instruction informations while the other one is used to assembly them in several blocks. During the costruction is also verified that the identificator of each block (N###) follows an increasing order (not necessarily sequential) and, after this check, all the components are finally merged in the main object called "Blocks" and istanciated as a SortedMap. It represent the top-chain object which is passed and processed by the GCode parser.  
+
+## GCode shaper
+Stessa cosa di sopra da adattare alla struttura del gcode shaper
 
 # Errors
 All errors in G-code Parser and Shaper are here listed:
