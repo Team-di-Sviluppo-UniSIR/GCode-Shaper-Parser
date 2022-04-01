@@ -1,5 +1,5 @@
 # What are GCODE Parser and Shaper
-***GCode-Shaper-Parser*** aims to provide students an useful tool for understanding and practicing with G-code, a programming language for CNC machines:
+***GCode-Shaper-Parser*** aims to provide students a useful tool for understanding and practicing with G-code, a programming language for CNC machines:
 - ***GCODE Parser*** is the main compiler developed for parsing G-code language and provide a graphical representation of the written code.
 - ***Shaper*** is a metalanguage built upon G-code in order to simplify the definition of CNC commands and help the users understand the rules of G-code language.
 
