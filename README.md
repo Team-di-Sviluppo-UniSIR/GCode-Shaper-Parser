@@ -166,6 +166,9 @@ Helpful docs with syntax, examples and errors for understanding both *GCODE Pars
 1. [G-code Parser docs](https://github.com/Team-di-Sviluppo-UniSIR/GCode-Shaper-Parser/tree/main/docs/gcode%20parser)
 2. [Shaper docs](https://github.com/Team-di-Sviluppo-UniSIR/GCode-Shaper-Parser/tree/main/docs/shaper%20metalanguage)
 
+# Semantic analysis
+Dire qui come è stata gestita l'analisi semantica e come sono stati trasferiti gli attributi.
+
 # Errors
 All errors in G-code Parser and Shaper are here listed:
 1. [G-code Parser error list](https://github.com/Team-di-Sviluppo-UniSIR/GCode-Shaper-Parser/tree/main/errors/gcode%20parser)
