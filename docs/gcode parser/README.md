@@ -14,7 +14,7 @@ A G-code specification is composed by an infinite number of N-blocks, each of th
 block ::= N_BLOCK (
                     ( info_geometriche )+  (
                                                ( info_3M )?  
-                                             | ( info_tecnologiche )+ ( info_3M )? 
+                                             | ( info_tecnologiche )+ ( info_3M )?
                                            )
                     | ( info_tecnologiche )+ ( info_3M  )? 
                     | info_3M	 
@@ -69,7 +69,7 @@ info_3M ::= info_tecnologiche_M ( info_tecnologiche_M )? ( info_tecnologiche_M )
 
 ### EBNF Notation
 ```
-info_tecnologiche_M ::= ROT_TOOL_CW 
+info_tecnologiche_M ::= ROT_TOOL_CW
                       | ROT_TOOL_ACW
                       | STOP_TOOL
                       | CHANGE_TOOL
@@ -85,7 +85,7 @@ info_tecnologiche_M ::= ROT_TOOL_CW
 ### Example 1
 #### G-code Specification
 ```
-N10 G90 G42 F300 S1000 T0101 M06  M03 M08 
+N10 G90 G42 F300 S1000 T0101 M06  M03 M08
 N20 G00 X0 Y-10
 N30 G01 Y250
 N40 G01 X100
