@@ -8,60 +8,165 @@ import java.util.Stack;
 import java.util.List;
 import java.util.ArrayList;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class gcodeGrammarLexer.
+ */
 @SuppressWarnings("all")
 public class gcodeGrammarLexer extends Lexer {
+	
+	/** The Constant EOF. */
 	public static final int EOF=-1;
+	
+	/** The Constant CHANGE_TOOL. */
 	public static final int CHANGE_TOOL=4;
+	
+	/** The Constant CIRCLE_ACW. */
 	public static final int CIRCLE_ACW=5;
+	
+	/** The Constant CIRCLE_CW. */
 	public static final int CIRCLE_CW=6;
+	
+	/** The Constant COMMENT. */
 	public static final int COMMENT=7;
+	
+	/** The Constant COMP_DIS. */
 	public static final int COMP_DIS=8;
+	
+	/** The Constant COMP_L. */
 	public static final int COMP_L=9;
+	
+	/** The Constant COMP_R. */
 	public static final int COMP_R=10;
+	
+	/** The Constant COORD_ABS. */
 	public static final int COORD_ABS=11;
+	
+	/** The Constant COORD_REL. */
 	public static final int COORD_REL=12;
+	
+	/** The Constant CORD_DIGIT. */
 	public static final int CORD_DIGIT=13;
+	
+	/** The Constant DIGIT. */
 	public static final int DIGIT=14;
+	
+	/** The Constant END_PROG. */
 	public static final int END_PROG=15;
+	
+	/** The Constant FREE_MOVE. */
 	public static final int FREE_MOVE=16;
+	
+	/** The Constant FREE_MOVE_SPEED. */
 	public static final int FREE_MOVE_SPEED=17;
+	
+	/** The Constant I_CORD. */
 	public static final int I_CORD=18;
+	
+	/** The Constant JOB_MOVE. */
 	public static final int JOB_MOVE=19;
+	
+	/** The Constant JOB_MOVE_SPEED. */
 	public static final int JOB_MOVE_SPEED=20;
+	
+	/** The Constant J_CORD. */
 	public static final int J_CORD=21;
+	
+	/** The Constant K_CORD. */
 	public static final int K_CORD=22;
+	
+	/** The Constant LUBE_OFF. */
 	public static final int LUBE_OFF=23;
+	
+	/** The Constant LUBE_ON. */
 	public static final int LUBE_ON=24;
+	
+	/** The Constant N_BLOCK. */
 	public static final int N_BLOCK=25;
+	
+	/** The Constant ROT_TOOL_ACW. */
 	public static final int ROT_TOOL_ACW=26;
+	
+	/** The Constant ROT_TOOL_CW. */
 	public static final int ROT_TOOL_CW=27;
+	
+	/** The Constant SCAN_ERROR. */
 	public static final int SCAN_ERROR=28;
+	
+	/** The Constant STOP_TOOL. */
 	public static final int STOP_TOOL=29;
+	
+	/** The Constant TOOL_CHANGE. */
 	public static final int TOOL_CHANGE=30;
+	
+	/** The Constant WS. */
 	public static final int WS=31;
+	
+	/** The Constant X_CORD. */
 	public static final int X_CORD=32;
+	
+	/** The Constant Y_CORD. */
 	public static final int Y_CORD=33;
+	
+	/** The Constant Z_CORD. */
 	public static final int Z_CORD=34;
 
+	/**
+	 * Emit error message.
+	 *
+	 * @param msg the msg
+	 */
 	@Override
 	public void emitErrorMessage(String msg) {}
 
 
 	// delegates
+	/**
+	 * Gets the delegates.
+	 *
+	 * @return the delegates
+	 */
 	// delegators
 	public Lexer[] getDelegates() {
 		return new Lexer[] {};
 	}
 
+	/**
+	 * Instantiates a new gcode grammar lexer.
+	 */
 	public gcodeGrammarLexer() {} 
+	
+	/**
+	 * Instantiates a new gcode grammar lexer.
+	 *
+	 * @param input the input
+	 */
 	public gcodeGrammarLexer(CharStream input) {
 		this(input, new RecognizerSharedState());
 	}
+	
+	/**
+	 * Instantiates a new gcode grammar lexer.
+	 *
+	 * @param input the input
+	 * @param state the state
+	 */
 	public gcodeGrammarLexer(CharStream input, RecognizerSharedState state) {
 		super(input,state);
 	}
+	
+	/**
+	 * Gets the grammar file name.
+	 *
+	 * @return the grammar file name
+	 */
 	@Override public String getGrammarFileName() { return "C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\src\\gcodeCompiler\\gcodeGrammar.g"; }
 
+	/**
+	 * M DIGIT.
+	 *
+	 * @throws RecognitionException the recognition exception
+	 */
 	// $ANTLR start "DIGIT"
 	public final void mDIGIT() throws RecognitionException {
 		try {
@@ -85,6 +190,11 @@ public class gcodeGrammarLexer extends Lexer {
 	}
 	// $ANTLR end "DIGIT"
 
+	/**
+	 * M COR D DIGIT.
+	 *
+	 * @throws RecognitionException the recognition exception
+	 */
 	// $ANTLR start "CORD_DIGIT"
 	public final void mCORD_DIGIT() throws RecognitionException {
 		try {
@@ -149,6 +259,11 @@ public class gcodeGrammarLexer extends Lexer {
 	}
 	// $ANTLR end "CORD_DIGIT"
 
+	/**
+	 * M X CORD.
+	 *
+	 * @throws RecognitionException the recognition exception
+	 */
 	// $ANTLR start "X_CORD"
 	public final void mX_CORD() throws RecognitionException {
 		try {
@@ -171,6 +286,11 @@ public class gcodeGrammarLexer extends Lexer {
 	}
 	// $ANTLR end "X_CORD"
 
+	/**
+	 * M Y CORD.
+	 *
+	 * @throws RecognitionException the recognition exception
+	 */
 	// $ANTLR start "Y_CORD"
 	public final void mY_CORD() throws RecognitionException {
 		try {
@@ -193,6 +313,11 @@ public class gcodeGrammarLexer extends Lexer {
 	}
 	// $ANTLR end "Y_CORD"
 
+	/**
+	 * M Z CORD.
+	 *
+	 * @throws RecognitionException the recognition exception
+	 */
 	// $ANTLR start "Z_CORD"
 	public final void mZ_CORD() throws RecognitionException {
 		try {
@@ -215,6 +340,11 @@ public class gcodeGrammarLexer extends Lexer {
 	}
 	// $ANTLR end "Z_CORD"
 
+	/**
+	 * M I CORD.
+	 *
+	 * @throws RecognitionException the recognition exception
+	 */
 	// $ANTLR start "I_CORD"
 	public final void mI_CORD() throws RecognitionException {
 		try {
@@ -237,6 +367,11 @@ public class gcodeGrammarLexer extends Lexer {
 	}
 	// $ANTLR end "I_CORD"
 
+	/**
+	 * M J CORD.
+	 *
+	 * @throws RecognitionException the recognition exception
+	 */
 	// $ANTLR start "J_CORD"
 	public final void mJ_CORD() throws RecognitionException {
 		try {
@@ -259,6 +394,11 @@ public class gcodeGrammarLexer extends Lexer {
 	}
 	// $ANTLR end "J_CORD"
 
+	/**
+	 * M K CORD.
+	 *
+	 * @throws RecognitionException the recognition exception
+	 */
 	// $ANTLR start "K_CORD"
 	public final void mK_CORD() throws RecognitionException {
 		try {
@@ -281,6 +421,11 @@ public class gcodeGrammarLexer extends Lexer {
 	}
 	// $ANTLR end "K_CORD"
 
+	/**
+	 * M N BLOCK.
+	 *
+	 * @throws RecognitionException the recognition exception
+	 */
 	// $ANTLR start "N_BLOCK"
 	public final void mN_BLOCK() throws RecognitionException {
 		try {
@@ -338,6 +483,11 @@ public class gcodeGrammarLexer extends Lexer {
 	}
 	// $ANTLR end "N_BLOCK"
 
+	/**
+	 * M COOR D ABS.
+	 *
+	 * @throws RecognitionException the recognition exception
+	 */
 	// $ANTLR start "COORD_ABS"
 	public final void mCOORD_ABS() throws RecognitionException {
 		try {
@@ -359,6 +509,11 @@ public class gcodeGrammarLexer extends Lexer {
 	}
 	// $ANTLR end "COORD_ABS"
 
+	/**
+	 * M COOR D REL.
+	 *
+	 * @throws RecognitionException the recognition exception
+	 */
 	// $ANTLR start "COORD_REL"
 	public final void mCOORD_REL() throws RecognitionException {
 		try {
@@ -380,6 +535,11 @@ public class gcodeGrammarLexer extends Lexer {
 	}
 	// $ANTLR end "COORD_REL"
 
+	/**
+	 * M FRE E MOVE.
+	 *
+	 * @throws RecognitionException the recognition exception
+	 */
 	// $ANTLR start "FREE_MOVE"
 	public final void mFREE_MOVE() throws RecognitionException {
 		try {
@@ -401,6 +561,11 @@ public class gcodeGrammarLexer extends Lexer {
 	}
 	// $ANTLR end "FREE_MOVE"
 
+	/**
+	 * M JO B MOVE.
+	 *
+	 * @throws RecognitionException the recognition exception
+	 */
 	// $ANTLR start "JOB_MOVE"
 	public final void mJOB_MOVE() throws RecognitionException {
 		try {
@@ -422,6 +587,11 @@ public class gcodeGrammarLexer extends Lexer {
 	}
 	// $ANTLR end "JOB_MOVE"
 
+	/**
+	 * M CIRCL E CW.
+	 *
+	 * @throws RecognitionException the recognition exception
+	 */
 	// $ANTLR start "CIRCLE_CW"
 	public final void mCIRCLE_CW() throws RecognitionException {
 		try {
@@ -443,6 +613,11 @@ public class gcodeGrammarLexer extends Lexer {
 	}
 	// $ANTLR end "CIRCLE_CW"
 
+	/**
+	 * M CIRCL E ACW.
+	 *
+	 * @throws RecognitionException the recognition exception
+	 */
 	// $ANTLR start "CIRCLE_ACW"
 	public final void mCIRCLE_ACW() throws RecognitionException {
 		try {
@@ -464,6 +639,11 @@ public class gcodeGrammarLexer extends Lexer {
 	}
 	// $ANTLR end "CIRCLE_ACW"
 
+	/**
+	 * M COM P DIS.
+	 *
+	 * @throws RecognitionException the recognition exception
+	 */
 	// $ANTLR start "COMP_DIS"
 	public final void mCOMP_DIS() throws RecognitionException {
 		try {
@@ -485,6 +665,11 @@ public class gcodeGrammarLexer extends Lexer {
 	}
 	// $ANTLR end "COMP_DIS"
 
+	/**
+	 * M COM P L.
+	 *
+	 * @throws RecognitionException the recognition exception
+	 */
 	// $ANTLR start "COMP_L"
 	public final void mCOMP_L() throws RecognitionException {
 		try {
@@ -506,6 +691,11 @@ public class gcodeGrammarLexer extends Lexer {
 	}
 	// $ANTLR end "COMP_L"
 
+	/**
+	 * M COM P R.
+	 *
+	 * @throws RecognitionException the recognition exception
+	 */
 	// $ANTLR start "COMP_R"
 	public final void mCOMP_R() throws RecognitionException {
 		try {
@@ -527,6 +717,11 @@ public class gcodeGrammarLexer extends Lexer {
 	}
 	// $ANTLR end "COMP_R"
 
+	/**
+	 * M FRE E MOV E SPEED.
+	 *
+	 * @throws RecognitionException the recognition exception
+	 */
 	// $ANTLR start "FREE_MOVE_SPEED"
 	public final void mFREE_MOVE_SPEED() throws RecognitionException {
 		try {
@@ -584,6 +779,11 @@ public class gcodeGrammarLexer extends Lexer {
 	}
 	// $ANTLR end "FREE_MOVE_SPEED"
 
+	/**
+	 * M JO B MOV E SPEED.
+	 *
+	 * @throws RecognitionException the recognition exception
+	 */
 	// $ANTLR start "JOB_MOVE_SPEED"
 	public final void mJOB_MOVE_SPEED() throws RecognitionException {
 		try {
@@ -641,6 +841,11 @@ public class gcodeGrammarLexer extends Lexer {
 	}
 	// $ANTLR end "JOB_MOVE_SPEED"
 
+	/**
+	 * M TOO L CHANGE.
+	 *
+	 * @throws RecognitionException the recognition exception
+	 */
 	// $ANTLR start "TOOL_CHANGE"
 	public final void mTOOL_CHANGE() throws RecognitionException {
 		try {
@@ -679,6 +884,11 @@ public class gcodeGrammarLexer extends Lexer {
 	}
 	// $ANTLR end "TOOL_CHANGE"
 
+	/**
+	 * M RO T TOO L CW.
+	 *
+	 * @throws RecognitionException the recognition exception
+	 */
 	// $ANTLR start "ROT_TOOL_CW"
 	public final void mROT_TOOL_CW() throws RecognitionException {
 		try {
@@ -700,6 +910,11 @@ public class gcodeGrammarLexer extends Lexer {
 	}
 	// $ANTLR end "ROT_TOOL_CW"
 
+	/**
+	 * M RO T TOO L ACW.
+	 *
+	 * @throws RecognitionException the recognition exception
+	 */
 	// $ANTLR start "ROT_TOOL_ACW"
 	public final void mROT_TOOL_ACW() throws RecognitionException {
 		try {
@@ -721,6 +936,11 @@ public class gcodeGrammarLexer extends Lexer {
 	}
 	// $ANTLR end "ROT_TOOL_ACW"
 
+	/**
+	 * M STO P TOOL.
+	 *
+	 * @throws RecognitionException the recognition exception
+	 */
 	// $ANTLR start "STOP_TOOL"
 	public final void mSTOP_TOOL() throws RecognitionException {
 		try {
@@ -742,6 +962,11 @@ public class gcodeGrammarLexer extends Lexer {
 	}
 	// $ANTLR end "STOP_TOOL"
 
+	/**
+	 * M CHANG E TOOL.
+	 *
+	 * @throws RecognitionException the recognition exception
+	 */
 	// $ANTLR start "CHANGE_TOOL"
 	public final void mCHANGE_TOOL() throws RecognitionException {
 		try {
@@ -763,6 +988,11 @@ public class gcodeGrammarLexer extends Lexer {
 	}
 	// $ANTLR end "CHANGE_TOOL"
 
+	/**
+	 * M LUB E ON.
+	 *
+	 * @throws RecognitionException the recognition exception
+	 */
 	// $ANTLR start "LUBE_ON"
 	public final void mLUBE_ON() throws RecognitionException {
 		try {
@@ -784,6 +1014,11 @@ public class gcodeGrammarLexer extends Lexer {
 	}
 	// $ANTLR end "LUBE_ON"
 
+	/**
+	 * M LUB E OFF.
+	 *
+	 * @throws RecognitionException the recognition exception
+	 */
 	// $ANTLR start "LUBE_OFF"
 	public final void mLUBE_OFF() throws RecognitionException {
 		try {
@@ -805,6 +1040,11 @@ public class gcodeGrammarLexer extends Lexer {
 	}
 	// $ANTLR end "LUBE_OFF"
 
+	/**
+	 * M EN D PROG.
+	 *
+	 * @throws RecognitionException the recognition exception
+	 */
 	// $ANTLR start "END_PROG"
 	public final void mEND_PROG() throws RecognitionException {
 		try {
@@ -826,6 +1066,11 @@ public class gcodeGrammarLexer extends Lexer {
 	}
 	// $ANTLR end "END_PROG"
 
+	/**
+	 * M COMMENT.
+	 *
+	 * @throws RecognitionException the recognition exception
+	 */
 	// $ANTLR start "COMMENT"
 	public final void mCOMMENT() throws RecognitionException {
 		try {
@@ -971,6 +1216,11 @@ public class gcodeGrammarLexer extends Lexer {
 	}
 	// $ANTLR end "COMMENT"
 
+	/**
+	 * M WS.
+	 *
+	 * @throws RecognitionException the recognition exception
+	 */
 	// $ANTLR start "WS"
 	public final void mWS() throws RecognitionException {
 		try {
@@ -999,6 +1249,11 @@ public class gcodeGrammarLexer extends Lexer {
 	}
 	// $ANTLR end "WS"
 
+	/**
+	 * M SCA N ERROR.
+	 *
+	 * @throws RecognitionException the recognition exception
+	 */
 	// $ANTLR start "SCAN_ERROR"
 	public final void mSCAN_ERROR() throws RecognitionException {
 		try {
@@ -1019,6 +1274,11 @@ public class gcodeGrammarLexer extends Lexer {
 	}
 	// $ANTLR end "SCAN_ERROR"
 
+	/**
+	 * M tokens.
+	 *
+	 * @throws RecognitionException the recognition exception
+	 */
 	@Override
 	public void mTokens() throws RecognitionException {
 		// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\src\\gcodeCompiler\\gcodeGrammar.g:1:8: ( X_CORD | Y_CORD | Z_CORD | I_CORD | J_CORD | K_CORD | N_BLOCK | COORD_ABS | COORD_REL | FREE_MOVE | JOB_MOVE | CIRCLE_CW | CIRCLE_ACW | COMP_DIS | COMP_L | COMP_R | FREE_MOVE_SPEED | JOB_MOVE_SPEED | TOOL_CHANGE | ROT_TOOL_CW | ROT_TOOL_ACW | STOP_TOOL | CHANGE_TOOL | LUBE_ON | LUBE_OFF | END_PROG | COMMENT | WS | SCAN_ERROR )

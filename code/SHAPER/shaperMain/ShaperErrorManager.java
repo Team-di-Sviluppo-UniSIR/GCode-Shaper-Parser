@@ -11,11 +11,24 @@ import gcodeCompiler.gcodeGrammarParser;
 import shaperCompiler.*;
 import shaperCompiler.util.*;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class ShaperErrorManager.
+ */
 public class ShaperErrorManager {
 
+	/** The Constant MAX_COORDINATE. */
 	public static final int MAX_COORDINATE = 500;
+	
+	/** The Constant MIN_COORDINATE. */
 	public static final int MIN_COORDINATE = 0;
 
+	/**
+	 * Shaper error mgmt.
+	 *
+	 * @param parser the parser
+	 * @return true, if successful
+	 */
 	public static boolean shaperErrorMgmt(shaperGrammarParser parser) {
 		/*
 		 * nel caso non ci siano errori lessicali o sintattici, effettua verifica
@@ -77,6 +90,11 @@ public class ShaperErrorManager {
 		return false;
 	}
 
+	/**
+	 * Check triangle inequality.
+	 *
+	 * @param parser the parser
+	 */
 	// errore SEM_TRIANG_INEQ
 	private static void checkTriangleInequality(shaperGrammarParser parser) {
 
@@ -109,6 +127,11 @@ public class ShaperErrorManager {
 		}
 	}
 
+	/**
+	 * Check max coordinate value.
+	 *
+	 * @param parser the parser
+	 */
 	// errore SEM_MAX_COORD
 	public static void checkMaxCoordinateValue(shaperGrammarParser parser) {
 		Shape s = parser.h.getS();
@@ -266,6 +289,12 @@ public class ShaperErrorManager {
 		}
 	}
 
+	/**
+	 * Check rectangular perpendicular.
+	 *
+	 * @param parser the parser
+	 * @return true, if successful
+	 */
 	// errore SEM_RECT_PERPEN
 	private static boolean checkRectangularPerpendicular(shaperGrammarParser parser) {
 

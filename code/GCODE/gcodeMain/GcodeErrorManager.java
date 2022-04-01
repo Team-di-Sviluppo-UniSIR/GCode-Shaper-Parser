@@ -12,7 +12,18 @@ import gcodeCompiler.util.InfoGeometriche;
 import gcodeDrawingTool.GCodeDrawingViewer;
 import gcodeCompiler.gcodeGrammarHandler;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class GcodeErrorManager.
+ */
 public class GcodeErrorManager {
+	
+	/**
+	 * Gcode error mgmt.
+	 *
+	 * @param parser the parser
+	 * @return true, if successful
+	 */
 	public static boolean gcodeErrorMgmt(gcodeGrammarParser parser) {
 
 		/*
@@ -75,6 +86,11 @@ public class GcodeErrorManager {
 		return false;
 	}
 
+	/**
+	 * Check M 30.
+	 *
+	 * @param parser the parser
+	 */
 	// errore SEM_NO_END_PROG
 	private static void checkM30(gcodeGrammarParser parser) {
 		BlockDescriptor bd = parser.h.blocks.get(parser.h.blocks.lastKey());
@@ -92,6 +108,11 @@ public class GcodeErrorManager {
 			parser.h.semanticErrorHandler(gcodeGrammarHandler.SEM_NO_END_PROG, last, bd);
 	}
 
+	/**
+	 * Check tool error.
+	 *
+	 * @param parser the parser
+	 */
 	// errore SEM_TOOL_ERR
 	private static void checkToolError(gcodeGrammarParser parser) {
 		Collection<BlockDescriptor> valuesCollection = parser.h.blocks.values();
@@ -124,6 +145,11 @@ public class GcodeErrorManager {
 		}
 	}
 
+	/**
+	 * Check coordinate type.
+	 *
+	 * @param parser the parser
+	 */
 	// errore SEM_NO_COORDINATE_TYPE
 	private static void checkCoordinateType(gcodeGrammarParser parser) {
 		Collection<BlockDescriptor> valuesCollection = parser.h.blocks.values();
@@ -156,6 +182,11 @@ public class GcodeErrorManager {
 		}
 	}
 
+	/**
+	 * Check spindle rotation.
+	 *
+	 * @param parser the parser
+	 */
 	// errore SEM_NO_SPINDLE_ROTATION
 	private static void checkSpindleRotation(gcodeGrammarParser parser) {
 		Collection<BlockDescriptor> valuesCollection = parser.h.blocks.values();
@@ -192,6 +223,11 @@ public class GcodeErrorManager {
 		}
 	}
 
+	/**
+	 * Check M 05.
+	 *
+	 * @param parser the parser
+	 */
 	// errore SEM_END_ROT_ERR
 	private static void checkM05(gcodeGrammarParser parser) {
 		Collection<BlockDescriptor> valuesCollection = parser.h.blocks.values();
@@ -221,6 +257,11 @@ public class GcodeErrorManager {
 		}
 	}
 
+	/**
+	 * Check S F move.
+	 *
+	 * @param parser the parser
+	 */
 	// errore SEM_MOVE_SPEED_ERR
 	private static void checkSF_move(gcodeGrammarParser parser) {
 		Collection<BlockDescriptor> valuesCollection = parser.h.blocks.values();
@@ -249,6 +290,11 @@ public class GcodeErrorManager {
 		}
 	}
 
+	/**
+	 * Check S F job.
+	 *
+	 * @param parser the parser
+	 */
 	// errore SEM_JOB_SPEED_ERR
 	private static void checkSF_job(gcodeGrammarParser parser) {
 		Collection<BlockDescriptor> valuesCollection = parser.h.blocks.values();
@@ -287,6 +333,11 @@ public class GcodeErrorManager {
 		}
 	}
 
+	/**
+	 * Check speed coord type.
+	 *
+	 * @param parser the parser
+	 */
 	// errore SEM_NO_SPEED_COORD_TYPE
 	private static void checkSpeedCoordType(gcodeGrammarParser parser) {
 		Collection<BlockDescriptor> valuesCollection = parser.h.blocks.values();
@@ -321,6 +372,11 @@ public class GcodeErrorManager {
 		}
 	}
 
+	/**
+	 * Check abs before rel.
+	 *
+	 * @param parser the parser
+	 */
 	// errore SEM_NO_ABS_BEFORE_REL
 	private static void checkAbsBeforeRel(gcodeGrammarParser parser) {
 		Collection<BlockDescriptor> valuesCollection = parser.h.blocks.values();
@@ -362,6 +418,11 @@ public class GcodeErrorManager {
 		}
 	}
 
+	/**
+	 * Check 90 degrees.
+	 *
+	 * @param parser the parser
+	 */
 	// errore SEM_NOT_90_DEGREE
 	private static void check90degrees(gcodeGrammarParser parser) {
 		Collection<BlockDescriptor> valuesCollection = parser.h.blocks.values();

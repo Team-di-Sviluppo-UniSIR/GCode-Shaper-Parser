@@ -10,52 +10,144 @@ import java.util.Stack;
 import java.util.List;
 import java.util.ArrayList;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class shaperGrammarLexer.
+ */
 @SuppressWarnings("all")
 public class shaperGrammarLexer extends Lexer {
+	
+	/** The Constant EOF. */
 	public static final int EOF=-1;
+	
+	/** The Constant CB. */
 	public static final int CB=4;
+	
+	/** The Constant CIRCLE. */
 	public static final int CIRCLE=5;
+	
+	/** The Constant CIRCLE_C. */
 	public static final int CIRCLE_C=6;
+	
+	/** The Constant CIRCLE_R. */
 	public static final int CIRCLE_R=7;
+	
+	/** The Constant COMMENT. */
 	public static final int COMMENT=8;
+	
+	/** The Constant CONFIG. */
 	public static final int CONFIG=9;
+	
+	/** The Constant DIGIT. */
 	public static final int DIGIT=10;
+	
+	/** The Constant JOB_SPEED. */
 	public static final int JOB_SPEED=11;
+	
+	/** The Constant LUBE_SET. */
 	public static final int LUBE_SET=12;
+	
+	/** The Constant MOVE_SPEED. */
 	public static final int MOVE_SPEED=13;
+	
+	/** The Constant OB. */
 	public static final int OB=14;
+	
+	/** The Constant ON_OFF. */
 	public static final int ON_OFF=15;
+	
+	/** The Constant P1. */
 	public static final int P1=16;
+	
+	/** The Constant P2. */
 	public static final int P2=17;
+	
+	/** The Constant P3. */
 	public static final int P3=18;
+	
+	/** The Constant RECTANGLE. */
 	public static final int RECTANGLE=19;
+	
+	/** The Constant RECTANGLE_B. */
 	public static final int RECTANGLE_B=20;
+	
+	/** The Constant RECTANGLE_H. */
 	public static final int RECTANGLE_H=21;
+	
+	/** The Constant RECTANGLE_P. */
 	public static final int RECTANGLE_P=22;
+	
+	/** The Constant SCAN_ERROR. */
 	public static final int SCAN_ERROR=23;
+	
+	/** The Constant SQUARE. */
 	public static final int SQUARE=24;
+	
+	/** The Constant SQUARE_CONFIG. */
 	public static final int SQUARE_CONFIG=25;
+	
+	/** The Constant SQUARE_L. */
 	public static final int SQUARE_L=26;
+	
+	/** The Constant TRIANGLE. */
 	public static final int TRIANGLE=27;
+	
+	/** The Constant WS. */
 	public static final int WS=28;
+	
+	/** The Constant X_CORD. */
 	public static final int X_CORD=29;
+	
+	/** The Constant Y_CORD. */
 	public static final int Y_CORD=30;
 
 	// delegates
+	/**
+	 * Gets the delegates.
+	 *
+	 * @return the delegates
+	 */
 	// delegators
 	public Lexer[] getDelegates() {
 		return new Lexer[] {};
 	}
 
+	/**
+	 * Instantiates a new shaper grammar lexer.
+	 */
 	public shaperGrammarLexer() {} 
+	
+	/**
+	 * Instantiates a new shaper grammar lexer.
+	 *
+	 * @param input the input
+	 */
 	public shaperGrammarLexer(CharStream input) {
 		this(input, new RecognizerSharedState());
 	}
+	
+	/**
+	 * Instantiates a new shaper grammar lexer.
+	 *
+	 * @param input the input
+	 * @param state the state
+	 */
 	public shaperGrammarLexer(CharStream input, RecognizerSharedState state) {
 		super(input,state);
 	}
+	
+	/**
+	 * Gets the grammar file name.
+	 *
+	 * @return the grammar file name
+	 */
 	@Override public String getGrammarFileName() { return "C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\SHAPER\\shaperCompiler\\shaperGrammar.g"; }
 
+	/**
+	 * M CIRCLE.
+	 *
+	 * @throws RecognitionException the recognition exception
+	 */
 	// $ANTLR start "CIRCLE"
 	public final void mCIRCLE() throws RecognitionException {
 		try {
@@ -77,6 +169,11 @@ public class shaperGrammarLexer extends Lexer {
 	}
 	// $ANTLR end "CIRCLE"
 
+	/**
+	 * M SQUARE.
+	 *
+	 * @throws RecognitionException the recognition exception
+	 */
 	// $ANTLR start "SQUARE"
 	public final void mSQUARE() throws RecognitionException {
 		try {
@@ -98,6 +195,11 @@ public class shaperGrammarLexer extends Lexer {
 	}
 	// $ANTLR end "SQUARE"
 
+	/**
+	 * M RECTANGLE.
+	 *
+	 * @throws RecognitionException the recognition exception
+	 */
 	// $ANTLR start "RECTANGLE"
 	public final void mRECTANGLE() throws RecognitionException {
 		try {
@@ -119,6 +221,11 @@ public class shaperGrammarLexer extends Lexer {
 	}
 	// $ANTLR end "RECTANGLE"
 
+	/**
+	 * M TRIANGLE.
+	 *
+	 * @throws RecognitionException the recognition exception
+	 */
 	// $ANTLR start "TRIANGLE"
 	public final void mTRIANGLE() throws RecognitionException {
 		try {
@@ -140,6 +247,11 @@ public class shaperGrammarLexer extends Lexer {
 	}
 	// $ANTLR end "TRIANGLE"
 
+	/**
+	 * M CIRCL E C.
+	 *
+	 * @throws RecognitionException the recognition exception
+	 */
 	// $ANTLR start "CIRCLE_C"
 	public final void mCIRCLE_C() throws RecognitionException {
 		try {
@@ -160,6 +272,11 @@ public class shaperGrammarLexer extends Lexer {
 	}
 	// $ANTLR end "CIRCLE_C"
 
+	/**
+	 * M CIRCL E R.
+	 *
+	 * @throws RecognitionException the recognition exception
+	 */
 	// $ANTLR start "CIRCLE_R"
 	public final void mCIRCLE_R() throws RecognitionException {
 		try {
@@ -213,6 +330,11 @@ public class shaperGrammarLexer extends Lexer {
 	}
 	// $ANTLR end "CIRCLE_R"
 
+	/**
+	 * M SQUAR E L.
+	 *
+	 * @throws RecognitionException the recognition exception
+	 */
 	// $ANTLR start "SQUARE_L"
 	public final void mSQUARE_L() throws RecognitionException {
 		try {
@@ -233,6 +355,11 @@ public class shaperGrammarLexer extends Lexer {
 	}
 	// $ANTLR end "SQUARE_L"
 
+	/**
+	 * M RECTANGL E P.
+	 *
+	 * @throws RecognitionException the recognition exception
+	 */
 	// $ANTLR start "RECTANGLE_P"
 	public final void mRECTANGLE_P() throws RecognitionException {
 		try {
@@ -253,6 +380,11 @@ public class shaperGrammarLexer extends Lexer {
 	}
 	// $ANTLR end "RECTANGLE_P"
 
+	/**
+	 * M RECTANGL E B.
+	 *
+	 * @throws RecognitionException the recognition exception
+	 */
 	// $ANTLR start "RECTANGLE_B"
 	public final void mRECTANGLE_B() throws RecognitionException {
 		try {
@@ -273,6 +405,11 @@ public class shaperGrammarLexer extends Lexer {
 	}
 	// $ANTLR end "RECTANGLE_B"
 
+	/**
+	 * M RECTANGL E H.
+	 *
+	 * @throws RecognitionException the recognition exception
+	 */
 	// $ANTLR start "RECTANGLE_H"
 	public final void mRECTANGLE_H() throws RecognitionException {
 		try {
@@ -293,6 +430,11 @@ public class shaperGrammarLexer extends Lexer {
 	}
 	// $ANTLR end "RECTANGLE_H"
 
+	/**
+	 * M P 1.
+	 *
+	 * @throws RecognitionException the recognition exception
+	 */
 	// $ANTLR start "P1"
 	public final void mP1() throws RecognitionException {
 		try {
@@ -314,6 +456,11 @@ public class shaperGrammarLexer extends Lexer {
 	}
 	// $ANTLR end "P1"
 
+	/**
+	 * M P 2.
+	 *
+	 * @throws RecognitionException the recognition exception
+	 */
 	// $ANTLR start "P2"
 	public final void mP2() throws RecognitionException {
 		try {
@@ -335,6 +482,11 @@ public class shaperGrammarLexer extends Lexer {
 	}
 	// $ANTLR end "P2"
 
+	/**
+	 * M P 3.
+	 *
+	 * @throws RecognitionException the recognition exception
+	 */
 	// $ANTLR start "P3"
 	public final void mP3() throws RecognitionException {
 		try {
@@ -356,6 +508,11 @@ public class shaperGrammarLexer extends Lexer {
 	}
 	// $ANTLR end "P3"
 
+	/**
+	 * M SQUAR E CONFIG.
+	 *
+	 * @throws RecognitionException the recognition exception
+	 */
 	// $ANTLR start "SQUARE_CONFIG"
 	public final void mSQUARE_CONFIG() throws RecognitionException {
 		try {
@@ -403,6 +560,11 @@ public class shaperGrammarLexer extends Lexer {
 	}
 	// $ANTLR end "SQUARE_CONFIG"
 
+	/**
+	 * M X CORD.
+	 *
+	 * @throws RecognitionException the recognition exception
+	 */
 	// $ANTLR start "X_CORD"
 	public final void mX_CORD() throws RecognitionException {
 		try {
@@ -456,6 +618,11 @@ public class shaperGrammarLexer extends Lexer {
 	}
 	// $ANTLR end "X_CORD"
 
+	/**
+	 * M Y CORD.
+	 *
+	 * @throws RecognitionException the recognition exception
+	 */
 	// $ANTLR start "Y_CORD"
 	public final void mY_CORD() throws RecognitionException {
 		try {
@@ -509,6 +676,11 @@ public class shaperGrammarLexer extends Lexer {
 	}
 	// $ANTLR end "Y_CORD"
 
+	/**
+	 * M CONFIG.
+	 *
+	 * @throws RecognitionException the recognition exception
+	 */
 	// $ANTLR start "CONFIG"
 	public final void mCONFIG() throws RecognitionException {
 		try {
@@ -530,6 +702,11 @@ public class shaperGrammarLexer extends Lexer {
 	}
 	// $ANTLR end "CONFIG"
 
+	/**
+	 * M MOV E SPEED.
+	 *
+	 * @throws RecognitionException the recognition exception
+	 */
 	// $ANTLR start "MOVE_SPEED"
 	public final void mMOVE_SPEED() throws RecognitionException {
 		try {
@@ -584,6 +761,11 @@ public class shaperGrammarLexer extends Lexer {
 	}
 	// $ANTLR end "MOVE_SPEED"
 
+	/**
+	 * M JO B SPEED.
+	 *
+	 * @throws RecognitionException the recognition exception
+	 */
 	// $ANTLR start "JOB_SPEED"
 	public final void mJOB_SPEED() throws RecognitionException {
 		try {
@@ -638,6 +820,11 @@ public class shaperGrammarLexer extends Lexer {
 	}
 	// $ANTLR end "JOB_SPEED"
 
+	/**
+	 * M LUB E SET.
+	 *
+	 * @throws RecognitionException the recognition exception
+	 */
 	// $ANTLR start "LUBE_SET"
 	public final void mLUBE_SET() throws RecognitionException {
 		try {
@@ -659,6 +846,11 @@ public class shaperGrammarLexer extends Lexer {
 	}
 	// $ANTLR end "LUBE_SET"
 
+	/**
+	 * M O N OFF.
+	 *
+	 * @throws RecognitionException the recognition exception
+	 */
 	// $ANTLR start "ON_OFF"
 	public final void mON_OFF() throws RecognitionException {
 		try {
@@ -722,6 +914,11 @@ public class shaperGrammarLexer extends Lexer {
 	}
 	// $ANTLR end "ON_OFF"
 
+	/**
+	 * M OB.
+	 *
+	 * @throws RecognitionException the recognition exception
+	 */
 	// $ANTLR start "OB"
 	public final void mOB() throws RecognitionException {
 		try {
@@ -742,6 +939,11 @@ public class shaperGrammarLexer extends Lexer {
 	}
 	// $ANTLR end "OB"
 
+	/**
+	 * M CB.
+	 *
+	 * @throws RecognitionException the recognition exception
+	 */
 	// $ANTLR start "CB"
 	public final void mCB() throws RecognitionException {
 		try {
@@ -762,6 +964,11 @@ public class shaperGrammarLexer extends Lexer {
 	}
 	// $ANTLR end "CB"
 
+	/**
+	 * M DIGIT.
+	 *
+	 * @throws RecognitionException the recognition exception
+	 */
 	// $ANTLR start "DIGIT"
 	public final void mDIGIT() throws RecognitionException {
 		try {
@@ -785,6 +992,11 @@ public class shaperGrammarLexer extends Lexer {
 	}
 	// $ANTLR end "DIGIT"
 
+	/**
+	 * M COMMENT.
+	 *
+	 * @throws RecognitionException the recognition exception
+	 */
 	// $ANTLR start "COMMENT"
 	public final void mCOMMENT() throws RecognitionException {
 		try {
@@ -930,6 +1142,11 @@ public class shaperGrammarLexer extends Lexer {
 	}
 	// $ANTLR end "COMMENT"
 
+	/**
+	 * M WS.
+	 *
+	 * @throws RecognitionException the recognition exception
+	 */
 	// $ANTLR start "WS"
 	public final void mWS() throws RecognitionException {
 		try {
@@ -958,6 +1175,11 @@ public class shaperGrammarLexer extends Lexer {
 	}
 	// $ANTLR end "WS"
 
+	/**
+	 * M SCA N ERROR.
+	 *
+	 * @throws RecognitionException the recognition exception
+	 */
 	// $ANTLR start "SCAN_ERROR"
 	public final void mSCAN_ERROR() throws RecognitionException {
 		try {
@@ -978,6 +1200,11 @@ public class shaperGrammarLexer extends Lexer {
 	}
 	// $ANTLR end "SCAN_ERROR"
 
+	/**
+	 * M tokens.
+	 *
+	 * @throws RecognitionException the recognition exception
+	 */
 	@Override
 	public void mTokens() throws RecognitionException {
 		// C:\\Users\\ghisl\\Documents\\GitHub\\progetto_LFC\\codice_LFC\\SHAPER\\shaperCompiler\\shaperGrammar.g:1:8: ( CIRCLE | SQUARE | RECTANGLE | TRIANGLE | CIRCLE_C | CIRCLE_R | SQUARE_L | RECTANGLE_P | RECTANGLE_B | RECTANGLE_H | P1 | P2 | P3 | SQUARE_CONFIG | X_CORD | Y_CORD | CONFIG | MOVE_SPEED | JOB_SPEED | LUBE_SET | ON_OFF | OB | CB | COMMENT | WS | SCAN_ERROR )

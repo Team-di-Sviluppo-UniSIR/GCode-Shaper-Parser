@@ -12,29 +12,61 @@ import gcodeCompiler.util.GCodeError;
 import shaperCompiler.util.*;
 import shaperMain.ShaperErrorManager;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class shaperGrammarHandler.
+ */
 public class shaperGrammarHandler {
+	
+	/** The Constant TOKEN_ERROR. */
 	// codici degli errori lessicali e sintattici
 	public static final int TOKEN_ERROR = 0; // errore lessicale
+	
+	/** The Constant ERR_ON_SYNTAX. */
 	public static final int ERR_ON_SYNTAX = 1; // errore sintattico
 
+	/** The Constant SEM_TRIANG_INEQ. */
 	// codici errori semantici
 	public static final int SEM_TRIANG_INEQ = 2;
+	
+	/** The Constant SEM_MAX_COORD. */
 	public static final int SEM_MAX_COORD = 3;
+	
+	/** The Constant SEM_RECT_PERPEN. */
 	public static final int SEM_RECT_PERPEN = 4;
 
+	/** The Constant UNDEFINED. */
 	// codici di supporto
 	public static final int UNDEFINED = -1;
+	
+	/** The Constant LAST_SYNTAX_ERROR. */
 	public static final int LAST_SYNTAX_ERROR = 10;
 
+	/** The error list. */
 	List<ShaperError> errorList; // lista degli errori
+	
+	/** The lexer stream. */
 	TokenStream lexerStream; // stream token lexer
+	
+	/** The s. */
 	Shape s;
 
+	/**
+	 * Instantiates a new shaper grammar handler.
+	 *
+	 * @param ls the ls
+	 */
 	public shaperGrammarHandler(TokenStream ls) {
 		errorList = new ArrayList<ShaperError>(); // lista degli errori è una lista di stringhe
 		lexerStream = ls; // istanzio stream token lexer
 	}
 
+	/**
+	 * Creates the shape.
+	 *
+	 * @param in the in
+	 * @param f the f
+	 */
 	public void createShape(Shape in, Shape f) {
 		s = f;
 
@@ -44,15 +76,31 @@ public class shaperGrammarHandler {
 
 	}
 
+	/**
+	 * Gets the error list.
+	 *
+	 * @return the error list
+	 */
 	// metodo che mi fornisce lista degli errori
 	public List<ShaperError> getErrorList() {
 		return errorList;
 	}
 
+	/**
+	 * Prints the shape.
+	 */
 	public void printShape() {
 		System.out.println(s.toString());
 	}
 
+	/**
+	 * Handle error.
+	 *
+	 * @param tokenNames the token names
+	 * @param e the e
+	 * @param h the h
+	 * @param m the m
+	 */
 	// h contiene le coordinate, m il messaggio d'errore standard
 	void handleError(String[] tokenNames, RecognitionException e, String h, String m) {
 		ShaperError errore = new ShaperError();
@@ -71,6 +119,11 @@ public class shaperGrammarHandler {
 		errorList.add(errore);
 	}
 
+	/**
+	 * Conversion.
+	 *
+	 * @return the string
+	 */
 	public String conversion() {
 
 		String preamble = "N10 G90 G40 F" + s.getMoveSpeed().substring(1) + " S" + s.getJobSpeed().substring(1)
@@ -218,6 +271,12 @@ public class shaperGrammarHandler {
 
 	}
 
+	/**
+	 * Semantic error handler.
+	 *
+	 * @param code the code
+	 * @param tk the tk
+	 */
 	public void semanticErrorHandler(int code, Token tk) {
 		ShaperError errore = new ShaperError();
 		errore.setType((short) code);
@@ -247,6 +306,11 @@ public class shaperGrammarHandler {
 		errorList.add(errore);
 	}
 
+	/**
+	 * Gets the s.
+	 *
+	 * @return the s
+	 */
 	public Shape getS() {
 		return s;
 	}

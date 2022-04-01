@@ -19,30 +19,70 @@ import shaperCompiler.*;
 import shaperCompiler.util.*;
 import shaperMain.*;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class GCodeIDEWindow.
+ */
 @SuppressWarnings("serial")
 public class GCodeIDEWindow extends JFrame implements ActionListener {
 
+	/** The Constant WIDTH. */
 	private static final int WIDTH = 1500;
+	
+	/** The Constant HEIGHT. */
 	private static final int HEIGHT = 850;
 
+	/** The frame. */
 	static JFrame frame;
+	
+	/** The parse button. */
 	static JButton parse_button;
+	
+	/** The reset button. */
 	static JButton reset_button;
+	
+	/** The area GCODE. */
 	static JTextArea areaGCODE;
+	
+	/** The scritta console. */
 	static JLabel scritta_console;
+	
+	/** The scorrimento GCODE. */
 	static JScrollPane scorrimento_GCODE;
+	
+	/** The area console. */
 	static JTextArea areaConsole;
+	
+	/** The scorrimento console. */
 	static JScrollPane scorrimento_console;
+	
+	/** The area SHAPER. */
 	static JTextArea areaSHAPER;
+	
+	/** The scorrimento SHAPER. */
 	static JScrollPane scorrimento_SHAPER;
+	
+	/** The convert button. */
 	static JButton convert_button;
+	
+	/** The clear button. */
 	static JButton clear_button;
+	
+	/** The scritta shaper. */
 	static JLabel scritta_shaper;
+	
+	/** The scritta gcode. */
 	static JLabel scritta_gcode;
 
+	/**
+	 * Instantiates a new g code IDE window.
+	 */
 	GCodeIDEWindow() {
 	}
 
+	/**
+	 * G code IDE window.
+	 */
 	@SuppressWarnings("deprecation")
 	public static void gCodeIDEWindow() {
 
@@ -140,6 +180,11 @@ public class GCodeIDEWindow extends JFrame implements ActionListener {
 		frame.show();
 	}
 
+	/**
+	 * Action performed.
+	 *
+	 * @param e the e
+	 */
 	// if the button is pressed
 	public void actionPerformed(ActionEvent e) {
 		String s = e.getActionCommand();

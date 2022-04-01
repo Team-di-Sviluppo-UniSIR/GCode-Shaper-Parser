@@ -2,12 +2,32 @@ package gcodeCompiler.util;
 
 import gcodeCompiler.gcodeGrammarHandler;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class GCodeError.
+ */
 public class GCodeError implements Comparable<GCodeError> {
+	
+	/** The type. */
 	private short type;
+	
+	/** The row. */
 	private short row;
+	
+	/** The column. */
 	private short column;
+	
+	/** The message. */
 	private String message;
 
+	/**
+	 * Instantiates a new g code error.
+	 *
+	 * @param type the type
+	 * @param row the row
+	 * @param column the column
+	 * @param message the message
+	 */
 	public GCodeError(short type, short row, short column, String message) {
 		this.type = type;
 		this.row = row;
@@ -15,41 +35,89 @@ public class GCodeError implements Comparable<GCodeError> {
 		this.message = message;
 	}
 
+	/**
+	 * Instantiates a new g code error.
+	 */
 	public GCodeError() {
 	}
 
+	/**
+	 * Gets the type.
+	 *
+	 * @return the type
+	 */
 	public short getType() {
 		return type;
 	}
 
+	/**
+	 * Sets the type.
+	 *
+	 * @param type the new type
+	 */
 	public void setType(short type) {
 		this.type = type;
 	}
 
+	/**
+	 * Gets the row.
+	 *
+	 * @return the row
+	 */
 	public short getRow() {
 		return row;
 	}
 
+	/**
+	 * Sets the row.
+	 *
+	 * @param row the new row
+	 */
 	public void setRow(short row) {
 		this.row = row;
 	}
 
+	/**
+	 * Gets the column.
+	 *
+	 * @return the column
+	 */
 	public short getColumn() {
 		return column;
 	}
 
+	/**
+	 * Sets the column.
+	 *
+	 * @param column the new column
+	 */
 	public void setColumn(short column) {
 		this.column = column;
 	}
 
+	/**
+	 * Gets the message.
+	 *
+	 * @return the message
+	 */
 	public String getMessage() {
 		return message;
 	}
 
+	/**
+	 * Sets the message.
+	 *
+	 * @param message the new message
+	 */
 	public void setMessage(String message) {
 		this.message = message;
 	}
 
+	/**
+	 * To string.
+	 *
+	 * @return the string
+	 */
 	@Override
 	public String toString() {
 		String s = "";
@@ -118,6 +186,12 @@ public class GCodeError implements Comparable<GCodeError> {
 		return s;
 	}
 
+	/**
+	 * Compare to.
+	 *
+	 * @param o the o
+	 * @return the int
+	 */
 	@Override
 	public int compareTo(GCodeError o) {
 		if (this.row > o.getRow())

@@ -3,12 +3,32 @@ package shaperCompiler.util;
 import gcodeCompiler.util.GCodeError;
 import shaperCompiler.shaperGrammarHandler;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class ShaperError.
+ */
 public class ShaperError implements Comparable<ShaperError> {
+	
+	/** The type. */
 	private short type;
+	
+	/** The row. */
 	private short row;
+	
+	/** The column. */
 	private short column;
+	
+	/** The message. */
 	private String message;
 
+	/**
+	 * Instantiates a new shaper error.
+	 *
+	 * @param type the type
+	 * @param row the row
+	 * @param column the column
+	 * @param message the message
+	 */
 	public ShaperError(short type, short row, short column, String message) {
 		this.type = type;
 		this.row = row;
@@ -16,41 +36,89 @@ public class ShaperError implements Comparable<ShaperError> {
 		this.message = message;
 	}
 
+	/**
+	 * Instantiates a new shaper error.
+	 */
 	public ShaperError() {
 	}
 
+	/**
+	 * Gets the type.
+	 *
+	 * @return the type
+	 */
 	public short getType() {
 		return type;
 	}
 
+	/**
+	 * Sets the type.
+	 *
+	 * @param type the new type
+	 */
 	public void setType(short type) {
 		this.type = type;
 	}
 
+	/**
+	 * Gets the row.
+	 *
+	 * @return the row
+	 */
 	public short getRow() {
 		return row;
 	}
 
+	/**
+	 * Sets the row.
+	 *
+	 * @param row the new row
+	 */
 	public void setRow(short row) {
 		this.row = row;
 	}
 
+	/**
+	 * Gets the column.
+	 *
+	 * @return the column
+	 */
 	public short getColumn() {
 		return column;
 	}
 
+	/**
+	 * Sets the column.
+	 *
+	 * @param column the new column
+	 */
 	public void setColumn(short column) {
 		this.column = column;
 	}
 
+	/**
+	 * Gets the message.
+	 *
+	 * @return the message
+	 */
 	public String getMessage() {
 		return message;
 	}
 
+	/**
+	 * Sets the message.
+	 *
+	 * @param message the new message
+	 */
 	public void setMessage(String message) {
 		this.message = message;
 	}
 
+	/**
+	 * To string.
+	 *
+	 * @return the string
+	 */
 	@Override
 	public String toString() {
 		String s = "";
@@ -83,6 +151,12 @@ public class ShaperError implements Comparable<ShaperError> {
 		return s;
 	}
 
+	/**
+	 * Compare to.
+	 *
+	 * @param o the o
+	 * @return the int
+	 */
 	@Override
 	public int compareTo(ShaperError o) {
 		if (this.row > o.getRow())

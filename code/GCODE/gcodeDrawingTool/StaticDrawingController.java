@@ -14,14 +14,30 @@ import gcodeCompiler.util.BlockDescriptor;
 import gcodeCompiler.util.CircularMove;
 import gcodeCompiler.util.Coordinate;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class StaticDrawingController.
+ */
 @SuppressWarnings("serial")
 class StaticDrawingController extends JPanel {
+	
+	/** The parser. */
 	gcodeGrammarParser parser;
 
+	/**
+	 * Instantiates a new static drawing controller.
+	 *
+	 * @param parser the parser
+	 */
 	public StaticDrawingController(gcodeGrammarParser parser) {
 		this.parser = parser;
 	}
 
+	/**
+	 * Paint component.
+	 *
+	 * @param g the g
+	 */
 	@Override
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
@@ -32,6 +48,12 @@ class StaticDrawingController extends JPanel {
 		staticDrawing(parser, g); // print della figura
 	}
 
+	/**
+	 * Draw specs.
+	 *
+	 * @param parser the parser
+	 * @param g the g
+	 */
 	private void drawSpecs(gcodeGrammarParser parser, Graphics g) {
 		g.setColor(Color.WHITE);
 		g.setFont(new Font("Monospaced", Font.PLAIN, 15));
@@ -109,6 +131,13 @@ class StaticDrawingController extends JPanel {
 			g.drawString("   Cooling lube: OFF", 385, 85);
 	}
 
+	/**
+	 * Circular interpolation.
+	 *
+	 * @param cm the cm
+	 * @param g the g
+	 * @param compensazione_assi the compensazione assi
+	 */
 	// versione definitiva dell'interpolazione circolare
 	private void circularInterpolation(CircularMove cm, Graphics g, int compensazione_assi) {
 		int raggio1 = Math.abs(cm.getC_xyz().getFirst() - cm.getC_ijk().getFirst());
@@ -175,6 +204,12 @@ class StaticDrawingController extends JPanel {
 
 	}
 
+	/**
+	 * Static drawing.
+	 *
+	 * @param parser the parser
+	 * @param g the g
+	 */
 	/*
 	 * static drawing (coordinate assolute e relative). Effettua la stampa sia
 	 * dell'interpolazione lineare che circolare (oraria ed antioraria).
@@ -306,6 +341,11 @@ class StaticDrawingController extends JPanel {
 		}
 	}
 
+	/**
+	 * Draw reference system.
+	 *
+	 * @param g the g
+	 */
 	private void drawReferenceSystem(Graphics g) {
 		int height = GCodeDrawingViewer.CANVAS_HEIGHT;
 		int comp = GCodeDrawingViewer.AXIS_COMP;

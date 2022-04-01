@@ -1,3 +1,6 @@
+/**
+ * gcodeCompiler is a package that contains all the G-Code grammar related functions
+ */
 package gcodeCompiler;
 
 import java.util.ArrayList;
@@ -9,37 +12,86 @@ import org.antlr.runtime.*;
 import gcodeCompiler.util.*;
 import gcodeCompiler.util.GCodeError;
 
+// TODO: Auto-generated Javadoc
+/**
+ * 
+ * This class is responsible for the management of the G-Code language.
+ *
+ */
 public class gcodeGrammarHandler {
+	
+	/** The Constant TOKEN_ERROR. */
 	// codici degli errori lessicali e sintattici
 	public static final int TOKEN_ERROR = 0; // errore lessicale
+	
+	/** The Constant ERR_ON_SYNTAX. */
 	public static final int ERR_ON_SYNTAX = 1; // errore sintattico
 
+	/** The Constant SEM_BLOCK_ORDER. */
 	// codici degli errori semantici
 	public static final int SEM_BLOCK_ORDER = 2; // errore numero blocco
+	
+	/** The Constant SEM_NO_END_PROG. */
 	public static final int SEM_NO_END_PROG = 3; // errore mancato token M30 fine programma
+	
+	/** The Constant SEM_TOOL_ERR. */
 	public static final int SEM_TOOL_ERR = 4; // errore M06 senza T[][] e viceversa
+	
+	/** The Constant SEM_NO_COORDINATE_TYPE. */
 	public static final int SEM_NO_COORDINATE_TYPE = 5; // errore G00, G01, G02, G03 senza G90, G91
+	
+	/** The Constant SEM_NO_SPINDLE_ROTATION. */
 	public static final int SEM_NO_SPINDLE_ROTATION = 6; // errore G01, G02, G03 senza M03, M04
+	
+	/** The Constant SEM_DUPLICATE_ERR. */
 	public static final int SEM_DUPLICATE_ERR = 7; // comando duplicato nel medesimo blocco
+	
+	/** The Constant SEM_END_ROT_ERR. */
 	public static final int SEM_END_ROT_ERR = 8; // disattivazione mandrino prima di averlo attivato
+	
+	/** The Constant SEM_MOVE_SPEED_ERR. */
 	public static final int SEM_MOVE_SPEED_ERR = 9; // velocità spostamento F non definita prima di G00
+	
+	/** The Constant SEM_JOB_SPEED_ERR. */
 	public static final int SEM_JOB_SPEED_ERR = 11; // velocità lavorazione S non definita prima di G01, G02, G03
+	
+	/** The Constant SEM_NO_SPEED_COORD_TYPE. */
 	public static final int SEM_NO_SPEED_COORD_TYPE = 12; // velocità F o S senza aver definito tipo coordinata G90, G91
+	
+	/** The Constant SEM_NO_ABS_BEFORE_REL. */
 	public static final int SEM_NO_ABS_BEFORE_REL = 13; // assenza riferimento in G90 prima di un G91
+	
+	/** The Constant SEM_NOT_90_DEGREE. */
 	public static final int SEM_NOT_90_DEGREE = 14; // interpolazione circolare diversa da 90 gradi
 
+	/** The Constant UNDEFINED. */
 	// codici di supporto
 	public static final int UNDEFINED = -1;
+	
+	/** The Constant LAST_SYNTAX_ERROR. */
 	public static final int LAST_SYNTAX_ERROR = 10;
 
+	/** The blocks. */
 	// struttura dati contenente i blocchi gcode
 	public SortedMap<Integer, BlockDescriptor> blocks;
+	
+	/** The last n. */
 	private int last_n; // ultimo numero di blocco
 
+	/** The error list. */
 	List<GCodeError> errorList; // lista degli errori
+	
+	/** The lexer stream. */
 	TokenStream lexerStream; // stream token lexer
+	
+	/** The last token. */
 	Token last_token; // ultimo token letto dal lexer
 
+	/**
+	 * Constructor of the gcodeGrammarHandler class.
+	 *
+	 * @param ls the ls
+	 */
 	// classe base per la gestione di parser e lexer
 	public gcodeGrammarHandler(TokenStream ls) {
 		blocks = new TreeMap<Integer, BlockDescriptor>(); // istanzio struttura dati per blocchi
@@ -48,6 +100,14 @@ public class gcodeGrammarHandler {
 		last_n = -1; // ultimo numero di blocco
 	}
 
+	/**
+	 * Method for creating a new G-Code block.
+	 *
+	 * @param n the n
+	 * @param info_g_list the info g list
+	 * @param info_t_list the info t list
+	 * @param info_t_M_list the info t M list
+	 */
 	// creazione del blocco
 	public void createNewBlock(Token n, List<InfoGeometriche> info_g_list, List<InfoTecnologiche> info_t_list,
 			List<InfoTecnologicheM> info_t_M_list) {
@@ -67,6 +127,15 @@ public class gcodeGrammarHandler {
 		last_token = n;
 	}
 
+	/**
+	 * Block initialization method.
+	 *
+	 * @param n the n
+	 * @param info_g_list the info g list
+	 * @param info_t_list the info t list
+	 * @param info_t_M_list the info t M list
+	 * @return the built block
+	 */
 	// inizializzazione del blocco con informazioni geometriche e tecnologiche
 	private BlockDescriptor BlockInit(Token n, List<InfoGeometriche> info_g_list, List<InfoTecnologiche> info_t_list,
 			List<InfoTecnologicheM> info_t_M_list) {
@@ -197,6 +266,9 @@ public class gcodeGrammarHandler {
 
 	}
 
+	/**
+	 * Print function for the block list.
+	 */
 	// funzione di stampa della lista di blocchi
 	public void printBlocks() {
 		for (Entry<Integer, BlockDescriptor> entry : blocks.entrySet()) {
@@ -204,11 +276,24 @@ public class gcodeGrammarHandler {
 		}
 	}
 
+	/**
+	 * Method that returns the G-Code error list.
+	 * 
+	 * @return the G-Code error list
+	 */
 	// metodo che mi fornisce lista degli errori
 	public List<GCodeError> getErrorList() {
 		return errorList;
 	}
 
+	/**
+	 * Method that handles lexical and syntactic errors.
+	 *
+	 * @param tokenNames the token names
+	 * @param e the e
+	 * @param h the h
+	 * @param m the m
+	 */
 	// h contiene le coordinate, m il messaggio d'errore standard
 	void handleError(String[] tokenNames, RecognitionException e, String h, String m) {
 		GCodeError errore = new GCodeError();
@@ -227,6 +312,13 @@ public class gcodeGrammarHandler {
 		errorList.add(errore);
 	}
 
+	/**
+	 * Method that handles all semantic errors for G-Code.
+	 *
+	 * @param code the code
+	 * @param tk the tk
+	 * @param bd the bd
+	 */
 	// gestione degli errori semantici
 	public void semanticErrorHandler(int code, Token tk, BlockDescriptor bd) {
 		GCodeError errore = new GCodeError();
@@ -337,6 +429,11 @@ public class gcodeGrammarHandler {
 		errorList.add(errore);
 	}
 
+	/**
+	 * Method that returns the last token in the list.
+	 *
+	 * @return the last token
+	 */
 	// restitutizione ultimo token letto dal lexer
 	public Token getLast_token() {
 		return last_token;
