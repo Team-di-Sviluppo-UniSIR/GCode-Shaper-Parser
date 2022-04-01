@@ -25,6 +25,7 @@ GCode-Shaper-Parser
 ├── errors
 ├── jars
 ├── libraries
+├── UML
 ├── LICENSE
 └── README.md
 ```
@@ -74,6 +75,9 @@ This project uses `antlr-3.4-complete.jar`. When importing the Java code, please
 ├── antlr-4.8-complete.jar
 └── antlr-runtime-4.8.jar
 ```
+
+### UML
+This folder contains all UML diagrams, namely class diagrams for all classes and the package diagram for the entire project.
 
 # Code management and organization
 ### Code tree diagram
@@ -173,9 +177,12 @@ Helpful docs with syntax, examples and errors for understanding both *GCODE Pars
 
 # Semantic analysis
 ## GCode parser
-Following the GCode definition, each block of the source code can contain one or more instruction and, each of them, can has further informations about the movement, the speed, the tecnology and other possibile details of the CNC machine tool. 
-An important difference between the GCode and our "light GCode" is that in the reality all the instruction informations can be listed randomly while in our solution is specified a fix order to be followed. The GCode grammar implemented in this software is based on this assumption and is built via a bottom-up approach that combine two main method: the first one is used to create the instruction informations while the other one is used to assembly them in several blocks. 
-During the costruction is also verified that the identificator of each block (N###) follows an increasing order (not necessarily sequential) and, after this check, all the components are finally merged in the main object called "Blocks" and istanciated as a SortedMap. It represent the top-chain object which is passed and processed by the GCode parser.  
+###### Block structure
+Following the GCode definition, each block of the source code can contain one or more instruction and, each of them, has further informations about the movement, the speed, the tecnology and other possibile details of the CNC machine tool.<br>
+###### Block build
+An important difference between the GCode and our "light GCode" is that in the reality all the instruction informations can be listed randomly while in our solution a specified a fix order to be followed is specified. The GCode grammar implemented in this software is based on this assumption and it is built via a bottom-up approach that combine two main methods: the first one is used to create the instruction informations while the other one is used to assembly them in several blocks.
+###### Block ordering check
+During the costruction is also verified that the identificator of each block (N###) follows an increasing order (not necessarily sequential) and, after this check, all the components are finally merged in the main object called "Blocks" and built as a SortedMap. It represent the top-chain object which is passed and processed by the GCode parser.  
 
 ## GCode shaper
 Stessa cosa di sopra da adattare alla struttura del gcode shaper
