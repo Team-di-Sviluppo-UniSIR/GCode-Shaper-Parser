@@ -1,7 +1,12 @@
 # What are GCODE Parser and Shaper
-***GCode-Shaper-Parser*** aims to provide students a useful tool for understanding and practicing with G-code, a programming language for CNC (*Computer Numerical Control*) machines:
+***GCode-Shaper-Parser*** aims to provide students a useful tool for understanding and practicing with G-code, a programming language for CNC (*Computer Numerical Control*) machines. This project is composed by two main parts that are integrated each other and work together to provide to the final user the best approach to the industrial automation duties. 
+As specifed below, the GCode programming language used by this software is a simplifed version of the real GCode used on the industrial machines and, in particular, is composed by: 
 - ***GCODE Parser*** is the main compiler developed for parsing G-code language and provide a graphical representation of the written code.
 - ***Shaper*** is a metalanguage built upon G-code in order to simplify the definition of CNC commands and help the users understand the rules of G-code language.
+
+For further information on GCode programming language plese refere to this [link](https://en.wikipedia.org/wiki/G-code).
+
+We want to underline that the GCode Shaper works with a new metalanguage created from scratch by the developers of this tool while the GCode Parser works with the "ligth GCode", that is a simplified version of the GCode which already exist and is widespread in the industrial sector.
 
 Both GCODE Parser and Shaper are written in Java using ANTLR package.</br>
 [GCode-Shaper-IDE](https://github.com/Team-di-Sviluppo-UniSIR/GCode-Shaper-Parser/releases/tag/v1.0) is a GUI developed for helping users in the usage of *GCode-Shaper-Parser*.
