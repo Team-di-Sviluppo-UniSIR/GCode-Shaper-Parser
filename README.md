@@ -27,10 +27,10 @@ GCode-Shaper-Parser
 This repository is basically organized as follows:
 
 ### code
-It contains all the code related to this project. It is further organized into packages, each of which refers to a specific feature or features subset. Please refer below for subfolder organization details;
+It contains all the code related to this project. It is further organized into packages, each of which refers to a specific feature or features subset. Please refer below for subfolder organization details.
 
 ### docs
-It contains the documentation both for the G-Code parser and the Shaper metalanguage. You can navigate it using links to the errors subfolder;
+It contains the documentation both for the G-Code parser and the Shaper metalanguage. You can navigate it using links to the errors subfolder.
 ```
 docs
 ├── gcode parser
@@ -46,7 +46,7 @@ docs
 ```
 
 ### errors
-In this folder are located the specification for the errors, both for G-Code and Shaper;
+In this folder are located the specification for the errors, both for G-Code and Shaper.
 ```
 errors
 ├── gcode parser
@@ -56,14 +56,14 @@ errors
 ```
 
 ### jars
-This folder containts the `antlrworks-1.5.2-complete.jar`. If you'd like to develop further, please refer to this jar in order to update and modify the language specification (both for G-Code and Shaper);
+This folder containts the `antlrworks-1.5.2-complete.jar`. If you'd like to develop further, please refer to this jar in order to update and modify the language specification (both for G-Code and Shaper).
 ```
 jars
 └── antlrworks-1.5.2-complete.jar
 ```
 
 ### libraries
-This project uses `antlr-3.4-complete.jar`. When importing the Java code, please use this library version to build the project;
+This project uses `antlr-3.4-complete.jar`. When importing the Java code, please use this library version to build the project.
 ```
 ├── antlr-3.4-complete.jar
 ├── antlr-4.8-complete.jar
