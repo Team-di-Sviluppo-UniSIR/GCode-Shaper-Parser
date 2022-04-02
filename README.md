@@ -192,7 +192,8 @@ An important difference between the GCode and our "light GCode" is that in the r
 During the costruction is also verified that the identificator of each block (N###) follows an increasing order (not necessarily sequential) and, after this check, all the components are finally merged in the main object called "Blocks" and built as a SortedMap. It represent the top-chain object which is passed and processed by the GCode parser.  
 
 ## GCode shaper
-Stessa cosa di sopra da adattare alla struttura del gcode shaper
+###### Shape structure
+As done for the GCode specification, a bottom-up approach is applied. All the shape informations are collected (`shape` and `configuration`) and the shape object is created via the `createShape()` method. In this case no lists are used beacuse only one shape is built.
 
 # Errors
 All errors in G-code Parser and Shaper are here listed:
