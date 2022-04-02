@@ -88,8 +88,8 @@ UML
 ├── package_diagram.png
 ├── shaperCompiler_package.png
 ├── shaperCompilerUtil_package.png
-├──  shaperMain_package.png
-└──README.md
+├── shaperMain_package.png
+└── README.md
 ```
 
 # Code management and organization
