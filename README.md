@@ -191,6 +191,9 @@ Helpful docs with syntax, examples and errors for understanding both *GCODE Pars
 1. [G-code Parser docs](https://github.com/Team-di-Sviluppo-UniSIR/GCode-Shaper-Parser/tree/main/docs/gcode%20parser)
 2. [Shaper docs](https://github.com/Team-di-Sviluppo-UniSIR/GCode-Shaper-Parser/tree/main/docs/shaper%20metalanguage)
 
+# UML diagrams
+Please refer to [this page](/UML/README.md) in order to browse all package and class diagrams available for this project. 
+
 # Semantic analysis
 ## GCode parser
 ###### Block structure
