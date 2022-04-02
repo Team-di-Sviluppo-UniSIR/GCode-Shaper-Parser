@@ -80,7 +80,16 @@ This project uses `antlr-3.4-complete.jar`. When importing the Java code, please
 This folder contains all UML diagrams, namely class diagrams for all classes and the package diagram for the entire project.
 ```
 UML
-
+├── gcodeCompiler_package.png
+├── gcodeCompilerUtil_package.png
+├── gcodeDrawingTool_package.png
+├── gcodeIDE.png
+├── gcodeMain_package.png
+├── package_diagram.png
+├── shaperCompiler_package.png
+├── shaperCompilerUtil_package.png
+├──  shaperMain_package.png
+└──README.md
 ```
 
 # Code management and organization
