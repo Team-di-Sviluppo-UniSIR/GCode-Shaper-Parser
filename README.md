@@ -78,6 +78,10 @@ This project uses `antlr-3.4-complete.jar`. When importing the Java code, please
 
 ### UML
 This folder contains all UML diagrams, namely class diagrams for all classes and the package diagram for the entire project.
+```
+UML
+
+```
 
 # Code management and organization
 ### Code tree diagram
@@ -166,6 +170,9 @@ temp_files
 ├── gcode_temp.txt
 └── shaper_temp.txt
 ```
+
+# Javadoc
+Please refer to [this link](https://team-di-sviluppo-unisir.github.io/GCode-Shaper-Parser/) in order to browse the javadoc for all the packages, classes, methods and fields.
 
 # Installation
 *GCode-Shaper-IDE* v1.0 executable program can be downloaded from the [Releases](https://github.com/Team-di-Sviluppo-UniSIR/GCode-Shaper-Parser/releases/tag/v1.0) section of this repo ("GCodeShaperIDE.exe").
